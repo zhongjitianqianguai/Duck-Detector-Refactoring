@@ -1,0 +1,190 @@
+<!--
+Copyright 2026 Duck Apps Contributor
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+
+<resources>
+    <string name="runtime_tee_module_info_omitted">getSupplementaryAttestationInfo(MODULE_HASH) returned module info, but attestation omitted MODULE_HASH.</string>
+    <string name="runtime_tee_module_info_mismatch">Attested MODULE_HASH did not match getSupplementaryAttestationInfo(MODULE_HASH).</string>
+    <string name="runtime_tee_module_info_unavailable">Attestation carried MODULE_HASH while getSupplementaryAttestationInfo(MODULE_HASH) was unavailable.</string>
+    <string name="runtime_tee_update_stale_detected">UpdateSubcomponent stale TEE response persistence detected.</string>
+    <string name="runtime_tee_mass_abuse_lower">mass abuse</string>
+    <string name="runtime_tee_auth_failed">Auth failed</string>
+    <string name="runtime_tee_single_use_ec">Single-use EC</string>
+    <string name="runtime_tee_rsa_pss_sha256">RSA-PSS SHA-256</string>
+    <string name="runtime_tee_aes_cbc_ctr_auth">AES-CBC/CTR auth</string>
+    <string name="runtime_tee_aes_cbc_padding_auth">AES-CBC padding auth</string>
+    <string name="runtime_tee_ec_sha512_auth">EC SHA-512 auth</string>
+    <string name="runtime_tee_rsa_pss_sha512_auth">RSA-PSS SHA-512 auth</string>
+    <string name="runtime_tee_rsa_pss_pkcs1_auth">RSA-PSS PKCS#1 auth</string>
+    <string name="runtime_tee_rsa_oaep_pkcs1_auth">RSA OAEP/PKCS#1 auth</string>
+    <string name="runtime_tee_rsa_pkcs1_oaep_auth">RSA PKCS#1/OAEP auth</string>
+    <string name="runtime_tee_rsa_oaep_mgf1">RSA-OAEP MGF1</string>
+    <string name="runtime_tee_rsa_oaep_mgf1_auth">RSA-OAEP MGF1 auth</string>
+    <string name="runtime_tee_rsa_oaep_sha256">RSA-OAEP SHA-256</string>
+    <string name="runtime_tee_rsa_oaep_sha1_auth">RSA-OAEP SHA-1 auth</string>
+    <string name="runtime_tee_ec_none_auth">EC NONE auth</string>
+    <string name="runtime_tee_rsa_pkcs1_sha1_auth">RSA PKCS#1 SHA-1 auth</string>
+    <string name="runtime_tee_rsa_pkcs1_pss_auth">RSA PKCS#1/PSS auth</string>
+    <string name="runtime_tee_matched_non_grantee">Matched kind=NON_GRANTEE_READBACK_ALLOWED</string>
+    <string name="runtime_tee_matched_access_vector">Matched kind=GET_KEY_ENTRY_WITHOUT_GET_INFO_ALLOWED</string>
+    <string name="runtime_tee_clean_none">Clean kind=NONE</string>
+    <string name="runtime_tee_unavailable_kind">Unavailable kind</string>
+    <string name="runtime_tee_matched_kind">Matched kind</string>
+    <string name="runtime_tee_clean_kind">Clean kind</string>
+    <string name="runtime_tee_set_key_not_found">setKeyEntry() failed with a key-not-found style response</string>
+    <string name="runtime_tee_grant_update_metadata">Domain.GRANT updateSubcomponent did not round-trip cert/chain metadata</string>
+    <string name="runtime_tee_could_not_test">could not test</string>
+
+    <string name="runtime_tee_postprocess_pre15">Skipped because keystore2 has no certificate post-processing call site below Android 15.</string>
+    <string name="runtime_tee_no_hardware_keymint">Skipped because the device did not expose a hardware-backed KeyMint tier.</string>
+    <string name="runtime_tee_importkey_skipped">ImportKey retained attestation narrative probe skipped.</string>
+    <string name="runtime_tee_grant_domain_skipped">Grant-domain full-chain split probe skipped.</string>
+    <string name="runtime_tee_grant_binding_skipped">Grant caller-binding private binder probe skipped.</string>
+    <string name="runtime_tee_grant_access_skipped">Grant access-vector private binder probe skipped.</string>
+    <string name="runtime_tee_grant_self_skipped">Grant self-domain full-chain split probe skipped.</string>
+    <string name="runtime_tee_update_stale_skipped">UpdateSubcomponent stale response persistence probe skipped.</string>
+    <string name="runtime_tee_crl_entries_missing">Attestation status feed is missing an entries object.</string>
+    <string name="runtime_tee_aes_auth_unavailable">AES-GCM authorization checks unavailable.</string>
+    <string name="runtime_tee_aes_cbc_skipped">AES-GCM CBC authorization skipped.</string>
+    <string name="runtime_tee_aes_mac_skipped">AES-GCM MAC length authorization skipped.</string>
+    <string name="runtime_tee_aes_nonce_skipped">AES-GCM nonce authorization skipped.</string>
+
+    <string name="runtime_tee_dump_title">=== [GENERATEKEY transaction atomic structure dump] ===</string>
+    <string name="runtime_tee_dump_request_parse">--- [Request Data Parse] ---</string>
+    <string name="runtime_tee_dump_request_unavailable">Request parcel unavailable.</string>
+    <string name="runtime_tee_dump_request_hex">--- [Request Raw Hex] ---</string>
+    <string name="runtime_tee_dump_reply_parse">--- [Reply Data Parse] ---</string>
+    <string name="runtime_tee_dump_reply_unavailable">Reply parcel unavailable.</string>
+    <string name="runtime_tee_dump_raw_sequence">--- [Parcel raw binary sequence] ---</string>
+    <string name="runtime_tee_dump_parse_unavailable">reply parse unavailable</string>
+    <string name="runtime_tee_dump_metadata_parse">[KeyMetadata return value parse]</string>
+    <string name="runtime_tee_dump_metadata_start">Offset: 0x0004 | [KeyMetadata structure start]</string>
+    <string name="runtime_tee_dump_descriptor">Offset: 0x0004-0x0028 | Descriptor block: 40 bytes</string>
+    <string name="runtime_tee_dump_transaction_failed">[!] Transaction failed; no KeyMetadata body parsed.</string>
+    <string name="runtime_tee_dump_reply_hex">--- [Reply Raw Hex] ---</string>
+    <string name="runtime_tee_dump_fingerprint">[Fingerprint tuple]</string>
+    <string name="runtime_tee_not_executed">not executed</string>
+
+    <string name="runtime_tee_grant_domain_requires_12">Grant-domain private binder probe requires Android 12 or newer.</string>
+    <string name="runtime_tee_grant_self_requires_12">Grant self-domain private binder probe requires Android 12 or newer.</string>
+    <string name="runtime_tee_skip_public_danger">skipped because public stage already detected danger</string>
+    <string name="runtime_tee_skip_java_danger">skipped because Java grant stage already detected danger</string>
+    <string name="runtime_tee_skip_self_danger">skipped because earlier grant self-domain stage already detected danger</string>
+    <string name="runtime_tee_app_chain_empty">private getKeyEntry(APP) returned an empty certificate chain.</string>
+    <string name="runtime_tee_grant_chain_empty">private getKeyEntry(GRANT) returned an empty certificate chain.</string>
+    <string name="runtime_tee_isolated_unavailable">Private: isolated grantee unavailable.</string>
+    <string name="runtime_tee_grant_incomplete">Private: grant did not complete.</string>
+    <string name="runtime_tee_owner_binder_unavailable">isolated binder call blocked: owner keystore2 binder unavailable.</string>
+    <string name="runtime_tee_readback_crashed">Private: isolated readback crashed after grant succeeded.</string>
+    <string name="runtime_tee_domain_chain_empty">Private: Domain.GRANT certificate chain empty.</string>
+    <string name="runtime_tee_chain_fingerprints_match">Owner alias and grantee Domain.GRANT ordered full-chain fingerprints matched.</string>
+    <string name="runtime_tee_grant_attest_strongbox">Private grant-attest: skipped for StrongBox pass.</string>
+    <string name="runtime_tee_grant_attest_service">Private grant-attest: Keystore2 service unavailable.</string>
+    <string name="runtime_tee_grant_attest_purpose">Private grant-attest: PURPOSE_ATTEST_KEY generation unavailable.</string>
+    <string name="runtime_tee_grant_attest_clean">Private grant-attest: clean APP getKeyEntry after GRANT custom attestation; baseline APP readback ok.</string>
+    <string name="runtime_tee_grant_attest_not_found">Private grant-attest: APP getKeyEntry returned KEY_NOT_FOUND after GRANT custom attestation succeeded; baseline APP readback ok.</string>
+
+    <string name="runtime_tee_import_requires_12">ImportKey retained narrative probe requires Android 12 or newer.</string>
+    <string name="runtime_tee_prior_chain_unavailable">Prior attested chain was unavailable for the importKey probe alias.</string>
+    <string name="runtime_tee_import_metadata_unavailable">Keystore2 getKeyEntry() metadata was unavailable after import.</string>
+    <string name="runtime_tee_import_failed">ImportKey retained narrative probe failed.</string>
+    <string name="runtime_tee_import_gate_failed">ImportKey support gate failed before retained narrative comparison.</string>
+    <string name="runtime_tee_import_no_snapshots">Keystore2 getKeyEntry() returned no post-import metadata snapshots.</string>
+
+    <string name="runtime_tee_update_requires_12">Grant updateSubcomponent requires Android 12 or newer.</string>
+    <string name="runtime_tee_update_service_unavailable">Grant updateSubcomponent skipped: Keystore2 service unavailable.</string>
+    <string name="runtime_tee_update_no_response">Grant updateSubcomponent readback returned no KeyEntryResponse.</string>
+    <string name="runtime_tee_update_app_no_response">Grant updateSubcomponent APP readback returned no KeyEntryResponse.</string>
+    <string name="runtime_tee_hmac_failed">HMAC-SHA256 generation failed.</string>
+    <string name="runtime_tee_single_ec_requires_12">Single-use EC requires Android 12 or newer.</string>
+    <string name="runtime_tee_single_ec_failed">Single-use EC generation failed.</string>
+    <string name="runtime_tee_ecdh_requires_12">ECDH requires Android 12 or newer.</string>
+    <string name="runtime_tee_ecdh_failed">ECDH P-256 key agreement failed.</string>
+    <string name="runtime_tee_rsapss_failed">RSA-PSS SHA-256 signing failed.</string>
+    <string name="runtime_tee_rsa_pkcs1_unavailable">RSA PKCS#1 encryption unavailable.</string>
+    <string name="runtime_tee_rsa_oaep_sha1_unavailable">RSA-OAEP SHA-1 encryption unavailable.</string>
+    <string name="runtime_tee_mgf1_requires_15">RSA-OAEP MGF1 digest probe requires Android 15 or newer.</string>
+    <string name="runtime_tee_mgf1_requires_keymint">RSA-OAEP MGF1 digest probe requires KeyMint 1.0 or newer.</string>
+    <string name="runtime_tee_rsa_oaep_sha256_unavailable">RSA-OAEP SHA-256 encryption unavailable.</string>
+    <string name="runtime_tee_mgf1_auth_requires_15">RSA-OAEP MGF1 digest authorization probe requires Android 15 or newer.</string>
+    <string name="runtime_tee_mgf1_auth_requires_keymint">RSA-OAEP MGF1 digest authorization probe requires KeyMint 1.0 or newer.</string>
+    <string name="runtime_tee_rsa_oaep_roundtrip_failed">RSA-OAEP SHA-256 round-trip failed.</string>
+    <string name="runtime_tee_rsa_oaep_reject_failed">RSA-OAEP SHA-1 rejection probe failed.</string>
+    <string name="runtime_tee_ec_none_failed">EC NONE digest probe failed.</string>
+    <string name="runtime_tee_rsa_sha1_failed">RSA PKCS#1 SHA-1 probe failed.</string>
+    <string name="runtime_tee_rsa_pss_probe_failed">RSA PKCS#1/PSS probe failed.</string>
+    <string name="runtime_tee_grant_update_skipped">Grant updateSubcomponent skipped.</string>
+
+    <string name="runtime_tee_public_grant_missing">Public: unavailable (KeyStoreManager grant API missing).</string>
+    <string name="runtime_tee_hidden_service_missing">Hidden: unavailable (KeyStoreManager service missing).</string>
+    <string name="runtime_tee_private_proxy_unavailable">Keystore2 private binder proxy session unavailable.</string>
+    <string name="runtime_tee_reference_key_unavailable">Unable to provision a PURPOSE_ATTEST_KEY reference key. The split-path comparison needs one.</string>
+    <string name="runtime_tee_slow_device">slow device</string>
+    <string name="runtime_tee_private_grant_failed">private grant failed</string>
+    <string name="runtime_tee_private_ungrant_failed">private ungrant failed</string>
+    <string name="runtime_tee_private_app_failed">private getKeyEntry(APP) failed</string>
+    <string name="runtime_tee_private_grant_read_failed">private getKeyEntry(GRANT) failed</string>
+    <string name="runtime_tee_private_owner_no_response">private owner replay getKeyEntry(GRANT) returned no KeyEntryResponse.</string>
+    <string name="runtime_tee_private_owner_response">private owner replay getKeyEntry(GRANT) returned a response.</string>
+    <string name="runtime_tee_isolated_blocked">isolated binder call blocked</string>
+    <string name="runtime_tee_isolated_empty_chain">isolated binder call blocked: Domain.GRANT certificate chain was empty.</string>
+    <string name="runtime_tee_isolated_private_read">isolated private getKeyEntry(GRANT)</string>
+    <string name="runtime_tee_hidden_grant_no_descriptor">private grant failed: hidden grant() returned no descriptor.</string>
+    <string name="runtime_tee_hidden_grant_invalid">private grant failed: hidden grant() returned invalid grant namespace.</string>
+    <string name="runtime_tee_hidden_ungrant_unavailable">private ungrant failed: hidden ungrant() was unavailable.</string>
+    <string name="runtime_tee_permission_denied">permission denied</string>
+    <string name="runtime_tee_keystore_manager_unavailable">KeyStoreManager service unavailable.</string>
+
+    <string name="runtime_tee_access_requires_12">Grant access-vector private binder probe requires Android 12 or newer.</string>
+    <string name="runtime_tee_owner_session_unavailable">Private: owner Keystore2 binder session unavailable.</string>
+    <string name="runtime_tee_access_incomplete">Private: grant access-vector probe did not complete.</string>
+    <string name="runtime_tee_existing_danger">Skipped because an existing grant detector already reported danger.</string>
+    <string name="runtime_tee_grantee_without_info">Private: grantee getKeyEntry(GRANT) succeeded without GET_INFO.</string>
+    <string name="runtime_tee_grantee_denied">Private: grantee getKeyEntry(GRANT) rejected with PERMISSION_DENIED.</string>
+    <string name="runtime_tee_binding_requires_12">Grant caller-binding private binder probe requires Android 12 or newer.</string>
+    <string name="runtime_tee_binding_incomplete">Private: grant caller-binding probe did not complete.</string>
+    <string name="runtime_tee_owner_replay_succeeded">Private: non-grantee owner replay succeeded for isolated grant handle.</string>
+    <string name="runtime_tee_owner_replay_rejected">Private: owner replay rejected with KEY_NOT_FOUND.</string>
+
+    <string name="runtime_tee_grantee_context_unavailable">Grant-domain grantee context unavailable.</string>
+    <string name="runtime_tee_grantee_timeout">Grant-domain isolated grantee timed out.</string>
+    <string name="runtime_tee_grantee_null_binder">Grant-domain isolated grantee returned a null binder.</string>
+    <string name="runtime_tee_grantee_bind_failed">Grant-domain isolated grantee could not be bound.</string>
+    <string name="runtime_tee_owner_not_passed">isolated binder call blocked: owner did not pass keystore2 binder.</string>
+    <string name="runtime_tee_private_readback_blocked">isolated private binder readback blocked.</string>
+
+    <string name="runtime_tee_update_prior_chain">Prior attested chain was unavailable for updateSubcomponent persistence probe.</string>
+    <string name="runtime_tee_update_no_private_key">Generated alias did not return an AndroidKeyStore private key for update.</string>
+    <string name="runtime_tee_update_metadata_unavailable">Keystore2 getKeyEntry() metadata was unavailable after updateSubcomponent.</string>
+    <string name="runtime_tee_update_probe_failed">UpdateSubcomponent stale response persistence probe failed.</string>
+    <string name="runtime_tee_marker_baseline_clean">marker certificate baseline clean.</string>
+    <string name="runtime_tee_setkey_completed">setKeyEntry(existing AndroidKeyStorePrivateKey, markerChain) completed.</string>
+    <string name="runtime_tee_update_no_snapshots">Keystore2 getKeyEntry() returned no post-update metadata snapshots.</string>
+    <string name="runtime_tee_aes_cbc_ctr_authorization">AES-CBC CTR authorization</string>
+    <string name="runtime_tee_aes_cbc_nopadding_authorization">AES-CBC NoPadding authorization</string>
+    <string name="runtime_tee_ec_sha512_authorization">EC SHA-512 authorization</string>
+    <string name="runtime_tee_rsapss_sha512_authorization">RSA-PSS SHA-512 authorization</string>
+    <string name="runtime_tee_rsapss_pkcs1_authorization">RSA-PSS PKCS#1 authorization</string>
+    <string name="runtime_tee_rsa_oaep_pkcs1_authorization">RSA-OAEP PKCS#1 authorization</string>
+    <string name="runtime_tee_rsa_pkcs1_oaep_authorization">RSA-PKCS#1 OAEP authorization</string>
+    <string name="runtime_tee_rsa_mgf1_sha1_authorization">RSA-OAEP MGF1 SHA-1 authorization</string>
+    <string name="runtime_tee_rsa_oaep_sha1_authorization">RSA-OAEP SHA-1 authorization</string>
+    <string name="runtime_tee_ec_none_authorization">EC NONE digest authorization</string>
+    <string name="runtime_tee_rsa_sha1_authorization">RSA PKCS#1 SHA-1 authorization</string>
+    <string name="runtime_tee_rsa_pss_authorization">RSA PKCS#1/PSS authorization</string>
+    <string name="runtime_tee_private_binder_requires_12">Keystore2 private binder grant requires Android 12 or newer.</string>
+    <string name="runtime_tee_private_app_entry">private getKeyEntry(APP)</string>
+    <string name="runtime_tee_private_grant_entry">private getKeyEntry(GRANT)</string>
+</resources>

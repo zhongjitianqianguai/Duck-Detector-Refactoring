@@ -41,9 +41,11 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
-class DashboardExportFormatter {
+class DashboardExportFormatter(
+    private val localize: (String) -> String = { it },
+) {
 
-    fun format(state: DashboardUiState): String = buildString {
+    fun format(state: DashboardUiState): String = localize(buildString {
         appendLine("========================================")
         appendLine("  Duck Detector — Security Scan Report")
         appendLine("========================================")
@@ -90,7 +92,7 @@ class DashboardExportFormatter {
         appendLine("========================================")
         appendLine("  End of report")
         appendLine("========================================")
-    }
+    })
 
     private fun StringBuilder.appendDetectorCard(entry: DashboardDetectorCardEntry) {
         when (entry) {

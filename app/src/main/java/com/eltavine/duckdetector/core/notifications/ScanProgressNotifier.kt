@@ -31,6 +31,7 @@ import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import com.eltavine.duckdetector.MainActivity
 import com.eltavine.duckdetector.R
+import com.eltavine.duckdetector.core.localization.DisplayTextLocalizer
 
 class ScanProgressNotifier(
     private val context: Context,
@@ -46,7 +47,7 @@ class ScanProgressNotifier(
             return
         }
         createChannelIfNeeded()
-        val formatted = formatter.format(snapshot)
+        val formatted = formatter.format(snapshot).localized()
         if (snapshot.scanning) {
             NotificationManagerCompat.from(context).cancel(COMPLETION_NOTIFICATION_ID)
             postScanningNotification(permissionState, snapshot, formatted)
@@ -158,12 +159,21 @@ class ScanProgressNotifier(
         manager.createNotificationChannel(
             NotificationChannel(
                 CHANNEL_ID,
-                "Scan progress",
+                context.getString(R.string.notification_channel_name),
                 NotificationManager.IMPORTANCE_LOW,
             ).apply {
-                description = "Overall Duck Detector scan progress and final dashboard verdict."
+                description = context.getString(R.string.notification_channel_description)
                 setShowBadge(false)
             },
+        )
+    }
+
+    private fun ScanProgressNotificationModel.localized(): ScanProgressNotificationModel {
+        return copy(
+            title = DisplayTextLocalizer.translate(context, title),
+            text = DisplayTextLocalizer.translate(context, text),
+            subText = subText?.let { DisplayTextLocalizer.translate(context, it) },
+            shortCriticalText = shortCriticalText?.let { DisplayTextLocalizer.translate(context, it) },
         )
     }
 

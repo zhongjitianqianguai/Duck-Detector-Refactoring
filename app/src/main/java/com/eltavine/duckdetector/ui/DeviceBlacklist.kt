@@ -35,6 +35,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import com.eltavine.duckdetector.core.localization.DisplayTextLocalizer
 import com.eltavine.duckdetector.core.ui.components.WrapSafeText
 import kotlinx.coroutines.delay
 import kotlin.system.exitProcess
@@ -79,7 +80,11 @@ internal fun BlockedDeviceScreen(
     val activity = context.findActivity()
 
     LaunchedEffect(match.message) {
-        Toast.makeText(context, match.message, Toast.LENGTH_LONG).show()
+        Toast.makeText(
+            context,
+            DisplayTextLocalizer.translate(context, match.message),
+            Toast.LENGTH_LONG,
+        ).show()
         delay(1200)
         activity?.finishAffinity()
         Process.killProcess(Process.myPid())

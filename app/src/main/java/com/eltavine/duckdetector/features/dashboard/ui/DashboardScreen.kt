@@ -60,6 +60,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.eltavine.duckdetector.BuildConfig
 import com.eltavine.duckdetector.R
+import com.eltavine.duckdetector.core.localization.DisplayTextLocalizer
 import com.eltavine.duckdetector.core.ui.components.WrapSafeText
 import com.eltavine.duckdetector.core.ui.openExternalUri
 import com.eltavine.duckdetector.core.ui.model.DetectionSeverity
@@ -107,20 +108,22 @@ fun DashboardScreen(
     ) { uri ->
         if (uri != null) {
             try {
-                val formatter = DashboardExportFormatter()
+                val formatter = DashboardExportFormatter { value ->
+                    DisplayTextLocalizer.translate(context, value)
+                }
                 val text = formatter.format(uiState)
                 context.contentResolver.openOutputStream(uri)?.use { stream ->
                     stream.write(text.toByteArray(Charsets.UTF_8))
                 }
                 Toast.makeText(
                     context,
-                    "Report saved",
+                    context.getString(R.string.dashboard_report_saved),
                     Toast.LENGTH_SHORT,
                 ).show()
             } catch (e: Exception) {
                 Toast.makeText(
                     context,
-                    "Save failed: ${e.message}",
+                    context.getString(R.string.dashboard_save_failed, e.message.orEmpty()),
                     Toast.LENGTH_SHORT,
                 ).show()
             }

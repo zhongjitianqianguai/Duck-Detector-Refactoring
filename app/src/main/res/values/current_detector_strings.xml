@@ -1,0 +1,242 @@
+<!--
+Copyright 2026 Duck Apps Contributor
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+
+<resources>
+    <string name="runtime_current_report_title">Duck Detector — Security Scan Report</string>
+    <string name="runtime_current_app_version">App Version</string>
+    <string name="runtime_current_build_hash">Build Hash</string>
+    <string name="runtime_current_build_time">Build Time</string>
+    <string name="runtime_current_report_time">Report Time</string>
+    <string name="runtime_current_overview">OVERVIEW</string>
+    <string name="runtime_current_status">Status</string>
+    <string name="runtime_current_summary">Summary</string>
+    <string name="runtime_current_metrics">Metrics</string>
+    <string name="runtime_current_top_findings">TOP FINDINGS</string>
+    <string name="runtime_current_detector_cards">DETECTOR CARDS</string>
+    <string name="runtime_current_device_info">DEVICE INFO</string>
+    <string name="runtime_current_none">(none)</string>
+    <string name="runtime_current_end_report">End of report</string>
+    <string name="runtime_current_verdict">Verdict</string>
+    <string name="runtime_current_header_facts">Header facts</string>
+    <string name="runtime_current_methods">Methods</string>
+    <string name="runtime_current_scan">Scan</string>
+    <string name="runtime_current_framework">Framework</string>
+    <string name="runtime_current_policy_notes">Policy notes</string>
+    <string name="runtime_current_audit_notes">Audit notes</string>
+    <string name="runtime_current_mapping">Mapping</string>
+    <string name="runtime_current_loader">Loader</string>
+    <string name="runtime_current_binder">Binder</string>
+    <string name="runtime_current_package">Package</string>
+    <string name="runtime_current_selinux_policy">SELinux policy</string>
+    <string name="runtime_current_highlight_signals">Highlight signals</string>
+    <string name="runtime_current_certificate_count">Certificate count</string>
+    <string name="runtime_current_tee_detailed_export">TEE detailed export</string>
+    <string name="runtime_current_core">Core</string>
+    <string name="runtime_current_source">Source</string>
+    <string name="runtime_current_environment">Environment</string>
+    <string name="runtime_current_honeypot">Honeypot</string>
+    <string name="runtime_current_host_apps">Host apps</string>
+    <string name="runtime_current_signals">Signals</string>
+    <string name="runtime_current_target_apps">Target apps</string>
+    <string name="runtime_current_hidden_packages">Hidden packages</string>
+    <string name="runtime_current_hma_alert">HMA Alert</string>
+    <string name="runtime_current_danger_upper">DANGER</string>
+    <string name="runtime_current_warning_upper">WARNING</string>
+    <string name="runtime_current_info_upper">INFO</string>
+    <string name="runtime_current_clear_upper">CLEAR</string>
+    <string name="runtime_current_scanned_at">Scanned at</string>
+    <string name="runtime_current_total_time">Total time</string>
+    <string name="runtime_current_scanned_timing">Scanned at %1$s\nTotal time %2$s</string>
+
+    <string name="runtime_current_scene_debugfs_context">Scene debugfs context</string>
+    <string name="runtime_current_scene_broadcast">Scene broadcast</string>
+    <string name="runtime_current_shared_storage_denied">Shared storage baseline denied</string>
+    <string name="runtime_current_shared_storage_denied_detail">Shared external-storage baseline paths all returned EACCES/EPERM. This suggests shared user gid or related zygote storage groups may have been restricted.</string>
+    <string name="runtime_current_shared_storage_denied_detail_stat">Multiple fixed shared-storage baseline paths returned EACCES/EPERM under stat(). This suggests shared user gid or related zygote storage groups may have been restricted.</string>
+
+    <string name="runtime_current_kernel_major_version">Kernel major version</string>
+    <string name="runtime_current_kernel_collecting">Kernel naming, boot parameter, pointer-exposure, and Unicode path-bypass heuristics are collecting local evidence.</string>
+    <string name="runtime_current_kernel_major_detail">Kernel release major version %1$s does not match any released Linux kernel major version.</string>
+
+    <string name="runtime_current_isolated_mount_no_data">The isolated helper process did not return mount view data.</string>
+    <string name="runtime_current_isolated_mount_no_scan">The isolated helper process did not expose a cross-process mount view scan.</string>
+    <string name="runtime_current_root_mount_token">Root mount token in process view</string>
+    <string name="runtime_current_root_mount_token_detail">A visible /proc/&lt;pid&gt;/mountinfo table contains a root-managed mount source.</string>
+    <string name="runtime_current_hidden_mount_divergence">Hidden mount view divergence</string>
+    <string name="runtime_current_root_token">Root token</string>
+    <string name="runtime_current_root_mount_across_processes">Root mount token exposed across process views</string>
+    <string name="runtime_current_hidden_mount_across_processes">Hidden mount view divergence across processes</string>
+    <string name="runtime_current_native_root_weak_summary">Only weaker isolated-process mount drift, cross-process mount view divergence, manager manifest fingerprints, process, cgroup, kernel, property, or metadata residue surfaced. These are review-worthy, but not as strong as direct native probes.</string>
+    <string name="runtime_current_native_root_clean_summary">KernelSU read-only supercall, prctl-side probes, KernelPatch side channel, self-process IOC, isolated-process mount drift and cross-process mount view comparison, manager manifest fingerprint, SUSFS side-channel, /data/adb artifacts, curated tmp/system/storage residue paths, /data/local/tmp metadata, root-process audit, cgroup/process leakage, kernel strings, and properties stayed clean.</string>
+    <string name="runtime_current_proc_mount_views">Proc mount views</string>
+    <string name="runtime_current_proc_view_expected">Proc view expected</string>
+    <string name="runtime_current_proc_view_pids">Proc view pids</string>
+    <string name="runtime_current_direct_root_token">Direct root token</string>
+    <string name="runtime_current_mount_divergence_detail">Cross-process mountinfo diverges from the isolated baseline. %1$d distinct table(s) vs expected %2$d across %3$d process(es).</string>
+    <string name="runtime_current_mount_comparison_detail">Compared cross-process mount tables through an isolated helper process. %1$s</string>
+    <string name="runtime_current_mount_unable_read">Unable to read %1$s</string>
+    <string name="runtime_current_mount_none_readable">Scanned %1$d pid(s) but no process mount table was readable; cross-process mount view comparison is unavailable.</string>
+    <string name="runtime_current_mount_scan_detail">Scanned %1$d pid(s), %2$d readable mount table(s), %3$d distinct view(s), expected %4$d.</string>
+
+    <string name="runtime_current_app_zygote_seqno">App-zygote seqno oracle</string>
+    <string name="runtime_current_seqno_split">Seqno split</string>
+    <string name="runtime_current_seqno_trust_note">This oracle is trusted only when produced by android:zygotePreloadName inside the dedicated app_zygote carrier.</string>
+    <string name="runtime_current_droidspaces_daemon">DroidSpaces daemon</string>
+    <string name="runtime_current_droidspaces_magisk">Droidspaces checker: magisk -&gt; droidspacesd dyntransition</string>
+    <string name="runtime_current_droidspaces_su">Droidspaces checker: su -&gt; droidspacesd dyntransition</string>
+    <string name="runtime_current_droidspaces_binder">Droidspaces checker: system_server -&gt; droidspacesd binder</string>
+    <string name="runtime_current_droidspaces_magisk_detail">Observed edge: magisk -&gt; droidspacesd:process dyntransition. Droidspaces seeds this transition from its module policy so Magisk-rooted execution can move into the dedicated droidspacesd domain.</string>
+    <string name="runtime_current_droidspaces_su_detail">Observed edge: su -&gt; droidspacesd:process dyntransition. Droidspaces exposes this transition so an su-rooted process can enter the dedicated droidspacesd domain.</string>
+    <string name="runtime_current_droidspaces_binder_detail">Observed edge: system_server -&gt; droidspacesd:binder call. Droidspaces allows system_server to talk to the dedicated droidspacesd service over binder.</string>
+    <string name="runtime_current_selinux_seqno_split">Enforcing with app_zygote seqno split</string>
+    <string name="runtime_current_selinux_seqno_split_detail">The zygotePreload app_zygote carrier observed a policyload/access seqno split.</string>
+    <string name="runtime_current_selinux_seqno_coherent">The zygotePreload app_zygote carrier reported a coherent policyload/access seqno contract.</string>
+    <string name="runtime_current_selinux_seqno_unavailable">The zygotePreload app_zygote seqno oracle stayed unavailable.</string>
+    <string name="runtime_current_dirty_droidspaces">Dirty sepolicy rule: Droidspaces</string>
+    <string name="runtime_current_oem_unlock_allowed">OEM unlock allowed</string>
+    <string name="runtime_current_selinux_status_short">SELinux status short read: %1$d</string>
+    <string name="runtime_current_selinux_empty">SELinux access response was empty.</string>
+    <string name="runtime_current_selinux_fields">SELinux access response had %1$d fields.</string>
+    <string name="runtime_current_selinux_seqno_numeric">SELinux access seqno was not numeric.</string>
+    <string name="runtime_current_selinux_process_unreadable">SELinux process class was unreadable.</string>
+
+    <string name="runtime_current_neozygisk_env">NeoZygisk environment marker</string>
+    <string name="runtime_current_zygisk_collecting">The detector is collecting cross-process specialization evidence first, then correlating environment, linker, namespace, maps, smaps, thread, fd, stack, seccomp, and heap traces from the current process.</string>
+    <string name="runtime_current_zygisk_danger">FD trap or direct runtime probes exposed evidence consistent with TMP_PATH leakage, specialization tampering, namespace bypass, linker redirection, ptrace attachment, or libc-hook side effects.</string>
+    <string name="runtime_current_zygisk_clean">The FD trap stayed clean and the native runtime snapshot did not expose TMP_PATH, linker, maps, heap, thread, or descriptor traces associated with Zygisk-style injection.</string>
+    <string name="runtime_current_zygisk_strong">Direct strong signals include FD trap, NeoZygisk TMP_PATH leakage, namespace bypass, linker hook, TracerPid, and seccomp trap positives.</string>
+
+    <string name="runtime_current_keymint_vintf">KeyMint VINTF</string>
+    <string name="runtime_current_cert_postprocessing">Cert post-processing</string>
+    <string name="runtime_current_rkp_manufacturer">RKP manufacturer</string>
+    <string name="runtime_current_grant_isolated">Grant isolated-domain</string>
+    <string name="runtime_current_grant_caller_binding">Grant caller binding</string>
+    <string name="runtime_current_grant_access_vector">Grant access vector</string>
+    <string name="runtime_current_grant_self">Grant self-domain</string>
+    <string name="runtime_current_importkey_narrative">ImportKey narrative</string>
+    <string name="runtime_current_module_hash">Module hash</string>
+    <string name="runtime_current_update_persistence">Update persistence</string>
+    <string name="runtime_current_keymint_crypto">KeyMint crypto</string>
+    <string name="runtime_current_builtin_snapshot">Built-in snapshot</string>
+    <string name="runtime_current_mass_abuse">Mass abuse</string>
+    <string name="runtime_current_ratio_skipped">Ratio skipped</string>
+    <string name="runtime_current_revocation_chain_match">Revocation data matched certificate serials from the chain.</string>
+    <string name="runtime_current_grant_isolated_chain">Grant isolated-domain certificate-chain narrative split detected. %1$s</string>
+    <string name="runtime_current_grant_isolated_visibility">Grant isolated-domain key visibility divergence detected. %1$s</string>
+    <string name="runtime_current_grant_isolated_crash">Grant isolated-domain isolated private readback crashed after grant succeeded. %1$s</string>
+    <string name="runtime_current_grant_handle_readable">Grant handle remained readable by its non-grantee owner. %1$s</string>
+    <string name="runtime_current_grant_access_readback">Domain.GRANT handle without GET_INFO still allowed getKeyEntry metadata readback. %1$s</string>
+    <string name="runtime_current_grant_self_chain">Grant self-domain certificate-chain split detected. %1$s</string>
+    <string name="runtime_current_grant_self_visibility">Grant self-domain key visibility divergence detected. %1$s</string>
+    <string name="runtime_current_grant_self_attestation">Grant self-domain custom-attestation visibility divergence detected. %1$s</string>
+    <string name="runtime_current_importkey_retained">ImportKey retained attestation narrative detected.</string>
+    <string name="runtime_current_aes_unauthorized">AndroidKeyStore AES-GCM accepted unauthorized parameters: %1$s.</string>
+    <string name="runtime_current_keymint_failures">Hardware-backed KeyMint failed crypto capability checks: %1$s.</string>
+    <string name="runtime_current_local_revocation">Built-in local revocation floor matched a certificate serial associated with mass abuse.</string>
+    <string name="runtime_current_vintf_mismatch">VINTF declaration did not match attested version. %1$s</string>
+    <string name="runtime_current_vintf_match">VINTF declaration matched attested KeyMint version. %1$s</string>
+    <string name="runtime_current_vintf_unreadable">VINTF manifest was not fully readable. %1$s</string>
+    <string name="runtime_current_vintf_not_found">No comparable KeyMint VINTF declaration was found. %1$s</string>
+    <string name="runtime_current_vintf_attestation_unavailable">Attested KeyMint version was unavailable. %1$s</string>
+    <string name="runtime_current_cert_postprocess_rot">RootOfTrust differed between the RKP and ATTEST_KEY paths, which only certificate post-processing explains.</string>
+    <string name="runtime_current_cert_postprocess_hard_fail">RKP key acquisition hard-failed, so the post-processing path could not be reached or tested.</string>
+    <string name="runtime_current_cert_postprocess_factory">The factory key was used instead of an RKP key, so the post-processing path was never traversed and this is untested rather than clean.</string>
+    <string name="runtime_current_cert_postprocess_samples">Not enough paired samples were collected to judge certificate post-processing.</string>
+    <string name="runtime_current_module_hash_omitted">MODULE_HASH omitted from attestation.</string>
+    <string name="runtime_current_module_hash_mismatch">MODULE_HASH did not match supplementary attestation info.</string>
+    <string name="runtime_current_module_hash_unavailable">MODULE_HASH present while supplementary attestation info was unavailable.</string>
+    <string name="runtime_current_module_hash_not_required">MODULE_HASH not required by attestation version.</string>
+    <string name="runtime_current_module_hash_matched">MODULE_HASH matched supplementary attestation info.</string>
+    <string name="runtime_current_crl_waiting">Built-in revocation snapshot is active; online refresh is awaiting startup consent.</string>
+    <string name="runtime_current_crl_disabled">Built-in revocation snapshot is active; online refresh is disabled in Settings.</string>
+    <string name="runtime_current_crl_failed">Online CRL refresh failed; built-in revocation snapshot was used.</string>
+    <string name="runtime_current_crl_parse_failed">Built-in CRL snapshot could not be parsed.</string>
+    <string name="runtime_current_crl_load_failed">Built-in CRL snapshot could not be loaded.</string>
+    <string name="runtime_current_crl_failed_generic">Built-in CRL snapshot failed.</string>
+    <string name="runtime_current_rkp_manufacturer_match">RKP provisioning manufacturer matched the attested manufacturer (%1$s).</string>
+    <string name="runtime_current_rkp_manufacturer_mismatch">RKP provisioning manufacturer was %1$s, but the attested manufacturer was %2$s.</string>
+    <string name="runtime_current_rkp_no_manufacturer">Skipped because the chain carried no RKP provisioning manufacturer to cross-check.</string>
+    <string name="runtime_current_rkp_no_attested_manufacturer">Skipped because the device did not attest an ID manufacturer to compare against.</string>
+    <string name="runtime_current_fd_trap_lower">fd trap</string>
+    <string name="runtime_current_detection_methods_title">Detection Methods</string>
+    <string name="runtime_current_zygisk_failed_evidence">Zygisk detection failed before evidence could be assembled.</string>
+    <string name="runtime_current_zygisk_failed">Zygisk detection failed.</string>
+    <string name="runtime_current_prop_area_hole">prop_area hole</string>
+    <string name="runtime_current_selinux_method_summary">sysfs + getenforce + proc attr + app_zygote zygotePreload seqno + context oracle + policy + audit</string>
+    <string name="runtime_current_seven_local_checks">7 local checks</string>
+    <string name="runtime_current_repeatability_failed">repeatability failed</string>
+    <string name="runtime_current_selinux_seqno_kernel_detail">The zygotePreload app_zygote carrier observed a policyload/access seqno split; treat this as KernelSU-specific evidence bounded to the preload carrier.</string>
+    <string name="runtime_current_below_minimum">below minimum</string>
+    <string name="runtime_current_meets_minimum">meets minimum</string>
+    <string name="runtime_current_rewrite_markers">rewrite markers</string>
+    <string name="runtime_current_su_actor">su-related actor</string>
+    <string name="runtime_current_auditpatch_residue">Readable auditpatch residue</string>
+    <string name="runtime_current_did_not_expose">did not expose</string>
+    <string name="runtime_current_policyload_capture_note">The policyload/access seqno oracle must be captured inside zygotePreloadName; the isolated child may lose app_zygote SELinuxfs access and should downgrade missing coverage to info.</string>
+    <string name="runtime_current_carrier_untrusted">Carrier state=untrusted</string>
+    <string name="runtime_current_carrier_failed">Carrier state=failed</string>
+    <string name="runtime_current_dangerousapps_collecting">PackageManager, createPackageContext + ZipFile, open APK descriptors, storage mirrors, loopback, IPC, accessibility, and native package-path probes are collecting local evidence.</string>
+    <string name="runtime_current_dangerousapps_scoped">createPackageContext + ZipFile, open APK descriptor, and storage-side probes still ran, but a clean result may under-report installed tools when PackageManager visibility is scoped.</string>
+    <string name="runtime_current_dangerousapps_clean">PackageManager, createPackageContext + ZipFile, open APK descriptors, storage, loopback, IPC, accessibility, and native package-path probes did not surface known high-risk tools.</string>
+    <string name="runtime_current_dangerousapps_hidden">These packages were detected by direct corroboration probes but hidden from PackageManager inventory. This is the only Dangerous Apps path that stays red.</string>
+    <string name="runtime_current_mount_scan_failed_short">local mount scan failed</string>
+    <string name="runtime_current_mount_scanning">Scanning runtime mount visibility</string>
+    <string name="runtime_current_mount_gathering">Gathering runtime mount and filesystem evidence.</string>
+    <string name="runtime_current_native_proc_scan">native /proc scan</string>
+    <string name="runtime_current_fallback_self_context">fallback self context</string>
+    <string name="runtime_current_su_failed_evidence">SU scan failed before root evidence could be assembled.</string>
+    <string name="runtime_current_su_failed">SU scan failed.</string>
+    <string name="runtime_current_generated_key">generated key</string>
+    <string name="runtime_current_grant_handle">Grant handle</string>
+    <string name="runtime_current_key_visibility">key visibility</string>
+    <string name="runtime_current_grant_self_visibility_dialog">Grant self-domain key visibility diverged; open TEE details for stage diagnostics.</string>
+    <string name="runtime_current_grant_self_chain_dialog">Grant self-domain certificate chain diverged; open TEE details for stage diagnostics.</string>
+    <string name="runtime_current_grant_isolated_visibility_dialog">Grant isolated-domain key visibility diverged; open TEE details for stage diagnostics.</string>
+    <string name="runtime_current_grant_isolated_crash_dialog">Grant isolated-domain runtime crash; open TEE details for stage diagnostics.</string>
+    <string name="runtime_current_grant_isolated_chain_dialog">Grant isolated-domain certificate chain diverged; open TEE details for stage diagnostics.</string>
+    <string name="runtime_current_grant_binding_dialog">Grant handle caller binding failed; open TEE details for stage diagnostics.</string>
+    <string name="runtime_current_patch_levels">Patch levels</string>
+    <string name="runtime_current_memory_method_summary">6 native detector families · current-process memory only</string>
+    <string name="runtime_current_memory_failed">Memory scan failed.</string>
+    <string name="runtime_current_customrom_failed_evidence">Custom ROM scan failed before evidence could be assembled.</string>
+    <string name="runtime_current_customrom_failed">Custom ROM scan failed.</string>
+    <string name="runtime_current_tracked_property_names">tracked property name(s)</string>
+    <string name="runtime_current_property_area_contexts">property-area context(s)</string>
+    <string name="runtime_current_dirty_policy_prefix">Dirty sepolicy rule</string>
+    <string name="runtime_current_droidspaces_prefix">Droidspaces checker</string>
+    <string name="runtime_current_msd_prefix">MSD checker</string>
+    <string name="runtime_current_audit_sidechannel_suffix">+ audit integrity + side-channel</string>
+    <string name="runtime_current_n_root_seccomp_fallback">%1$s The read-only ksu_driver probe was blocked by app seccomp on this device, so the verdict falls back to prctl, self-process IOC, path, cgroup, kernel-string, and property evidence.</string>
+    <string name="runtime_current_n_root_unavailable_fallback">%1$s The read-only ksu_driver probe was unavailable, so this card relied on the remaining native checks.</string>
+    <string name="runtime_current_no_readable_data">No readable data surfaced for %1$s.</string>
+    <string name="runtime_current_virtualization_counts">%1$d env · %2$d translation · %3$d runtime</string>
+    <string name="runtime_current_dex_count">%1$d dex</string>
+    <string name="runtime_current_uid_count">%1$d uid</string>
+    <string name="runtime_current_trap_count">%1$d trap hit(s)</string>
+    <string name="runtime_current_host_app_count">%1$d host app(s)</string>
+    <string name="runtime_current_full_pm_inventory">full PM inventory</string>
+    <string name="runtime_current_scoped_pm_inventory">scoped PM inventory</string>
+    <string name="runtime_current_visible_count">%1$d visible</string>
+    <string name="runtime_current_hidden_package_count">%1$d package(s) were visible to direct corroboration probes but absent from PackageManager inventory.</string>
+    <string name="runtime_current_su_path_count">%1$d su paths</string>
+    <string name="runtime_current_adb_daemon_count">%1$d adb daemon paths</string>
+    <string name="runtime_current_prop_count">%1$d props</string>
+    <string name="runtime_current_package_count">%1$d packages</string>
+    <string name="runtime_current_named_service_count">%1$d named services</string>
+    <string name="runtime_current_proc_attr_anomaly">The dedicated app_zygote carrier observed anomalous /proc/self/attr/current writes for %1$s.</string>
+    <string name="runtime_current_droidspaces_value">Droidspaces: %1$s</string>
+    <string name="runtime_current_msd_value">MSD: %1$s</string>
+</resources>

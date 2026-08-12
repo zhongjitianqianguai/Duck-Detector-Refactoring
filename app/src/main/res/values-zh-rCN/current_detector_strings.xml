@@ -1,0 +1,242 @@
+<!--
+Copyright 2026 Duck Apps Contributor
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+
+<resources>
+    <string name="runtime_current_report_title">Duck Detector — 安全扫描报告</string>
+    <string name="runtime_current_app_version">应用版本</string>
+    <string name="runtime_current_build_hash">构建哈希</string>
+    <string name="runtime_current_build_time">构建时间</string>
+    <string name="runtime_current_report_time">报告时间</string>
+    <string name="runtime_current_overview">概览</string>
+    <string name="runtime_current_status">状态</string>
+    <string name="runtime_current_summary">摘要</string>
+    <string name="runtime_current_metrics">指标</string>
+    <string name="runtime_current_top_findings">主要发现</string>
+    <string name="runtime_current_detector_cards">检测卡片</string>
+    <string name="runtime_current_device_info">设备信息</string>
+    <string name="runtime_current_none">（无）</string>
+    <string name="runtime_current_end_report">报告结束</string>
+    <string name="runtime_current_verdict">结论</string>
+    <string name="runtime_current_header_facts">概要信息</string>
+    <string name="runtime_current_methods">检测方法</string>
+    <string name="runtime_current_scan">扫描</string>
+    <string name="runtime_current_framework">框架</string>
+    <string name="runtime_current_policy_notes">策略说明</string>
+    <string name="runtime_current_audit_notes">审计说明</string>
+    <string name="runtime_current_mapping">内存映射</string>
+    <string name="runtime_current_loader">加载器</string>
+    <string name="runtime_current_binder">Binder</string>
+    <string name="runtime_current_package">软件包</string>
+    <string name="runtime_current_selinux_policy">SELinux 策略</string>
+    <string name="runtime_current_highlight_signals">重点信号</string>
+    <string name="runtime_current_certificate_count">证书数量</string>
+    <string name="runtime_current_tee_detailed_export">TEE 详细导出</string>
+    <string name="runtime_current_core">核心</string>
+    <string name="runtime_current_source">来源</string>
+    <string name="runtime_current_environment">环境</string>
+    <string name="runtime_current_honeypot">蜜罐</string>
+    <string name="runtime_current_host_apps">宿主应用</string>
+    <string name="runtime_current_signals">信号</string>
+    <string name="runtime_current_target_apps">目标应用</string>
+    <string name="runtime_current_hidden_packages">隐藏的软件包</string>
+    <string name="runtime_current_hma_alert">HMA 警报</string>
+    <string name="runtime_current_danger_upper">危险</string>
+    <string name="runtime_current_warning_upper">警告</string>
+    <string name="runtime_current_info_upper">信息</string>
+    <string name="runtime_current_clear_upper">正常</string>
+    <string name="runtime_current_scanned_at">扫描时间</string>
+    <string name="runtime_current_total_time">总耗时</string>
+    <string name="runtime_current_scanned_timing">扫描时间 %1$s\n总耗时 %2$s</string>
+
+    <string name="runtime_current_scene_debugfs_context">Scene debugfs 上下文</string>
+    <string name="runtime_current_scene_broadcast">Scene 广播</string>
+    <string name="runtime_current_shared_storage_denied">共享存储基线被拒绝</string>
+    <string name="runtime_current_shared_storage_denied_detail">所有共享外部存储基线路径均返回 EACCES/EPERM。这表明共享用户 GID 或相关 Zygote 存储组可能受到限制。</string>
+    <string name="runtime_current_shared_storage_denied_detail_stat">多个固定的共享存储基线路径在 stat() 下均返回 EACCES/EPERM。这表明共享用户 GID 或相关 Zygote 存储组可能受到限制。</string>
+
+    <string name="runtime_current_kernel_major_version">内核主版本</string>
+    <string name="runtime_current_kernel_collecting">正在收集内核命名、启动参数、指针暴露以及 Unicode 路径绕过的本地证据。</string>
+    <string name="runtime_current_kernel_major_detail">内核发布版主版本 %1$s 与任何已发布的 Linux 内核主版本都不匹配。</string>
+
+    <string name="runtime_current_isolated_mount_no_data">隔离辅助进程没有返回挂载视图数据。</string>
+    <string name="runtime_current_isolated_mount_no_scan">隔离辅助进程没有提供跨进程挂载视图扫描。</string>
+    <string name="runtime_current_root_mount_token">进程视图中的 Root 挂载标记</string>
+    <string name="runtime_current_root_mount_token_detail">可见的 /proc/&lt;pid&gt;/mountinfo 表中包含由 Root 管理的挂载源。</string>
+    <string name="runtime_current_hidden_mount_divergence">隐藏的挂载视图差异</string>
+    <string name="runtime_current_root_token">Root 标记</string>
+    <string name="runtime_current_root_mount_across_processes">跨进程视图暴露了 Root 挂载标记</string>
+    <string name="runtime_current_hidden_mount_across_processes">跨进程存在隐藏的挂载视图差异</string>
+    <string name="runtime_current_native_root_weak_summary">仅发现较弱的隔离进程挂载漂移、跨进程挂载视图差异、管理器清单指纹、进程、cgroup、内核、属性或元数据残留。这些内容值得复核，但不如直接原生探针有力。</string>
+    <string name="runtime_current_native_root_clean_summary">KernelSU 只读 supercall、prctl 侧探针、KernelPatch 侧信道、自进程 IOC、隔离进程挂载漂移和跨进程挂载视图对比、管理器清单指纹、SUSFS 侧信道、/data/adb 痕迹、tmp/system/storage 精选残留路径、/data/local/tmp 元数据、Root 进程审计、cgroup/进程泄漏、内核字符串及属性均保持干净。</string>
+    <string name="runtime_current_proc_mount_views">进程挂载视图</string>
+    <string name="runtime_current_proc_view_expected">预期进程视图数</string>
+    <string name="runtime_current_proc_view_pids">进程视图 PID 数</string>
+    <string name="runtime_current_direct_root_token">直接 Root 标记</string>
+    <string name="runtime_current_mount_divergence_detail">跨进程 mountinfo 与隔离基线不同：有 %1$d 张不同的表，预期 %2$d 张，共涉及 %3$d 个进程。</string>
+    <string name="runtime_current_mount_comparison_detail">已通过隔离辅助进程比较跨进程挂载表。%1$s</string>
+    <string name="runtime_current_mount_unable_read">无法读取 %1$s</string>
+    <string name="runtime_current_mount_none_readable">扫描了 %1$d 个 PID，但没有可读取的进程挂载表；无法进行跨进程挂载视图比较。</string>
+    <string name="runtime_current_mount_scan_detail">扫描了 %1$d 个 PID，其中 %2$d 张挂载表可读，共 %3$d 个不同视图，预期 %4$d 个。</string>
+
+    <string name="runtime_current_app_zygote_seqno">App Zygote 序列号预言机</string>
+    <string name="runtime_current_seqno_split">序列号分裂</string>
+    <string name="runtime_current_seqno_trust_note">只有由专用 app_zygote 载体中的 android:zygotePreloadName 产生时，才信任此预言机。</string>
+    <string name="runtime_current_droidspaces_daemon">DroidSpaces 守护进程</string>
+    <string name="runtime_current_droidspaces_magisk">Droidspaces 检查：magisk -&gt; droidspacesd 动态域转换</string>
+    <string name="runtime_current_droidspaces_su">Droidspaces 检查：su -&gt; droidspacesd 动态域转换</string>
+    <string name="runtime_current_droidspaces_binder">Droidspaces 检查：system_server -&gt; droidspacesd Binder</string>
+    <string name="runtime_current_droidspaces_magisk_detail">发现边：magisk -&gt; droidspacesd:process dyntransition。Droidspaces 通过其模块策略加入此转换，使 Magisk Root 进程能够进入专用 droidspacesd 域。</string>
+    <string name="runtime_current_droidspaces_su_detail">发现边：su -&gt; droidspacesd:process dyntransition。Droidspaces 暴露此转换，使 su Root 进程能够进入专用 droidspacesd 域。</string>
+    <string name="runtime_current_droidspaces_binder_detail">发现边：system_server -&gt; droidspacesd:binder call。Droidspaces 允许 system_server 通过 Binder 与专用 droidspacesd 服务通信。</string>
+    <string name="runtime_current_selinux_seqno_split">强制模式，但 app_zygote 序列号分裂</string>
+    <string name="runtime_current_selinux_seqno_split_detail">zygotePreload 的 app_zygote 载体发现 policyload/access 序列号分裂。</string>
+    <string name="runtime_current_selinux_seqno_coherent">zygotePreload 的 app_zygote 载体报告了连贯的 policyload/access 序列号约定。</string>
+    <string name="runtime_current_selinux_seqno_unavailable">zygotePreload 的 app_zygote 序列号预言机不可用。</string>
+    <string name="runtime_current_dirty_droidspaces">脏 SELinux 策略规则：Droidspaces</string>
+    <string name="runtime_current_oem_unlock_allowed">允许 OEM 解锁</string>
+    <string name="runtime_current_selinux_status_short">SELinux 状态读取过短：%1$d</string>
+    <string name="runtime_current_selinux_empty">SELinux access 响应为空。</string>
+    <string name="runtime_current_selinux_fields">SELinux access 响应包含 %1$d 个字段。</string>
+    <string name="runtime_current_selinux_seqno_numeric">SELinux access 序列号不是数字。</string>
+    <string name="runtime_current_selinux_process_unreadable">无法读取 SELinux 进程类别。</string>
+
+    <string name="runtime_current_neozygisk_env">NeoZygisk 环境标记</string>
+    <string name="runtime_current_zygisk_collecting">检测器正在先收集跨进程特化证据，再关联当前进程中的环境、链接器、命名空间、maps、smaps、线程、文件描述符、堆栈、seccomp 和堆痕迹。</string>
+    <string name="runtime_current_zygisk_danger">FD 陷阱或直接运行时探针发现了与 TMP_PATH 泄漏、特化篡改、命名空间绕过、链接器重定向、ptrace 附加或 libc Hook 副作用一致的证据。</string>
+    <string name="runtime_current_zygisk_clean">FD 陷阱保持干净，原生运行时快照也未暴露与 Zygisk 式注入相关的 TMP_PATH、链接器、maps、堆、线程或文件描述符痕迹。</string>
+    <string name="runtime_current_zygisk_strong">直接强信号包括 FD 陷阱、NeoZygisk TMP_PATH 泄漏、命名空间绕过、链接器 Hook、TracerPid 和 seccomp 陷阱阳性。</string>
+
+    <string name="runtime_current_keymint_vintf">KeyMint VINTF</string>
+    <string name="runtime_current_cert_postprocessing">证书后处理</string>
+    <string name="runtime_current_rkp_manufacturer">RKP 制造商</string>
+    <string name="runtime_current_grant_isolated">Grant 隔离域</string>
+    <string name="runtime_current_grant_caller_binding">Grant 调用者绑定</string>
+    <string name="runtime_current_grant_access_vector">Grant 访问向量</string>
+    <string name="runtime_current_grant_self">Grant 自身域</string>
+    <string name="runtime_current_importkey_narrative">ImportKey 叙事</string>
+    <string name="runtime_current_module_hash">模块哈希</string>
+    <string name="runtime_current_update_persistence">更新持久化</string>
+    <string name="runtime_current_keymint_crypto">KeyMint 密码能力</string>
+    <string name="runtime_current_builtin_snapshot">内置快照</string>
+    <string name="runtime_current_mass_abuse">大规模滥用</string>
+    <string name="runtime_current_ratio_skipped">已跳过比率判断</string>
+    <string name="runtime_current_revocation_chain_match">吊销数据匹配到了证书链中的序列号。</string>
+    <string name="runtime_current_grant_isolated_chain">检测到 Grant 隔离域的证书链叙事分裂。%1$s</string>
+    <string name="runtime_current_grant_isolated_visibility">检测到 Grant 隔离域的密钥可见性差异。%1$s</string>
+    <string name="runtime_current_grant_isolated_crash">Grant 成功后，隔离域的私有回读发生崩溃。%1$s</string>
+    <string name="runtime_current_grant_handle_readable">Grant 句柄仍可由非被授权的所有者读取。%1$s</string>
+    <string name="runtime_current_grant_access_readback">没有 GET_INFO 的 Domain.GRANT 句柄仍允许 getKeyEntry 元数据回读。%1$s</string>
+    <string name="runtime_current_grant_self_chain">检测到 Grant 自身域的证书链分裂。%1$s</string>
+    <string name="runtime_current_grant_self_visibility">检测到 Grant 自身域的密钥可见性差异。%1$s</string>
+    <string name="runtime_current_grant_self_attestation">检测到 Grant 自身域的自定义证明可见性差异。%1$s</string>
+    <string name="runtime_current_importkey_retained">检测到 ImportKey 保留的证明叙事。</string>
+    <string name="runtime_current_aes_unauthorized">AndroidKeyStore AES-GCM 接受了未授权参数：%1$s。</string>
+    <string name="runtime_current_keymint_failures">硬件支持的 KeyMint 未通过密码能力检查：%1$s。</string>
+    <string name="runtime_current_local_revocation">内置本地吊销底线匹配到与大规模滥用相关的证书序列号。</string>
+    <string name="runtime_current_vintf_mismatch">VINTF 声明与证明版本不匹配。%1$s</string>
+    <string name="runtime_current_vintf_match">VINTF 声明与证明中的 KeyMint 版本匹配。%1$s</string>
+    <string name="runtime_current_vintf_unreadable">无法完整读取 VINTF 清单。%1$s</string>
+    <string name="runtime_current_vintf_not_found">未找到可比较的 KeyMint VINTF 声明。%1$s</string>
+    <string name="runtime_current_vintf_attestation_unavailable">无法取得证明中的 KeyMint 版本。%1$s</string>
+    <string name="runtime_current_cert_postprocess_rot">RKP 与 ATTEST_KEY 路径的 RootOfTrust 不同，这只能由证书后处理解释。</string>
+    <string name="runtime_current_cert_postprocess_hard_fail">RKP 密钥获取发生硬失败，因此无法到达或测试后处理路径。</string>
+    <string name="runtime_current_cert_postprocess_factory">使用的是出厂密钥而非 RKP 密钥，因此从未经过后处理路径；此项属于未测试，不能视为干净。</string>
+    <string name="runtime_current_cert_postprocess_samples">配对样本不足，无法判断证书后处理。</string>
+    <string name="runtime_current_module_hash_omitted">证明中缺少 MODULE_HASH。</string>
+    <string name="runtime_current_module_hash_mismatch">MODULE_HASH 与补充证明信息不匹配。</string>
+    <string name="runtime_current_module_hash_unavailable">证明包含 MODULE_HASH，但补充证明信息不可用。</string>
+    <string name="runtime_current_module_hash_not_required">当前证明版本不要求 MODULE_HASH。</string>
+    <string name="runtime_current_module_hash_matched">MODULE_HASH 与补充证明信息匹配。</string>
+    <string name="runtime_current_crl_waiting">内置吊销快照已启用；在线刷新正等待启动授权。</string>
+    <string name="runtime_current_crl_disabled">内置吊销快照已启用；设置中已禁用在线刷新。</string>
+    <string name="runtime_current_crl_failed">在线 CRL 刷新失败，已使用内置吊销快照。</string>
+    <string name="runtime_current_crl_parse_failed">无法解析内置 CRL 快照。</string>
+    <string name="runtime_current_crl_load_failed">无法加载内置 CRL 快照。</string>
+    <string name="runtime_current_crl_failed_generic">内置 CRL 快照失败。</string>
+    <string name="runtime_current_rkp_manufacturer_match">RKP 配置制造商与证明制造商匹配（%1$s）。</string>
+    <string name="runtime_current_rkp_manufacturer_mismatch">RKP 配置制造商为 %1$s，但证明制造商为 %2$s。</string>
+    <string name="runtime_current_rkp_no_manufacturer">已跳过：证书链没有可供交叉检查的 RKP 配置制造商。</string>
+    <string name="runtime_current_rkp_no_attested_manufacturer">已跳过：设备未证明可用于比较的 ID 制造商。</string>
+    <string name="runtime_current_fd_trap_lower">FD 陷阱</string>
+    <string name="runtime_current_detection_methods_title">检测方法</string>
+    <string name="runtime_current_zygisk_failed_evidence">Zygisk 检测在组装证据前失败。</string>
+    <string name="runtime_current_zygisk_failed">Zygisk 检测失败。</string>
+    <string name="runtime_current_prop_area_hole">prop_area 空洞</string>
+    <string name="runtime_current_selinux_method_summary">sysfs + getenforce + proc attr + app_zygote zygotePreload 序列号 + 上下文预言机 + 策略 + 审计</string>
+    <string name="runtime_current_seven_local_checks">7 项本地检查</string>
+    <string name="runtime_current_repeatability_failed">重复性检查失败</string>
+    <string name="runtime_current_selinux_seqno_kernel_detail">zygotePreload 的 app_zygote 载体发现 policyload/access 序列号分裂；应将其视为仅限于预加载载体的 KernelSU 特定证据。</string>
+    <string name="runtime_current_below_minimum">低于最低要求</string>
+    <string name="runtime_current_meets_minimum">达到最低要求</string>
+    <string name="runtime_current_rewrite_markers">重写标记</string>
+    <string name="runtime_current_su_actor">与 su 相关的主体</string>
+    <string name="runtime_current_auditpatch_residue">可读取的 auditpatch 残留</string>
+    <string name="runtime_current_did_not_expose">未暴露</string>
+    <string name="runtime_current_policyload_capture_note">必须在 zygotePreloadName 内捕获 policyload/access 序列号预言机；隔离子进程可能失去 app_zygote 对 SELinuxfs 的访问，因此缺少覆盖时应降级为信息，而非判定正常。</string>
+    <string name="runtime_current_carrier_untrusted">载体状态=不可信</string>
+    <string name="runtime_current_carrier_failed">载体状态=失败</string>
+    <string name="runtime_current_dangerousapps_collecting">正在通过 PackageManager、createPackageContext + ZipFile、打开 APK 描述符、存储镜像、回环、IPC、无障碍服务和原生包路径探针收集本地证据。</string>
+    <string name="runtime_current_dangerousapps_scoped">createPackageContext + ZipFile、打开 APK 描述符和存储侧探针仍已运行，但当 PackageManager 可见性受限时，干净结果可能漏报已安装工具。</string>
+    <string name="runtime_current_dangerousapps_clean">PackageManager、createPackageContext + ZipFile、打开 APK 描述符、存储、回环、IPC、无障碍服务和原生包路径探针均未发现已知高风险工具。</string>
+    <string name="runtime_current_dangerousapps_hidden">这些软件包由直接佐证探针检测到，但在 PackageManager 清单中被隐藏。这是 Dangerous Apps 中唯一保持红色的路径。</string>
+    <string name="runtime_current_mount_scan_failed_short">本地挂载扫描失败</string>
+    <string name="runtime_current_mount_scanning">正在扫描运行时挂载可见性</string>
+    <string name="runtime_current_mount_gathering">正在收集运行时挂载与文件系统证据。</string>
+    <string name="runtime_current_native_proc_scan">原生 /proc 扫描</string>
+    <string name="runtime_current_fallback_self_context">备用自身上下文</string>
+    <string name="runtime_current_su_failed_evidence">SU 扫描在组装 Root 证据前失败。</string>
+    <string name="runtime_current_su_failed">SU 扫描失败。</string>
+    <string name="runtime_current_generated_key">生成的密钥</string>
+    <string name="runtime_current_grant_handle">Grant 句柄</string>
+    <string name="runtime_current_key_visibility">密钥可见性</string>
+    <string name="runtime_current_grant_self_visibility_dialog">Grant 自身域的密钥可见性存在差异；请打开 TEE 详情查看各阶段诊断。</string>
+    <string name="runtime_current_grant_self_chain_dialog">Grant 自身域的证书链存在差异；请打开 TEE 详情查看各阶段诊断。</string>
+    <string name="runtime_current_grant_isolated_visibility_dialog">Grant 隔离域的密钥可见性存在差异；请打开 TEE 详情查看各阶段诊断。</string>
+    <string name="runtime_current_grant_isolated_crash_dialog">Grant 隔离域运行时崩溃；请打开 TEE 详情查看各阶段诊断。</string>
+    <string name="runtime_current_grant_isolated_chain_dialog">Grant 隔离域的证书链存在差异；请打开 TEE 详情查看各阶段诊断。</string>
+    <string name="runtime_current_grant_binding_dialog">Grant 句柄的调用者绑定失败；请打开 TEE 详情查看各阶段诊断。</string>
+    <string name="runtime_current_patch_levels">补丁级别</string>
+    <string name="runtime_current_memory_method_summary">6 类原生检测器 · 仅检查当前进程内存</string>
+    <string name="runtime_current_memory_failed">内存扫描失败。</string>
+    <string name="runtime_current_customrom_failed_evidence">自定义 ROM 扫描在组装证据前失败。</string>
+    <string name="runtime_current_customrom_failed">自定义 ROM 扫描失败。</string>
+    <string name="runtime_current_tracked_property_names">个受跟踪属性名</string>
+    <string name="runtime_current_property_area_contexts">个属性区上下文</string>
+    <string name="runtime_current_dirty_policy_prefix">脏 SELinux 策略规则</string>
+    <string name="runtime_current_droidspaces_prefix">Droidspaces 检查</string>
+    <string name="runtime_current_msd_prefix">MSD 检查</string>
+    <string name="runtime_current_audit_sidechannel_suffix">+ 审计完整性 + 侧信道</string>
+    <string name="runtime_current_n_root_seccomp_fallback">%1$s 此设备上的应用 seccomp 阻止了只读 ksu_driver 探针，因此结论改用 prctl、自进程 IOC、路径、cgroup、内核字符串和属性证据。</string>
+    <string name="runtime_current_n_root_unavailable_fallback">%1$s 只读 ksu_driver 探针不可用，因此此卡片改用其余原生检查。</string>
+    <string name="runtime_current_no_readable_data">%1$s没有提供可读取的数据。</string>
+    <string name="runtime_current_virtualization_counts">%1$d 项环境 · %2$d 项转换 · %3$d 项运行时</string>
+    <string name="runtime_current_dex_count">%1$d 项 dex</string>
+    <string name="runtime_current_uid_count">%1$d 项 UID</string>
+    <string name="runtime_current_trap_count">%1$d 个陷阱命中</string>
+    <string name="runtime_current_host_app_count">%1$d 个宿主应用</string>
+    <string name="runtime_current_full_pm_inventory">完整 PM 清单</string>
+    <string name="runtime_current_scoped_pm_inventory">受限 PM 清单</string>
+    <string name="runtime_current_visible_count">%1$d 个可见</string>
+    <string name="runtime_current_hidden_package_count">%1$d 个软件包可被直接佐证探针看到，但不在 PackageManager 清单中。</string>
+    <string name="runtime_current_su_path_count">%1$d 条 su 路径</string>
+    <string name="runtime_current_adb_daemon_count">%1$d 条 adb 守护进程路径</string>
+    <string name="runtime_current_prop_count">%1$d 个属性</string>
+    <string name="runtime_current_package_count">%1$d 个软件包</string>
+    <string name="runtime_current_named_service_count">%1$d 个命名服务</string>
+    <string name="runtime_current_proc_attr_anomaly">专用 app_zygote 载体发现 %1$s 的 /proc/self/attr/current 写入异常。</string>
+    <string name="runtime_current_droidspaces_value">Droidspaces：%1$s</string>
+    <string name="runtime_current_msd_value">MSD：%1$s</string>
+</resources>

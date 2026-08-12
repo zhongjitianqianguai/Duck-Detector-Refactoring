@@ -1,0 +1,45 @@
+<!--
+Copyright 2026 Duck Apps Contributor
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+
+<resources>
+    <string name="app_name">Duck Detector</string>
+    <string name="author_summary_alex">SELinux（C++、Kotlin）</string>
+    <string name="author_summary_lingqing">TEE</string>
+    <string name="author_summary_mirin">UI</string>
+    <string name="author_summary_sqmy">Kotlin</string>
+    <string name="author_summary_victor">CI</string>
+    <string name="card_action_certificate_chain">证书链</string>
+    <string name="card_action_review_evidence">审查证据</string>
+    <string name="card_action_view_details">查看详情</string>
+    <string name="card_collapse">折叠卡片</string>
+    <string name="card_expand">展开卡片</string>
+    <string name="dashboard_additional">附加信息</string>
+    <string name="dashboard_detectors">检测器</string>
+    <string name="dashboard_info_card">信息卡片</string>
+    <string name="dashboard_system_time">系统时间</string>
+    <string name="status_all_clear">一切正常</string>
+    <string name="status_danger">危险</string>
+    <string name="status_info">信息</string>
+    <string name="status_info_error">错误</string>
+    <string name="status_info_support">支持</string>
+    <string name="status_warning">警告</string>
+    <string name="author_summary_947409161">乌克兰语翻译</string>
+    <string name="author_summary_coolzyd">内核检测</string>
+    <string name="author_summary_default">贡献者</string>
+    <string name="author_summary_hsskyboy">仓库修复、内核检测</string>
+    <string name="author_summary_searchur">仪表盘、危险应用与 Zygisk</string>
+    <string name="author_summary_zg089">阿拉伯语翻译</string>
+</resources>

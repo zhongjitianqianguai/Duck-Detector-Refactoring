@@ -809,12 +809,12 @@ private fun StartupBootstrapLoadingScreen(
         ) {
             CircularProgressIndicator()
             Text(
-                text = "Preparing startup",
+                text = stringResource(R.string.startup_bootstrap_preparing),
                 style = MaterialTheme.typography.titleMedium,
                 color = MaterialTheme.colorScheme.onSurface,
             )
             Text(
-                text = "Loading agreement state before startup policy review.",
+                text = stringResource(R.string.startup_bootstrap_loading_agreement),
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )

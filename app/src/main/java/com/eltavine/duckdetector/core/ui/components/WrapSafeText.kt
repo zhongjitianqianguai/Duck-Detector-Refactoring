@@ -24,6 +24,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.TextStyle
+import com.eltavine.duckdetector.core.localization.localizedDisplayText
 
 private const val LongTokenBreakInterval = 12
 private const val ZeroWidthSpace = '\u200B'
@@ -36,7 +37,8 @@ fun WrapSafeText(
     color: Color = Color.Unspecified,
     textAlign: TextAlign? = null,
 ) {
-    val safeText = remember(text) { text.withWrapOpportunities() }
+    val localizedText = localizedDisplayText(text)
+    val safeText = remember(localizedText) { localizedText.withWrapOpportunities() }
 
     Text(
         text = safeText,
