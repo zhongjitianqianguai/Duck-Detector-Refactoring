@@ -62,7 +62,8 @@ limitations under the License.
         </activity>
         <activity
             android:name=".MainActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:launchMode="singleTop" />
 
         <provider
             android:name=".core.cli.CliContentProvider"

@@ -23,7 +23,6 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.mutableLongStateOf
 import com.eltavine.duckdetector.core.cli.CliContract
-import com.eltavine.duckdetector.core.cli.CliScanCoordinator
 import com.eltavine.duckdetector.core.startup.preload.EarlyMountPreloadStore
 import com.eltavine.duckdetector.core.startup.preload.EarlyVirtualizationPreloadStore
 import com.eltavine.duckdetector.ui.DuckDetectorApp
@@ -34,8 +33,6 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        CliScanCoordinator.onActivityCreated()
-        captureCliScanRequest(intent)
         EarlyMountPreloadStore.capture(intent)
         EarlyVirtualizationPreloadStore.capture(intent)
         enableEdgeToEdge()
@@ -44,11 +41,6 @@ class MainActivity : ComponentActivity() {
                 DuckDetectorApp(cliScanRequestId = cliScanRequestId.longValue)
             }
         }
-    }
-
-    override fun onDestroy() {
-        CliScanCoordinator.onActivityDestroyed()
-        super.onDestroy()
     }
 
     override fun onNewIntent(intent: Intent) {
@@ -60,14 +52,8 @@ class MainActivity : ComponentActivity() {
     }
 
     private fun captureCliScanRequest(intent: Intent) {
-        if (
-            intent.action == CliContract.ActionScan &&
-            intent.getBooleanExtra(CliContract.ExtraRescanRunningUi, false)
-        ) {
-            cliScanRequestId.longValue = intent.getLongExtra(
-                CliContract.ExtraScanRequestId,
-                System.currentTimeMillis(),
-            )
+        if (intent.action == CliContract.ActionScan) {
+            cliScanRequestId.longValue = System.currentTimeMillis()
         }
     }
 }

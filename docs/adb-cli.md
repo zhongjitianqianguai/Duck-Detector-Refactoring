@@ -6,8 +6,9 @@ ADB CLI 读取应用界面使用的同一份扫描结果，不会另起一套判
 $device = '192.168.6.17:5555'
 $uri = 'content://com.eltavine.duckdetector.cli'
 
-# 启动扫描；命令立即返回
-adb -s $device shell content call --uri $uri --method scan
+# 冷启动或刷新扫描；ADB 直接启动专用扫描 Action
+adb -s $device shell am start -W -n com.eltavine.duckdetector/.MainActivity `
+  -a com.eltavine.duckdetector.action.CLI_SCAN
 
 # 轮询状态，直到 scanning=false 且 pending=0
 adb -s $device shell content read --uri "$uri/status"

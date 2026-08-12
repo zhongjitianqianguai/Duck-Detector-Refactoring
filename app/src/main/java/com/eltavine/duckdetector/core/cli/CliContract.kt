@@ -16,20 +16,16 @@
 
 package com.eltavine.duckdetector.core.cli
 
-import java.util.concurrent.atomic.AtomicInteger
-
 object CliContract {
     const val Authority = "com.eltavine.duckdetector.cli"
     const val BaseUri = "content://$Authority"
     const val ActionScan = "com.eltavine.duckdetector.action.CLI_SCAN"
-    const val ExtraScanRequestId = "cli_scan_request_id"
-    const val ExtraRescanRunningUi = "cli_rescan_running_ui"
 
     val HelpText: String = """
         Duck Detector ADB CLI
 
         启动或刷新扫描：
-          adb shell content call --uri $BaseUri --method scan
+          adb shell am start -W -n com.eltavine.duckdetector/.MainActivity -a $ActionScan
 
         读取扫描状态：
           adb shell content read --uri $BaseUri/status
@@ -43,23 +39,9 @@ object CliContract {
         查看帮助：
           adb shell content read --uri $BaseUri/help
 
-        说明：scan 会立即返回，请轮询 status，直到 scanning=false 且 pending=0。
+        说明：启动命令返回后请轮询 status，直到 scanning=false 且 pending=0。
         接口仅允许 ADB shell、Root 与应用自身访问。
     """.trimIndent()
-}
-
-internal object CliScanCoordinator {
-    private val activityCount = AtomicInteger(0)
-
-    fun onActivityCreated() {
-        activityCount.incrementAndGet()
-    }
-
-    fun onActivityDestroyed() {
-        activityCount.updateAndGet { count -> (count - 1).coerceAtLeast(0) }
-    }
-
-    fun hasActivityInstance(): Boolean = activityCount.get() > 0
 }
 
 internal object CliAccessPolicy {

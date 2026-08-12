@@ -43,20 +43,16 @@ class CliContentProvider : ContentProvider() {
                 "Use: adb shell content read --uri ${CliContract.BaseUri}/report",
             )
             "scan", "rescan" -> {
-                val refreshRunningUi = CliScanCoordinator.hasActivityInstance()
                 val requestId = System.currentTimeMillis()
                 CliSnapshotStore.markScanRequested(appContext)
                 val intent = Intent(appContext, MainActivity::class.java)
                     .setAction(CliContract.ActionScan)
-                    .putExtra(CliContract.ExtraScanRequestId, requestId)
-                    .putExtra(CliContract.ExtraRescanRunningUi, refreshRunningUi)
                     .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_SINGLE_TOP)
                 appContext.startActivity(intent)
                 Bundle().apply {
                     putBoolean("ok", true)
                     putString("command", "scan")
                     putLong("request_id", requestId)
-                    putBoolean("rescan_running_ui", refreshRunningUi)
                     putString("output", "扫描已启动；请轮询 ${CliContract.BaseUri}/status")
                 }
             }
