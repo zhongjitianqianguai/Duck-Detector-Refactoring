@@ -98,10 +98,12 @@ object CliSnapshotStore {
             .put("anomalies", anomalies)
             .put("detectors", detectors)
 
-        val report = DashboardExportFormatter(localize).format(state)
         synchronized(this) {
             writeAtomic(snapshotFile(appContext), snapshot.toString(2))
-            writeAtomic(reportFile(appContext), report)
+            if (!state.isLoading) {
+                val report = DashboardExportFormatter(localize).format(state)
+                writeAtomic(reportFile(appContext), report)
+            }
         }
     }
 
