@@ -79,7 +79,7 @@ internal class RuntimeTextCatalog(
             val translatedParts = parts.map { part ->
                 translateStructured(part, depth + 1) ?: part
             }
-            if (translatedParts != parts) {
+            if (translatedParts != parts || delimiter.target != delimiter.source) {
                 return translatedParts.joinToString(delimiter.target)
             }
         }

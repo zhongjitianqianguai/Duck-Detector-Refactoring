@@ -21,29 +21,53 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.runtime.mutableLongStateOf
+import com.eltavine.duckdetector.core.cli.CliContract
+import com.eltavine.duckdetector.core.cli.CliScanCoordinator
 import com.eltavine.duckdetector.core.startup.preload.EarlyMountPreloadStore
 import com.eltavine.duckdetector.core.startup.preload.EarlyVirtualizationPreloadStore
 import com.eltavine.duckdetector.ui.DuckDetectorApp
 import com.eltavine.duckdetector.ui.theme.DuckDetectorTheme
 
 class MainActivity : ComponentActivity() {
+    private val cliScanRequestId = mutableLongStateOf(0L)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        CliScanCoordinator.onActivityCreated()
+        captureCliScanRequest(intent)
         EarlyMountPreloadStore.capture(intent)
         EarlyVirtualizationPreloadStore.capture(intent)
         enableEdgeToEdge()
         setContent {
             DuckDetectorTheme {
-                DuckDetectorApp()
+                DuckDetectorApp(cliScanRequestId = cliScanRequestId.longValue)
             }
         }
+    }
+
+    override fun onDestroy() {
+        CliScanCoordinator.onActivityDestroyed()
+        super.onDestroy()
     }
 
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
         setIntent(intent)
+        captureCliScanRequest(intent)
         EarlyMountPreloadStore.capture(intent)
         EarlyVirtualizationPreloadStore.capture(intent)
+    }
+
+    private fun captureCliScanRequest(intent: Intent) {
+        if (
+            intent.action == CliContract.ActionScan &&
+            intent.getBooleanExtra(CliContract.ExtraRescanRunningUi, false)
+        ) {
+            cliScanRequestId.longValue = intent.getLongExtra(
+                CliContract.ExtraScanRequestId,
+                System.currentTimeMillis(),
+            )
+        }
     }
 }

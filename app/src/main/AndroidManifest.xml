@@ -64,6 +64,15 @@ limitations under the License.
             android:name=".MainActivity"
             android:exported="true" />
 
+        <provider
+            android:name=".core.cli.CliContentProvider"
+            android:authorities="${applicationId}.cli"
+            android:enabled="true"
+            android:exported="true"
+            android:grantUriPermissions="false"
+            android:permission="android.permission.DUMP"
+            tools:ignore="ExportedContentProvider" />
+
         <service
             android:name=".features.zygisk.data.fdtrap.ZygiskFdTrapDetectorService"
             android:exported="false"

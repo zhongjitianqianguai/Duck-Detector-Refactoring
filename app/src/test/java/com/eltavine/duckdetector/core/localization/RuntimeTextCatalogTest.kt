@@ -63,6 +63,7 @@ class RuntimeTextCatalogTest {
     @Test
     fun translatesCompositeAndLabelValueText() {
         assertEquals("警告 · 已验证", catalog.translate("Warning · Verified"))
+        assertEquals("LSPosed 和 TEE", catalog.translate("LSPosed and TEE"))
         assertEquals("状态：已验证", catalog.translate("State: Verified"))
         assertEquals("  指标:", catalog.translate("  Metrics:"))
         assertEquals("  [危险] TEE", catalog.translate("  [DANGER] TEE"))
