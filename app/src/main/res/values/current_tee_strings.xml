@@ -187,4 +187,20 @@ limitations under the License.
     <string name="runtime_tee_private_binder_requires_12">Keystore2 private binder grant requires Android 12 or newer.</string>
     <string name="runtime_tee_private_app_entry">private getKeyEntry(APP)</string>
     <string name="runtime_tee_private_grant_entry">private getKeyEntry(GRANT)</string>
+    <string name="runtime_sync_keymint_runtime_identity">KeyMint runtime identity</string>
+    <string name="runtime_sync_keymint_mapping_violation">Attestation and keymaster versions violate the AOSP single-runtime mapping. %1$s</string>
+    <string name="runtime_sync_keymint_vintf_diverged">VINTF KeyMint version diverged from attestation. %1$s</string>
+    <string name="runtime_sync_soter_environment">Abnormal Soter environment: Simplified Chinese locale on a likely Soter-supporting device, but PackageManager could not resolve com.tencent.soter.soterserver and no biometric authentication was available.</string>
+    <string name="runtime_sync_mgf1_security_mismatch">RSA-OAEP MGF1 skipped because attestation and keymaster security levels disagree.</string>
+    <string name="runtime_sync_mgf1_native_version_missing">RSA-OAEP MGF1 skipped because the native KeyMint version was unavailable.</string>
+    <string name="runtime_sync_mgf1_runtime_conflict">RSA-OAEP MGF1 skipped because runtime identity signals conflict.</string>
+    <string name="runtime_sync_mgf1_legacy">RSA-OAEP MGF1 skipped for legacy Keymaster/km_compat.</string>
+    <string name="runtime_sync_mgf1_backend_unknown">RSA-OAEP MGF1 skipped because the backend family could not be established.</string>
+    <string name="runtime_sync_mgf1_keymint12">KeyMint 1/2 uses raw keystore2 operation checks.</string>
+    <string name="runtime_sync_mgf1_keymint3">KeyMint 3+ requires exact MGF1 characteristics and raw operation checks.</string>
+    <string name="runtime_sync_keymint_identity_disagree">Attestation and keymaster versions disagree on KeyMint runtime identity: attestation=%1$d, keymaster=%2$d.</string>
+    <string name="runtime_sync_keymint_vendor_api_incomplete">KeyMint AIDL version comparison was incomplete because the vendor API level could not be determined. %1$s</string>
+    <string name="runtime_sync_vendor_api_not_required">Vendor API level was not required.</string>
+    <string name="runtime_sync_vendor_api_missing">Missing ro.product.first_api_level and ro.build.version.sdk.</string>
+    <string name="runtime_sync_system_properties_unavailable">SystemProperties unavailable: %1$s: %2$s</string>
 </resources>

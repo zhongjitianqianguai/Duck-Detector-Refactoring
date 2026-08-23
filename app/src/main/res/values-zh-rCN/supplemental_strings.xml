@@ -26,10 +26,13 @@ limitations under the License.
     <string name="card_action_view_details">查看详情</string>
     <string name="card_collapse">折叠卡片</string>
     <string name="card_expand">展开卡片</string>
+    <string name="bootloader_widevine_consistency_review">Widevine 一致性需要审查</string>
+    <string name="bootloader_widevine_consistency_conflict">Widevine 一致性存在严重冲突</string>
     <string name="dashboard_additional">附加信息</string>
     <string name="dashboard_detectors">检测器</string>
     <string name="dashboard_info_card">信息卡片</string>
     <string name="dashboard_system_time">系统时间</string>
+    <string name="mount_diagnostic_clipboard_label">跨进程挂载视图详情</string>
     <string name="status_all_clear">一切正常</string>
     <string name="status_danger">危险</string>
     <string name="status_info">信息</string>

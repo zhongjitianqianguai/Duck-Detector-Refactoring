@@ -187,4 +187,20 @@ limitations under the License.
     <string name="runtime_tee_private_binder_requires_12">Keystore2 私有 Binder Grant 需要 Android 12 或更高版本。</string>
     <string name="runtime_tee_private_app_entry">私有 getKeyEntry(APP)</string>
     <string name="runtime_tee_private_grant_entry">私有 getKeyEntry(GRANT)</string>
+    <string name="runtime_sync_keymint_runtime_identity">KeyMint 运行时身份</string>
+    <string name="runtime_sync_keymint_mapping_violation">证明版本与 Keymaster 版本违反 AOSP 单一运行时映射规则。%1$s</string>
+    <string name="runtime_sync_keymint_vintf_diverged">VINTF KeyMint 版本与证明结果不一致。%1$s</string>
+    <string name="runtime_sync_soter_environment">Soter 环境异常：设备使用简体中文区域且可能支持 Soter，但 PackageManager 无法解析 com.tencent.soter.soterserver，同时也没有可用的生物识别认证。</string>
+    <string name="runtime_sync_mgf1_security_mismatch">已跳过 RSA-OAEP MGF1：证明与 Keymaster 的安全级别不一致。</string>
+    <string name="runtime_sync_mgf1_native_version_missing">已跳过 RSA-OAEP MGF1：原生 KeyMint 版本不可用。</string>
+    <string name="runtime_sync_mgf1_runtime_conflict">已跳过 RSA-OAEP MGF1：运行时身份信号冲突。</string>
+    <string name="runtime_sync_mgf1_legacy">已跳过 RSA-OAEP MGF1：后端为旧版 Keymaster/km_compat。</string>
+    <string name="runtime_sync_mgf1_backend_unknown">已跳过 RSA-OAEP MGF1：无法确定后端类别。</string>
+    <string name="runtime_sync_mgf1_keymint12">KeyMint 1/2 使用原始 keystore2 操作检查。</string>
+    <string name="runtime_sync_mgf1_keymint3">KeyMint 3+ 要求 MGF1 特征完全匹配，并执行原始操作检查。</string>
+    <string name="runtime_sync_keymint_identity_disagree">证明版本与 Keymaster 版本对 KeyMint 运行时身份的描述不一致：attestation=%1$d，keymaster=%2$d。</string>
+    <string name="runtime_sync_keymint_vendor_api_incomplete">由于无法确定厂商 API 级别，KeyMint AIDL 版本比较不完整。%1$s</string>
+    <string name="runtime_sync_vendor_api_not_required">无需厂商 API 级别。</string>
+    <string name="runtime_sync_vendor_api_missing">缺少 ro.product.first_api_level 和 ro.build.version.sdk。</string>
+    <string name="runtime_sync_system_properties_unavailable">SystemProperties 不可用：%1$s：%2$s</string>
 </resources>
