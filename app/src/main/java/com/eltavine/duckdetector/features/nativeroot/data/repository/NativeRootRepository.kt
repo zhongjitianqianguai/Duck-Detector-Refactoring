@@ -26,10 +26,10 @@ import com.eltavine.duckdetector.features.nativeroot.data.probes.KernelSuManager
 import com.eltavine.duckdetector.features.nativeroot.data.probes.KernelSuManagerFingerprintProbeResult
 import com.eltavine.duckdetector.features.nativeroot.data.probes.MountNamespaceDriftProbe
 import com.eltavine.duckdetector.features.nativeroot.data.probes.MountNamespaceDriftProbeResult
-import com.eltavine.duckdetector.features.nativeroot.data.probes.ProcMountViewDivergenceProbe
-import com.eltavine.duckdetector.features.nativeroot.data.probes.ProcMountViewDivergenceProbeResult
 import com.eltavine.duckdetector.features.nativeroot.data.probes.RootProcessAuditProbe
 import com.eltavine.duckdetector.features.nativeroot.data.probes.ShellTmpMetadataProbe
+import com.eltavine.duckdetector.features.nativeroot.data.probes.TempRootArtifactProbe
+import com.eltavine.duckdetector.features.nativeroot.data.probes.TempRootArtifactProbeResult
 import com.eltavine.duckdetector.features.nativeroot.domain.NativeRootFinding
 import com.eltavine.duckdetector.features.nativeroot.domain.NativeRootFindingSeverity
 import com.eltavine.duckdetector.features.nativeroot.domain.NativeRootGroup
@@ -51,8 +51,7 @@ class NativeRootRepository(
     ),
     private val kernelSuManagerFingerprintProbe: KernelSuManagerFingerprintProbe =
         KernelSuManagerFingerprintProbe(context?.applicationContext),
-    private val procMountViewDivergenceProbe: ProcMountViewDivergenceProbe =
-        ProcMountViewDivergenceProbe(context?.applicationContext),
+    private val tempRootArtifactProbe: TempRootArtifactProbe = TempRootArtifactProbe(),
 ) {
 
     suspend fun scan(): NativeRootReport = withContext(Dispatchers.IO) {
@@ -73,7 +72,7 @@ class NativeRootRepository(
         val cgroupResult = cgroupProcessLeakProbe.run()
         val mountNamespaceResult = mountNamespaceDriftProbe.run()
         val managerFingerprintResult = kernelSuManagerFingerprintProbe.run()
-        val procMountViewResult = procMountViewDivergenceProbe.run()
+        val tempRootArtifactResult = tempRootArtifactProbe.run()
         val findings =
             nativeFindings +
                     shellTmpResult.findings +
@@ -81,7 +80,7 @@ class NativeRootRepository(
                     cgroupResult.findings +
                     mountNamespaceResult.findings +
                     managerFingerprintResult.findings +
-                    procMountViewResult.findings
+                    tempRootArtifactResult.findings
 
         return NativeRootReport(
             stage = NativeRootStage.READY,
@@ -118,7 +117,7 @@ class NativeRootRepository(
                 cgroupResult = cgroupResult,
                 mountNamespaceResult = mountNamespaceResult,
                 managerFingerprintResult = managerFingerprintResult,
-                procMountViewResult = procMountViewResult,
+                tempRootArtifactResult = tempRootArtifactResult,
             ),
             kernelPatchSideChannel = snapshot.kernelPatchSideChannel,
             ksuSupercallAttempted = snapshot.ksuSupercallAttempted,
@@ -141,12 +140,10 @@ class NativeRootRepository(
             ksuManagerPackagePresent = managerFingerprintResult.packagePresent,
             ksuManagerTraitHitCount = managerFingerprintResult.traitHitCount,
             ksuManagerVisibilityRestricted = managerFingerprintResult.visibilityRestricted,
-            procMountViewProbeAvailable = procMountViewResult.isolatedProcessAvailable,
-            procMountViewDistinctCount = procMountViewResult.distinctViewCount,
-            procMountViewExpectedCount = procMountViewResult.expectedViewCount,
-            procMountViewPidCount = procMountViewResult.scannedPidCount,
-            procMountViewDivergent = procMountViewResult.divergent,
-            procMountViewTokenHit = procMountViewResult.tokenHit,
+            tempRootDetected = tempRootArtifactResult.tempRootDetected,
+            tempRootCveExploitDetected = tempRootArtifactResult.cveExploitDetected,
+            tempRootArtifactHitCount = tempRootArtifactResult.hitCount,
+            tempRootArtifactCheckCount = tempRootArtifactResult.checkedCount,
         )
     }
 
@@ -158,7 +155,7 @@ class NativeRootRepository(
         cgroupResult: CgroupProcessLeakProbeResult,
         mountNamespaceResult: MountNamespaceDriftProbeResult,
         managerFingerprintResult: KernelSuManagerFingerprintProbeResult,
-        procMountViewResult: ProcMountViewDivergenceProbeResult,
+        tempRootArtifactResult: TempRootArtifactProbeResult,
     ): List<NativeRootMethodResult> {
         val directFindings =
             findings.filter { it.group == NativeRootGroup.SYSCALL || it.group == NativeRootGroup.SIDE_CHANNEL }
@@ -340,31 +337,6 @@ class NativeRootRepository(
                 },
             ),
             NativeRootMethodResult(
-                label = "procMountViewDivergence",
-                summary = when {
-                    procMountViewResult.tokenHit -> "Root token"
-                    procMountViewResult.divergent ->
-                        "${procMountViewResult.distinctViewCount} view(s)"
-
-                    procMountViewResult.isolatedProcessAvailable -> "Clean"
-                    procMountViewResult.available -> "Unavailable"
-                    else -> "Unavailable"
-                },
-                outcome = when {
-                    procMountViewResult.tokenHit -> NativeRootMethodOutcome.DETECTED
-                    procMountViewResult.divergent -> NativeRootMethodOutcome.WARNING
-                    procMountViewResult.isolatedProcessAvailable -> NativeRootMethodOutcome.CLEAN
-                    else -> NativeRootMethodOutcome.SUPPORT
-                },
-                detail = buildString {
-                    append("Enumerates the /proc/<pid>/mountinfo view of every visible process from an isolated helper process and counts distinct mount tables. Selective mount hiding (Magisk DenyList / KernelSU umount) makes different processes expose different tables, so divergence from the expected baseline surfaces hidden mounts. Direct magisk/KSU//adb/ tokens in any visible table are a stronger direct signal.")
-                    if (procMountViewResult.detail.isNotBlank()) {
-                        append("\n")
-                        append(procMountViewResult.detail)
-                    }
-                },
-            ),
-            NativeRootMethodResult(
                 label = "ksuManagerFingerprint",
                 summary = when {
                     managerFingerprintResult.packagePresent && managerFingerprintResult.traitHitCount > 0 ->
@@ -424,10 +396,6 @@ class NativeRootRepository(
                         append("\nManager fingerprint: ")
                         append(managerFingerprintResult.detail)
                     }
-                    if (procMountViewResult.detail.isNotBlank()) {
-                        append("\nMount view divergence: ")
-                        append(procMountViewResult.detail)
-                    }
                 },
             ),
             NativeRootMethodResult(
@@ -473,6 +441,21 @@ class NativeRootRepository(
                     else -> NativeRootMethodOutcome.SUPPORT
                 },
                 detail = "Read a small catalog of root-specific properties such as ro.kernel.ksu and APatch/KernelPatch variants.",
+            ),
+            NativeRootMethodResult(
+                label = "tempRootArtifacts",
+                summary = when {
+                    tempRootArtifactResult.cveExploitDetected -> "CVE-2026-43499"
+                    tempRootArtifactResult.tempRootDetected -> "${tempRootArtifactResult.hitCount} hit(s)"
+                    tempRootArtifactResult.available -> "Clean"
+                    else -> "Unavailable"
+                },
+                outcome = when {
+                    tempRootArtifactResult.tempRootDetected -> NativeRootMethodOutcome.DETECTED
+                    tempRootArtifactResult.available -> NativeRootMethodOutcome.CLEAN
+                    else -> NativeRootMethodOutcome.SUPPORT
+                },
+                detail = "Scans /data/local/tmp for temp root exploit artifacts (ksud, temp_su, ksu-helper, ksu-payload, libcve43499root.so). Files matching CVE-2026-43499 pattern indicate an active temporary root escalation.",
             ),
             NativeRootMethodResult(
                 label = "nativeLibrary",
