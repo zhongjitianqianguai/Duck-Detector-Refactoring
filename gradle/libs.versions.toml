@@ -1,5 +1,5 @@
 [versions]
-agp = "9.3.1"
+agp = "9.3.2"
 coreKtx = "1.19.0"
 json = "20260719"
 junit = "4.13.2"
@@ -12,14 +12,14 @@ lifecycleViewmodel = "2.11.0"
 activityCompose = "1.13.0"
 composeBom = "2026.08.00"
 browser = "1.10.0"
-material3 = "1.5.0-alpha26"
+material3 = "1.5.0-alpha27"
 datastore = "1.2.1"
 bouncycastle = "1.85.2"
 hiddenApiBypass = "6.1"
 soterWrapper = "2.0.7"
 coroutines = "1.11.0"
 composeIcons = "1.1.1"
-aboutLibraries = "15.0.4"
+aboutLibraries = "15.2.0"
 
 [libraries]
 android-gradle-plugin = { module = "com.android.tools.build:gradle", version.ref = "agp" }
