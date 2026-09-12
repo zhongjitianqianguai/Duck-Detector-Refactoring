@@ -347,4 +347,71 @@ limitations under the License.
     <string name="runtime_sync_temp_root_checked">Temp root checked</string>
     <string name="runtime_sync_temp_root_hits">Temp root hits</string>
     <string name="runtime_sync_temp_root_found">%1$d temp root artifact(s) found in /data/local/tmp.</string>
+
+    <string name="runtime_sync_permission_method">permission boundary check</string>
+    <string name="runtime_sync_permission_description">Checks SELinux MAC and sandbox permission boundaries (Netlink RTM_GETLINK, RTM_GETNEIGH).</string>
+    <string name="runtime_sync_permission_aosp_rule">Under AOSP sepolicy, untrusted_app is strictly forbidden from querying physical hardware MAC or ARP neighbor tables on API 30+.</string>
+    <string name="runtime_sync_permission_breach_meaning">If physical Wi-Fi/Ethernet MAC is exposed, or valid unicast LAN ARP entries are leaked (via Magisk sepolicy injection, policy reload corruption, or exploit bypass), it indicates a permission boundary breach.</string>
+    <string name="runtime_sync_netlink_link_skipped" formatted="false">Netlink link boundary: skipped (API %1$d &lt; 30).</string>
+    <string name="runtime_sync_netlink_link_socket_blocked">Netlink link boundary: socket creation blocked by SELinux (clean).</string>
+    <string name="runtime_sync_netlink_link_send_blocked" formatted="false">Netlink link boundary: securely blocked by SELinux (errno=%1$d).</string>
+    <string name="runtime_sync_netlink_mac_label">AF_NETLINK MAC Leak</string>
+    <string name="runtime_sync_netlink_mac_value" formatted="false">Hardware MAC Exposed (%1$s)</string>
+    <string name="runtime_sync_netlink_mac_finding" formatted="false">SELinux permission boundary breach: physical MAC leaked on %1$s (%2$s) on API %3$d (AOSP neverallow rule bypassed by Magisk sepolicy injection or policy corruption).</string>
+    <string name="runtime_sync_netlink_mac_detected" formatted="false">Netlink link boundary: hardware MAC leak detected on %1$s (%2$s) (SELinux bypass detected).</string>
+    <string name="runtime_sync_netlink_link_clean">Netlink link boundary: clean (physical interface MAC securely masked or unavailable).</string>
+    <string name="runtime_sync_netlink_neigh_skipped" formatted="false">Netlink neigh boundary: skipped (API %1$d &lt; 30).</string>
+    <string name="runtime_sync_netlink_neigh_socket_blocked">Netlink neigh boundary: socket creation blocked by SELinux (clean).</string>
+    <string name="runtime_sync_netlink_neigh_send_blocked" formatted="false">Netlink neigh boundary: securely blocked by SELinux (errno=%1$d).</string>
+    <string name="runtime_sync_netlink_neigh_label">AF_NETLINK Neighbor Leak</string>
+    <string name="runtime_sync_netlink_neigh_value">Hardware ARP/Neighbor Exposed</string>
+    <string name="runtime_sync_netlink_neigh_finding" formatted="false">SELinux permission boundary breach: ARP/neighbor entry leaked (%1$s -> %2$s) on API %3$d (AOSP netlink_route_socket getneigh restriction bypassed).</string>
+    <string name="runtime_sync_netlink_neigh_detected" formatted="false">Netlink neigh boundary: neighbor table leak detected (%1$s %2$s) (SELinux bypass detected).</string>
+    <string name="runtime_sync_netlink_neigh_clean">Netlink neigh boundary: clean (no unicast ARP entries leaked).</string>
+
+    <string name="runtime_sync_export_report_title">DUCK DETECTOR — SECURITY SCAN REPORT</string>
+    <string name="runtime_sync_export_target_device">Target Device</string>
+    <string name="runtime_sync_export_app_version" formatted="false">App Version    : %1$s (Build %2$d)</string>
+    <string name="runtime_sync_export_build_commit">Build Commit</string>
+    <string name="runtime_sync_export_build_time">Build Time</string>
+    <string name="runtime_sync_export_report_time">Report Time</string>
+    <string name="runtime_sync_export_executive_summary">EXECUTIVE SUMMARY</string>
+    <string name="runtime_sync_export_overall_status">Overall Status</string>
+    <string name="runtime_sync_export_scan_statistics">Scan Statistics:</string>
+    <string name="runtime_sync_export_top_findings">TOP FINDINGS</string>
+    <string name="runtime_sync_export_no_findings">(No security threats or warnings detected)</string>
+    <string name="runtime_sync_export_headline">Headline</string>
+    <string name="runtime_sync_export_details_heading">Details  :</string>
+    <string name="runtime_sync_export_verdict">Verdict</string>
+    <string name="runtime_sync_export_quick_facts">Quick Facts</string>
+    <string name="runtime_sync_export_impact_guidance">Impact &amp; Guidance</string>
+    <string name="runtime_sync_export_policy_notes">Policy Notes</string>
+    <string name="runtime_sync_export_audit_notes">Audit Notes</string>
+    <string name="runtime_sync_export_references">References</string>
+    <string name="runtime_sync_export_hma_alert">HMA Alert</string>
+    <string name="runtime_sync_export_hidden_packages">Hidden Packages:</string>
+    <string name="runtime_sync_export_methods_suffix" formatted="false">%1$s [methods: %2$s]</string>
+    <string name="runtime_sync_export_detected_packages">Detected Packages</string>
+    <string name="runtime_sync_export_context_inventory">Context &amp; Inventory</string>
+    <string name="runtime_sync_export_monitored_catalog" formatted="false">Monitored Package Catalog (%1$d targets across %2$d categories)</string>
+    <string name="runtime_sync_export_category_count" formatted="false">%1$s (%2$d):</string>
+    <string name="runtime_sync_export_highlight_signals">Highlight Signals</string>
+    <string name="runtime_sync_export_environment_network">Environment &amp; Network</string>
+    <string name="runtime_sync_export_network_status">Network Status</string>
+    <string name="runtime_sync_export_certificate_count">Certificate Count</string>
+    <string name="runtime_sync_export_certificate_number" formatted="false">Certificate %1$d</string>
+    <string name="runtime_sync_export_subject">Subject</string>
+    <string name="runtime_sync_export_issuer">Issuer</string>
+    <string name="runtime_sync_export_serial_number">Serial Number</string>
+    <string name="runtime_sync_export_validity">Validity</string>
+    <string name="runtime_sync_export_validity_range" formatted="false">%1$s to %2$s</string>
+    <string name="runtime_sync_export_signature">Signature</string>
+    <string name="runtime_sync_export_public_key">Public Key</string>
+    <string name="runtime_sync_export_tee_details">TEE Detailed Export</string>
+    <string name="runtime_sync_export_device_specs">DEVICE &amp; SYSTEM SPECIFICATIONS</string>
+    <string name="runtime_sync_export_end">END OF REPORT</string>
+    <string name="runtime_sync_export_badge_danger">✖ DANGER</string>
+    <string name="runtime_sync_export_badge_warning">▲ WARNING</string>
+    <string name="runtime_sync_export_badge_info">ℹ INFO</string>
+    <string name="runtime_sync_export_badge_clear">✔ CLEAR</string>
 </resources>

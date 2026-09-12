@@ -347,4 +347,71 @@ limitations under the License.
     <string name="runtime_sync_temp_root_checked">已检查临时 Root</string>
     <string name="runtime_sync_temp_root_hits">临时 Root 命中</string>
     <string name="runtime_sync_temp_root_found">在 /data/local/tmp 中发现 %1$d 个临时 Root 痕迹。</string>
+
+    <string name="runtime_sync_permission_method">权限边界检查</string>
+    <string name="runtime_sync_permission_description">检查 SELinux MAC 与沙箱权限边界（Netlink RTM_GETLINK、RTM_GETNEIGH）。</string>
+    <string name="runtime_sync_permission_aosp_rule">在 AOSP sepolicy 下，API 30+ 严格禁止 untrusted_app 查询物理硬件 MAC 或 ARP 邻居表。</string>
+    <string name="runtime_sync_permission_breach_meaning">如果物理 Wi-Fi/以太网 MAC 暴露，或有效的局域网单播 ARP 条目泄露（由 Magisk sepolicy 注入、策略重载损坏或漏洞绕过引起），说明权限边界已被突破。</string>
+    <string name="runtime_sync_netlink_link_skipped" formatted="false">Netlink 链路权限边界：已跳过（API %1$d &lt; 30）。</string>
+    <string name="runtime_sync_netlink_link_socket_blocked">Netlink 链路权限边界：套接字创建被 SELinux 阻止（正常）。</string>
+    <string name="runtime_sync_netlink_link_send_blocked" formatted="false">Netlink 链路权限边界：被 SELinux 安全阻止（errno=%1$d）。</string>
+    <string name="runtime_sync_netlink_mac_label">AF_NETLINK MAC 泄露</string>
+    <string name="runtime_sync_netlink_mac_value" formatted="false">硬件 MAC 已暴露（%1$s）</string>
+    <string name="runtime_sync_netlink_mac_finding" formatted="false">SELinux 权限边界被突破：API %3$d 上接口 %1$s 的物理 MAC（%2$s）发生泄露（AOSP neverallow 规则可能被 Magisk sepolicy 注入或策略损坏绕过）。</string>
+    <string name="runtime_sync_netlink_mac_detected" formatted="false">Netlink 链路权限边界：检测到接口 %1$s 的硬件 MAC 泄露（%2$s）（检测到 SELinux 绕过）。</string>
+    <string name="runtime_sync_netlink_link_clean">Netlink 链路权限边界：正常（物理接口 MAC 已安全遮蔽或不可用）。</string>
+    <string name="runtime_sync_netlink_neigh_skipped" formatted="false">Netlink 邻居权限边界：已跳过（API %1$d &lt; 30）。</string>
+    <string name="runtime_sync_netlink_neigh_socket_blocked">Netlink 邻居权限边界：套接字创建被 SELinux 阻止（正常）。</string>
+    <string name="runtime_sync_netlink_neigh_send_blocked" formatted="false">Netlink 邻居权限边界：被 SELinux 安全阻止（errno=%1$d）。</string>
+    <string name="runtime_sync_netlink_neigh_label">AF_NETLINK 邻居表泄露</string>
+    <string name="runtime_sync_netlink_neigh_value">硬件 ARP/邻居信息已暴露</string>
+    <string name="runtime_sync_netlink_neigh_finding" formatted="false">SELinux 权限边界被突破：API %3$d 上泄露了 ARP/邻居项（%1$s -> %2$s）（AOSP netlink_route_socket getneigh 限制被绕过）。</string>
+    <string name="runtime_sync_netlink_neigh_detected" formatted="false">Netlink 邻居权限边界：检测到邻居表泄露（%1$s %2$s）（检测到 SELinux 绕过）。</string>
+    <string name="runtime_sync_netlink_neigh_clean">Netlink 邻居权限边界：正常（未泄露单播 ARP 条目）。</string>
+
+    <string name="runtime_sync_export_report_title">DUCK DETECTOR — 安全扫描报告</string>
+    <string name="runtime_sync_export_target_device">目标设备</string>
+    <string name="runtime_sync_export_app_version" formatted="false">应用版本：%1$s（构建 %2$d）</string>
+    <string name="runtime_sync_export_build_commit">构建提交</string>
+    <string name="runtime_sync_export_build_time">构建时间</string>
+    <string name="runtime_sync_export_report_time">报告时间</string>
+    <string name="runtime_sync_export_executive_summary">摘要</string>
+    <string name="runtime_sync_export_overall_status">总体状态</string>
+    <string name="runtime_sync_export_scan_statistics">扫描统计：</string>
+    <string name="runtime_sync_export_top_findings">重点发现</string>
+    <string name="runtime_sync_export_no_findings">（未检测到安全威胁或警告）</string>
+    <string name="runtime_sync_export_headline">结论</string>
+    <string name="runtime_sync_export_details_heading">详情：</string>
+    <string name="runtime_sync_export_verdict">判定</string>
+    <string name="runtime_sync_export_quick_facts">关键信息</string>
+    <string name="runtime_sync_export_impact_guidance">影响与建议</string>
+    <string name="runtime_sync_export_policy_notes">策略说明</string>
+    <string name="runtime_sync_export_audit_notes">审计说明</string>
+    <string name="runtime_sync_export_references">参考资料</string>
+    <string name="runtime_sync_export_hma_alert">HMA 警报</string>
+    <string name="runtime_sync_export_hidden_packages">隐藏的软件包：</string>
+    <string name="runtime_sync_export_methods_suffix" formatted="false">%1$s [检测方法：%2$s]</string>
+    <string name="runtime_sync_export_detected_packages">检测到的软件包</string>
+    <string name="runtime_sync_export_context_inventory">上下文与清单</string>
+    <string name="runtime_sync_export_monitored_catalog" formatted="false">监控软件包目录（%1$d 个目标，分为 %2$d 类）</string>
+    <string name="runtime_sync_export_category_count" formatted="false">%1$s（%2$d 个）：</string>
+    <string name="runtime_sync_export_highlight_signals">重点信号</string>
+    <string name="runtime_sync_export_environment_network">环境与网络</string>
+    <string name="runtime_sync_export_network_status">网络状态</string>
+    <string name="runtime_sync_export_certificate_count">证书数量</string>
+    <string name="runtime_sync_export_certificate_number" formatted="false">证书 %1$d</string>
+    <string name="runtime_sync_export_subject">主题</string>
+    <string name="runtime_sync_export_issuer">签发者</string>
+    <string name="runtime_sync_export_serial_number">序列号</string>
+    <string name="runtime_sync_export_validity">有效期</string>
+    <string name="runtime_sync_export_validity_range" formatted="false">%1$s 至 %2$s</string>
+    <string name="runtime_sync_export_signature">签名算法</string>
+    <string name="runtime_sync_export_public_key">公钥</string>
+    <string name="runtime_sync_export_tee_details">TEE 详细导出</string>
+    <string name="runtime_sync_export_device_specs">设备与系统规格</string>
+    <string name="runtime_sync_export_end">报告结束</string>
+    <string name="runtime_sync_export_badge_danger">✖ 危险</string>
+    <string name="runtime_sync_export_badge_warning">▲ 警告</string>
+    <string name="runtime_sync_export_badge_info">ℹ 信息</string>
+    <string name="runtime_sync_export_badge_clear">✔ 正常</string>
 </resources>

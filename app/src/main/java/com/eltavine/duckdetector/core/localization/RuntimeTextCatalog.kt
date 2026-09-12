@@ -100,6 +100,13 @@ internal class RuntimeTextCatalog(
             }
         }
 
+        BracketHeadingRegex.matchEntire(value)?.let { match ->
+            val translatedHeading = translateStructured(match.groupValues[1], depth + 1)
+            if (translatedHeading != null) {
+                return "[$translatedHeading]"
+            }
+        }
+
         TrailingStatusRegex.matchEntire(value)?.let { match ->
             val translatedSubject = translateStructured(match.groupValues[1], depth + 1)
             val translatedStatus = translateStructured(match.groupValues[2], depth + 1)
@@ -241,6 +248,7 @@ internal class RuntimeTextCatalog(
         )
         val LineSuffixRegex = Regex("^(.+?)([.:])$")
         val DecoratedHeadingRegex = Regex("^(\\s*-{3,}\\s*)(.+?)(\\s*-{3,}\\s*)$")
+        val BracketHeadingRegex = Regex("^\\[([^]]+)]$")
         val TrailingStatusRegex = Regex("^(.+?)\\s+(skipped|failed|unavailable|available|clean|matched|ok)$")
         val BulletPrefixRegex = Regex("^([•-]\\s+)(.+)$")
         val BracketPrefixRegex = Regex("^\\[([^]]+)]\\s+(.+)$")

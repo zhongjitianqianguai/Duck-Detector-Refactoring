@@ -38,6 +38,18 @@ class RuntimeTextCatalogTest {
             "%1\$s reports %2\$d findings" to "%1\$s 报告了 %2\$d 项发现",
             "Start with %1\$s." to "先查看%1\$s。",
             "Custom ROM" to "自定义 ROM",
+            "Impact & Guidance" to "影响与建议",
+            "HMA Alert" to "HMA 警报",
+            "Monitored Package Catalog (%1\$d targets across %2\$d categories)" to
+                "监控软件包目录（%1\$d 个目标，分为 %2\$d 类）",
+            "%1\$s (%2\$d):" to "%1\$s（%2\$d 个）：",
+            "%1\$s [methods: %2\$s]" to "%1\$s [检测方法：%2\$s]",
+            "App Version    : %1\$s (Build %2\$d)" to "应用版本：%1\$s（构建 %2\$d）",
+            "✖ DANGER" to "✖ 危险",
+            "Netlink link boundary: hardware MAC leak detected on %1\$s (%2\$s) (SELinux bypass detected)." to
+                "Netlink 链路权限边界：检测到接口 %1\$s 的硬件 MAC 泄露（%2\$s）（检测到 SELinux 绕过）。",
+            "SELinux permission boundary breach: ARP/neighbor entry leaked (%1\$s -> %2\$s) on API %3\$d (AOSP netlink_route_socket getneigh restriction bypassed)." to
+                "SELinux 权限边界被突破：API %3\$d 上泄露了 ARP/邻居项（%1\$s -> %2\$s）（AOSP netlink_route_socket getneigh 限制被绕过）。",
         ),
     )
 
@@ -70,6 +82,40 @@ class RuntimeTextCatalogTest {
         assertEquals("----- 概览 -----", catalog.translate("----- OVERVIEW -----"))
         assertEquals("一次性 EC 已跳过。", catalog.translate("Single-use EC skipped."))
         assertEquals("不可用类别=KEY_NOT_FOUND", catalog.translate("Unavailable kind=KEY_NOT_FOUND"))
+    }
+
+    @Test
+    fun translatesBracketHeadingsAndExportTemplates() {
+        assertEquals("[影响与建议]", catalog.translate("[Impact & Guidance]"))
+        assertEquals(
+            "[监控软件包目录（18 个目标，分为 3 类）]",
+            catalog.translate("[Monitored Package Catalog (18 targets across 3 categories)]"),
+        )
+        assertEquals("Magisk（4 个）：", catalog.translate("Magisk (4):"))
+        assertEquals(
+            "Tool (pkg) [检测方法：storage、package]",
+            catalog.translate("Tool (pkg) [methods: storage, package]"),
+        )
+        assertEquals(
+            "应用版本：1.2.3（构建 42）",
+            catalog.translate("App Version    : 1.2.3 (Build 42)"),
+        )
+    }
+
+    @Test
+    fun translatesPermissionBoundaryTemplatesAndPreservesEvidence() {
+        assertEquals(
+            "Netlink 链路权限边界：检测到接口 wlan0 的硬件 MAC 泄露（12:34:56:78:9a:bc）（检测到 SELinux 绕过）。",
+            catalog.translate(
+                "Netlink link boundary: hardware MAC leak detected on wlan0 (12:34:56:78:9a:bc) (SELinux bypass detected).",
+            ),
+        )
+        assertEquals(
+            "SELinux 权限边界被突破：API 36 上泄露了 ARP/邻居项（192.168.1.1 -> 12:34:56:78:9a:bc）（AOSP netlink_route_socket getneigh 限制被绕过）。",
+            catalog.translate(
+                "SELinux permission boundary breach: ARP/neighbor entry leaked (192.168.1.1 -> 12:34:56:78:9a:bc) on API 36 (AOSP netlink_route_socket getneigh restriction bypassed).",
+            ),
+        )
     }
 
     @Test
