@@ -81,6 +81,18 @@ limitations under the License.
     <string name="runtime_current_hidden_mount_across_processes">Hidden mount view divergence across processes</string>
     <string name="runtime_current_native_root_weak_summary">Only weaker isolated-process mount drift, cross-process mount view divergence, manager manifest fingerprints, process, cgroup, kernel, property, or metadata residue surfaced. These are review-worthy, but not as strong as direct native probes.</string>
     <string name="runtime_current_native_root_clean_summary">KernelSU read-only supercall, prctl-side probes, KernelPatch side channel, self-process IOC, isolated-process mount drift and cross-process mount view comparison, manager manifest fingerprint, SUSFS side-channel, /data/adb artifacts, curated tmp/system/storage residue paths, /data/local/tmp metadata, root-process audit, cgroup/process leakage, kernel strings, and properties stayed clean.</string>
+    <string name="runtime_current_kernelpatch_superkey_label">kernelpatch superkey</string>
+    <string name="runtime_current_kernelpatch_superkey_finding">KernelPatch superkey read</string>
+    <string name="runtime_current_kernelpatch_superkey_detail" formatted="false">Passes __NR_supercall an untouched anonymous page together with a length the kernel rejects before it derives a user pointer, so a stock kernel never reads arg0 and the page keeps its empty PTE.\nKernelPatch reads arg0 to compare it against the superkey ahead of the syscall body, which faults the page in; mincore then reports it resident.\nThis is a state check, so it does not depend on timing or CPU frequency.\nA positive residency hit is conclusive on any kernel version, but a negative result is only treated as Clean inside the probe\'s conservative faulting-uaccess scope (kernel &lt;= 6.6). Kernel 6.7+, or an unparseable kernel release, is reported as Unavailable instead of turning a known nofault blind spot into a false Clean verdict.\nA run with a failed page mapping, no control page, a resident control page, a pre-resident attempt, an incomplete attempt set, or a failed residency read is also reported as Unavailable rather than Clean.\nTest Result: %1$s</string>
+    <string name="runtime_current_kernelpatch_superkey_measurement">Probed attempts: %1$d, page faulted in: %2$d, pre-resident: %3$d, control resident: %4$d, control unmapped: %5$d, page unmapped: %6$d, mincore errors: %7$d, kernel: %8$s, faulting-uaccess scope: %9$s, usable: %10$s</string>
+    <string name="runtime_current_system_call_group">SYSCALL</string>
+    <string name="runtime_current_seccomp_group">SECCOMP</string>
+    <string name="runtime_current_system_call_filtered">System Call Filtered</string>
+    <string name="runtime_current_sigsys_received">SIGSYS Received</string>
+    <string name="runtime_current_superkey_seccomp_blocked">The child process was killed by SIGSYS, so the probe was blocked by Seccomp on ARM64.</string>
+    <string name="runtime_current_lower_yes">yes</string>
+    <string name="runtime_current_lower_no">no</string>
+    <string name="runtime_current_unknown_marker">&lt;unknown&gt;</string>
     <string name="runtime_current_proc_mount_views">Proc mount views</string>
     <string name="runtime_current_proc_view_expected">Proc view expected</string>
     <string name="runtime_current_proc_view_pids">Proc view pids</string>

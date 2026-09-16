@@ -81,6 +81,18 @@ limitations under the License.
     <string name="runtime_current_hidden_mount_across_processes">跨进程存在隐藏的挂载视图差异</string>
     <string name="runtime_current_native_root_weak_summary">仅发现较弱的隔离进程挂载漂移、跨进程挂载视图差异、管理器清单指纹、进程、cgroup、内核、属性或元数据残留。这些内容值得复核，但不如直接原生探针有力。</string>
     <string name="runtime_current_native_root_clean_summary">KernelSU 只读 supercall、prctl 侧探针、KernelPatch 侧信道、自进程 IOC、隔离进程挂载漂移和跨进程挂载视图对比、管理器清单指纹、SUSFS 侧信道、/data/adb 痕迹、tmp/system/storage 精选残留路径、/data/local/tmp 元数据、Root 进程审计、cgroup/进程泄漏、内核字符串及属性均保持干净。</string>
+    <string name="runtime_current_kernelpatch_superkey_label">KernelPatch 超级密钥读取检测</string>
+    <string name="runtime_current_kernelpatch_superkey_finding">KernelPatch 超级密钥读取</string>
+    <string name="runtime_current_kernelpatch_superkey_detail" formatted="false">向 __NR_supercall 传入一个从未触碰的匿名页，并同时传入一个会在内核推导用户指针之前就被拒绝的长度，因此原生内核不会读取 arg0，该页会保持空 PTE。\nKernelPatch 会在系统调用主体之前读取 arg0 并与超级密钥比较，这会把页面调入内存；随后 mincore 会报告该页已驻留。\n这是状态检测，不依赖耗时或 CPU 频率。\n任何内核版本上的页面驻留命中都可作为确定证据；但只有在探针保守的 faulting-uaccess 范围内（内核 &lt;= 6.6），阴性结果才判定为干净。内核 6.7+ 或无法解析内核版本时会报告不可用，避免把已知的 nofault 盲区误判为干净。\n若页面映射失败、没有控制页、控制页已驻留、尝试前页面已驻留、尝试集不完整或驻留状态读取失败，本次检测同样报告不可用而非干净。\n检测结果：%1$s</string>
+    <string name="runtime_current_kernelpatch_superkey_measurement">探测次数：%1$d，页面被调入：%2$d，探测前已驻留：%3$d，控制页已驻留：%4$d，控制页映射失败：%5$d，探测页映射失败：%6$d，mincore 错误：%7$d，内核：%8$s，faulting-uaccess 范围：%9$s，可用：%10$s</string>
+    <string name="runtime_current_system_call_group">系统调用</string>
+    <string name="runtime_current_seccomp_group">Seccomp 系统调用过滤</string>
+    <string name="runtime_current_system_call_filtered">系统调用被过滤</string>
+    <string name="runtime_current_sigsys_received">收到 SIGSYS</string>
+    <string name="runtime_current_superkey_seccomp_blocked">子进程被 SIGSYS 终止，因此 ARM64 上的探针被 Seccomp 拦截。</string>
+    <string name="runtime_current_lower_yes">是</string>
+    <string name="runtime_current_lower_no">否</string>
+    <string name="runtime_current_unknown_marker">&lt;未知&gt;</string>
     <string name="runtime_current_proc_mount_views">进程挂载视图</string>
     <string name="runtime_current_proc_view_expected">预期进程视图数</string>
     <string name="runtime_current_proc_view_pids">进程视图 PID 数</string>

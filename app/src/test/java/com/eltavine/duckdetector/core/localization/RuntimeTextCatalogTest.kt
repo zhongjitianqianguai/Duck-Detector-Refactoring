@@ -50,6 +50,12 @@ class RuntimeTextCatalogTest {
                 "Netlink 链路权限边界：检测到接口 %1\$s 的硬件 MAC 泄露（%2\$s）（检测到 SELinux 绕过）。",
             "SELinux permission boundary breach: ARP/neighbor entry leaked (%1\$s -> %2\$s) on API %3\$d (AOSP netlink_route_socket getneigh restriction bypassed)." to
                 "SELinux 权限边界被突破：API %3\$d 上泄露了 ARP/邻居项（%1\$s -> %2\$s）（AOSP netlink_route_socket getneigh 限制被绕过）。",
+            "kernelpatch superkey" to "KernelPatch 超级密钥读取检测",
+            "yes" to "是",
+            "no" to "否",
+            "Probed attempts: %1\$d, page faulted in: %2\$d, pre-resident: %3\$d, control resident: %4\$d, control unmapped: %5\$d, page unmapped: %6\$d, mincore errors: %7\$d, kernel: %8\$s, faulting-uaccess scope: %9\$s, usable: %10\$s" to
+                "探测次数：%1\$d，页面被调入：%2\$d，探测前已驻留：%3\$d，控制页已驻留：%4\$d，控制页映射失败：%5\$d，探测页映射失败：%6\$d，mincore 错误：%7\$d，内核：%8\$s，faulting-uaccess 范围：%9\$s，可用：%10\$s",
+            "Test Result: %1\$s" to "检测结果：%1\$s",
         ),
     )
 
@@ -114,6 +120,17 @@ class RuntimeTextCatalogTest {
             "SELinux 权限边界被突破：API 36 上泄露了 ARP/邻居项（192.168.1.1 -> 12:34:56:78:9a:bc）（AOSP netlink_route_socket getneigh 限制被绕过）。",
             catalog.translate(
                 "SELinux permission boundary breach: ARP/neighbor entry leaked (192.168.1.1 -> 12:34:56:78:9a:bc) on API 36 (AOSP netlink_route_socket getneigh restriction bypassed).",
+            ),
+        )
+    }
+
+    @Test
+    fun translatesKernelPatchSuperkeyResultAndNestedMeasurement() {
+        assertEquals("KernelPatch 超级密钥读取检测", catalog.translate("kernelpatch superkey"))
+        assertEquals(
+            "检测结果：探测次数：4，页面被调入：1，探测前已驻留：0，控制页已驻留：0，控制页映射失败：0，探测页映射失败：0，mincore 错误：0，内核：6.1.0，faulting-uaccess 范围：是，可用：否",
+            catalog.translate(
+                "Test Result: Probed attempts: 4, page faulted in: 1, pre-resident: 0, control resident: 0, control unmapped: 0, page unmapped: 0, mincore errors: 0, kernel: 6.1.0, faulting-uaccess scope: yes, usable: no",
             ),
         )
     }

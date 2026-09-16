@@ -2267,6 +2267,18 @@ limitations under the License.
         <item>@string/runtime_current_hidden_mount_across_processes</item>
         <item>@string/runtime_current_native_root_weak_summary</item>
         <item>@string/runtime_current_native_root_clean_summary</item>
+        <item>@string/runtime_current_kernelpatch_superkey_label</item>
+        <item>@string/runtime_current_kernelpatch_superkey_finding</item>
+        <item>@string/runtime_current_kernelpatch_superkey_detail</item>
+        <item>@string/runtime_current_kernelpatch_superkey_measurement</item>
+        <item>@string/runtime_current_system_call_group</item>
+        <item>@string/runtime_current_seccomp_group</item>
+        <item>@string/runtime_current_system_call_filtered</item>
+        <item>@string/runtime_current_sigsys_received</item>
+        <item>@string/runtime_current_superkey_seccomp_blocked</item>
+        <item>@string/runtime_current_lower_yes</item>
+        <item>@string/runtime_current_lower_no</item>
+        <item>@string/runtime_current_unknown_marker</item>
         <item>@string/runtime_current_proc_mount_views</item>
         <item>@string/runtime_current_proc_view_expected</item>
         <item>@string/runtime_current_proc_view_pids</item>
