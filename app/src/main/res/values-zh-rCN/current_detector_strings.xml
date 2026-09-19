@@ -319,6 +319,25 @@ limitations under the License.
     <string name="runtime_sync_single_source">单一来源</string>
     <string name="runtime_sync_kernel_rewritten">导出内核身份的多个来源结果不同，因此设备向应用报告的版本正在被重写，而不只是版本本身较为少见。</string>
 
+    <string name="runtime_sync_arm64_cpu_identity">ARM64 CPU 身份</string>
+    <string name="runtime_sync_arm64_cpu_identity_method">ARM64 CPU 身份一致性</string>
+    <string name="runtime_sync_arm64_core_mismatches">%1$d 个核心不一致</string>
+    <string name="runtime_sync_arm64_cpus_agree">%1$d 个 CPU 一致</string>
+    <string name="runtime_sync_arm64_partial">部分可用（%1$d/%2$d 个 CPU）</string>
+    <string name="runtime_sync_arm64_unsupported_abi">不支持的 ABI</string>
+    <string name="runtime_sync_arm64_unsupported_detail">固定到同一 CPU 的 MIDR_EL1 对比仅支持 ARM64。</string>
+    <string name="runtime_sync_arm64_affinity_unavailable">CPU 亲和性不可用</string>
+    <string name="runtime_sync_arm64_affinity_detail">无法读取当前线程的 CPU 亲和性，因此不能安全地进行同一 CPU 对比。</string>
+    <string name="runtime_sync_arm64_no_comparable_cpu">没有任何逻辑 CPU 同时取得缓存 MIDR 和可安全模拟读取的 MIDR_EL1。</string>
+    <string name="runtime_sync_arm64_affinity_failed">CPU 亲和性设置失败</string>
+    <string name="runtime_sync_arm64_cached_unavailable">缓存 MIDR 不可用</string>
+    <string name="runtime_sync_arm64_mrs_unavailable">MRS MIDR_EL1 不可用</string>
+    <string name="runtime_sync_arm64_consistent">一致</string>
+    <string name="runtime_sync_arm64_mismatch">不一致</string>
+    <string name="runtime_sync_arm64_observation" formatted="false">CPU %1$d：缓存值=%2$s（%3$s），MRS=%4$s，%5$s</string>
+    <string name="runtime_sync_arm64_finding">某个逻辑 CPU 的缓存 ARM64 身份与固定到同一 CPU 后观察到的 MIDR_EL1 不一致，这是运行时改写 CPU 身份的高可信信号。</string>
+    <string name="runtime_sync_arm64_impact">同一 CPU 的缓存值与 MIDR_EL1 不一致，说明内核缓存的处理器身份被独立修改，而 ARM64 寄存器模拟路径未同步改变。</string>
+
     <string name="runtime_sync_mount_direct_token">可见进程的挂载表包含直接的 Root 管理挂载标记。</string>
     <string name="runtime_sync_mount_divergence">跨进程挂载表与隔离进程基线存在差异。</string>
     <string name="runtime_sync_mount_direct_impact">可见进程挂载表中的直接 Root 标记，是 Root 管理挂载层的强证据。</string>
@@ -345,6 +364,101 @@ limitations under the License.
     <string name="runtime_sync_mount_scan_token_detail">已扫描 %1$d 个 PID，其中 %2$d 个挂载表可读。\n直接 Root 标记：%3$s</string>
     <string name="runtime_sync_mount_scan_unreadable">已扫描 %1$d 个 PID，但没有可读的进程挂载表；跨进程挂载视图比较不可用。</string>
     <string name="runtime_sync_mount_scan_summary">已扫描 %1$d 个 PID，其中 %2$d 个挂载表可读，共 %3$d 个不同视图，预期 %4$d 个。</string>
+
+    <string name="runtime_sync_zygote_next_title">Zygote Next 挂载视图</string>
+    <string name="runtime_sync_zygote_next_namespace_anomaly">Zygote Next 命名空间异常</string>
+    <string name="runtime_sync_zygote_next_root_exposure">Root 挂载暴露</string>
+    <string name="runtime_sync_zygote_next_root_exposure_code">ROOT_MOUNT_EXPOSURE（Root 挂载暴露）</string>
+    <string name="runtime_sync_zygote_next_marker_detail" formatted="false">%1$s：%2$s [%3$s；根=%4$s；来源=%5$s]</string>
+    <string name="runtime_sync_zygote_next_requires_android_17">需要 Android 17</string>
+    <string name="runtime_sync_zygote_next_root_count">ROOT_MOUNT_EXPOSURE：%1$d 个 Root 挂载</string>
+    <string name="runtime_sync_zygote_next_private_anomaly">私有命名空间异常</string>
+    <string name="runtime_sync_zygote_next_inconsistent">证据不一致</string>
+    <string name="runtime_sync_zygote_next_coverage_unverified">覆盖情况未验证</string>
+    <string name="runtime_sync_zygote_next_waiting">正在等待 Android 17 原生隔离服务。</string>
+    <string name="runtime_sync_zygote_next_method" formatted="false">比较经典应用挂载视图与 Android 17 zygote_next 原生隔离进程。主进程={传播=%1$s，挂载数=%2$d，ID=%3$d..%4$d}；隔离进程={传播=%5$s，挂载数=%6$d，ID=%7$d..%8$d}。共享传播、较小的根/最小挂载 ID 和锚点挂载 ID 是系统默认路径的特征；由 Root 管理的挂载记录则是直接暴露信号。</string>
+    <string name="runtime_sync_zygote_next_unclassified">未分类</string>
+    <string name="runtime_sync_zygote_next_unclassified_title">未分类</string>
+    <string name="runtime_sync_zygote_next_exposed_summary">Android 17 zygote_next 挂载视图暴露了由 Root 管理的挂载记录。</string>
+    <string name="runtime_sync_zygote_next_exposed_finding">Android 17 zygote_next 原生隔离服务路径暴露了由 Root 管理的挂载记录。</string>
+    <string name="runtime_sync_zygote_next_exposed_impact">Android 17 zygote_next 原生隔离进程中仍可看到由 Root 管理的挂载。</string>
+    <string name="runtime_sync_zygote_next_result_label">结果</string>
+    <string name="runtime_sync_zygote_next_detail_label">详情</string>
+    <string name="runtime_sync_zygote_next_sdk_label">SDK</string>
+    <string name="runtime_sync_zygote_next_main_namespace">主进程命名空间</string>
+    <string name="runtime_sync_zygote_next_main_propagation">主进程传播属性</string>
+    <string name="runtime_sync_zygote_next_main_mount_ids">主进程挂载 ID</string>
+    <string name="runtime_sync_zygote_next_main_mount_ids_detail">主进程挂载 ID：根=%1$s，范围=%2$s</string>
+    <string name="runtime_sync_zygote_next_main_mount_entries">主进程挂载条目</string>
+    <string name="runtime_sync_zygote_next_isolated_namespace">隔离进程命名空间</string>
+    <string name="runtime_sync_zygote_next_isolated_propagation">隔离进程传播属性</string>
+    <string name="runtime_sync_zygote_next_isolated_mount_ids">隔离进程挂载 ID</string>
+    <string name="runtime_sync_zygote_next_isolated_mount_ids_detail">隔离进程挂载 ID：根=%1$s，范围=%2$s</string>
+    <string name="runtime_sync_zygote_next_isolated_mount_entries">隔离进程挂载条目</string>
+    <string name="runtime_sync_zygote_next_assessment_label">命名空间评估</string>
+    <string name="runtime_sync_zygote_next_coverage_label">init 管理的命名空间覆盖</string>
+    <string name="runtime_sync_zygote_next_contrast_label">共享视图对比</string>
+    <string name="runtime_sync_zygote_next_leak_label">Root 标记泄露</string>
+    <string name="runtime_sync_zygote_next_main_markers">主进程标记</string>
+    <string name="runtime_sync_zygote_next_isolated_markers">隔离进程标记</string>
+    <string name="runtime_sync_zygote_next_mount_id_detail">根=%1$s，范围=%2$s</string>
+    <string name="runtime_sync_zygote_next_state_pending">等待中</string>
+    <string name="runtime_sync_zygote_next_state_unsupported">不支持</string>
+    <string name="runtime_sync_zygote_next_state_unavailable">不可用</string>
+    <string name="runtime_sync_zygote_next_state_ready">已就绪</string>
+    <string name="runtime_sync_zygote_next_assessment_likely_init">很可能是 init 管理的命名空间</string>
+    <string name="runtime_sync_zygote_next_assessment_private">私有命名空间异常</string>
+    <string name="runtime_sync_zygote_next_assessment_inconsistent">证据不一致</string>
+    <string name="runtime_sync_zygote_next_assessment_unverified">未验证</string>
+    <string name="runtime_sync_zygote_next_true">是</string>
+    <string name="runtime_sync_zygote_next_false">否</string>
+
+    <string name="runtime_sync_zygote_next_requires_api">Zygote Next 原生服务需要 Android 17（API 37）。</string>
+    <string name="runtime_sync_zygote_next_context_missing">无法取得 zygote_next 服务所需的应用上下文。</string>
+    <string name="runtime_sync_zygote_next_timeout">Zygote Next 原生服务在 %1$d 毫秒后超时。</string>
+    <string name="runtime_sync_zygote_next_null_binder">Zygote Next 原生服务返回了空 Binder。</string>
+    <string name="runtime_sync_zygote_next_snapshot_unavailable">Zygote Next 原生挂载快照不可用。</string>
+    <string name="runtime_sync_zygote_next_binder_failed">Zygote Next Binder 数据处理失败。</string>
+    <string name="runtime_sync_zygote_next_null_binding">Zygote Next 原生服务返回了空绑定。</string>
+    <string name="runtime_sync_zygote_next_binding_died">Zygote Next 原生服务绑定已失效。</string>
+    <string name="runtime_sync_zygote_next_disconnected">Zygote Next 原生服务已断开连接。</string>
+    <string name="runtime_sync_zygote_next_bind_failed">无法绑定 Zygote Next 原生服务。</string>
+    <string name="runtime_sync_zygote_next_transaction_rejected">原生 zygote_next Binder 拒绝了快照事务。</string>
+    <string name="runtime_sync_zygote_next_main_mountinfo_failed">无法读取主进程 mountinfo。</string>
+    <string name="runtime_sync_zygote_next_mountinfo_read_failed">读取 /proc/self/mountinfo 时在 EOF 前失败。</string>
+    <string name="runtime_sync_zygote_next_mountinfo_open_failed">无法打开 /proc/self/mountinfo。</string>
+    <string name="runtime_sync_zygote_next_native_snapshot_failed">原生挂载快照失败。</string>
+    <string name="runtime_sync_zygote_next_native_snapshot_unavailable">原生挂载快照不可用。</string>
+    <string name="runtime_sync_zygote_next_native_mountinfo_unavailable">原生 mountinfo 快照不可用。</string>
+
+    <string name="runtime_sync_zygote_next_malformed_line">zygote_next 数据行格式错误。</string>
+    <string name="runtime_sync_zygote_next_malformed_anchor">zygote_next 锚点记录格式错误。</string>
+    <string name="runtime_sync_zygote_next_invalid_anchor_id">zygote_next 锚点挂载 ID 无效。</string>
+    <string name="runtime_sync_zygote_next_incomplete_anchor">zygote_next 锚点记录不完整。</string>
+    <string name="runtime_sync_zygote_next_duplicate_anchor">zygote_next 锚点重复：%1$s。</string>
+    <string name="runtime_sync_zygote_next_duplicate_key">zygote_next 数据中的 %1$s 重复。</string>
+    <string name="runtime_sync_zygote_next_unsupported_version">不支持的 zygote_next 数据版本。</string>
+    <string name="runtime_sync_zygote_next_incomplete_snapshot">zygote_next 进程快照不完整。</string>
+    <string name="runtime_sync_zygote_next_malformed_marker">zygote_next 标记记录格式错误。</string>
+    <string name="runtime_sync_zygote_next_marker_without_labels">Zygote Next 标记记录没有标签。</string>
+    <string name="runtime_sync_zygote_next_marker_empty_field">Zygote Next 标记记录包含空字段。</string>
+    <string name="runtime_sync_zygote_next_trailing_escape">zygote_next 数据末尾存在不完整转义。</string>
+    <string name="runtime_sync_zygote_next_unknown_escape">zygote_next 数据中存在未知转义：%1$s</string>
+    <string name="runtime_sync_zygote_next_invalid_key_value">zygote_next 数据中的 %1$s 缺失或无效：%2$s</string>
+    <string name="runtime_sync_zygote_next_invalid_key">zygote_next 数据中的 %1$s 缺失或无效。</string>
+
+    <string name="runtime_sync_zygote_next_likely_init">原生视图符合 AOSP 由 init 管理的默认命名空间特征：它与经典应用命名空间不同；其根挂载为共享且非从属，经典应用根挂载为从属；并且在至少 3 个共有锚点中，三分之二以上的原生视图挂载 ID 以及其根/最小挂载 ID 都更早。这只是较可信的特征，并不能证明命名空间的来源链。</string>
+    <string name="runtime_sync_zygote_next_private_detail">原生隔离路径有效，但其根挂载是私有/从属，而不是系统默认的共享 init 管理视图。</string>
+    <string name="runtime_sync_zygote_next_inconsistent_detail">传播字段或挂载 ID 锚点的先后关系与 init 管理特征矛盾。</string>
+    <string name="runtime_sync_zygote_next_unvalidated_detail">无法验证原生隔离路径或隔离 UID。</string>
+    <string name="runtime_sync_zygote_next_reason_namespace">命名空间身份缺失或相同</string>
+    <string name="runtime_sync_zygote_next_reason_native_root">原生视图根挂载不是共享且非从属</string>
+    <string name="runtime_sync_zygote_next_reason_classic_root">经典应用根挂载不是从属且非共享</string>
+    <string name="runtime_sync_zygote_next_reason_mount_count">mountinfo 记录太少，无法比较命名空间</string>
+    <string name="runtime_sync_zygote_next_reason_anchor_count">共有锚点挂载 ID 少于 %1$d 个</string>
+    <string name="runtime_sync_zygote_next_reason_mount_age">原生视图的根/最小/锚点挂载 ID 并不早于经典应用视图</string>
+    <string name="runtime_sync_zygote_next_unverified_plain">尚未验证由 init 管理的命名空间覆盖。</string>
+    <string name="runtime_sync_zygote_next_unverified_reasons">尚未验证由 init 管理的命名空间覆盖：%1$s。</string>
 
     <string name="runtime_sync_temp_root_cve">临时 Root CVE 利用痕迹</string>
     <string name="runtime_sync_temp_root_cve_detail">/data/local/tmp 中的文件“%1$s”符合 CVE-2026-43499 临时 Root 利用模式，表示当前或最近发生过临时提权。</string>

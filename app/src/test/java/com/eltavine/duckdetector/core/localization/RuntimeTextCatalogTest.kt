@@ -56,6 +56,23 @@ class RuntimeTextCatalogTest {
             "Probed attempts: %1\$d, page faulted in: %2\$d, pre-resident: %3\$d, control resident: %4\$d, control unmapped: %5\$d, page unmapped: %6\$d, mincore errors: %7\$d, kernel: %8\$s, faulting-uaccess scope: %9\$s, usable: %10\$s" to
                 "探测次数：%1\$d，页面被调入：%2\$d，探测前已驻留：%3\$d，控制页已驻留：%4\$d，控制页映射失败：%5\$d，探测页映射失败：%6\$d，mincore 错误：%7\$d，内核：%8\$s，faulting-uaccess 范围：%9\$s，可用：%10\$s",
             "Test Result: %1\$s" to "检测结果：%1\$s",
+            "CPU %1\$d: cached=%2\$s (%3\$s), mrs=%4\$s, %5\$s" to
+                "CPU %1\$d：缓存值=%2\$s（%3\$s），MRS=%4\$s，%5\$s",
+            "consistent" to "一致",
+            "mismatch" to "不一致",
+            "Zygote next mount view" to "Zygote Next 挂载视图",
+            "Result" to "结果",
+            "Detail" to "详情",
+            "READY" to "已就绪",
+            "Main mount IDs" to "主进程挂载 ID",
+            "Main mount IDs: root=%1\$s, range=%2\$s" to
+                "主进程挂载 ID：根=%1\$s，范围=%2\$s",
+            "root=%1\$s, range=%2\$s" to "根=%1\$s，范围=%2\$s",
+            "Zygote next native service timed out after %1\$d ms." to
+                "Zygote Next 原生服务在 %1\$d 毫秒后超时。",
+            "Init-managed namespace coverage is unverified: %1\$s." to
+                "尚未验证由 init 管理的命名空间覆盖：%1\$s。",
+            "namespace identities are missing or equal" to "命名空间身份缺失或相同",
         ),
     )
 
@@ -131,6 +148,34 @@ class RuntimeTextCatalogTest {
             "检测结果：探测次数：4，页面被调入：1，探测前已驻留：0，控制页已驻留：0，控制页映射失败：0，探测页映射失败：0，mincore 错误：0，内核：6.1.0，faulting-uaccess 范围：是，可用：否",
             catalog.translate(
                 "Test Result: Probed attempts: 4, page faulted in: 1, pre-resident: 0, control resident: 0, control unmapped: 0, page unmapped: 0, mincore errors: 0, kernel: 6.1.0, faulting-uaccess scope: yes, usable: no",
+            ),
+        )
+    }
+
+    @Test
+    fun translatesArm64CpuIdentityObservation() {
+        assertEquals(
+            "CPU 3：缓存值=0x410fd034（sysfs），MRS=0x410fd034，一致",
+            catalog.translate("CPU 3: cached=0x410fd034 (sysfs), mrs=0x410fd034, consistent"),
+        )
+    }
+
+    @Test
+    fun translatesZygoteNextCopyTextAndErrors() {
+        assertEquals(
+            "Zygote Next 挂载视图\n结果：已就绪\n主进程挂载 ID：根=42，范围=42..88",
+            catalog.translate(
+                "Zygote next mount view\nResult: READY\nMain mount IDs: root=42, range=42..88",
+            ),
+        )
+        assertEquals(
+            "Zygote Next 原生服务在 1500 毫秒后超时。",
+            catalog.translate("Zygote next native service timed out after 1500 ms."),
+        )
+        assertEquals(
+            "尚未验证由 init 管理的命名空间覆盖：命名空间身份缺失或相同。",
+            catalog.translate(
+                "Init-managed namespace coverage is unverified: namespace identities are missing or equal.",
             ),
         )
     }

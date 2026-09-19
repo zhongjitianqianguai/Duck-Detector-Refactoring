@@ -2664,6 +2664,24 @@ limitations under the License.
         <item>@string/runtime_sync_consistent_count</item>
         <item>@string/runtime_sync_single_source</item>
         <item>@string/runtime_sync_kernel_rewritten</item>
+        <item>@string/runtime_sync_arm64_cpu_identity</item>
+        <item>@string/runtime_sync_arm64_cpu_identity_method</item>
+        <item>@string/runtime_sync_arm64_core_mismatches</item>
+        <item>@string/runtime_sync_arm64_cpus_agree</item>
+        <item>@string/runtime_sync_arm64_partial</item>
+        <item>@string/runtime_sync_arm64_unsupported_abi</item>
+        <item>@string/runtime_sync_arm64_unsupported_detail</item>
+        <item>@string/runtime_sync_arm64_affinity_unavailable</item>
+        <item>@string/runtime_sync_arm64_affinity_detail</item>
+        <item>@string/runtime_sync_arm64_no_comparable_cpu</item>
+        <item>@string/runtime_sync_arm64_affinity_failed</item>
+        <item>@string/runtime_sync_arm64_cached_unavailable</item>
+        <item>@string/runtime_sync_arm64_mrs_unavailable</item>
+        <item>@string/runtime_sync_arm64_consistent</item>
+        <item>@string/runtime_sync_arm64_mismatch</item>
+        <item>@string/runtime_sync_arm64_observation</item>
+        <item>@string/runtime_sync_arm64_finding</item>
+        <item>@string/runtime_sync_arm64_impact</item>
         <item>@string/runtime_sync_mount_direct_token</item>
         <item>@string/runtime_sync_mount_divergence</item>
         <item>@string/runtime_sync_mount_direct_impact</item>
@@ -2690,6 +2708,97 @@ limitations under the License.
         <item>@string/runtime_sync_mount_scan_token_detail</item>
         <item>@string/runtime_sync_mount_scan_unreadable</item>
         <item>@string/runtime_sync_mount_scan_summary</item>
+        <item>@string/runtime_sync_zygote_next_title</item>
+        <item>@string/runtime_sync_zygote_next_namespace_anomaly</item>
+        <item>@string/runtime_sync_zygote_next_root_exposure</item>
+        <item>@string/runtime_sync_zygote_next_root_exposure_code</item>
+        <item>@string/runtime_sync_zygote_next_marker_detail</item>
+        <item>@string/runtime_sync_zygote_next_requires_android_17</item>
+        <item>@string/runtime_sync_zygote_next_root_count</item>
+        <item>@string/runtime_sync_zygote_next_private_anomaly</item>
+        <item>@string/runtime_sync_zygote_next_inconsistent</item>
+        <item>@string/runtime_sync_zygote_next_coverage_unverified</item>
+        <item>@string/runtime_sync_zygote_next_waiting</item>
+        <item>@string/runtime_sync_zygote_next_method</item>
+        <item>@string/runtime_sync_zygote_next_unclassified</item>
+        <item>@string/runtime_sync_zygote_next_unclassified_title</item>
+        <item>@string/runtime_sync_zygote_next_exposed_summary</item>
+        <item>@string/runtime_sync_zygote_next_exposed_finding</item>
+        <item>@string/runtime_sync_zygote_next_exposed_impact</item>
+        <item>@string/runtime_sync_zygote_next_result_label</item>
+        <item>@string/runtime_sync_zygote_next_detail_label</item>
+        <item>@string/runtime_sync_zygote_next_sdk_label</item>
+        <item>@string/runtime_sync_zygote_next_main_namespace</item>
+        <item>@string/runtime_sync_zygote_next_main_propagation</item>
+        <item>@string/runtime_sync_zygote_next_main_mount_ids</item>
+        <item>@string/runtime_sync_zygote_next_main_mount_ids_detail</item>
+        <item>@string/runtime_sync_zygote_next_main_mount_entries</item>
+        <item>@string/runtime_sync_zygote_next_isolated_namespace</item>
+        <item>@string/runtime_sync_zygote_next_isolated_propagation</item>
+        <item>@string/runtime_sync_zygote_next_isolated_mount_ids</item>
+        <item>@string/runtime_sync_zygote_next_isolated_mount_ids_detail</item>
+        <item>@string/runtime_sync_zygote_next_isolated_mount_entries</item>
+        <item>@string/runtime_sync_zygote_next_assessment_label</item>
+        <item>@string/runtime_sync_zygote_next_coverage_label</item>
+        <item>@string/runtime_sync_zygote_next_contrast_label</item>
+        <item>@string/runtime_sync_zygote_next_leak_label</item>
+        <item>@string/runtime_sync_zygote_next_main_markers</item>
+        <item>@string/runtime_sync_zygote_next_isolated_markers</item>
+        <item>@string/runtime_sync_zygote_next_mount_id_detail</item>
+        <item>@string/runtime_sync_zygote_next_state_pending</item>
+        <item>@string/runtime_sync_zygote_next_state_unsupported</item>
+        <item>@string/runtime_sync_zygote_next_state_unavailable</item>
+        <item>@string/runtime_sync_zygote_next_state_ready</item>
+        <item>@string/runtime_sync_zygote_next_assessment_likely_init</item>
+        <item>@string/runtime_sync_zygote_next_assessment_private</item>
+        <item>@string/runtime_sync_zygote_next_assessment_inconsistent</item>
+        <item>@string/runtime_sync_zygote_next_assessment_unverified</item>
+        <item>@string/runtime_sync_zygote_next_true</item>
+        <item>@string/runtime_sync_zygote_next_false</item>
+        <item>@string/runtime_sync_zygote_next_requires_api</item>
+        <item>@string/runtime_sync_zygote_next_context_missing</item>
+        <item>@string/runtime_sync_zygote_next_timeout</item>
+        <item>@string/runtime_sync_zygote_next_null_binder</item>
+        <item>@string/runtime_sync_zygote_next_snapshot_unavailable</item>
+        <item>@string/runtime_sync_zygote_next_binder_failed</item>
+        <item>@string/runtime_sync_zygote_next_null_binding</item>
+        <item>@string/runtime_sync_zygote_next_binding_died</item>
+        <item>@string/runtime_sync_zygote_next_disconnected</item>
+        <item>@string/runtime_sync_zygote_next_bind_failed</item>
+        <item>@string/runtime_sync_zygote_next_transaction_rejected</item>
+        <item>@string/runtime_sync_zygote_next_main_mountinfo_failed</item>
+        <item>@string/runtime_sync_zygote_next_mountinfo_read_failed</item>
+        <item>@string/runtime_sync_zygote_next_mountinfo_open_failed</item>
+        <item>@string/runtime_sync_zygote_next_native_snapshot_failed</item>
+        <item>@string/runtime_sync_zygote_next_native_snapshot_unavailable</item>
+        <item>@string/runtime_sync_zygote_next_native_mountinfo_unavailable</item>
+        <item>@string/runtime_sync_zygote_next_malformed_line</item>
+        <item>@string/runtime_sync_zygote_next_malformed_anchor</item>
+        <item>@string/runtime_sync_zygote_next_invalid_anchor_id</item>
+        <item>@string/runtime_sync_zygote_next_incomplete_anchor</item>
+        <item>@string/runtime_sync_zygote_next_duplicate_anchor</item>
+        <item>@string/runtime_sync_zygote_next_duplicate_key</item>
+        <item>@string/runtime_sync_zygote_next_unsupported_version</item>
+        <item>@string/runtime_sync_zygote_next_incomplete_snapshot</item>
+        <item>@string/runtime_sync_zygote_next_malformed_marker</item>
+        <item>@string/runtime_sync_zygote_next_marker_without_labels</item>
+        <item>@string/runtime_sync_zygote_next_marker_empty_field</item>
+        <item>@string/runtime_sync_zygote_next_trailing_escape</item>
+        <item>@string/runtime_sync_zygote_next_unknown_escape</item>
+        <item>@string/runtime_sync_zygote_next_invalid_key_value</item>
+        <item>@string/runtime_sync_zygote_next_invalid_key</item>
+        <item>@string/runtime_sync_zygote_next_likely_init</item>
+        <item>@string/runtime_sync_zygote_next_private_detail</item>
+        <item>@string/runtime_sync_zygote_next_inconsistent_detail</item>
+        <item>@string/runtime_sync_zygote_next_unvalidated_detail</item>
+        <item>@string/runtime_sync_zygote_next_reason_namespace</item>
+        <item>@string/runtime_sync_zygote_next_reason_native_root</item>
+        <item>@string/runtime_sync_zygote_next_reason_classic_root</item>
+        <item>@string/runtime_sync_zygote_next_reason_mount_count</item>
+        <item>@string/runtime_sync_zygote_next_reason_anchor_count</item>
+        <item>@string/runtime_sync_zygote_next_reason_mount_age</item>
+        <item>@string/runtime_sync_zygote_next_unverified_plain</item>
+        <item>@string/runtime_sync_zygote_next_unverified_reasons</item>
         <item>@string/runtime_sync_temp_root_cve</item>
         <item>@string/runtime_sync_temp_root_cve_detail</item>
         <item>@string/runtime_sync_temp_root_artifact</item>

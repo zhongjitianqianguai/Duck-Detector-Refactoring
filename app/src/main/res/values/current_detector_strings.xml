@@ -319,6 +319,25 @@ limitations under the License.
     <string name="runtime_sync_single_source">Single source</string>
     <string name="runtime_sync_kernel_rewritten">The kernel identity differs between the sources that export it, so the version this device reports to apps is being rewritten rather than simply being unusual.</string>
 
+    <string name="runtime_sync_arm64_cpu_identity">ARM64 CPU identity</string>
+    <string name="runtime_sync_arm64_cpu_identity_method">arm64CpuIdentity</string>
+    <string name="runtime_sync_arm64_core_mismatches">%1$d core mismatch(es)</string>
+    <string name="runtime_sync_arm64_cpus_agree">%1$d CPU(s) agree</string>
+    <string name="runtime_sync_arm64_partial">Partial (%1$d/%2$d CPUs)</string>
+    <string name="runtime_sync_arm64_unsupported_abi">Unsupported ABI</string>
+    <string name="runtime_sync_arm64_unsupported_detail">Pinned MIDR_EL1 comparison is available only on ARM64.</string>
+    <string name="runtime_sync_arm64_affinity_unavailable">Affinity unavailable</string>
+    <string name="runtime_sync_arm64_affinity_detail">The current thread\'s CPU affinity could not be read, so a same-CPU comparison was not safe.</string>
+    <string name="runtime_sync_arm64_no_comparable_cpu">No logical CPU yielded both a cached MIDR and a safely emulated MIDR_EL1 read.</string>
+    <string name="runtime_sync_arm64_affinity_failed">affinity failed</string>
+    <string name="runtime_sync_arm64_cached_unavailable">cached MIDR unavailable</string>
+    <string name="runtime_sync_arm64_mrs_unavailable">MRS MIDR_EL1 unavailable</string>
+    <string name="runtime_sync_arm64_consistent">consistent</string>
+    <string name="runtime_sync_arm64_mismatch">mismatch</string>
+    <string name="runtime_sync_arm64_observation" formatted="false">CPU %1$d: cached=%2$s (%3$s), mrs=%4$s, %5$s</string>
+    <string name="runtime_sync_arm64_finding">A logical CPU\'s cached ARM64 identity disagrees with MIDR_EL1 observed while pinned to that same CPU, which is a high-confidence sign of runtime CPU identity rewriting.</string>
+    <string name="runtime_sync_arm64_impact">A same-CPU cached/MIDR_EL1 mismatch indicates that the kernel\'s cached processor identity was changed independently of its ARM64 register-emulation path.</string>
+
     <string name="runtime_sync_mount_direct_token">A visible process mount table contains a direct root-managed mount token.</string>
     <string name="runtime_sync_mount_divergence">Cross-process mount tables diverge from the isolated-process baseline.</string>
     <string name="runtime_sync_mount_direct_impact">A direct root token in a visible process mount table is strong evidence of a root-managed mount layer.</string>
@@ -345,6 +364,101 @@ limitations under the License.
     <string name="runtime_sync_mount_scan_token_detail">Scanned %1$d pid(s), %2$d readable mount table(s).\nDirect root token: %3$s</string>
     <string name="runtime_sync_mount_scan_unreadable">Scanned %1$d pid(s) but no process mount table was readable; cross-process mount view comparison is unavailable.</string>
     <string name="runtime_sync_mount_scan_summary">Scanned %1$d pid(s), %2$d readable mount table(s), %3$d distinct view(s), expected %4$d.</string>
+
+    <string name="runtime_sync_zygote_next_title">Zygote next mount view</string>
+    <string name="runtime_sync_zygote_next_namespace_anomaly">Zygote next namespace anomaly</string>
+    <string name="runtime_sync_zygote_next_root_exposure">Root mount exposure</string>
+    <string name="runtime_sync_zygote_next_root_exposure_code">ROOT_MOUNT_EXPOSURE</string>
+    <string name="runtime_sync_zygote_next_marker_detail" formatted="false">%1$s: %2$s [%3$s; root=%4$s; source=%5$s]</string>
+    <string name="runtime_sync_zygote_next_requires_android_17">Requires Android 17</string>
+    <string name="runtime_sync_zygote_next_root_count">ROOT_MOUNT_EXPOSURE: %1$d root mount(s)</string>
+    <string name="runtime_sync_zygote_next_private_anomaly">Private namespace anomaly</string>
+    <string name="runtime_sync_zygote_next_inconsistent">Evidence inconsistent</string>
+    <string name="runtime_sync_zygote_next_coverage_unverified">Coverage unverified</string>
+    <string name="runtime_sync_zygote_next_waiting">Waiting for the Android 17 native isolated service.</string>
+    <string name="runtime_sync_zygote_next_method" formatted="false">Compares the classic app mount view with an Android 17 zygote_next native isolated process. main={propagation=%1$s, mounts=%2$d, ids=%3$d..%4$d}; isolated={propagation=%5$s, mounts=%6$d, ids=%7$d..%8$d}. Shared propagation plus lower root/minimum and anchor mount IDs is the stock route signature; root-managed mount records are the direct exposure signal.</string>
+    <string name="runtime_sync_zygote_next_unclassified">unclassified</string>
+    <string name="runtime_sync_zygote_next_unclassified_title">Unclassified</string>
+    <string name="runtime_sync_zygote_next_exposed_summary">The Android 17 zygote_next mount view exposed root-managed mount records.</string>
+    <string name="runtime_sync_zygote_next_exposed_finding">The Android 17 zygote_next native isolated-service path exposed root-managed mount records.</string>
+    <string name="runtime_sync_zygote_next_exposed_impact">A root-managed mount remained visible from the Android 17 zygote_next native isolated process.</string>
+    <string name="runtime_sync_zygote_next_result_label">Result</string>
+    <string name="runtime_sync_zygote_next_detail_label">Detail</string>
+    <string name="runtime_sync_zygote_next_sdk_label">SDK</string>
+    <string name="runtime_sync_zygote_next_main_namespace">Main namespace</string>
+    <string name="runtime_sync_zygote_next_main_propagation">Main propagation</string>
+    <string name="runtime_sync_zygote_next_main_mount_ids">Main mount IDs</string>
+    <string name="runtime_sync_zygote_next_main_mount_ids_detail">Main mount IDs: root=%1$s, range=%2$s</string>
+    <string name="runtime_sync_zygote_next_main_mount_entries">Main mount entries</string>
+    <string name="runtime_sync_zygote_next_isolated_namespace">Isolated namespace</string>
+    <string name="runtime_sync_zygote_next_isolated_propagation">Isolated propagation</string>
+    <string name="runtime_sync_zygote_next_isolated_mount_ids">Isolated mount IDs</string>
+    <string name="runtime_sync_zygote_next_isolated_mount_ids_detail">Isolated mount IDs: root=%1$s, range=%2$s</string>
+    <string name="runtime_sync_zygote_next_isolated_mount_entries">Isolated mount entries</string>
+    <string name="runtime_sync_zygote_next_assessment_label">Namespace assessment</string>
+    <string name="runtime_sync_zygote_next_coverage_label">Init-managed namespace coverage</string>
+    <string name="runtime_sync_zygote_next_contrast_label">Shared-view contrast</string>
+    <string name="runtime_sync_zygote_next_leak_label">Root marker leak</string>
+    <string name="runtime_sync_zygote_next_main_markers">Main markers</string>
+    <string name="runtime_sync_zygote_next_isolated_markers">Isolated markers</string>
+    <string name="runtime_sync_zygote_next_mount_id_detail">root=%1$s, range=%2$s</string>
+    <string name="runtime_sync_zygote_next_state_pending">PENDING</string>
+    <string name="runtime_sync_zygote_next_state_unsupported">UNSUPPORTED</string>
+    <string name="runtime_sync_zygote_next_state_unavailable">UNAVAILABLE</string>
+    <string name="runtime_sync_zygote_next_state_ready">READY</string>
+    <string name="runtime_sync_zygote_next_assessment_likely_init">LIKELY_INIT</string>
+    <string name="runtime_sync_zygote_next_assessment_private">PRIVATE_ANOMALY</string>
+    <string name="runtime_sync_zygote_next_assessment_inconsistent">INCONSISTENT</string>
+    <string name="runtime_sync_zygote_next_assessment_unverified">UNVERIFIED</string>
+    <string name="runtime_sync_zygote_next_true">true</string>
+    <string name="runtime_sync_zygote_next_false">false</string>
+
+    <string name="runtime_sync_zygote_next_requires_api">Zygote next native services require Android 17 (API 37).</string>
+    <string name="runtime_sync_zygote_next_context_missing">Application context was unavailable for the zygote_next service.</string>
+    <string name="runtime_sync_zygote_next_timeout">Zygote next native service timed out after %1$d ms.</string>
+    <string name="runtime_sync_zygote_next_null_binder">Zygote next native service returned a null Binder.</string>
+    <string name="runtime_sync_zygote_next_snapshot_unavailable">Zygote next native mount snapshot was unavailable.</string>
+    <string name="runtime_sync_zygote_next_binder_failed">Zygote next Binder payload failed.</string>
+    <string name="runtime_sync_zygote_next_null_binding">Zygote next native service returned a null binding.</string>
+    <string name="runtime_sync_zygote_next_binding_died">Zygote next native service binding died.</string>
+    <string name="runtime_sync_zygote_next_disconnected">Zygote next native service disconnected.</string>
+    <string name="runtime_sync_zygote_next_bind_failed">Zygote next native service could not be bound.</string>
+    <string name="runtime_sync_zygote_next_transaction_rejected">Native zygote_next Binder rejected the snapshot transaction.</string>
+    <string name="runtime_sync_zygote_next_main_mountinfo_failed">Main-process mountinfo could not be read.</string>
+    <string name="runtime_sync_zygote_next_mountinfo_read_failed">Reading /proc/self/mountinfo failed before EOF.</string>
+    <string name="runtime_sync_zygote_next_mountinfo_open_failed">Opening /proc/self/mountinfo failed.</string>
+    <string name="runtime_sync_zygote_next_native_snapshot_failed">Native mount snapshot failed.</string>
+    <string name="runtime_sync_zygote_next_native_snapshot_unavailable">Native mount snapshot was unavailable.</string>
+    <string name="runtime_sync_zygote_next_native_mountinfo_unavailable">Native mountinfo snapshot was unavailable.</string>
+
+    <string name="runtime_sync_zygote_next_malformed_line">Malformed zygote_next payload line.</string>
+    <string name="runtime_sync_zygote_next_malformed_anchor">Malformed zygote_next anchor record.</string>
+    <string name="runtime_sync_zygote_next_invalid_anchor_id">Invalid zygote_next anchor mount ID.</string>
+    <string name="runtime_sync_zygote_next_incomplete_anchor">Incomplete zygote_next anchor record.</string>
+    <string name="runtime_sync_zygote_next_duplicate_anchor">Duplicate zygote_next anchor: %1$s.</string>
+    <string name="runtime_sync_zygote_next_duplicate_key">Duplicate %1$s in zygote_next payload.</string>
+    <string name="runtime_sync_zygote_next_unsupported_version">Unsupported zygote_next payload version.</string>
+    <string name="runtime_sync_zygote_next_incomplete_snapshot">Incomplete zygote_next process snapshot.</string>
+    <string name="runtime_sync_zygote_next_malformed_marker">Malformed zygote_next marker record.</string>
+    <string name="runtime_sync_zygote_next_marker_without_labels">Zygote next marker record has no labels.</string>
+    <string name="runtime_sync_zygote_next_marker_empty_field">Zygote next marker record has an empty field.</string>
+    <string name="runtime_sync_zygote_next_trailing_escape">Trailing escape in zygote_next payload.</string>
+    <string name="runtime_sync_zygote_next_unknown_escape">Unknown escape in zygote_next payload: %1$s</string>
+    <string name="runtime_sync_zygote_next_invalid_key_value">Missing or invalid %1$s in zygote_next payload: %2$s</string>
+    <string name="runtime_sync_zygote_next_invalid_key">Missing or invalid %1$s in zygote_next payload.</string>
+
+    <string name="runtime_sync_zygote_next_likely_init">The native view matches AOSP\'s init-managed default namespace: it is distinct from the classic app namespace, its root is shared and non-slave, the classic root is slave, and at least two thirds of three or more common anchor IDs plus its root/minimum IDs are older. This is a likely signature, not proof of namespace lineage.</string>
+    <string name="runtime_sync_zygote_next_private_detail">The native isolated route is valid, but its root is private/slave instead of the stock shared init-managed view.</string>
+    <string name="runtime_sync_zygote_next_inconsistent_detail">Propagation fields or mount-ID anchor chronology contradict the init-managed signature.</string>
+    <string name="runtime_sync_zygote_next_unvalidated_detail">The native isolated route or isolated UID could not be validated.</string>
+    <string name="runtime_sync_zygote_next_reason_namespace">namespace identities are missing or equal</string>
+    <string name="runtime_sync_zygote_next_reason_native_root">native root is not shared and non-slave</string>
+    <string name="runtime_sync_zygote_next_reason_classic_root">classic app root is not slave and non-shared</string>
+    <string name="runtime_sync_zygote_next_reason_mount_count">mountinfo record count is too small for a namespace comparison</string>
+    <string name="runtime_sync_zygote_next_reason_anchor_count">fewer than %1$d common anchor mount IDs</string>
+    <string name="runtime_sync_zygote_next_reason_mount_age">native root/minimum/anchor mount IDs are not older than the classic app IDs</string>
+    <string name="runtime_sync_zygote_next_unverified_plain">Init-managed namespace coverage is unverified.</string>
+    <string name="runtime_sync_zygote_next_unverified_reasons">Init-managed namespace coverage is unverified: %1$s.</string>
 
     <string name="runtime_sync_temp_root_cve">Temp root CVE exploit artifact</string>
     <string name="runtime_sync_temp_root_cve_detail">File &quot;%1$s&quot; in /data/local/tmp matches CVE-2026-43499 temp root exploit pattern. This indicates an active or recent temporary root escalation.</string>
