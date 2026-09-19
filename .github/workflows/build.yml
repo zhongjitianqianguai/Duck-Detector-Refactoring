@@ -17,7 +17,7 @@ name: Build APK And Push To Telegram
 on:
   push:
     branches:
-      - master
+      - main
   workflow_dispatch:
 
 concurrency:
@@ -34,7 +34,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0
           persist-credentials: false
@@ -76,18 +76,20 @@ jobs:
         run: chmod +x gradlew
 
       - name: Set up Java 17
-        uses: actions/setup-java@be666c2fcd27ec809703dec50e508c2fdc7f6654 # v5.2.0
+        uses: actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6 # v6.0.1
         with:
           distribution: temurin
           java-version: "17"
 
       - name: Set up Gradle
-        uses: gradle/actions/setup-gradle@50e97c2cd7a37755bbfafc9c5b7cafaece252f6e # v6.1.0
+        uses: gradle/actions/setup-gradle@9c971963bec38e04b3d30dcc455b5382be2fdbfb # v6.3.0
         with:
-          cache-read-only: ${{ github.ref != 'refs/heads/master' }}
+          cache-read-only: ${{ github.ref_name != github.event.repository.default_branch }}
 
       - name: Set up Android SDK
-        uses: android-actions/setup-android@40fd30fb8d7440372e1316f5d1809ec01dcd3699 # v4.0.1
+        uses: android-actions/setup-android@be39fa834029ff78f1a44aa3bb0819b8fc2bd8fd # v4.0.4
+        with:
+          packages: platform-tools
 
       - name: Install Android SDK packages
         shell: bash
@@ -250,6 +252,9 @@ jobs:
         id: metadata
         shell: bash
         env:
+          ACTION_RUN_NUMBER: ${{ github.run_number }}
+          ACTION_RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          COMMIT_URL: ${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }}
           DURATION_HUMAN: ${{ steps.build.outputs.duration_human }}
           GIT_BRANCH: ${{ github.ref_name }}
           SIGNER_NAME: ${{ steps.signing_fingerprint.outputs.signer_name }}
@@ -332,37 +337,21 @@ jobs:
 
           commit_subject=$(git log -1 --pretty=%s)
           commit_author=$(git log -1 --pretty=%an)
-          commit_body=$(git log -1 --pretty=%b)
           git_hash=$(git rev-parse --short=8 HEAD)
-          caption=$(METADATA_JSON="${metadata_json}" COMMIT_SUBJECT="${commit_subject}" COMMIT_BODY="${commit_body}" COMMIT_AUTHOR="${commit_author}" DURATION_HUMAN="${DURATION_HUMAN}" GIT_BRANCH="${GIT_BRANCH}" GIT_HASH="${git_hash}" SIGNER_NAME="${SIGNER_NAME}" python3 - <<'PY'
+          caption=$(METADATA_JSON="${metadata_json}" COMMIT_SUBJECT="${commit_subject}" COMMIT_AUTHOR="${commit_author}" DURATION_HUMAN="${DURATION_HUMAN}" GIT_BRANCH="${GIT_BRANCH}" GIT_HASH="${git_hash}" SIGNER_NAME="${SIGNER_NAME}" ACTION_RUN_NUMBER="${ACTION_RUN_NUMBER}" ACTION_RUN_URL="${ACTION_RUN_URL}" COMMIT_URL="${COMMIT_URL}" python3 - <<'PY'
           import json
           import os
 
           metadata = json.loads(os.environ["METADATA_JSON"])
+          action_run_number = os.environ["ACTION_RUN_NUMBER"]
+          action_run_url = os.environ["ACTION_RUN_URL"]
           commit_subject = os.environ["COMMIT_SUBJECT"]
-          commit_body = os.environ["COMMIT_BODY"]
           commit_author = os.environ["COMMIT_AUTHOR"]
+          commit_url = os.environ["COMMIT_URL"]
           duration_human = os.environ["DURATION_HUMAN"]
           git_branch = os.environ["GIT_BRANCH"]
           git_hash = os.environ["GIT_HASH"]
           signer_name = os.environ["SIGNER_NAME"] or "Unknown signer"
-
-          def first_paragraph(text: str) -> str:
-              paragraphs = []
-              current = []
-              for raw_line in text.splitlines():
-                  line = raw_line.strip()
-                  if not line:
-                      if current:
-                          paragraphs.append(" ".join(current))
-                          current = []
-                      continue
-                  current.append(line)
-              if current:
-                  paragraphs.append(" ".join(current))
-              return paragraphs[0] if paragraphs else ""
-
-          summary = first_paragraph(commit_body)
 
           def escape_html(text: str) -> str:
               return (
@@ -371,22 +360,23 @@ jobs:
                   .replace(">", "&gt;")
               )
 
-          def render(subject: str, summary_text: str) -> str:
-              commit_block_lines = [subject]
-              if summary_text:
-                  commit_block_lines.extend(["", summary_text])
+          def escape_html_attribute(text: str) -> str:
+              return escape_html(text).replace('"', "&quot;")
 
-              commit_block = escape_html("\n".join(commit_block_lines))
-
+          def render(subject: str) -> str:
               lines = [
+                  "<b>Duck Detector Nightly</b>",
+                  "",
                   f"Version: <b>{escape_html(metadata['version_name'])} ({escape_html(metadata['version_code'])})</b>",
                   f"APK: <b>{escape_html(metadata['apk_name'])}</b>",
-                  "Commit:",
-                  f"<pre>{commit_block}</pre>",
+                  "",
+                  f'Commit: <a href="{escape_html_attribute(commit_url)}">{escape_html(git_hash)}</a>',
+                  f"<pre>{escape_html(subject)}</pre>",
                   f"Author: <b>{escape_html(commit_author)}</b>",
-                  f"Branch: <b>{escape_html(git_branch)}@{escape_html(git_hash)}</b>",
-                  f"Build time: <b>{escape_html(duration_human)}</b>",
-                  f"Signature: <b>verified : by {escape_html(signer_name)}</b>",
+                  f"Branch: <b>{escape_html(git_branch)}</b>",
+                  f'Action: <a href="{escape_html_attribute(action_run_url)}">#{escape_html(action_run_number)}</a>',
+                  f"Build duration: <b>{escape_html(duration_human)}</b>",
+                  f"Signature: <b>verified by {escape_html(signer_name)}</b>",
               ]
               return "\n".join(lines)
 
@@ -401,20 +391,14 @@ jobs:
 
           max_caption_length = 1024
 
-          caption = render(commit_subject, summary)
-          if len(caption) > max_caption_length and summary:
-              without_summary = render(commit_subject, "")
-              summary_budget = max_caption_length - len(without_summary) - 2
-              summary = truncate(summary, summary_budget)
-              caption = render(commit_subject, summary)
-
+          caption = render(commit_subject)
           if len(caption) > max_caption_length:
-              base_without_subject = render("", summary)
+              base_without_subject = render("")
               subject_budget = max_caption_length - len(base_without_subject)
               if subject_budget < 1:
                   raise SystemExit("Telegram caption template exceeds the 1024 character limit.")
               commit_subject = truncate(commit_subject, subject_budget)
-              caption = render(commit_subject, summary)
+              caption = render(commit_subject)
 
           print(caption, end="")
           PY
@@ -507,7 +491,7 @@ jobs:
           fi
 
       - name: Upload APK artifact
-        uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7.0.0
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: ${{ steps.metadata.outputs.apk_name }}
           path: ${{ steps.metadata.outputs.apk_path }}
@@ -516,7 +500,7 @@ jobs:
           retention-days: 14
 
       - name: Prepare nightly release note
-        if: github.ref == 'refs/heads/master'
+        if: github.ref_name == github.event.repository.default_branch
         shell: bash
         run: |
           set -euo pipefail
@@ -530,7 +514,7 @@ jobs:
 
       - name: Snapshot previous Nightly release assets
         id: previous_nightly_assets
-        if: github.ref == 'refs/heads/master'
+        if: github.ref_name == github.event.repository.default_branch
         shell: bash
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -586,8 +570,8 @@ jobs:
 
       - name: Update nightly APK release
         id: nightly_release
-        uses: softprops/action-gh-release@3bb12739c298aeb8a4eeaf626c5b8d85266b0e65 # v2.6.2
-        if: github.ref == 'refs/heads/master'
+        uses: softprops/action-gh-release@efb35369e0ad2afab669f228072c1b0d510eae64 # v3.0.3
+        if: github.ref_name == github.event.repository.default_branch
         with:
           tag_name: nightly
           target_commitish: ${{ github.sha }}
@@ -604,11 +588,12 @@ jobs:
 
       - name: Prepare Nightly update manifest
         id: update_manifest
-        if: github.ref == 'refs/heads/master'
+        if: github.ref_name == github.event.repository.default_branch
         shell: bash
         env:
           APK_PATH: ${{ steps.metadata.outputs.apk_path }}
-          BUILD_BRANCH: ${{ github.ref_name }}
+          # Keep publishing the legacy value until pre-migration clients have upgraded.
+          NIGHTLY_MANIFEST_BRANCH: master
           BUILD_TIME_ISO: ${{ steps.build.outputs.build_time_iso }}
           RELEASE_ASSETS_JSON: ${{ steps.nightly_release.outputs.assets }}
           VERSION_CODE: ${{ steps.metadata.outputs.version_code }}
@@ -687,7 +672,7 @@ jobs:
           manifest = {
               "schemaVersion": 1,
               "channel": "nightly",
-              "branch": os.environ["BUILD_BRANCH"],
+              "branch": os.environ["NIGHTLY_MANIFEST_BRANCH"],
               "versionName": os.environ["VERSION_NAME"],
               "versionCode": int(os.environ["VERSION_CODE"]),
               "commit": {
@@ -717,7 +702,7 @@ jobs:
           jq -e '
             .schemaVersion == 1 and
             .channel == "nightly" and
-            .branch == env.BUILD_BRANCH and
+            .branch == env.NIGHTLY_MANIFEST_BRANCH and
             .versionCode == (env.VERSION_CODE | tonumber) and
             .commit.sha == env.GITHUB_SHA and
             (.apk.name | test("^[^/]+\\.[Aa][Pp][Kk]$")) and
@@ -734,8 +719,8 @@ jobs:
 
       - name: Publish Nightly update manifest
         id: nightly_manifest_release
-        uses: softprops/action-gh-release@3bb12739c298aeb8a4eeaf626c5b8d85266b0e65 # v2.6.2
-        if: github.ref == 'refs/heads/master'
+        uses: softprops/action-gh-release@efb35369e0ad2afab669f228072c1b0d510eae64 # v3.0.3
+        if: github.ref_name == github.event.repository.default_branch
         with:
           tag_name: nightly
           target_commitish: ${{ github.sha }}
@@ -751,7 +736,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Verify published Nightly assets
-        if: github.ref == 'refs/heads/master'
+        if: github.ref_name == github.event.repository.default_branch
         shell: bash
         env:
           APK_ASSET_ID: ${{ steps.update_manifest.outputs.apk_asset_id }}
@@ -857,7 +842,7 @@ jobs:
           fi
 
       - name: Delete previous Nightly release assets
-        if: github.ref == 'refs/heads/master'
+        if: github.ref_name == github.event.repository.default_branch
         shell: bash
         env:
           APK_ASSET_ID: ${{ steps.update_manifest.outputs.apk_asset_id }}
@@ -960,7 +945,7 @@ jobs:
           fi
 
       - name: Move Nightly tag to published commit
-        if: github.ref == 'refs/heads/master'
+        if: github.ref_name == github.event.repository.default_branch
         shell: bash
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

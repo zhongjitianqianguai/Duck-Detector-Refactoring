@@ -45,6 +45,7 @@ set(CUSTOM_ROM_SOURCES
 )
 
 set(KERNEL_CHECK_SOURCES
+    kernelcheck/arm64_cpu_identity_probe.cpp
     kernelcheck/native_bridge.cpp
 )
 
@@ -211,4 +212,19 @@ target_link_libraries(duckdetector
     GLESv2
     log
     mediandk
+)
+
+# Android 17 native isolated services are loaded by zygote_next without ART. The framework's
+# default contract loads libmain.so and calls ANativeService_onCreate.
+add_library(main SHARED
+    mount/zygotenext/native_service.cpp
+)
+
+target_compile_options(main PRIVATE
+    -fvisibility=hidden
+    -fvisibility-inlines-hidden
+)
+
+target_link_libraries(main
+    dl
 )
