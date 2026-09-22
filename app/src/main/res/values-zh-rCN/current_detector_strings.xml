@@ -460,6 +460,43 @@ limitations under the License.
     <string name="runtime_sync_zygote_next_unverified_plain">尚未验证由 init 管理的命名空间覆盖。</string>
     <string name="runtime_sync_zygote_next_unverified_reasons">尚未验证由 init 管理的命名空间覆盖：%1$s。</string>
 
+    <string name="runtime_sync_native_library_load_failed">无法加载 duckdetector：%1$s</string>
+    <string name="runtime_sync_native_payload_missing_key">缺少必需键 %1$s</string>
+    <string name="runtime_sync_native_payload_missing_keys">缺少必需键 %1$s</string>
+    <string name="runtime_sync_package_visibility_environment_error">软件包可见性环境错误</string>
+    <string name="runtime_sync_package_manager_error">PackageManager 错误</string>
+    <string name="runtime_sync_package_inventory_baseline_failed">PackageManager 清单不可用，或未通过调用方软件包基线检查。</string>
+    <string name="runtime_sync_package_visibility_restricted_clean">软件包可见性受限，因此未命中的软件包结果可能漏报 ROM 应用。</string>
+    <string name="runtime_sync_package_absence_inconclusive">软件包清单不可用或异常，因此“未发现软件包”的结果无法确定。</string>
+    <string name="runtime_sync_package_app_absence_inconclusive">软件包清单不可用或异常，因此“未发现应用级证据”的结果无法确定。</string>
+    <string name="runtime_sync_package_inventory_unavailable">软件包清单不可用</string>
+    <string name="runtime_sync_package_inventory_missing_caller">PackageManager 清单中没有本应用，因此“未发现软件包”的结果无法确定。</string>
+    <string name="runtime_sync_package_inventory_failure">PackageManager 清单不可用：%1$s</string>
+    <string name="runtime_sync_package_inventory_untrustworthy">PackageManager 清单中没有本应用，因此该结果不可信。</string>
+    <string name="runtime_sync_kernel_identity_unreadable">无法通过 uname -a 或 /proc/version 读取内核身份</string>
+    <string name="runtime_sync_cpuid_emulation_unavailable">CPUID 模拟不可用</string>
+    <string name="runtime_sync_cpuid_emulation_unavailable_detail">内核未声明 HWCAP_CPUID，因此 EL0 没有 MIDR_EL1 的 MRS 模拟读取能力，也就没有可与缓存身份比较的寄存器值。</string>
+    <string name="runtime_sync_native_memory_unavailable">原生内存快照不可用</string>
+    <string name="runtime_sync_native_mount_unavailable_status">原生挂载快照不可用</string>
+    <string name="runtime_sync_native_selinux_context_unavailable">原生 SELinux 上下文有效性快照不可用</string>
+    <string name="runtime_sync_native_selinux_audit_unavailable">原生 SELinux 审计快照不可用</string>
+    <string name="runtime_sync_syscall_pack_not_run">系统调用探针组未运行</string>
+    <string name="runtime_sync_trap_not_run">陷阱探针未运行</string>
+    <string name="runtime_sync_ksu_visibility_restricted">PackageManager 可见性受限，因此已知 KernelSU 管理器软件包可能被隐藏。</string>
+    <string name="runtime_sync_ksu_manager_not_visible">未看到已知 KernelSU 管理器软件包。</string>
+
+    <string name="runtime_sync_kernelpatch_no_prefix_delay">未发现修复前版本的延迟特征</string>
+    <string name="runtime_sync_kernelpatch_latency_detail" formatted="false">分别使用 128 字节密钥和空密钥对 __NR_supercall（系统调用 45，即 KernelPatch 接管的 ARM64 truncate 槽位）计时。早于提交 84169d5d6be12e589ccac81d71dcebb80b22043a 的 KernelPatch 会在授权前通过 strncpy_from_user 复制密钥，因此较长密钥耗时明显更高。\n该提交停止了授权前复制，使修复后的版本与未修改内核处于相同条件。因此，这里的结果只要不是“已检测”，就只能排除旧版泄露，不能排除 KernelPatch 本身；当前版本由超级密钥探针覆盖。\n检测结果：%1$s</string>
+    <string name="runtime_sync_kernelpatch_latency_measurement" formatted="false">密钥路径：%1$s 微秒，空密钥：%2$s 微秒，差值：%3$s 微秒，同核心：%4$s</string>
+    <string name="runtime_sync_kernelpatch_latency_label">KernelPatch supercall 密钥长度延迟</string>
+    <string name="runtime_sync_kernelpatch_latency_detected">已检测（早于 84169d5d 的版本）</string>
+
+    <string name="runtime_sync_virtualization_wrapper_unstable" formatted="false">包装调用两次结果不一致（返回值 %1$s/%2$s，errno %3$s/%4$s），没有稳定基线可与内联 svc 比较</string>
+    <string name="runtime_sync_virtualization_mean_zero">均值=0ns（未解析出经过时间，无法判断均匀性）</string>
+    <string name="runtime_sync_virtualization_yield_detail">比较 3 次原生 sched_yield 尝试的计时均匀性。SCHED_OTHER 下的 sched_yield 行为未作规定；没有其他可运行任务时它会直接返回，因此仅凭均匀性只能作为弱证据。</string>
+    <string name="runtime_sync_virtualization_freq_zero">freq=0（cntfrq_el0 未配置，无法比较）</string>
+    <string name="runtime_sync_virtualization_counter_detail">将固件提供的 cntfrq_el0 值与内核自身计时所用速率进行比较。两侧都读取 cntvct_el0，因此这是同一个计数器以两种方式换算，并不是两个独立时钟。</string>
+
     <string name="runtime_sync_temp_root_cve">临时 Root CVE 利用痕迹</string>
     <string name="runtime_sync_temp_root_cve_detail">/data/local/tmp 中的文件“%1$s”符合 CVE-2026-43499 临时 Root 利用模式，表示当前或最近发生过临时提权。</string>
     <string name="runtime_sync_temp_root_artifact">临时 Root 痕迹</string>

@@ -203,4 +203,27 @@ limitations under the License.
     <string name="runtime_sync_vendor_api_not_required">Vendor API level was not required.</string>
     <string name="runtime_sync_vendor_api_missing">Missing ro.product.first_api_level and ro.build.version.sdk.</string>
     <string name="runtime_sync_system_properties_unavailable">SystemProperties unavailable: %1$s: %2$s</string>
+
+    <string name="runtime_tee_strongbox_not_advertised">Not advertised</string>
+    <string name="runtime_tee_strongbox_not_confirmed">Not confirmed</string>
+    <string name="runtime_tee_strongbox_rsa4096_accepted">StrongBox accepted RSA-4096, which is atypical for current hardware-backed implementations.</string>
+    <string name="runtime_tee_strongbox_signing_fast" formatted="false">StrongBox signing returned in %1$dus, under the %2$dus this probe expects of a discrete secure element.</string>
+    <string name="runtime_tee_strongbox_keygen_fast" formatted="false">StrongBox key generation completed in %1$dms, under the %2$dms this probe expects of a discrete secure element.</string>
+    <string name="runtime_tee_strongbox_key_absent">StrongBox key generation succeeded but the key was absent from the store.</string>
+    <string name="runtime_tee_strongbox_reported_unavailable">StrongBox reported itself unavailable during key generation.</string>
+    <string name="runtime_tee_strongbox_keygen_failed">StrongBox key generation did not complete: %1$s</string>
+    <string name="runtime_tee_strongbox_signing_key_unavailable">The StrongBox key was generated but could not be read back for signing.</string>
+    <string name="runtime_tee_strongbox_handles_all">All %1$d attempted handles were granted; no ceiling was reached.</string>
+    <string name="runtime_tee_strongbox_handles_refused">Refused after %1$d handles: %2$s</string>
+    <string name="runtime_tee_strongbox_attestation_no_tier">StrongBox key generation succeeded, but dedicated attestation did not expose a tier.</string>
+    <string name="runtime_tee_strongbox_attestation_wrong_tier">StrongBox key generation succeeded, but attestation tier came back as %1$s.</string>
+    <string name="runtime_tee_strongbox_keyinfo_conflict">Attestation claimed StrongBox, but local KeyInfo could not confirm a StrongBox key.</string>
+    <string name="runtime_tee_strongbox_acceptance_accepted">ACCEPTED</string>
+    <string name="runtime_tee_strongbox_acceptance_keystore">REFUSED_BY_KEYSTORE</string>
+    <string name="runtime_tee_strongbox_acceptance_framework">REFUSED_BY_FRAMEWORK</string>
+    <string name="runtime_tee_strongbox_acceptance_inconclusive">INCONCLUSIVE</string>
+    <string name="runtime_tee_strongbox_stop_probe_ceiling">PROBE_CEILING</string>
+    <string name="runtime_tee_strongbox_stop_refused">REFUSED</string>
+    <string name="runtime_tee_strongbox_stop_key_unavailable">KEY_UNAVAILABLE</string>
+    <string name="runtime_tee_strongbox_stop_setup_failed">SETUP_FAILED</string>
 </resources>

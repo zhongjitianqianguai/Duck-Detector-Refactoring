@@ -73,6 +73,17 @@ class RuntimeTextCatalogTest {
             "Init-managed namespace coverage is unverified: %1\$s." to
                 "尚未验证由 init 管理的命名空间覆盖：%1\$s。",
             "namespace identities are missing or equal" to "命名空间身份缺失或相同",
+            "Native memory snapshot was unavailable" to "原生内存快照不可用",
+            "duckdetector could not be loaded: %1\$s" to "无法加载 duckdetector：%1\$s",
+            "PackageManager inventory unavailable: %1\$s" to "PackageManager 清单不可用：%1\$s",
+            "No pre-fix delay" to "未发现修复前版本的延迟特征",
+            "Key path: %1\$s us, empty key: %2\$s us, diff: %3\$s us, same-core: %4\$s" to
+                "密钥路径：%1\$s 微秒，空密钥：%2\$s 微秒，差值：%3\$s 微秒，同核心：%4\$s",
+            "wrapper pair disagreed (ret %1\$s/%2\$s, errno %3\$s/%4\$s), no stable baseline to compare the inline svc against" to
+                "包装调用两次结果不一致（返回值 %1\$s/%2\$s，errno %3\$s/%4\$s），没有稳定基线可与内联 svc 比较",
+            "Not confirmed" to "未确认",
+            "StrongBox signing returned in %1\$dus, under the %2\$dus this probe expects of a discrete secure element." to
+                "StrongBox 签名耗时 %1\$d 微秒，低于该探针对独立安全元件预期的 %2\$d 微秒。",
         ),
     )
 
@@ -176,6 +187,46 @@ class RuntimeTextCatalogTest {
             "尚未验证由 init 管理的命名空间覆盖：命名空间身份缺失或相同。",
             catalog.translate(
                 "Init-managed namespace coverage is unverified: namespace identities are missing or equal.",
+            ),
+        )
+    }
+
+    @Test
+    fun translatesNativeCollectionAndInventoryFailures() {
+        assertEquals(
+            "原生内存快照不可用：无法加载 duckdetector：UnsatisfiedLinkError",
+            catalog.translate(
+                "Native memory snapshot was unavailable: duckdetector could not be loaded: UnsatisfiedLinkError",
+            ),
+        )
+        assertEquals(
+            "PackageManager 清单不可用：SecurityException: denied",
+            catalog.translate("PackageManager inventory unavailable: SecurityException: denied"),
+        )
+    }
+
+    @Test
+    fun translatesKernelPatchAndVirtualizationMeasurements() {
+        assertEquals(
+            "密钥路径：12.5000 微秒，空密钥：4.2500 微秒，差值：8.2500 微秒，同核心：是",
+            catalog.translate(
+                "Key path: 12.5000 us, empty key: 4.2500 us, diff: 8.2500 us, same-core: yes",
+            ),
+        )
+        assertEquals(
+            "包装调用两次结果不一致（返回值 -1/-1，errno 2/13），没有稳定基线可与内联 svc 比较",
+            catalog.translate(
+                "wrapper pair disagreed (ret -1/-1, errno 2/13), no stable baseline to compare the inline svc against",
+            ),
+        )
+    }
+
+    @Test
+    fun translatesStrongBoxBulletSeparatedWarnings() {
+        assertEquals(
+            "未确认 • StrongBox 签名耗时 420 微秒，低于该探针对独立安全元件预期的 2000 微秒。",
+            catalog.translate(
+                "Not confirmed • StrongBox signing returned in 420us, under the 2000us this probe expects of a discrete secure element.",
             ),
         )
     }

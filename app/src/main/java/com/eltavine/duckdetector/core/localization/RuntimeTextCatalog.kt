@@ -241,6 +241,7 @@ internal class RuntimeTextCatalog(
         val CompositeDelimiters = listOf(
             CompositeDelimiter("\n"),
             CompositeDelimiter(" · "),
+            CompositeDelimiter(" • "),
             CompositeDelimiter(" | "),
             CompositeDelimiter(" — "),
             CompositeDelimiter(", ", "、"),

@@ -203,4 +203,27 @@ limitations under the License.
     <string name="runtime_sync_vendor_api_not_required">无需厂商 API 级别。</string>
     <string name="runtime_sync_vendor_api_missing">缺少 ro.product.first_api_level 和 ro.build.version.sdk。</string>
     <string name="runtime_sync_system_properties_unavailable">SystemProperties 不可用：%1$s：%2$s</string>
+
+    <string name="runtime_tee_strongbox_not_advertised">未声明支持</string>
+    <string name="runtime_tee_strongbox_not_confirmed">未确认</string>
+    <string name="runtime_tee_strongbox_rsa4096_accepted">StrongBox 接受了 RSA-4096，这在当前硬件支持的实现中并不常见。</string>
+    <string name="runtime_tee_strongbox_signing_fast" formatted="false">StrongBox 签名耗时 %1$d 微秒，低于该探针对独立安全元件预期的 %2$d 微秒。</string>
+    <string name="runtime_tee_strongbox_keygen_fast" formatted="false">StrongBox 密钥生成耗时 %1$d 毫秒，低于该探针对独立安全元件预期的 %2$d 毫秒。</string>
+    <string name="runtime_tee_strongbox_key_absent">StrongBox 密钥生成成功，但密钥存储中没有该密钥。</string>
+    <string name="runtime_tee_strongbox_reported_unavailable">生成密钥时 StrongBox 报告自身不可用。</string>
+    <string name="runtime_tee_strongbox_keygen_failed">StrongBox 密钥生成未完成：%1$s</string>
+    <string name="runtime_tee_strongbox_signing_key_unavailable">StrongBox 密钥已生成，但无法回读用于签名。</string>
+    <string name="runtime_tee_strongbox_handles_all">尝试的 %1$d 个句柄全部获准，未达到上限。</string>
+    <string name="runtime_tee_strongbox_handles_refused">获准 %1$d 个句柄后被拒绝：%2$s</string>
+    <string name="runtime_tee_strongbox_attestation_no_tier">StrongBox 密钥生成成功，但专用证明未给出安全层级。</string>
+    <string name="runtime_tee_strongbox_attestation_wrong_tier">StrongBox 密钥生成成功，但证明返回的安全层级是 %1$s。</string>
+    <string name="runtime_tee_strongbox_keyinfo_conflict">证明声称使用 StrongBox，但本地 KeyInfo 无法确认该密钥由 StrongBox 支持。</string>
+    <string name="runtime_tee_strongbox_acceptance_accepted">已接受</string>
+    <string name="runtime_tee_strongbox_acceptance_keystore">被 Keystore 拒绝</string>
+    <string name="runtime_tee_strongbox_acceptance_framework">被框架拒绝</string>
+    <string name="runtime_tee_strongbox_acceptance_inconclusive">无法确定</string>
+    <string name="runtime_tee_strongbox_stop_probe_ceiling">达到探针尝试上限</string>
+    <string name="runtime_tee_strongbox_stop_refused">被拒绝</string>
+    <string name="runtime_tee_strongbox_stop_key_unavailable">密钥不可用</string>
+    <string name="runtime_tee_strongbox_stop_setup_failed">初始化失败</string>
 </resources>

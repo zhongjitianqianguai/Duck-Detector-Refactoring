@@ -460,6 +460,43 @@ limitations under the License.
     <string name="runtime_sync_zygote_next_unverified_plain">Init-managed namespace coverage is unverified.</string>
     <string name="runtime_sync_zygote_next_unverified_reasons">Init-managed namespace coverage is unverified: %1$s.</string>
 
+    <string name="runtime_sync_native_library_load_failed">duckdetector could not be loaded: %1$s</string>
+    <string name="runtime_sync_native_payload_missing_key">missing required key %1$s</string>
+    <string name="runtime_sync_native_payload_missing_keys">missing required keys %1$s</string>
+    <string name="runtime_sync_package_visibility_environment_error">Package visibility environment error</string>
+    <string name="runtime_sync_package_manager_error">PackageManager error</string>
+    <string name="runtime_sync_package_inventory_baseline_failed">PackageManager inventory was unavailable or failed its caller-package baseline.</string>
+    <string name="runtime_sync_package_visibility_restricted_clean">Package visibility was restricted, so clean package results may under-report ROM apps.</string>
+    <string name="runtime_sync_package_absence_inconclusive">Package inventory was unavailable or anomalous, so package absence is inconclusive.</string>
+    <string name="runtime_sync_package_app_absence_inconclusive">Package inventory was unavailable or anomalous, so app-level absence is inconclusive.</string>
+    <string name="runtime_sync_package_inventory_unavailable">Package inventory unavailable</string>
+    <string name="runtime_sync_package_inventory_missing_caller">PackageManager inventory did not include this app, so package absence is inconclusive.</string>
+    <string name="runtime_sync_package_inventory_failure">PackageManager inventory unavailable: %1$s</string>
+    <string name="runtime_sync_package_inventory_untrustworthy">PackageManager inventory did not include this app, so the result is not trustworthy.</string>
+    <string name="runtime_sync_kernel_identity_unreadable">Unable to read kernel identity through uname -a or /proc/version</string>
+    <string name="runtime_sync_cpuid_emulation_unavailable">CPUID emulation unavailable</string>
+    <string name="runtime_sync_cpuid_emulation_unavailable_detail">The kernel does not advertise HWCAP_CPUID, so EL0 has no MRS emulation for MIDR_EL1 and no register value exists to compare against the cached identity.</string>
+    <string name="runtime_sync_native_memory_unavailable">Native memory snapshot was unavailable</string>
+    <string name="runtime_sync_native_mount_unavailable_status">Native mount snapshot was unavailable</string>
+    <string name="runtime_sync_native_selinux_context_unavailable">Native SELinux context validity snapshot was unavailable</string>
+    <string name="runtime_sync_native_selinux_audit_unavailable">Native SELinux audit snapshot was unavailable</string>
+    <string name="runtime_sync_syscall_pack_not_run">Syscall pack did not run</string>
+    <string name="runtime_sync_trap_not_run">Trap did not run</string>
+    <string name="runtime_sync_ksu_visibility_restricted">PackageManager visibility is restricted, so known KernelSU manager packages may be hidden.</string>
+    <string name="runtime_sync_ksu_manager_not_visible">Known KernelSU manager packages were not visible.</string>
+
+    <string name="runtime_sync_kernelpatch_no_prefix_delay">No pre-fix delay</string>
+    <string name="runtime_sync_kernelpatch_latency_detail" formatted="false">Times __NR_supercall (syscall 45, the arm64 truncate slot KernelPatch takes over) with a 128-byte key and with an empty key. KernelPatch older than commit 84169d5d6be12e589ccac81d71dcebb80b22043a copied the key with strncpy_from_user before authorizing it, so the longer key cost measurably more.\nThat commit stopped copying before auth, which puts a fixed build back on the same footing as an unmodified kernel. So a result here that is not &quot;Detected&quot; rules out the older leak only, not KernelPatch itself; the superkey probe is what covers current builds.\nTest Result: %1$s</string>
+    <string name="runtime_sync_kernelpatch_latency_measurement" formatted="false">Key path: %1$s us, empty key: %2$s us, diff: %3$s us, same-core: %4$s</string>
+    <string name="runtime_sync_kernelpatch_latency_label">KernelPatch supercall key-length delay</string>
+    <string name="runtime_sync_kernelpatch_latency_detected">Detected (pre-84169d5d build)</string>
+
+    <string name="runtime_sync_virtualization_wrapper_unstable" formatted="false">wrapper pair disagreed (ret %1$s/%2$s, errno %3$s/%4$s), no stable baseline to compare the inline svc against</string>
+    <string name="runtime_sync_virtualization_mean_zero">mean=0ns (no elapsed time resolved, uniformity unavailable)</string>
+    <string name="runtime_sync_virtualization_yield_detail">Measures sched_yield timing evenness across three native attempts. sched_yield is unspecified under SCHED_OTHER and returns without switching when nothing else is runnable, so evenness alone is weak evidence.</string>
+    <string name="runtime_sync_virtualization_freq_zero">freq=0 (cntfrq_el0 unprogrammed, comparison unavailable)</string>
+    <string name="runtime_sync_virtualization_counter_detail">Checks the firmware cntfrq_el0 value against the rate the kernel\'s own timekeeping uses. Both sides read cntvct_el0, so this is one counter scaled two ways, not two independent clocks.</string>
+
     <string name="runtime_sync_temp_root_cve">Temp root CVE exploit artifact</string>
     <string name="runtime_sync_temp_root_cve_detail">File &quot;%1$s&quot; in /data/local/tmp matches CVE-2026-43499 temp root exploit pattern. This indicates an active or recent temporary root escalation.</string>
     <string name="runtime_sync_temp_root_artifact">Temp root artifact</string>

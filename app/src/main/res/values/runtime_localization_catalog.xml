@@ -2575,6 +2575,28 @@ limitations under the License.
         <item>@string/runtime_tee_private_binder_requires_12</item>
         <item>@string/runtime_tee_private_app_entry</item>
         <item>@string/runtime_tee_private_grant_entry</item>
+        <item>@string/runtime_tee_strongbox_not_advertised</item>
+        <item>@string/runtime_tee_strongbox_not_confirmed</item>
+        <item>@string/runtime_tee_strongbox_rsa4096_accepted</item>
+        <item>@string/runtime_tee_strongbox_signing_fast</item>
+        <item>@string/runtime_tee_strongbox_keygen_fast</item>
+        <item>@string/runtime_tee_strongbox_key_absent</item>
+        <item>@string/runtime_tee_strongbox_reported_unavailable</item>
+        <item>@string/runtime_tee_strongbox_keygen_failed</item>
+        <item>@string/runtime_tee_strongbox_signing_key_unavailable</item>
+        <item>@string/runtime_tee_strongbox_handles_all</item>
+        <item>@string/runtime_tee_strongbox_handles_refused</item>
+        <item>@string/runtime_tee_strongbox_attestation_no_tier</item>
+        <item>@string/runtime_tee_strongbox_attestation_wrong_tier</item>
+        <item>@string/runtime_tee_strongbox_keyinfo_conflict</item>
+        <item>@string/runtime_tee_strongbox_acceptance_accepted</item>
+        <item>@string/runtime_tee_strongbox_acceptance_keystore</item>
+        <item>@string/runtime_tee_strongbox_acceptance_framework</item>
+        <item>@string/runtime_tee_strongbox_acceptance_inconclusive</item>
+        <item>@string/runtime_tee_strongbox_stop_probe_ceiling</item>
+        <item>@string/runtime_tee_strongbox_stop_refused</item>
+        <item>@string/runtime_tee_strongbox_stop_key_unavailable</item>
+        <item>@string/runtime_tee_strongbox_stop_setup_failed</item>
         <item>@string/runtime_current_dirty_policy_prefix</item>
         <item>@string/runtime_current_droidspaces_prefix</item>
         <item>@string/runtime_current_msd_prefix</item>
@@ -2799,6 +2821,40 @@ limitations under the License.
         <item>@string/runtime_sync_zygote_next_reason_mount_age</item>
         <item>@string/runtime_sync_zygote_next_unverified_plain</item>
         <item>@string/runtime_sync_zygote_next_unverified_reasons</item>
+        <item>@string/runtime_sync_native_library_load_failed</item>
+        <item>@string/runtime_sync_native_payload_missing_key</item>
+        <item>@string/runtime_sync_native_payload_missing_keys</item>
+        <item>@string/runtime_sync_package_visibility_environment_error</item>
+        <item>@string/runtime_sync_package_manager_error</item>
+        <item>@string/runtime_sync_package_inventory_baseline_failed</item>
+        <item>@string/runtime_sync_package_visibility_restricted_clean</item>
+        <item>@string/runtime_sync_package_absence_inconclusive</item>
+        <item>@string/runtime_sync_package_app_absence_inconclusive</item>
+        <item>@string/runtime_sync_package_inventory_unavailable</item>
+        <item>@string/runtime_sync_package_inventory_missing_caller</item>
+        <item>@string/runtime_sync_package_inventory_failure</item>
+        <item>@string/runtime_sync_package_inventory_untrustworthy</item>
+        <item>@string/runtime_sync_kernel_identity_unreadable</item>
+        <item>@string/runtime_sync_cpuid_emulation_unavailable</item>
+        <item>@string/runtime_sync_cpuid_emulation_unavailable_detail</item>
+        <item>@string/runtime_sync_native_memory_unavailable</item>
+        <item>@string/runtime_sync_native_mount_unavailable_status</item>
+        <item>@string/runtime_sync_native_selinux_context_unavailable</item>
+        <item>@string/runtime_sync_native_selinux_audit_unavailable</item>
+        <item>@string/runtime_sync_syscall_pack_not_run</item>
+        <item>@string/runtime_sync_trap_not_run</item>
+        <item>@string/runtime_sync_ksu_visibility_restricted</item>
+        <item>@string/runtime_sync_ksu_manager_not_visible</item>
+        <item>@string/runtime_sync_kernelpatch_no_prefix_delay</item>
+        <item>@string/runtime_sync_kernelpatch_latency_detail</item>
+        <item>@string/runtime_sync_kernelpatch_latency_measurement</item>
+        <item>@string/runtime_sync_kernelpatch_latency_label</item>
+        <item>@string/runtime_sync_kernelpatch_latency_detected</item>
+        <item>@string/runtime_sync_virtualization_wrapper_unstable</item>
+        <item>@string/runtime_sync_virtualization_mean_zero</item>
+        <item>@string/runtime_sync_virtualization_yield_detail</item>
+        <item>@string/runtime_sync_virtualization_freq_zero</item>
+        <item>@string/runtime_sync_virtualization_counter_detail</item>
         <item>@string/runtime_sync_temp_root_cve</item>
         <item>@string/runtime_sync_temp_root_cve_detail</item>
         <item>@string/runtime_sync_temp_root_artifact</item>
