@@ -34,15 +34,21 @@ class CliContentProvider : ContentProvider() {
     override fun call(method: String, arg: String?, extras: Bundle?): Bundle {
         enforceAdbCaller()
         val appContext = requireNotNull(context).applicationContext
-        return when (method.lowercase()) {
-            "help" -> response("help", CliContract.HelpText)
-            "status" -> response("status", CliSnapshotStore.readStatus(appContext))
-            "anomalies" -> response("anomalies", CliSnapshotStore.readAnomalies(appContext))
-            "report" -> response(
-                "report",
+        return when (CliCommand.parse(method)) {
+            CliCommand.HELP -> response(CliCommand.HELP.wireName, CliContract.HelpText)
+            CliCommand.STATUS -> response(
+                CliCommand.STATUS.wireName,
+                CliSnapshotStore.readStatus(appContext),
+            )
+            CliCommand.ANOMALIES -> response(
+                CliCommand.ANOMALIES.wireName,
+                CliSnapshotStore.readAnomalies(appContext),
+            )
+            CliCommand.REPORT -> response(
+                CliCommand.REPORT.wireName,
                 "Use: adb shell content read --uri ${CliContract.BaseUri}/report",
             )
-            "scan", "rescan" -> {
+            CliCommand.SCAN -> {
                 val requestId = System.currentTimeMillis()
                 CliSnapshotStore.markScanRequested(appContext)
                 val intent = Intent(appContext, MainActivity::class.java)
@@ -51,12 +57,12 @@ class CliContentProvider : ContentProvider() {
                 appContext.startActivity(intent)
                 Bundle().apply {
                     putBoolean("ok", true)
-                    putString("command", "scan")
+                    putString("command", CliCommand.SCAN.wireName)
                     putLong("request_id", requestId)
                     putString("output", "扫描已启动；请轮询 ${CliContract.BaseUri}/status")
                 }
             }
-            else -> Bundle().apply {
+            null -> Bundle().apply {
                 putBoolean("ok", false)
                 putString("command", method)
                 putString("error", "unknown_command")
@@ -67,13 +73,15 @@ class CliContentProvider : ContentProvider() {
 
     override fun openFile(uri: Uri, mode: String): ParcelFileDescriptor {
         enforceAdbCaller()
-        if (mode != "r") throw FileNotFoundException("CLI endpoints are read-only")
+        if (CliOpenMode.parse(mode) != CliOpenMode.READ_ONLY) {
+            throw FileNotFoundException("CLI endpoints are read-only")
+        }
         val appContext = requireNotNull(context).applicationContext
-        return when (uri.pathSegments.singleOrNull()?.lowercase()) {
-            "help" -> pipeText(CliContract.HelpText)
-            "status" -> pipeText(CliSnapshotStore.readStatus(appContext))
-            "anomalies" -> pipeText(CliSnapshotStore.readAnomalies(appContext))
-            "report" -> {
+        return when (CliEndpoint.parse(uri.pathSegments.singleOrNull())) {
+            CliEndpoint.HELP -> pipeText(CliContract.HelpText)
+            CliEndpoint.STATUS -> pipeText(CliSnapshotStore.readStatus(appContext))
+            CliEndpoint.ANOMALIES -> pipeText(CliSnapshotStore.readAnomalies(appContext))
+            CliEndpoint.REPORT -> {
                 val report = CliSnapshotStore.reportFile(appContext)
                 if (!report.isFile) {
                     pipeText("尚无扫描报告。请先执行 scan，并等待 status 中 scanning=false。\n")
@@ -81,14 +89,12 @@ class CliContentProvider : ContentProvider() {
                     ParcelFileDescriptor.open(report, ParcelFileDescriptor.MODE_READ_ONLY)
                 }
             }
-            else -> throw FileNotFoundException("Unknown CLI path: $uri")
+            null -> throw FileNotFoundException("Unknown CLI path: $uri")
         }
     }
 
-    override fun getType(uri: Uri): String = when (uri.lastPathSegment?.lowercase()) {
-        "status", "anomalies" -> "application/json"
-        else -> "text/plain"
-    }
+    override fun getType(uri: Uri): String =
+        CliEndpoint.parse(uri.lastPathSegment)?.mimeType?.wireName ?: CliMimeType.TEXT.wireName
 
     override fun query(
         uri: Uri,

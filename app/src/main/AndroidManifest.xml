@@ -18,10 +18,6 @@ limitations under the License.
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <queries>
-        <package android:name="com.tencent.soter.soterserver" />
-    </queries>
-
     <uses-permission
         android:name="android.permission.QUERY_ALL_PACKAGES"
         tools:ignore="QueryAllPackagesPermission" />
@@ -44,7 +40,6 @@ limitations under the License.
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DuckDetector"
-        android:zygotePreloadName="com.eltavine.duckdetector.features.selinux.data.service.AppZygotePreload"
         tools:targetApi="tiramisu">
         <activity
             android:name="android.app.NativeActivity"
@@ -74,42 +69,6 @@ limitations under the License.
             android:permission="android.permission.DUMP"
             tools:ignore="ExportedContentProvider" />
 
-        <service
-            android:name=".features.zygisk.data.fdtrap.ZygiskFdTrapDetectorService"
-            android:exported="false"
-            android:process=":zygisk_fd_detector" />
-        <service
-            android:name=".features.virtualization.data.service.VirtualizationProbeService"
-            android:exported="false"
-            android:process=":virtualization_probe" />
-        <service
-            android:name=".features.virtualization.data.service.VirtualizationIsolatedProbeService"
-            android:exported="false"
-            android:isolatedProcess="true" />
-        <service
-             android:name=".features.mount.data.zygotenext.ZygoteNextProbeService"
-             android:exported="false"
-             android:process=":zygote_next_probe"
-             android:isolatedProcess="true"
-             android:nativeService="true"
-             tools:targetApi="37">
-             <property
-                 android:name="android.app.PROPERTY_NATIVE_SERVICE_LIBRARY_NAME"
-                 android:value="libmain.so" />
-             <property
-                 android:name="android.app.PROPERTY_NATIVE_SERVICE_FUNCTION_NAME"
-                 android:value="ANativeService_onCreate" />
-         </service>
-        <service
-            android:name=".features.selinux.data.service.SelinuxContextValidityCarrierService"
-            android:exported="false"
-            android:isolatedProcess="true"
-            android:useAppZygote="true" />
-        <service
-            android:name=".features.tee.data.verification.keystore.TeeGrantDomainGranteeService"
-            android:exported="false"
-            android:isolatedProcess="true"
-            tools:targetApi="oreo" />
     </application>
 
 </manifest>

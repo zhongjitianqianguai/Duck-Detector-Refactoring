@@ -19,9 +19,6 @@ package com.eltavine.duckdetector.core.localization
 import android.content.Context
 import android.content.res.Configuration
 import android.os.LocaleList
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
-import androidx.compose.ui.platform.LocalContext
 import com.eltavine.duckdetector.R
 import java.util.Locale
 
@@ -34,7 +31,7 @@ object DisplayTextLocalizer {
         text: String,
     ): String {
         val locale = context.resources.configuration.locales[0] ?: Locale.getDefault()
-        if (!locale.isSimplifiedChinese()) return text
+        if (!locale.prefersSimplifiedChinese()) return text
 
         val catalog = simplifiedChineseCatalog ?: synchronized(this) {
             simplifiedChineseCatalog ?: loadSimplifiedChineseCatalog(context.applicationContext)
@@ -62,21 +59,54 @@ object DisplayTextLocalizer {
         return createConfigurationContext(localizedConfiguration)
     }
 
-    private fun Locale.isSimplifiedChinese(): Boolean {
-        if (!language.equals("zh", ignoreCase = true)) return false
-        if (script.equals("Hans", ignoreCase = true)) return true
-        if (script.equals("Hant", ignoreCase = true)) return false
-        return !country.uppercase(Locale.ROOT).let { region ->
-            region == "TW" || region == "HK" || region == "MO"
-        }
+}
+internal fun Locale.prefersSimplifiedChinese(): Boolean {
+    if (LocaleLanguage.parse(language) != LocaleLanguage.CHINESE) return false
+    return when (ChineseScript.parse(script)) {
+        ChineseScript.SIMPLIFIED -> true
+        ChineseScript.TRADITIONAL -> false
+        null -> ChineseRegion.parse(country) == null
     }
 }
 
-@Composable
-fun localizedDisplayText(text: String): String {
-    val context = LocalContext.current
-    val localeTag = context.resources.configuration.locales[0]?.toLanguageTag().orEmpty()
-    return remember(text, localeTag) {
-        DisplayTextLocalizer.translate(context, text)
+private enum class LocaleLanguage {
+    CHINESE;
+
+    companion object {
+        private val byCode = mapOf(
+            Locale.SIMPLIFIED_CHINESE.language.lowercase(Locale.ROOT) to CHINESE,
+        )
+
+        fun parse(value: String): LocaleLanguage? = byCode[value.lowercase(Locale.ROOT)]
+    }
+}
+
+private enum class ChineseScript {
+    SIMPLIFIED,
+    TRADITIONAL;
+
+    companion object {
+        private val byCode = mapOf(
+            "hans" to SIMPLIFIED,
+            "hant" to TRADITIONAL,
+        )
+
+        fun parse(value: String): ChineseScript? = byCode[value.lowercase(Locale.ROOT)]
+    }
+}
+
+private enum class ChineseRegion {
+    TAIWAN,
+    HONG_KONG,
+    MACAO;
+
+    companion object {
+        private val byCode = mapOf(
+            "tw" to TAIWAN,
+            "hk" to HONG_KONG,
+            "mo" to MACAO,
+        )
+
+        fun parse(value: String): ChineseRegion? = byCode[value.lowercase(Locale.ROOT)]
     }
 }

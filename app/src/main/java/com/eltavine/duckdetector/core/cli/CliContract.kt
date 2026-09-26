@@ -16,6 +16,8 @@
 
 package com.eltavine.duckdetector.core.cli
 
+import java.util.Locale
+
 object CliContract {
     const val Authority = "com.eltavine.duckdetector.cli"
     const val BaseUri = "content://$Authority"
@@ -42,6 +44,61 @@ object CliContract {
         说明：启动命令返回后请轮询 status，直到 scanning=false 且 pending=0。
         接口仅允许 ADB shell、Root 与应用自身访问。
     """.trimIndent()
+}
+
+internal enum class CliCommand(val wireName: String) {
+    HELP("help"),
+    STATUS("status"),
+    ANOMALIES("anomalies"),
+    REPORT("report"),
+    SCAN("scan");
+
+    companion object {
+        private val byWireName = mapOf(
+            HELP.wireName to HELP,
+            STATUS.wireName to STATUS,
+            ANOMALIES.wireName to ANOMALIES,
+            REPORT.wireName to REPORT,
+            SCAN.wireName to SCAN,
+            "rescan" to SCAN,
+        )
+
+        fun parse(value: String): CliCommand? = byWireName[value.lowercase(Locale.ROOT)]
+    }
+}
+
+internal enum class CliMimeType(val wireName: String) {
+    JSON("application/json"),
+    TEXT("text/plain"),
+}
+
+internal enum class CliEndpoint(val path: String, val mimeType: CliMimeType) {
+    HELP("help", CliMimeType.TEXT),
+    STATUS("status", CliMimeType.JSON),
+    ANOMALIES("anomalies", CliMimeType.JSON),
+    REPORT("report", CliMimeType.TEXT);
+
+    companion object {
+        private val byPath = mapOf(
+            HELP.path to HELP,
+            STATUS.path to STATUS,
+            ANOMALIES.path to ANOMALIES,
+            REPORT.path to REPORT,
+        )
+
+        fun parse(value: String?): CliEndpoint? =
+            value?.lowercase(Locale.ROOT)?.let(byPath::get)
+    }
+}
+
+internal enum class CliOpenMode(val wireName: String) {
+    READ_ONLY("r");
+
+    companion object {
+        private val byWireName = mapOf(READ_ONLY.wireName to READ_ONLY)
+
+        fun parse(value: String): CliOpenMode? = byWireName[value]
+    }
 }
 
 internal object CliAccessPolicy {

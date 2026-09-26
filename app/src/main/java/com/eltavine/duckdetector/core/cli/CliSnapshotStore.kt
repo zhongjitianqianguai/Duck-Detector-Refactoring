@@ -19,17 +19,25 @@ package com.eltavine.duckdetector.core.cli
 import android.content.Context
 import android.util.AtomicFile
 import com.eltavine.duckdetector.BuildConfig
+import com.eltavine.duckdetector.core.evidence.DetectionSeverity
+import com.eltavine.duckdetector.core.evidence.DetectorStatus
+import com.eltavine.duckdetector.core.evidence.InfoKind
 import com.eltavine.duckdetector.core.localization.DisplayTextLocalizer
-import com.eltavine.duckdetector.core.ui.model.DetectionSeverity
-import com.eltavine.duckdetector.core.ui.model.DetectorStatus
-import com.eltavine.duckdetector.core.ui.model.InfoKind
-import com.eltavine.duckdetector.features.dashboard.data.DashboardExportFormatter
-import com.eltavine.duckdetector.features.dashboard.ui.model.DashboardDetectorContribution
-import com.eltavine.duckdetector.features.dashboard.ui.model.DashboardUiState
+import com.eltavine.duckdetector.core.scan.DetectorSummary
+import com.eltavine.duckdetector.core.ui.detector.DetectorSession
+import com.eltavine.duckdetector.core.ui.detector.DeviceProfileSession
+import com.eltavine.duckdetector.core.ui.presentation.formatBuildTimeUtc
+import com.eltavine.duckdetector.features.dashboard.presentation.export.DashboardExport
+import com.eltavine.duckdetector.features.dashboard.presentation.export.DashboardReportRenderer
+import com.eltavine.duckdetector.features.dashboard.presentation.export.ExportHeader
+import com.eltavine.duckdetector.features.dashboard.presentation.model.DashboardUiState
 import org.json.JSONArray
 import org.json.JSONObject
 import java.io.File
 import java.io.FileOutputStream
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 object CliSnapshotStore {
     private const val SchemaVersion = 1
@@ -40,34 +48,36 @@ object CliSnapshotStore {
     fun persist(
         context: Context,
         state: DashboardUiState,
-        contributions: List<DashboardDetectorContribution>,
+        summaries: List<DetectorSummary>,
+        detectors: List<DetectorSession>,
+        deviceProfile: DeviceProfileSession,
     ) {
         val appContext = context.applicationContext
         val localize: (String) -> String = { text ->
             DisplayTextLocalizer.translate(appContext, text)
         }
         val generatedAt = System.currentTimeMillis()
-        val detectors = JSONArray()
+        val detectorItems = JSONArray()
         val anomalies = JSONArray()
 
-        contributions.forEach { contribution ->
+        summaries.forEach { summary ->
             val item = JSONObject()
-                .put("id", contribution.id)
-                .put("title", localize(contribution.title))
-                .put("severity", severityName(contribution.status))
-                .put("ready", contribution.ready)
-                .put("headline", localize(contribution.headline))
-                .put("summary", localize(contribution.findingDetail ?: contribution.summary))
-            detectors.put(item)
-            if (isAnomaly(contribution.status)) {
+                .put("id", summary.id.value)
+                .put("title", localize(summary.title))
+                .put("severity", severityName(summary.status))
+                .put("ready", summary.ready)
+                .put("headline", localize(summary.headline))
+                .put("summary", localize(summary.findingDetail ?: summary.summary))
+            detectorItems.put(item)
+            if (isAnomaly(summary.status)) {
                 anomalies.put(JSONObject(item.toString()))
             }
         }
 
-        val readyCount = contributions.count { it.ready }
-        val dangerCount = contributions.count { it.status.severity == DetectionSeverity.DANGER }
-        val warningCount = contributions.count { it.status.severity == DetectionSeverity.WARNING }
-        val errorCount = contributions.count {
+        val readyCount = summaries.count { it.ready }
+        val dangerCount = summaries.count { it.status.severity == DetectionSeverity.DANGER }
+        val warningCount = summaries.count { it.status.severity == DetectionSeverity.WARNING }
+        val errorCount = summaries.count {
             it.status.severity == DetectionSeverity.INFO && it.status.infoKind == InfoKind.ERROR
         }
         val snapshot = JSONObject()
@@ -87,22 +97,42 @@ object CliSnapshotStore {
             .put(
                 "counts",
                 JSONObject()
-                    .put("detectors", contributions.size)
+                    .put("detectors", summaries.size)
                     .put("ready", readyCount)
-                    .put("pending", contributions.size - readyCount)
+                    .put("pending", summaries.size - readyCount)
                     .put("danger", dangerCount)
                     .put("warning", warningCount)
                     .put("error", errorCount)
                     .put("anomalies", anomalies.length()),
             )
             .put("anomalies", anomalies)
-            .put("detectors", detectors)
+            .put("detectors", detectorItems)
 
         synchronized(this) {
             writeAtomic(snapshotFile(appContext), snapshot.toString(2))
             if (!state.isLoading) {
-                val report = DashboardExportFormatter(localize).format(state)
-                writeAtomic(reportFile(appContext), report)
+                val detectorsById = detectors.associateBy { it.id }
+                val reports = state.cardOrder.mapNotNull(detectorsById::get).map { it.report() }
+                val export = DashboardExport(
+                    header = ExportHeader(
+                        versionName = BuildConfig.VERSION_NAME,
+                        versionCode = BuildConfig.VERSION_CODE,
+                        buildHash = BuildConfig.BUILD_HASH,
+                        buildTime = formatBuildTimeUtc(BuildConfig.BUILD_TIME_UTC),
+                        reportTime = SimpleDateFormat(
+                            "yyyy-MM-dd HH:mm:ss (z)",
+                            Locale.US,
+                        ).format(Date(generatedAt)),
+                    ),
+                    overview = state.overview,
+                    topFindings = state.topFindings,
+                    detectors = reports,
+                    device = deviceProfile.report(),
+                )
+                writeAtomic(
+                    reportFile(appContext),
+                    DashboardReportRenderer.render(export, localize),
+                )
             }
         }
     }

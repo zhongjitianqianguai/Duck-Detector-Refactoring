@@ -577,4 +577,43 @@ limitations under the License.
     <string name="runtime_sync_export_badge_warning">▲ 警告</string>
     <string name="runtime_sync_export_badge_info">ℹ 信息</string>
     <string name="runtime_sync_export_badge_clear">✔ 正常</string>
+
+    <string name="runtime_sync_customrom_coverage_incomplete">可用探测未发现常见定制 ROM 标记，但应用包可见性、服务、属性区或原生符号覆盖不完整。</string>
+    <string name="runtime_sync_customrom_servicemanager_inconclusive">无法完整查询 ServiceManager，因此未发现服务不足以得出确定结论。</string>
+    <string name="runtime_sync_dangerousapps_pm_inconclusive">PackageManager 清单不可用或异常，因此不能把未发现目标包视为确定结论。</string>
+    <string name="runtime_sync_mount_header_loading">挂载表 + mountinfo + 内存映射 + statfs + statx</string>
+    <string name="runtime_sync_temp_root_tooling_found">发现 CVE-2026-43499 临时 Root 工具迹象</string>
+    <string name="runtime_sync_ksu_throne_hunt_detected">观察到 KernelSU Throne Hunt 遍历行为</string>
+    <string name="runtime_sync_throne_hunt_label">Throne Hunt 探测</string>
+    <string name="runtime_sync_throne_hunt_counters">Throne Hunt 计数</string>
+    <string name="runtime_sync_throne_hunt_watch_denied">监视权限被拒绝</string>
+    <string name="runtime_sync_throne_hunt_collection_status" formatted="false">采集状态 %1$s；baseline=%2$d</string>
+    <string name="runtime_sync_selinux_global_enforcing_compatibility">Android 兼容性要求 SELinux 全局处于 enforcing 模式（CDD 9.7），当前构建或启动配置偏离了兼容要求。</string>
+    <string name="runtime_sync_zygisk_loading_current">跨进程 fd trap + linker/maps/heap/runtime</string>
+    <string name="runtime_sync_zygisk_unavailable_secondary_current">服务绑定不可用、堆辅助工具不受支持或缺少原生快照都可能降低置信度，但这本身不表示阳性检测。</string>
+
+    <string name="runtime_sync_throne_hunt_method_label">KernelSU Throne Hunt</string>
+    <string name="runtime_sync_throne_hunt_watch_collection_failed">Throne Hunt 监视器采集失败</string>
+    <string name="runtime_sync_throne_hunt_carrier_collection_failed">Throne Hunt 载体采集失败</string>
+    <string name="runtime_sync_throne_hunt_event_drain_failed">Throne Hunt 事件读取失败</string>
+    <string name="runtime_sync_throne_hunt_carrier_unavailable">Throne Hunt 载体服务不可用</string>
+    <string name="runtime_sync_throne_hunt_carrier_timeout">Throne Hunt 载体连接或事务超时</string>
+    <string name="runtime_sync_throne_hunt_carrier_probe_failed">Throne Hunt 载体探测失败</string>
+    <string name="runtime_sync_throne_hunt_carrier_crashed_before_watch">Throne Hunt 载体在读取监视状态前崩溃</string>
+    <string name="runtime_sync_throne_hunt_carrier_crashed_draining_watch">Throne Hunt 载体在读取监视事件时崩溃</string>
+    <string name="runtime_sync_throne_hunt_preload_missing">Throne Hunt 载体未收到预加载的 app_zygote 状态</string>
+    <string name="runtime_sync_throne_hunt_preload_context_required">必须提供 zygotePreloadName；只有 app_zygote 上下文才能监视该包目录</string>
+    <string name="runtime_sync_throne_hunt_app_source_unavailable">ApplicationInfo.sourceDir 不可用</string>
+    <string name="runtime_sync_throne_hunt_package_directory_unavailable" formatted="false">无法从 %1$s 推导包目录</string>
+    <string name="runtime_sync_throne_hunt_watch_not_installed">app_zygote 包目录监视器未安装</string>
+    <string name="runtime_sync_throne_hunt_baseline_drain_failed">基线事件读取失败</string>
+    <string name="runtime_sync_throne_hunt_context_unavailable">上下文不可用</string>
+    <string name="runtime_sync_throne_hunt_dedicated_preload_unavailable">专用 app_zygote 预加载状态不可用</string>
+    <string name="runtime_sync_throne_hunt_binder_call_failed">Binder 调用失败</string>
+    <string name="runtime_sync_throne_hunt_inotify_init_failed" formatted="false">inotify_init 初始化失败：%1$s</string>
+    <string name="runtime_sync_throne_hunt_inotify_watch_denied" formatted="false">inotify_add_watch 无法为 %1$s 安装监视：%2$s</string>
+    <string name="runtime_sync_throne_hunt_watching" formatted="false">正在监视 %1$s 的 Throne Hunt IN_OPEN/IN_ACCESS 事件。</string>
+    <string name="runtime_sync_throne_hunt_no_inherited_descriptor">未继承 Throne Hunt 监视文件描述符</string>
+    <string name="runtime_sync_nativeroot_diagnostic_heading">NativeRoot ksuThroneHunt 诊断</string>
+    <string name="runtime_sync_throne_hunt_method_detail">通过零权限 setMimeGroup 路径重写 /data/system/packages.list，并由 app_zygote 载体监视应用自身的 /data/app 包目录。packages.list 被重写后，KernelSU 的 pkg_observer 会运行 track_throne -&gt; search_manager("/data/app", 2)，打开并遍历本应用包目录 inode；继承的监视器会报告这一遍历行为。</string>
 </resources>

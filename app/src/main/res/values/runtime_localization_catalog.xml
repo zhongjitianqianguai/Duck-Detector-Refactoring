@@ -1510,9 +1510,9 @@ limitations under the License.
         <item>@string/selinux_weakness_skipped</item>
         <item>@string/selinux_weakness_strong</item>
         <item>@string/selinux_weakness_weak</item>
-        <item>@string/settings_crl_footer</item>
-        <item>@string/settings_crl_summary</item>
-        <item>@string/settings_crl_title</item>
+        <item>@string/tee_revocation_network_setting_footer</item>
+        <item>@string/tee_revocation_network_setting_summary</item>
+        <item>@string/tee_revocation_network_setting_title</item>
         <item>@string/settings_subtitle</item>
         <item>@string/settings_title</item>
         <item>@string/severity_check</item>
@@ -1524,15 +1524,15 @@ limitations under the License.
         <item>@string/startup_before_scan_title</item>
         <item>@string/startup_bootstrap_loading_agreement</item>
         <item>@string/startup_bootstrap_preparing</item>
-        <item>@string/startup_crl_allow_network</item>
-        <item>@string/startup_crl_local_detail</item>
-        <item>@string/startup_crl_local_headline</item>
-        <item>@string/startup_crl_local_only</item>
-        <item>@string/startup_crl_prompt_detail</item>
-        <item>@string/startup_crl_prompt_headline</item>
-        <item>@string/startup_crl_ready_detail</item>
-        <item>@string/startup_crl_ready_headline</item>
-        <item>@string/startup_crl_title</item>
+        <item>@string/tee_revocation_network_allow</item>
+        <item>@string/tee_revocation_network_declined_detail</item>
+        <item>@string/tee_revocation_network_declined_headline</item>
+        <item>@string/tee_revocation_network_decline</item>
+        <item>@string/tee_revocation_network_prompt_detail</item>
+        <item>@string/tee_revocation_network_prompt_headline</item>
+        <item>@string/tee_revocation_network_granted_detail</item>
+        <item>@string/tee_revocation_network_granted_headline</item>
+        <item>@string/tee_revocation_network_title</item>
         <item>@string/startup_intro_detail</item>
         <item>@string/startup_live_update_open_settings</item>
         <item>@string/startup_live_update_prompt_detail</item>
@@ -1576,7 +1576,7 @@ limitations under the License.
         <item>@string/startup_review_label</item>
         <item>@string/startup_status_acknowledged</item>
         <item>@string/startup_status_action_required</item>
-        <item>@string/startup_status_local</item>
+        <item>@string/tee_revocation_network_declined_status</item>
         <item>@string/startup_status_optional</item>
         <item>@string/startup_status_ready</item>
         <item>@string/startup_status_regular</item>
@@ -2949,5 +2949,42 @@ limitations under the License.
         <item>@string/runtime_sync_export_badge_warning</item>
         <item>@string/runtime_sync_export_badge_info</item>
         <item>@string/runtime_sync_export_badge_clear</item>
+        <item>@string/runtime_sync_customrom_coverage_incomplete</item>
+        <item>@string/runtime_sync_customrom_servicemanager_inconclusive</item>
+        <item>@string/runtime_sync_dangerousapps_pm_inconclusive</item>
+        <item>@string/runtime_sync_mount_header_loading</item>
+        <item>@string/runtime_sync_temp_root_tooling_found</item>
+        <item>@string/runtime_sync_ksu_throne_hunt_detected</item>
+        <item>@string/runtime_sync_throne_hunt_label</item>
+        <item>@string/runtime_sync_throne_hunt_counters</item>
+        <item>@string/runtime_sync_throne_hunt_watch_denied</item>
+        <item>@string/runtime_sync_throne_hunt_collection_status</item>
+        <item>@string/runtime_sync_selinux_global_enforcing_compatibility</item>
+        <item>@string/runtime_sync_zygisk_loading_current</item>
+        <item>@string/runtime_sync_zygisk_unavailable_secondary_current</item>
+        <item>@string/runtime_sync_throne_hunt_method_label</item>
+        <item>@string/runtime_sync_throne_hunt_watch_collection_failed</item>
+        <item>@string/runtime_sync_throne_hunt_carrier_collection_failed</item>
+        <item>@string/runtime_sync_throne_hunt_event_drain_failed</item>
+        <item>@string/runtime_sync_throne_hunt_carrier_unavailable</item>
+        <item>@string/runtime_sync_throne_hunt_carrier_timeout</item>
+        <item>@string/runtime_sync_throne_hunt_carrier_probe_failed</item>
+        <item>@string/runtime_sync_throne_hunt_carrier_crashed_before_watch</item>
+        <item>@string/runtime_sync_throne_hunt_carrier_crashed_draining_watch</item>
+        <item>@string/runtime_sync_throne_hunt_preload_missing</item>
+        <item>@string/runtime_sync_throne_hunt_preload_context_required</item>
+        <item>@string/runtime_sync_throne_hunt_app_source_unavailable</item>
+        <item>@string/runtime_sync_throne_hunt_package_directory_unavailable</item>
+        <item>@string/runtime_sync_throne_hunt_watch_not_installed</item>
+        <item>@string/runtime_sync_throne_hunt_baseline_drain_failed</item>
+        <item>@string/runtime_sync_throne_hunt_context_unavailable</item>
+        <item>@string/runtime_sync_throne_hunt_dedicated_preload_unavailable</item>
+        <item>@string/runtime_sync_throne_hunt_binder_call_failed</item>
+        <item>@string/runtime_sync_throne_hunt_inotify_init_failed</item>
+        <item>@string/runtime_sync_throne_hunt_inotify_watch_denied</item>
+        <item>@string/runtime_sync_throne_hunt_watching</item>
+        <item>@string/runtime_sync_throne_hunt_no_inherited_descriptor</item>
+        <item>@string/runtime_sync_nativeroot_diagnostic_heading</item>
+        <item>@string/runtime_sync_throne_hunt_method_detail</item>
     </string-array>
 </resources>

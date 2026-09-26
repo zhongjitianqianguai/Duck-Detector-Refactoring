@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="mount_diagnostic_clipboard_label">跨进程挂载视图详情</string>
+</resources>

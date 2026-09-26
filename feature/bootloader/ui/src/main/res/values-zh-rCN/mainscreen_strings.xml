@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="bootloader_widevine_consistency_review">Widevine 一致性需要审查</string>
+    <string name="bootloader_widevine_consistency_conflict">Widevine 一致性存在严重冲突</string>
+</resources>

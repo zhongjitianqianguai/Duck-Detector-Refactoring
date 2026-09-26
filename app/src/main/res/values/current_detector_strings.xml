@@ -577,4 +577,43 @@ limitations under the License.
     <string name="runtime_sync_export_badge_warning">▲ WARNING</string>
     <string name="runtime_sync_export_badge_info">ℹ INFO</string>
     <string name="runtime_sync_export_badge_clear">✔ CLEAR</string>
+
+    <string name="runtime_sync_customrom_coverage_incomplete">No custom ROM signature surfaced from available probes, but package visibility, service, property-area, or native symbol coverage was incomplete.</string>
+    <string name="runtime_sync_customrom_servicemanager_inconclusive">ServiceManager could not be fully queried, so service absence is inconclusive.</string>
+    <string name="runtime_sync_dangerousapps_pm_inconclusive">PackageManager inventory was unavailable or anomalous, so package absence is inconclusive.</string>
+    <string name="runtime_sync_mount_header_loading">mounts + mountinfo + maps + statfs + statx</string>
+    <string name="runtime_sync_temp_root_tooling_found">CVE-2026-43499 temp root tooling found</string>
+    <string name="runtime_sync_ksu_throne_hunt_detected">KernelSU throne hunt traversal observed</string>
+    <string name="runtime_sync_throne_hunt_label">Throne hunt</string>
+    <string name="runtime_sync_throne_hunt_counters">Throne hunt counters</string>
+    <string name="runtime_sync_throne_hunt_watch_denied">Watch denied</string>
+    <string name="runtime_sync_throne_hunt_collection_status" formatted="false">Collection %1$s; baseline=%2$d</string>
+    <string name="runtime_sync_selinux_global_enforcing_compatibility">Android compatibility requires SELinux in global enforcing mode (CDD 9.7), so this build or boot configuration departs from a compatible one.</string>
+    <string name="runtime_sync_zygisk_loading_current">cross-process fd trap + linker/maps/heap/runtime</string>
+    <string name="runtime_sync_zygisk_unavailable_secondary_current">Unavailable service binding, an unsupported heap helper, or a missing native snapshot can all reduce confidence without implying a positive detection.</string>
+
+    <string name="runtime_sync_throne_hunt_method_label">KernelSU throne hunt</string>
+    <string name="runtime_sync_throne_hunt_watch_collection_failed">Throne hunt watch collection failed</string>
+    <string name="runtime_sync_throne_hunt_carrier_collection_failed">Throne hunt carrier collection failed</string>
+    <string name="runtime_sync_throne_hunt_event_drain_failed">Throne hunt event drain failed</string>
+    <string name="runtime_sync_throne_hunt_carrier_unavailable">Throne hunt carrier service unavailable</string>
+    <string name="runtime_sync_throne_hunt_carrier_timeout">Throne hunt carrier connection or transaction timed out</string>
+    <string name="runtime_sync_throne_hunt_carrier_probe_failed">Throne hunt carrier probe failed</string>
+    <string name="runtime_sync_throne_hunt_carrier_crashed_before_watch">Throne hunt carrier crashed before reading the watch state</string>
+    <string name="runtime_sync_throne_hunt_carrier_crashed_draining_watch">Throne hunt carrier crashed while draining the watch</string>
+    <string name="runtime_sync_throne_hunt_preload_missing">Throne hunt carrier did not receive a preloaded app_zygote state</string>
+    <string name="runtime_sync_throne_hunt_preload_context_required">zygotePreloadName is required: only the app_zygote context may watch the package directory</string>
+    <string name="runtime_sync_throne_hunt_app_source_unavailable">ApplicationInfo.sourceDir unavailable</string>
+    <string name="runtime_sync_throne_hunt_package_directory_unavailable" formatted="false">Unable to derive the package directory from %1$s</string>
+    <string name="runtime_sync_throne_hunt_watch_not_installed">The app_zygote package directory watch was not installed</string>
+    <string name="runtime_sync_throne_hunt_baseline_drain_failed">Baseline event drain failed</string>
+    <string name="runtime_sync_throne_hunt_context_unavailable">Context unavailable</string>
+    <string name="runtime_sync_throne_hunt_dedicated_preload_unavailable">Dedicated app_zygote preload state unavailable</string>
+    <string name="runtime_sync_throne_hunt_binder_call_failed">Binder call failed</string>
+    <string name="runtime_sync_throne_hunt_inotify_init_failed" formatted="false">inotify_init failed: %1$s</string>
+    <string name="runtime_sync_throne_hunt_inotify_watch_denied" formatted="false">inotify_add_watch denied for %1$s: %2$s</string>
+    <string name="runtime_sync_throne_hunt_watching" formatted="false">Watching %1$s for throne hunt IN_OPEN/IN_ACCESS.</string>
+    <string name="runtime_sync_throne_hunt_no_inherited_descriptor">No inherited throne hunt watch descriptor</string>
+    <string name="runtime_sync_nativeroot_diagnostic_heading">NativeRoot ksuThroneHunt diagnostic</string>
+    <string name="runtime_sync_throne_hunt_method_detail">Rewrites /data/system/packages.list through the zero-permission setMimeGroup path and watches the app\'s own /data/app package directory from the app_zygote carrier. KernelSU\'s pkg_observer reacts to the packages.list rewrite by running track_throne -&gt; search_manager(\"/data/app\", 2), which opens and iterates our package directory inode; that traversal is what the inherited watch reports.</string>
 </resources>

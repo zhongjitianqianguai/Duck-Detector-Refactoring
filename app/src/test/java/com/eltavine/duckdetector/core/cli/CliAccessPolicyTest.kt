@@ -16,9 +16,11 @@
 
 package com.eltavine.duckdetector.core.cli
 
-import com.eltavine.duckdetector.core.ui.model.DetectorStatus
-import com.eltavine.duckdetector.core.ui.model.InfoKind
+import com.eltavine.duckdetector.core.evidence.DetectorStatus
+import com.eltavine.duckdetector.core.evidence.InfoKind
+import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
+import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
 import org.junit.Test
 
@@ -38,5 +40,39 @@ class CliAccessPolicyTest {
         assertTrue(CliSnapshotStore.isAnomaly(DetectorStatus.info(InfoKind.ERROR)))
         assertFalse(CliSnapshotStore.isAnomaly(DetectorStatus.info(InfoKind.SUPPORT)))
         assertFalse(CliSnapshotStore.isAnomaly(DetectorStatus.allClear()))
+    }
+
+    @Test
+    fun parsesPublicCommandsAndKeepsRescanAlias() {
+        assertEquals(CliCommand.HELP, CliCommand.parse("help"))
+        assertEquals(CliCommand.STATUS, CliCommand.parse("status"))
+        assertEquals(CliCommand.ANOMALIES, CliCommand.parse("anomalies"))
+        assertEquals(CliCommand.REPORT, CliCommand.parse("report"))
+        assertEquals(CliCommand.SCAN, CliCommand.parse("scan"))
+        assertEquals(CliCommand.SCAN, CliCommand.parse("rescan"))
+        assertEquals(CliCommand.SCAN, CliCommand.parse("SCAN"))
+        assertNull(CliCommand.parse("unknown"))
+    }
+
+    @Test
+    fun parsesReadEndpointsAndTheirMimeTypes() {
+        assertEquals(CliEndpoint.HELP, CliEndpoint.parse("HELP"))
+        assertEquals(CliEndpoint.STATUS, CliEndpoint.parse("status"))
+        assertEquals(CliEndpoint.ANOMALIES, CliEndpoint.parse("anomalies"))
+        assertEquals(CliEndpoint.REPORT, CliEndpoint.parse("report"))
+        assertNull(CliEndpoint.parse("scan"))
+        assertNull(CliEndpoint.parse(null))
+
+        assertEquals(CliMimeType.JSON, CliEndpoint.parse("status")?.mimeType)
+        assertEquals(CliMimeType.JSON, CliEndpoint.parse("anomalies")?.mimeType)
+        assertEquals(CliMimeType.TEXT, CliEndpoint.parse("report")?.mimeType)
+    }
+
+    @Test
+    fun acceptsOnlyTheReadOnlyContentProviderMode() {
+        assertEquals(CliOpenMode.READ_ONLY, CliOpenMode.parse("r"))
+        assertNull(CliOpenMode.parse("R"))
+        assertNull(CliOpenMode.parse("w"))
+        assertNull(CliOpenMode.parse("rw"))
     }
 }

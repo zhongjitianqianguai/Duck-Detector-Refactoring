@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Duck Detector</string>
+    <string name="card_collapse">折叠卡片</string>
+    <string name="card_expand">展开卡片</string>
+    <string name="status_all_clear">一切正常</string>
+    <string name="status_danger">危险</string>
+    <string name="status_info">信息</string>
+    <string name="status_info_error">错误</string>
+    <string name="status_info_support">支持</string>
+    <string name="status_warning">警告</string>
+</resources>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="dashboard_report_saved">Report saved</string>
+    <string name="dashboard_report_save_failed">Save failed: %1$s</string>
+</resources>

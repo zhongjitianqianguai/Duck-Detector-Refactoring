@@ -16,7 +16,10 @@
 
 package com.eltavine.duckdetector.core.localization
 
+import java.util.Locale
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertFalse
+import org.junit.Assert.assertTrue
 import org.junit.Test
 
 class RuntimeTextCatalogTest {
@@ -24,6 +27,8 @@ class RuntimeTextCatalogTest {
     private val catalog = RuntimeTextCatalog(
         listOf(
             "Warning" to "警告",
+            "Line ending" to "行尾",
+            "Typed tokens %1\$d from %2\$s." to "结构化项 %1\$d 来自 %2\$s。",
             "State" to "状态",
             "Verified" to "已验证",
             "Metrics" to "指标",
@@ -32,6 +37,14 @@ class RuntimeTextCatalogTest {
             "Single-use EC" to "一次性 EC",
             "skipped" to "已跳过",
             "Unavailable kind" to "不可用类别",
+            "Throne hunt" to "Throne Hunt 探测",
+            "Throne hunt counters" to "Throne Hunt 计数",
+            "Watch denied" to "监视权限被拒绝",
+            "Collection %1\$s; baseline=%2\$d" to "采集状态 %1\$s；baseline=%2\$d",
+            "Watching %1\$s for throne hunt IN_OPEN/IN_ACCESS." to
+                "正在监视 %1\$s 的 Throne Hunt IN_OPEN/IN_ACCESS 事件。",
+            "inotify_add_watch denied for %1\$s: %2\$s" to
+                "inotify_add_watch 无法为 %1\$s 安装监视：%2\$s",
             "Scanning %1\$d/%2\$d" to "正在扫描 %1\$d/%2\$d",
             "%1\$d props · %2\$d certs · %3\$d cross-checks" to
                 "%1\$d 个属性 · %2\$d 张证书 · %3\$d 项交叉检查",
@@ -107,6 +120,64 @@ class RuntimeTextCatalogTest {
     }
 
     @Test
+    fun translatesTypedFormatTokensAndLineSuffixes() {
+        assertEquals("结构化项 3 来自 /data/pkg。", catalog.translate("Typed tokens 3 from /data/pkg."))
+        assertEquals("行尾。", catalog.translate("Line ending."))
+        assertEquals("行尾:", catalog.translate("Line ending:"))
+    }
+
+    @Test
+    fun classifiesSimplifiedChineseFromTypedLocaleParts() {
+        assertTrue(
+            Locale.Builder()
+                .setLanguage("zh")
+                .setRegion("CN")
+                .build()
+                .prefersSimplifiedChinese(),
+        )
+        assertTrue(
+            Locale.Builder()
+                .setLanguage("zh")
+                .setScript("Hans")
+                .setRegion("TW")
+                .build()
+                .prefersSimplifiedChinese(),
+        )
+        assertFalse(
+            Locale.Builder()
+                .setLanguage("zh")
+                .setScript("Hant")
+                .setRegion("CN")
+                .build()
+                .prefersSimplifiedChinese(),
+        )
+        listOf("TW", "HK", "MO").forEach { region ->
+            assertFalse(
+                Locale.Builder()
+                    .setLanguage("zh")
+                    .setRegion(region)
+                    .build()
+                    .prefersSimplifiedChinese(),
+            )
+        }
+        assertTrue(
+            Locale.Builder()
+                .setLanguage("zh")
+                .setScript("Latn")
+                .setRegion("CN")
+                .build()
+                .prefersSimplifiedChinese(),
+        )
+        assertFalse(
+            Locale.Builder()
+                .setLanguage("en")
+                .setScript("Hans")
+                .build()
+                .prefersSimplifiedChinese(),
+        )
+    }
+
+    @Test
     fun translatesCompositeAndLabelValueText() {
         assertEquals("警告 · 已验证", catalog.translate("Warning · Verified"))
         assertEquals("LSPosed 和 TEE", catalog.translate("LSPosed and TEE"))
@@ -116,6 +187,32 @@ class RuntimeTextCatalogTest {
         assertEquals("----- 概览 -----", catalog.translate("----- OVERVIEW -----"))
         assertEquals("一次性 EC 已跳过。", catalog.translate("Single-use EC skipped."))
         assertEquals("不可用类别=KEY_NOT_FOUND", catalog.translate("Unavailable kind=KEY_NOT_FOUND"))
+    }
+
+    @Test
+    fun translatesThroneHuntCompositeAndPreservesRawEvidenceFields() {
+        assertEquals(
+            "Throne Hunt 探测：监视权限被拒绝 · open=1 access=2",
+            catalog.translate("Throne hunt: Watch denied · open=1 access=2"),
+        )
+        assertEquals(
+            "Throne Hunt 计数 · open=3 access=2 raw=4 invalid=1 baseline=2",
+            catalog.translate("Throne hunt counters · open=3 access=2 raw=4 invalid=1 baseline=2"),
+        )
+        assertEquals("采集状态 COLLECTED；baseline=2", catalog.translate("Collection COLLECTED; baseline=2"))
+        assertEquals(
+            "正在监视 /data/app/pkg 的 Throne Hunt IN_OPEN/IN_ACCESS 事件。",
+            catalog.translate("Watching /data/app/pkg for throne hunt IN_OPEN/IN_ACCESS."),
+        )
+        assertEquals(
+            "inotify_add_watch 无法为 /data/app/pkg 安装监视：Permission denied",
+            catalog.translate("inotify_add_watch denied for /data/app/pkg: Permission denied"),
+        )
+        assertEquals(
+            "collectionDetail=正在监视 /data/app/pkg 的 Throne Hunt IN_OPEN/IN_ACCESS 事件。",
+            catalog.translate("collectionDetail=Watching /data/app/pkg for throne hunt IN_OPEN/IN_ACCESS."),
+        )
+        assertEquals("collectionOutcome=COLLECTED", catalog.translate("collectionOutcome=COLLECTED"))
     }
 
     @Test

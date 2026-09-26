@@ -89,7 +89,7 @@ internal class RuntimeTextCatalog(
             val suffix = match.groupValues[2]
             val translatedBody = translateStructured(body, depth + 1)
             if (translatedBody != null) {
-                return translatedBody + if (suffix == ".") ChineseFullStop else suffix
+                return translatedBody + (lineSuffixKindsByCode[suffix]?.localizedValue ?: suffix)
             }
         }
 
@@ -214,7 +214,9 @@ internal class RuntimeTextCatalog(
                         append(Regex.escape(source.substring(cursor, token.range.first)))
                         val explicitIndex = token.groups[1]?.value?.toIntOrNull()
                         captureIndices += explicitIndex ?: implicitSourceIndex++
-                        append(if (token.groups[2]?.value == "d") NumberCapture else TextCapture)
+                        val valueKind = formatValueKindsByCode[token.groups[2]?.value]
+                            ?: error("Format token regex matched an unsupported value kind")
+                        append(valueKind.capturePattern)
                         cursor = token.range.last + 1
                     }
                     append(Regex.escape(source.substring(cursor)))
@@ -233,11 +235,16 @@ internal class RuntimeTextCatalog(
 
     private companion object {
         val FormatTokenRegex = Regex("%(?:(\\d+)\\$)?([ds])")
-        const val NumberCapture = "(-?\\d+)"
-        const val TextCapture = "(.+?)"
         const val ChineseColonDelimiter = "："
-        const val ChineseFullStop = "。"
         const val MaximumNestingDepth = 8
+        val lineSuffixKindsByCode = mapOf(
+            "." to LineSuffixKind.PERIOD,
+            ":" to LineSuffixKind.COLON,
+        )
+        val formatValueKindsByCode = mapOf(
+            "d" to FormatValueKind.NUMBER,
+            "s" to FormatValueKind.TEXT,
+        )
         val CompositeDelimiters = listOf(
             CompositeDelimiter("\n"),
             CompositeDelimiter(" · "),
@@ -261,4 +268,14 @@ internal class RuntimeTextCatalog(
         val source: String,
         val target: String = source,
     )
+
+    private enum class LineSuffixKind(val localizedValue: String) {
+        PERIOD("。"),
+        COLON(":"),
+    }
+
+    private enum class FormatValueKind(val capturePattern: String) {
+        NUMBER("(-?\\d+)"),
+        TEXT("(.+?)"),
+    }
 }

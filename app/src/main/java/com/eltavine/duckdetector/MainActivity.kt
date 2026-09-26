@@ -17,9 +17,7 @@
 package com.eltavine.duckdetector
 
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
-import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebView
 import android.widget.FrameLayout
@@ -28,10 +26,14 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.mutableLongStateOf
 import androidx.compose.ui.platform.ComposeView
 import com.eltavine.duckdetector.core.cli.CliContract
-import com.eltavine.duckdetector.core.startup.preload.EarlyMountPreloadStore
-import com.eltavine.duckdetector.core.startup.preload.EarlyVirtualizationPreloadStore
+import androidx.compose.runtime.CompositionLocalProvider
+import com.eltavine.duckdetector.core.ui.AppBuildInfo
+import com.eltavine.duckdetector.core.ui.LocalAppBuildInfo
+import com.eltavine.duckdetector.core.ui.localization.LocalDisplayTextTranslator
+import com.eltavine.duckdetector.core.ui.theme.DuckDetectorTheme
+import com.eltavine.duckdetector.core.localization.DisplayTextLocalizer
+import com.eltavine.duckdetector.sdk.DuckDetector
 import com.eltavine.duckdetector.ui.DuckDetectorApp
-import com.eltavine.duckdetector.ui.theme.DuckDetectorTheme
 
 class MainActivity : ComponentActivity() {
     private val cliScanRequestId = mutableLongStateOf(0L)
@@ -40,10 +42,11 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        EarlyMountPreloadStore.capture(intent)
-        EarlyVirtualizationPreloadStore.capture(intent)
+        captureCliScanRequest(intent)
+        DuckDetector.captureLaunchEvidence(intent)
         enableEdgeToEdge()
-        procMountSampler = createProcMountSampler()
+        // Attached before Compose starts, as the SDK asks.
+        procMountSampler = DuckDetector.createProcMountSampler(this)
         val root = FrameLayout(this)
         procMountSampler?.let { sampler ->
             root.addView(sampler, FrameLayout.LayoutParams(1, 1))
@@ -58,8 +61,15 @@ class MainActivity : ComponentActivity() {
         )
         setContentView(root)
         composeView.setContent {
-            DuckDetectorTheme {
-                DuckDetectorApp(cliScanRequestId = cliScanRequestId.longValue)
+            CompositionLocalProvider(
+                LocalAppBuildInfo provides appBuildInfo,
+                LocalDisplayTextTranslator provides { text ->
+                    DisplayTextLocalizer.translate(this@MainActivity, text)
+                },
+            ) {
+                DuckDetectorTheme {
+                    DuckDetectorApp(cliScanRequestId = cliScanRequestId.longValue)
+                }
             }
         }
     }
@@ -68,8 +78,7 @@ class MainActivity : ComponentActivity() {
         super.onNewIntent(intent)
         setIntent(intent)
         captureCliScanRequest(intent)
-        EarlyMountPreloadStore.capture(intent)
-        EarlyVirtualizationPreloadStore.capture(intent)
+        DuckDetector.captureLaunchEvidence(intent)
     }
 
     private fun captureCliScanRequest(intent: Intent) {
@@ -86,23 +95,11 @@ class MainActivity : ComponentActivity() {
         super.onDestroy()
     }
 
-    private fun createProcMountSampler(): WebView? {
-        // Attach this before starting Compose, matching PrivIsolated's WebView-before-bind order.
-        return runCatching {
-            WebView(this).apply {
-                alpha = 0f
-                isClickable = false
-                isFocusable = false
-                importantForAccessibility = View.IMPORTANT_FOR_ACCESSIBILITY_NO_HIDE_DESCENDANTS
-                setBackgroundColor(Color.TRANSPARENT)
-                loadDataWithBaseURL(
-                    null,
-                    "<html><body></body></html>",
-                    "text/html",
-                    Charsets.UTF_8.name(),
-                    null,
-                )
-            }
-        }.getOrNull()
-    }
+    private val appBuildInfo = AppBuildInfo(
+        versionName = BuildConfig.VERSION_NAME,
+        versionCode = BuildConfig.VERSION_CODE,
+        buildHash = BuildConfig.BUILD_HASH,
+        buildTimeUtc = BuildConfig.BUILD_TIME_UTC,
+        isAlphaVersion = BuildConfig.isAlphaVersion,
+    )
 }
