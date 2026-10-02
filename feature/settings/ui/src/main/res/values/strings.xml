@@ -1,5 +1,6 @@
 <!--
 Copyright 2026 Duck Apps Contributor
+If you have any questions, suggestions, or other inquiries, please email Eltavine <me@eltavine.com>.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -15,6 +16,12 @@ limitations under the License.
 -->
 
 <resources>
+    <string name="author_wall_title">Contributors</string>
+    <string name="author_wall_hint">Drag to explore · Pinch to zoom · Tap for details</string>
+    <string name="author_wordmark_hint">Pinch to explore letters from contributor names</string>
+    <string name="author_view_details">View details</string>
+    <string name="author_view_github">View on GitHub</string>
+    <string name="author_details_close">Close</string>
     <string name="about_clipboard_build_hash_line">Build Hash: %1$s</string>
     <string name="about_clipboard_build_time_line">Build Time (UTC): %1$s UTC</string>
     <string name="about_clipboard_label">Duck Detector build info</string>
@@ -28,12 +35,11 @@ limitations under the License.
     <string name="about_label_privacy">Privacy / Data Use</string>
     <string name="about_label_version">Version</string>
     <string name="about_label_website">Website</string>
-    <string name="about_privacy_summary">Checks run locally on-device and findings are not uploaded. The app contacts GitHub once per cold start for Nightly update metadata. Online CRL refresh remains optional.</string>
+    <string name="about_privacy_summary">Checks run locally on-device and findings are not uploaded. The app contacts GitHub once per cold start for Nightly update metadata, through gh-proxy.com while GitHub acceleration is on. Online CRL refresh remains optional.</string>
     <string name="about_subtitle">Project links and build metadata.</string>
     <string name="about_title">About</string>
     <string name="about_value_build_time">%1$s UTC</string>
     <string name="about_value_version">%1$s (%2$d)</string>
-    <string name="author_boundary_toast">Finality</string>
     <string name="author_summary_5ec1cff">SELinux and LSPosed false-positive finding</string>
     <string name="author_summary_947409161">Ukrainian translation</string>
     <string name="author_summary_alex">SELinux(C++, Kotlin)</string>
@@ -47,22 +53,22 @@ limitations under the License.
     <string name="author_summary_mirin">UI</string>
     <string name="author_summary_qwq233">TEE</string>
     <string name="author_summary_searchur">Dashboard, Dangerous Apps and Zygisk</string>
+    <string name="author_summary_sinanb9">SELinux app zygote crash report and kernel traces</string>
     <string name="author_summary_sqmy">Kotlin</string>
     <string name="author_summary_victor">CI</string>
     <string name="author_summary_wuying">Verified the feasibility of the detection scheme for "KSU throne hunt" behavior.</string>
     <string name="author_summary_wxx">CI (Kotlin)</string>
     <string name="author_summary_xiaotong">TEE (C++, Kotlin)</string>
     <string name="author_summary_zg089">Arabic translation</string>
-    <string name="author_swipe_hint_paged">Swipe left or right to browse authors. %1$d/%2$d</string>
-    <string name="author_swipe_hint_single">Swipe left or right to browse authors.</string>
+    <string name="github_acceleration_footer">gh-proxy.com is a third-party service. While this is on, update checks and Nightly downloads go through it instead of connecting to GitHub directly. It cannot relay commit comparisons, so the update dialog may list only the newest commit.</string>
+    <string name="github_acceleration_summary">Check for and download Nightly updates through gh-proxy.com</string>
+    <string name="github_acceleration_title">GitHub acceleration</string>
     <string name="licenses_dialog_close">Close</string>
     <string name="licenses_dialog_home_page">Home page</string>
-    <string name="licenses_dialog_licenses">Licenses: %1$s</string>
     <string name="licenses_dialog_no_license_text">No license text available.</string>
     <string name="licenses_dialog_open">Open</string>
     <string name="licenses_dialog_source_repo">Source repo</string>
     <string name="licenses_dialog_version">Version %1$s</string>
-    <string name="licenses_entry_label">Transparency</string>
     <string name="licenses_entry_subtitle">Browse bundled third-party projects and inspect their license notices.</string>
     <string name="licenses_entry_title">Open-source libraries</string>
     <string name="licenses_inventory_subtitle">Tap any dependency to inspect license text and upstream project links.</string>
@@ -70,7 +76,8 @@ limitations under the License.
     <string name="licenses_screen_back">Back</string>
     <string name="licenses_screen_subtitle">Third-party components bundled in this build.</string>
     <string name="licenses_screen_title">Open-source licenses</string>
-    <string name="settings_subtitle">Runtime controls and GitHub Nightly update status.</string>
+    <string name="settings_section_detection">Detection options</string>
+    <string name="settings_section_network">Network</string>
     <string name="settings_title">Settings</string>
     <string name="update_settings_label">Check for updates</string>
     <string name="update_status_available">A newer Nightly build is available; tap for details</string>

@@ -1,5 +1,6 @@
 /*
  * Copyright 2026 Duck Apps Contributor
+ * If you have any questions, suggestions, or other inquiries, please email Eltavine <me@eltavine.com>.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -51,6 +52,7 @@ internal class WidevineCredentialRepository(
                     group = BootloaderFindingGroup.CONSISTENCY,
                     severity = finding.severity.toFindingSeverity(),
                     detail = finding.detail,
+                    corroborating = finding.corroborating,
                 )
             },
             impacts = assessment.impact?.let { impact ->
@@ -75,7 +77,6 @@ internal class WidevineCredentialRepository(
         return when (this) {
             WidevineAssessmentSeverity.SAFE -> BootloaderFindingSeverity.SAFE
             WidevineAssessmentSeverity.WARNING -> BootloaderFindingSeverity.WARNING
-            WidevineAssessmentSeverity.DANGER -> BootloaderFindingSeverity.DANGER
             WidevineAssessmentSeverity.SUPPORT -> BootloaderFindingSeverity.INFO
         }
     }
@@ -84,7 +85,6 @@ internal class WidevineCredentialRepository(
         return when (this) {
             WidevineAssessmentSeverity.SAFE -> BootloaderMethodOutcome.CLEAN
             WidevineAssessmentSeverity.WARNING -> BootloaderMethodOutcome.WARNING
-            WidevineAssessmentSeverity.DANGER -> BootloaderMethodOutcome.DANGER
             WidevineAssessmentSeverity.SUPPORT -> BootloaderMethodOutcome.SUPPORT
         }
     }

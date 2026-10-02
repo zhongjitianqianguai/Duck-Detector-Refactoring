@@ -1,0 +1,6 @@
+<resources>
+    <string name="screen_capture_title">Screenshot detected</string>
+    <string name="screen_capture_message">If the screenshot does not contain detailed information, this issue will not be handled.</string>
+    <string name="dialog_continue">Continue</string>
+    <string name="dialog_continue_waiting">Continue (%1$ds)</string>
+</resources>

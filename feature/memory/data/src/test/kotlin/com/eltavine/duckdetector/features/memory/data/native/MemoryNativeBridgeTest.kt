@@ -1,5 +1,6 @@
 /*
  * Copyright 2026 Duck Apps Contributor
+ * If you have any questions, suggestions, or other inquiries, please email Eltavine <me@eltavine.com>.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -49,6 +50,16 @@ class MemoryNativeBridgeTest {
         assertEquals(2, snapshot.findings.size)
         assertEquals("HOOK", snapshot.findings[0].section)
         assertTrue(snapshot.findings[1].detail.contains('\n'))
+    }
+
+    @Test
+    fun `parse reads whether the vdso checks ran`() {
+        val checked = bridge.parse("AVAILABLE=1\nVDSO_CHECKS_RAN=1\nVDSO_REMAPPED=1\n")
+        val skipped = bridge.parse("AVAILABLE=1\nVDSO_CHECKS_RAN=0\n")
+
+        assertTrue(checked.vdsoChecksRan)
+        assertTrue(checked.vdsoRemapped)
+        assertFalse(skipped.vdsoChecksRan)
     }
 
     @Test

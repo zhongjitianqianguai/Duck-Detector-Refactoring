@@ -1,5 +1,6 @@
 /*
  * Copyright 2026 Duck Apps Contributor
+ * If you have any questions, suggestions, or other inquiries, please email Eltavine <me@eltavine.com>.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -53,8 +54,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
+import com.eltavine.duckdetector.core.designsystem.theme.ShapeTokens
 import com.eltavine.duckdetector.core.ui.components.WrapSafeText
-import com.eltavine.duckdetector.core.ui.theme.ShapeTokens
 import com.eltavine.duckdetector.features.update.domain.AvailableNightlyUpdate
 import com.eltavine.duckdetector.features.update.ui.R
 import java.time.Instant
@@ -205,13 +206,20 @@ fun NightlyUpdateDialog(
                                     }
                                 }
                             }
-                            if (update.remainingCommitCount > 0) {
+                            val remainingCommitCount = update.remainingCommitCount
+                            val remainingCommits = when {
+                                remainingCommitCount == null ->
+                                    stringResource(R.string.update_remaining_commits_unknown)
+                                remainingCommitCount > 0 -> pluralStringResource(
+                                    R.plurals.update_remaining_commits,
+                                    remainingCommitCount,
+                                    remainingCommitCount,
+                                )
+                                else -> null
+                            }
+                            if (remainingCommits != null) {
                                 WrapSafeText(
-                                    text = pluralStringResource(
-                                        R.plurals.update_remaining_commits,
-                                        update.remainingCommitCount,
-                                        update.remainingCommitCount,
-                                    ),
+                                    text = remainingCommits,
                                     style = MaterialTheme.typography.bodySmall,
                                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                                 )

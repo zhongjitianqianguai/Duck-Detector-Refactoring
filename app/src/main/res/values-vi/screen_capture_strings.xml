@@ -1,0 +1,6 @@
+<resources>
+    <string name="screen_capture_title">Đã phát hiện chụp màn hình</string>
+    <string name="screen_capture_message">Nếu ảnh chụp màn hình không chứa thông tin chi tiết, vấn đề này sẽ không được xử lý.</string>
+    <string name="dialog_continue">Tiếp tục</string>
+    <string name="dialog_continue_waiting">Tiếp tục (%1$d giây)</string>
+</resources>

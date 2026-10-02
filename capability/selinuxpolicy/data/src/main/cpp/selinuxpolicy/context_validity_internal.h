@@ -1,5 +1,6 @@
 /*
  * Copyright 2026 Duck Apps Contributor
+ * If you have any questions, suggestions, or other inquiries, please email Eltavine <me@eltavine.com>.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -204,10 +205,6 @@ namespace duckdetector::selinux::detail {
 
     inline std::atomic<unsigned int> g_dirty_policy_probe_counter{0};
 
-    inline std::atomic<bool> g_selinux_access_attempted{false};
-
-    using AvcDestroyFn = void (*)();
-
     std::string trim(std::string value);
 
     template<typename T>
@@ -375,7 +372,8 @@ namespace duckdetector::selinux::detail {
             const JavaSelinuxAccess &java_access,
             const std::string &carrier_context,
             const bool carrier_matches_expected,
-            const std::optional<bool> &dyntransition_check_passed
+            const std::optional<bool> &dyntransition_check_passed,
+            bool allow_access_checks
     );
 
     void append_repeat_note(

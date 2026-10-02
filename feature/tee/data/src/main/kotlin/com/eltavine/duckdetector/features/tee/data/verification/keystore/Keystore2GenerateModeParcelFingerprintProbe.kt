@@ -1,5 +1,6 @@
 /*
  * Copyright 2026 Duck Apps Contributor
+ * If you have any questions, suggestions, or other inquiries, please email Eltavine <me@eltavine.com>.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,11 +21,8 @@ data class Keystore2GenerateModeParcelFingerprintResult(
     val executed: Boolean,
     val available: Boolean = false,
     val authorizationCount: Int? = null,
-    val lastAuthorizationSecLevel: Long? = null,
-    val lastAuthorizationUnionTag: Long? = null,
-    val lastAuthorizationHasUnknownUnionTag: Boolean = false,
     val modificationTimeMs: Long? = null,
-    val matched: Boolean = false,
+    val anomaly: GenerateKeyReplyAnomaly? = null,
     val rawPrefix: String? = null,
     val diagnosticCopyText: String? = null,
     val detail: String,
@@ -88,12 +86,9 @@ class Keystore2GenerateModeParcelFingerprintProbe(
         return Keystore2GenerateModeParcelFingerprintResult(
             executed = true,
             available = true,
-            authorizationCount = parsed.authorizationCount,
-            lastAuthorizationSecLevel = parsed.lastAuthorizationSecLevel,
-            lastAuthorizationUnionTag = parsed.lastAuthorizationUnionTag,
-            lastAuthorizationHasUnknownUnionTag = parsed.lastAuthorizationHasUnknownUnionTag,
+            authorizationCount = parsed.authorizations.size,
             modificationTimeMs = parsed.modificationTimeMs,
-            matched = parsed.matched,
+            anomaly = parsed.anomaly,
             rawPrefix = parsed.rawPrefix,
             diagnosticCopyText = diagnosticCopyText,
             detail = parsed.detail,

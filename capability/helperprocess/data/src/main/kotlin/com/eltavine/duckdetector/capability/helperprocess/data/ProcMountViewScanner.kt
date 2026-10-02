@@ -1,5 +1,6 @@
 /*
  * Copyright 2026 Duck Apps Contributor
+ * If you have any questions, suggestions, or other inquiries, please email Eltavine <me@eltavine.com>.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -61,7 +62,22 @@ internal data class ParsedProcMount(
     val peerGroup: Int,
 ) {
     fun signature(): String {
-        return listOf(source, root, point, type, options, superOptions).joinToString(" ")
+        return listOf(source, root, point, type, options, comparableSuperOptions()).joinToString(" ")
+    }
+
+    // shmem_show_options() prints size= and nr_inodes= only while they differ from half of the
+    // current totalram_pages(). Memory hotplug, balloon drivers and drivers that free reserved
+    // memory after boot change that total, so a tmpfs mounted before such a change prints its
+    // capacity and one mounted after it with the same parameters does not.
+    // tmpfs 容量选项是否输出取决于读取时的内存总量；开机后内存总量变化会让相同挂载出现两种写法。
+    // https://android.googlesource.com/kernel/common/+/refs/heads/android16-6.12/mm/shmem.c
+    private fun comparableSuperOptions(): String {
+        if (type !in SHMEM_FILESYSTEM_TYPES) {
+            return superOptions
+        }
+        return superOptions.split(',')
+            .filterNot { option -> SHMEM_CAPACITY_OPTIONS.any { option.startsWith(it) } }
+            .joinToString(",")
     }
 
     companion object {
@@ -117,6 +133,10 @@ internal data class ParsedProcMount(
         }
 
         private val WHITESPACE = Regex("\\s+")
+
+        // With CONFIG_TMPFS, devtmpfs and an initramfs-booted rootfs are shmem superblocks too.
+        private val SHMEM_FILESYSTEM_TYPES = setOf("tmpfs", "devtmpfs", "rootfs")
+        private val SHMEM_CAPACITY_OPTIONS = listOf("size=", "nr_inodes=")
     }
 }
 

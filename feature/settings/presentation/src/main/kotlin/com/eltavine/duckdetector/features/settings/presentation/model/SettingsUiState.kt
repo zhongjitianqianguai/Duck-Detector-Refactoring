@@ -1,5 +1,6 @@
 /*
  * Copyright 2026 Duck Apps Contributor
+ * If you have any questions, suggestions, or other inquiries, please email Eltavine <me@eltavine.com>.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,6 +23,7 @@ data class SettingsUiState(
     val buildTimeUtc: String,
     val buildHash: String,
     val updateStatus: SettingsUpdateStatus,
+    val gitHubAccelerationEnabled: Boolean,
 )
 
 enum class SettingsUpdateStatus {

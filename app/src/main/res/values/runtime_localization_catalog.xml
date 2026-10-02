@@ -39,16 +39,6 @@ limitations under the License.
         <item>@string/agreement_risk_body_template</item>
         <item>@string/agreement_risk_title</item>
         <item>@string/alpha_banner</item>
-        <item>@string/alpha_continue</item>
-        <item>@string/alpha_continue_waiting</item>
-        <item>@string/alpha_dismiss_ready</item>
-        <item>@string/alpha_dismiss_waiting</item>
-        <item>@string/alpha_helper</item>
-        <item>@string/alpha_message</item>
-        <item>@string/alpha_title</item>
-        <item>@string/alpha_warning_download</item>
-        <item>@string/alpha_warning_report</item>
-        <item>@string/alpha_warning_runtime</item>
         <item>@string/app_name</item>
         <item>@string/attest_algo_aes</item>
         <item>@string/attest_algo_ec</item>
@@ -99,7 +89,6 @@ limitations under the License.
         <item>@string/attest_value_failed</item>
         <item>@string/attest_value_unknown</item>
         <item>@string/attest_value_verified</item>
-        <item>@string/author_boundary_toast</item>
         <item>@string/author_summary_5ec1cff</item>
         <item>@string/author_summary_947409161</item>
         <item>@string/author_summary_alex</item>
@@ -118,8 +107,6 @@ limitations under the License.
         <item>@string/author_summary_wxx</item>
         <item>@string/author_summary_xiaotong</item>
         <item>@string/author_summary_zg089</item>
-        <item>@string/author_swipe_hint_paged</item>
-        <item>@string/author_swipe_hint_single</item>
         <item>@string/biometric_tee_key_created</item>
         <item>@string/biometric_tee_key_null</item>
         <item>@string/biometric_tee_manager_unavailable</item>
@@ -517,9 +504,6 @@ limitations under the License.
         <item>@string/dashboard_summary_warning</item>
         <item>@string/dashboard_system_time</item>
         <item>@string/dashboard_top_findings</item>
-        <item>@string/detector_result_detail</item>
-        <item>@string/detector_result_notice</item>
-        <item>@string/detector_result_title</item>
         <item>@string/device_blacklist_body_template</item>
         <item>@string/device_blacklist_close_notice</item>
         <item>@string/device_blacklist_huawei_message</item>
@@ -700,12 +684,10 @@ limitations under the License.
         <item>@string/kernelcheck_verdict_review</item>
         <item>@string/licenses_dialog_close</item>
         <item>@string/licenses_dialog_home_page</item>
-        <item>@string/licenses_dialog_licenses</item>
         <item>@string/licenses_dialog_no_license_text</item>
         <item>@string/licenses_dialog_open</item>
         <item>@string/licenses_dialog_source_repo</item>
         <item>@string/licenses_dialog_version</item>
-        <item>@string/licenses_entry_label</item>
         <item>@string/licenses_entry_subtitle</item>
         <item>@string/licenses_entry_title</item>
         <item>@string/licenses_inventory_subtitle</item>
@@ -1513,7 +1495,6 @@ limitations under the License.
         <item>@string/tee_revocation_network_setting_footer</item>
         <item>@string/tee_revocation_network_setting_summary</item>
         <item>@string/tee_revocation_network_setting_title</item>
-        <item>@string/settings_subtitle</item>
         <item>@string/settings_title</item>
         <item>@string/severity_check</item>
         <item>@string/severity_clear</item>
@@ -2986,5 +2967,60 @@ limitations under the License.
         <item>@string/runtime_sync_throne_hunt_no_inherited_descriptor</item>
         <item>@string/runtime_sync_nativeroot_diagnostic_heading</item>
         <item>@string/runtime_sync_throne_hunt_method_detail</item>
+        <item>@string/runtime_oct02_selinux_status_page_readback</item>
+        <item>@string/runtime_oct02_dashboard_build_time_line</item>
+        <item>@string/runtime_oct02_selinux_status_page_netlink_fallback</item>
+        <item>@string/runtime_oct02_selinux_status_page_child_faulted</item>
+        <item>@string/runtime_oct02_selinux_status_page_stock</item>
+        <item>@string/runtime_oct02_selinux_status_page_child_start_failed</item>
+        <item>@string/runtime_oct02_selinux_status_page_seccomp_setup_failed</item>
+        <item>@string/runtime_oct02_selinux_status_page_seccomp_refused</item>
+        <item>@string/runtime_oct02_selinux_status_page_child_killed_before_map</item>
+        <item>@string/runtime_oct02_selinux_status_page_mapped_timeout</item>
+        <item>@string/runtime_oct02_selinux_status_page_timeout</item>
+        <item>@string/runtime_oct02_selinux_status_page_not_reaped</item>
+        <item>@string/runtime_oct02_selinux_status_page_waitpid_failed</item>
+        <item>@string/runtime_oct02_selinux_status_page_child_exited</item>
+        <item>@string/runtime_oct02_selinux_status_page_open_failed</item>
+        <item>@string/runtime_oct02_selinux_status_page_mmap_failed</item>
+        <item>@string/runtime_oct02_selinux_status_page_size_unavailable</item>
+        <item>@string/runtime_oct02_selinux_status_page_bridge_failed</item>
+        <item>@string/runtime_oct02_selinux_status_page_bridge_failed_unknown</item>
+        <item>@string/runtime_oct02_selinux_status_page_unavailable</item>
+        <item>@string/runtime_oct02_selinux_status_page_reason_unreported</item>
+        <item>@string/runtime_oct02_selinux_status_page_header_incomplete</item>
+        <item>@string/runtime_oct02_selinux_status_page_access_blocked_fault</item>
+        <item>@string/runtime_oct02_selinux_status_page_access_blocked_fault_signal</item>
+        <item>@string/runtime_oct02_selinux_status_page_access_blocked_inconclusive</item>
+        <item>@string/runtime_oct02_selinux_status_page_access_checks_skipped</item>
+        <item>@string/runtime_oct02_tee_dump_title</item>
+        <item>@string/runtime_oct02_tee_request_parse_heading</item>
+        <item>@string/runtime_oct02_tee_request_hex_heading</item>
+        <item>@string/runtime_oct02_tee_reply_parse_heading</item>
+        <item>@string/runtime_oct02_tee_reply_hex_heading</item>
+        <item>@string/runtime_oct02_tee_key_metadata_heading</item>
+        <item>@string/runtime_oct02_tee_reply_checks_heading</item>
+        <item>@string/runtime_oct02_tee_request_unavailable</item>
+        <item>@string/runtime_oct02_tee_reply_unavailable</item>
+        <item>@string/runtime_oct02_tee_length</item>
+        <item>@string/runtime_oct02_tee_offset_interface_header</item>
+        <item>@string/runtime_oct02_tee_offset_interface_descriptor</item>
+        <item>@string/runtime_oct02_tee_request_parse_interrupted</item>
+        <item>@string/runtime_oct02_tee_reply_parse_unavailable</item>
+        <item>@string/runtime_oct02_tee_reply_parse_interrupted</item>
+        <item>@string/runtime_oct02_tee_transaction_failed</item>
+        <item>@string/runtime_oct02_tee_anomaly_not_evaluated</item>
+        <item>@string/runtime_oct02_tee_anomaly_none</item>
+        <item>@string/runtime_oct02_tee_anomaly_value</item>
+        <item>@string/runtime_oct02_tee_parser_detail</item>
+        <item>@string/runtime_oct02_tee_null_unreadable</item>
+        <item>@string/runtime_oct02_tee_unreadable</item>
+        <item>@string/runtime_oct02_vdso_checked_detail</item>
+        <item>@string/runtime_oct02_vdso_absent_detail</item>
+        <item>@string/runtime_oct02_vdso_mapping_count_detail</item>
+        <item>@string/runtime_oct02_midr_no_comparable_cpu</item>
+        <item>@string/runtime_oct02_midr_read_unattributed</item>
+        <item>@string/runtime_oct02_midr_unstable</item>
+        <item>@string/runtime_oct02_widevine_l1_keybox_detail</item>
     </string-array>
 </resources>

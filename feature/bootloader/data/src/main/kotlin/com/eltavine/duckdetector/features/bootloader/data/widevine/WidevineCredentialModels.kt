@@ -1,5 +1,6 @@
 /*
  * Copyright 2026 Duck Apps Contributor
+ * If you have any questions, suggestions, or other inquiries, please email Eltavine <me@eltavine.com>.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -123,10 +124,13 @@ internal data class WidevineBootContext(
     val bootStateAppearsLocked: Boolean,
 )
 
+/**
+ * Widevine evidence stops at WARNING: a wiped or invalid keybox can produce the same signs as an
+ * unlock, so they never prove a boot integrity failure.
+ */
 internal enum class WidevineAssessmentSeverity {
     SAFE,
     WARNING,
-    DANGER,
     SUPPORT,
 }
 
@@ -136,6 +140,7 @@ internal data class WidevineAssessmentFinding(
     val value: String,
     val severity: WidevineAssessmentSeverity,
     val detail: String,
+    val corroborating: Boolean = false,
 )
 
 internal data class WidevineCredentialAssessment(
@@ -146,8 +151,5 @@ internal data class WidevineCredentialAssessment(
     val impact: WidevineAssessmentFinding? = null,
 ) {
     val anomalyCount: Int
-        get() = findings.count {
-            it.severity == WidevineAssessmentSeverity.WARNING ||
-                it.severity == WidevineAssessmentSeverity.DANGER
-        }
+        get() = findings.count { it.severity == WidevineAssessmentSeverity.WARNING }
 }

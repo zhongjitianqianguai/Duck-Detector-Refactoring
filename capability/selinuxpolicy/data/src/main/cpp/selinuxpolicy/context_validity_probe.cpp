@@ -1,5 +1,6 @@
 /*
  * Copyright 2026 Duck Apps Contributor
+ * If you have any questions, suggestions, or other inquiries, please email Eltavine <me@eltavine.com>.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,48 +17,109 @@
 
 #include "selinuxpolicy/context_validity_probe.h"
 #include "selinuxpolicy/context_validity_internal.h"
+#include <android/log.h>
 #include <atomic>
 #include <cerrno>
 #include <cstddef>
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
+#include <dirent.h>
 #include <dlfcn.h>
 #include <fcntl.h>
 #include <fstream>
+#include <linux/netlink.h>
 #include <optional>
 #include <string>
+#include <sys/socket.h>
+#include <sys/stat.h>
 #include <sys/system_properties.h>
 #include <utility>
 #include <unistd.h>
+#include <vector>
 
 namespace duckdetector::selinux {
 
     using namespace detail;
 
-    void close_process_local_avc() {
-        // AOSP R: https://android.googlesource.com/platform/external/selinux/+/refs/heads/android11-release/libselinux/src/avc.c
-        // avc_destroy() calls avc_netlink_close(); AOSP R：关闭 netlink FD，保留结果。
-        if (!g_selinux_access_attempted.exchange(false, std::memory_order_relaxed)) {
-            return;
+    namespace {
+
+        // The oracle runs only in the app zygote preload. Its steps go to the SDK preload trace's
+        // tag, so one logcat filter shows the last step an app zygote reached before it was killed.
+        constexpr const char *kPreloadTraceTag = "DuckZygotePreload";
+
+        void trace_step(const char *step) {
+            __android_log_write(ANDROID_LOG_INFO, kPreloadTraceTag, step);
         }
 
-#ifdef RTLD_NOLOAD
-        void *handle = dlopen("libselinux.so", RTLD_NOW | RTLD_NOLOAD);
-        if (handle == nullptr) {
-            return;
+        bool is_selinux_netlink_socket(int fd) {
+            struct stat fd_stat{};
+            if (fstat(fd, &fd_stat) != 0 || !S_ISSOCK(fd_stat.st_mode)) {
+                return false;
+            }
+            int value = 0;
+            socklen_t length = sizeof(value);
+            if (getsockopt(fd, SOL_SOCKET, SO_DOMAIN, &value, &length) != 0 ||
+                value != AF_NETLINK) {
+                return false;
+            }
+            length = sizeof(value);
+            return getsockopt(fd, SOL_SOCKET, SO_PROTOCOL, &value, &length) == 0 &&
+                   value == NETLINK_SELINUX;
         }
-        const auto destroy = reinterpret_cast<AvcDestroyFn>(dlsym(handle, "avc_destroy"));
-        if (destroy != nullptr) {
-            destroy();
+
+        std::vector<int> selinux_netlink_sockets() {
+            std::vector<int> sockets;
+            DIR *directory = opendir("/proc/self/fd");
+            if (directory == nullptr) {
+                return sockets;
+            }
+            const int directory_fd = dirfd(directory);
+            while (const dirent *entry = readdir(directory)) {
+                char *end = nullptr;
+                const long fd = std::strtol(entry->d_name, &end, 10);
+                if (end == entry->d_name || *end != '\0' || fd < 0 || fd == directory_fd) {
+                    continue;
+                }
+                if (is_selinux_netlink_socket(static_cast<int>(fd))) {
+                    sockets.push_back(static_cast<int>(fd));
+                }
+            }
+            closedir(directory);
+            return sockets;
         }
-        dlclose(handle);
-#endif
+
+    }  // namespace
+
+    void close_process_local_avc() {
+        // selinux_check_access() opens libselinux's AVC once per process, and with it a
+        // NETLINK_SELINUX socket that stays open (external/selinux libselinux/src/avc.c, avc_init ->
+        // avc_netlink_open). The Java SELinux.checkSELinuxAccess path opens it as well, and
+        // avc_destroy() is out of reach: libselinux is not a public library (system/core
+        // rootdir/etc/public.libraries.android.txt), so this app's linker namespace can neither
+        // dlopen nor dlsym it. The socket is therefore detached the way the
+        // zygote detaches sockets in its children (frameworks/base core/jni/fd_utils.cpp,
+        // FileDescriptorInfo::DetachSocket): /dev/null, which the fork check allows, takes over
+        // the descriptor, so libselinux keeps a valid descriptor and its later
+        // avc_netlink_check_nb() only stops seeing policy-change notices.
+        for (const int fd: selinux_netlink_sockets()) {
+            const int dev_null = open("/dev/null", O_RDWR | O_CLOEXEC);
+            if (dev_null < 0 || dup3(dev_null, fd, O_CLOEXEC) != fd) {
+                close(fd);
+            }
+            if (dev_null >= 0) {
+                close(dev_null);
+            }
+        }
     }
 
-    ContextValidityProbeSnapshot collect_context_validity_snapshot(JNIEnv *env) {
+    ContextValidityProbeSnapshot collect_context_validity_snapshot(
+            JNIEnv *env,
+            const bool allow_access_checks
+    ) {
         ContextValidityProbeSnapshot snapshot;
         snapshot.query_method = kQueryMethod;
+        trace_step("selinux native: selinux state");
         const LoadedSelinuxSymbols symbols = load_selinux_symbols();
         JavaSelinuxAccess java_access = resolve_java_selinux_access(env);
         if (symbols.is_selinux_enabled != nullptr) {
@@ -86,6 +148,7 @@ namespace duckdetector::selinux {
         append_note(snapshot, std::string("Carrier context: ") + carrier_context);
         append_note(snapshot, std::string("Expected carrier type: ") + kExpectedCarrierType);
 
+        trace_step("selinux native: context getters");
         if (const auto current_context = call_context_getter(symbols, symbols.getcon);
             current_context.has_value()) {
             snapshot.pid_context_matches_current = (*current_context == carrier_context);
@@ -98,20 +161,25 @@ namespace duckdetector::selinux {
             proc_self_context.has_value()) {
             snapshot.proc_self_context_matches_current = (*proc_self_context == carrier_context);
         }
-        snapshot.dyntransition_check_passed = check_access_rule(
-                symbols,
-                kExpectedCarrierPrefix,
-                kIsolatedAppContext,
-                kProcessClass,
-                kDyntransitionPermission
-        );
+        trace_step("selinux native: dyntransition access check");
+        if (allow_access_checks) {
+            snapshot.dyntransition_check_passed = check_access_rule(
+                    symbols,
+                    kExpectedCarrierPrefix,
+                    kIsolatedAppContext,
+                    kProcessClass,
+                    kDyntransitionPermission
+            );
+        }
+        trace_step("selinux native: dirty policy access checks");
         snapshot.dirty_policy = collect_dirty_policy_snapshot(
                 symbols,
                 env,
                 java_access,
                 carrier_context,
                 snapshot.carrier_matches_expected,
-                snapshot.dyntransition_check_passed
+                snapshot.dyntransition_check_passed,
+                allow_access_checks
         );
 
         if (!snapshot.carrier_matches_expected ||
@@ -177,6 +245,7 @@ namespace duckdetector::selinux {
 
         snapshot.probe_attempted = true;
 
+        trace_step("selinux native: context validity controls");
         const ControlPairResult carrier_control = check_context_pair_validity(carrier_context.c_str());
         const ControlPairResult negative_control = check_context_pair_validity(kNegativeControlContext);
         const ControlPairResult file_control = check_context_pair_validity(kStockFileControlContext);
@@ -233,6 +302,7 @@ namespace duckdetector::selinux {
             return snapshot;
         }
 
+        trace_step("selinux native: KernelSU context checks");
         const ContextCheckResult domain_first = check_context_validity(kKsuContext);
         const ContextCheckResult domain_second = check_context_validity(kKsuContext);
         const ContextCheckResult file_first = check_context_validity(kKsuFileContext);

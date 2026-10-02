@@ -1,5 +1,6 @@
 /*
  * Copyright 2026 Duck Apps Contributor
+ * If you have any questions, suggestions, or other inquiries, please email Eltavine <me@eltavine.com>.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,5 +26,5 @@ android {
 dependencies {
     api(project(":feature:update:domain"))
     implementation(libs.androidx.datastore.preferences)
-    implementation(libs.kotlinx.coroutines.android)
+    api(libs.kotlinx.coroutines.android)
 }

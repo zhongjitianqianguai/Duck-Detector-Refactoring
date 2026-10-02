@@ -1,5 +1,6 @@
 /*
  * Copyright 2026 Duck Apps Contributor
+ * If you have any questions, suggestions, or other inquiries, please email Eltavine <me@eltavine.com>.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -95,6 +96,8 @@ namespace duckdetector::memory {
     };
 
     struct VdsoSignals {
+        // False when the kernel mapped no vDSO into this process, leaving nothing to check.
+        bool checks_ran = false;
         bool remapped = false;
         bool unusual_base = false;
         std::vector<Finding> findings;

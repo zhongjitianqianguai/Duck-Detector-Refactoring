@@ -1,5 +1,6 @@
 /*
  * Copyright 2026 Duck Apps Contributor
+ * If you have any questions, suggestions, or other inquiries, please email Eltavine <me@eltavine.com>.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -39,7 +40,7 @@ class KernelCheckNativeBridgeTest {
             CMDLINE=0
             KPTR=0
             CPU_IDENTITY_STATUS=COMPLETED
-            CPU_IDENTITY=0${'\t'}1${'\t'}SYSFS${'\t'}410fd050${'\t'}410fd050
+            CPU_IDENTITY=0${'\t'}1${'\t'}SYSFS${'\t'}410fd050${'\t'}410fd050${'\t'}VERIFIED${'\t'}0
             FINDING=CMDLINE|GOOD|verifiedbootstate=green (verified)
             """.trimIndent(),
         )

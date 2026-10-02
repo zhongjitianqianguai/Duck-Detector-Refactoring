@@ -1,5 +1,6 @@
 /*
  * Copyright 2026 Duck Apps Contributor
+ * If you have any questions, suggestions, or other inquiries, please email Eltavine <me@eltavine.com>.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,12 +34,21 @@ android {
 // Every detector's dashboard card, discovered like the ui modules the application depends on.
 generateDetectorCards(packageName = "com.eltavine.duckdetector.ui")
 
+// The runtime translation regression reads these source pairs rather than a duplicate test fixture.
+tasks.withType<org.gradle.api.tasks.testing.Test>().configureEach {
+    inputs.files(
+        "src/main/res/values/sync_20261002_strings.xml",
+        "src/main/res/values-zh-rCN/sync_20261002_strings.xml",
+    ).withPropertyName("octoberRuntimeTranslations")
+}
+
 dependencies {
     implementation(project(":core:detector"))
     implementation(project(":core:evidence"))
     implementation(project(":core:report"))
     implementation(project(":core:scan"))
     implementation(project(":core:ui"))
+    implementation(project(":core:designsystem"))
     implementation(project(":feature:dashboard:presentation"))
     implementation(project(":feature:dashboard:ui"))
     implementation(project(":feature:deviceinfo:data"))
@@ -54,9 +64,9 @@ dependencies {
     // Every detector's dashboard card, discovered like the SDK discovers the detectors.
     detectorModules("ui").forEach { implementation(project(it)) }
     implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.annotation)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.activity.compose)
-    implementation(libs.androidx.annotation)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.datastore.preferences)
     implementation(libs.androidx.lifecycle.viewmodel.compose)

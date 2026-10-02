@@ -1,5 +1,6 @@
 /*
  * Copyright 2026 Duck Apps Contributor
+ * If you have any questions, suggestions, or other inquiries, please email Eltavine <me@eltavine.com>.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,6 +17,8 @@
 
 #include "nativeroot/probes/kernelpatch_nr_supercall_latency_probe.h"
 #include "nativeroot/probes/kernelpatch_supercall_abi.h"
+
+#include "common/seccomp_child.h"
 
 #include <csignal>
 #include <cstdio>
@@ -184,6 +187,9 @@ namespace duckdetector::nativeroot {
 
             if (pid == 0) {
                 close(pipe_fds[0]);
+                if (!common::install_seccomp_trap_exit()) {
+                    _exit(1);
+                }
 
                 char key[kKeyBufferSize];
                 fill_unresolvable_key(key);
@@ -210,7 +216,7 @@ namespace duckdetector::nativeroot {
                 return false;
             }
 
-            if (WIFSIGNALED(status) && WTERMSIG(status) == SIGSYS) {
+            if (common::seccomp_trapped(status)) {
                 blocked_by_seccomp = true;
                 close(pipe_fds[0]);
                 return false;

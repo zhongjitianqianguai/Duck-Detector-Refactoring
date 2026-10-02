@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright 2026 Duck Apps Contributor
+If you have any questions, suggestions, or other inquiries, please email Eltavine <me@eltavine.com>.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<resources>
+    <!-- Runtime translations for upstream diagnostics added after c292318e. -->
+    <string name="runtime_oct02_dashboard_build_time_line" formatted="false">Build Time (UTC)  %1$s</string>
+    <string name="runtime_oct02_selinux_status_page_readback" formatted="false">Status page read back: version=%1$s sequence=%2$s enforcing=%3$s policyload=%4$s deny_unknown=%5$s.</string>
+    <string name="runtime_oct02_selinux_status_page_netlink_fallback">libselinux falls back to netlink when it cannot map the status page, so access checks in the carrier stay safe.</string>
+    <string name="runtime_oct02_selinux_status_page_child_faulted" formatted="false">Child opened and mapped %1$s, then was killed by %2$s on the first read of the mapping.</string>
+    <string name="runtime_oct02_selinux_status_page_stock">Stock selinuxfs maps the kernel\'s status page, which reads back without faulting.</string>
+    <string name="runtime_oct02_selinux_status_page_child_start_failed" formatted="false">Status page child could not be started (errno=%1$s); status page probe not run.</string>
+    <string name="runtime_oct02_selinux_status_page_seccomp_setup_failed">Status page child could not install its seccomp trap exit.</string>
+    <string name="runtime_oct02_selinux_status_page_seccomp_refused">Seccomp refused a status page syscall in the child.</string>
+    <string name="runtime_oct02_selinux_status_page_child_killed_before_map" formatted="false">Status page child was killed by %1$s before it mapped the page.</string>
+    <string name="runtime_oct02_selinux_status_page_mapped_timeout" formatted="false">Status page child mapped the page but did not read it within %1$s ms and was stopped.</string>
+    <string name="runtime_oct02_selinux_status_page_timeout" formatted="false">Status page child did not finish within %1$s ms and was stopped.</string>
+    <string name="runtime_oct02_selinux_status_page_not_reaped" formatted="false">Status page child did not finish within %1$s ms, and was left behind because it had not died %2$s ms after it was stopped.</string>
+    <string name="runtime_oct02_selinux_status_page_waitpid_failed" formatted="false">waitpid failed (errno=%1$s); status page outcome unknown.</string>
+    <string name="runtime_oct02_selinux_status_page_child_exited" formatted="false">Status page child exited %1$s without reporting the header.</string>
+    <string name="runtime_oct02_selinux_status_page_open_failed" formatted="false">open of %1$s failed (errno=%2$s).</string>
+    <string name="runtime_oct02_selinux_status_page_mmap_failed" formatted="false">mmap of %1$s failed (errno=%2$s).</string>
+    <string name="runtime_oct02_selinux_status_page_size_unavailable">Page size unavailable; status page probe not run.</string>
+    <string name="runtime_oct02_selinux_status_page_bridge_failed" formatted="false">Status page probe bridge failed: %1$s</string>
+    <string name="runtime_oct02_selinux_status_page_bridge_failed_unknown">Status page probe bridge failed with an unknown exception.</string>
+    <string name="runtime_oct02_selinux_status_page_unavailable" formatted="false">SELinux status page probe was unavailable: %1$s</string>
+    <string name="runtime_oct02_selinux_status_page_reason_unreported">The status page probe did not report a reason.</string>
+    <string name="runtime_oct02_selinux_status_page_header_incomplete">Status page read back without a complete header.</string>
+    <string name="runtime_oct02_selinux_status_page_access_blocked_fault">Skipped: reading /sys/fs/selinux/status killed a disposable child, and libselinux reads it on the first access check.</string>
+    <string name="runtime_oct02_selinux_status_page_access_blocked_fault_signal" formatted="false">Skipped: reading /sys/fs/selinux/status killed a disposable child (signal %1$s), and libselinux reads it on the first access check.</string>
+    <string name="runtime_oct02_selinux_status_page_access_blocked_inconclusive" formatted="false">Skipped: the status page probe was inconclusive (%1$s), so libselinux was not allowed to read /sys/fs/selinux/status.</string>
+    <string name="runtime_oct02_selinux_status_page_access_checks_skipped">Skipped: the status page probe did not show libselinux can map /sys/fs/selinux/status safely.</string>
+
+    <string name="runtime_oct02_tee_dump_title">=== [GENERATEKEY transaction atomic structure dump] ===</string>
+    <string name="runtime_oct02_tee_request_parse_heading">--- [Request Data Parse] ---</string>
+    <string name="runtime_oct02_tee_request_hex_heading">--- [Request Raw Hex] ---</string>
+    <string name="runtime_oct02_tee_reply_parse_heading">--- [Reply Data Parse] ---</string>
+    <string name="runtime_oct02_tee_reply_hex_heading">--- [Reply Raw Hex] ---</string>
+    <string name="runtime_oct02_tee_key_metadata_heading">[KeyMetadata]:</string>
+    <string name="runtime_oct02_tee_reply_checks_heading">[Keystore2 reply checks]:</string>
+    <string name="runtime_oct02_tee_request_unavailable">Request parcel unavailable.</string>
+    <string name="runtime_oct02_tee_reply_unavailable">Reply parcel unavailable.</string>
+    <string name="runtime_oct02_tee_length" formatted="false">(length: %1$s bytes)</string>
+    <string name="runtime_oct02_tee_offset_interface_header" formatted="false">Offset: %1$s | interface header: %2$s</string>
+    <string name="runtime_oct02_tee_offset_interface_descriptor" formatted="false">Offset: %1$s | interface descriptor: %2$s</string>
+    <string name="runtime_oct02_tee_request_parse_interrupted" formatted="false">[!] Request parse interrupted: %1$s</string>
+    <string name="runtime_oct02_tee_reply_parse_unavailable">[!] Reply parse unavailable.</string>
+    <string name="runtime_oct02_tee_reply_parse_interrupted">[!] Reply parse interrupted.</string>
+    <string name="runtime_oct02_tee_transaction_failed">[!] Transaction failed; no KeyMetadata body parsed.</string>
+    <string name="runtime_oct02_tee_anomaly_not_evaluated">anomaly: not evaluated</string>
+    <string name="runtime_oct02_tee_anomaly_none">anomaly: none</string>
+    <string name="runtime_oct02_tee_anomaly_value" formatted="false">anomaly: %1$s</string>
+    <string name="runtime_oct02_tee_parser_detail" formatted="false">parser: %1$s</string>
+    <string name="runtime_oct02_tee_null_unreadable">null or unreadable</string>
+    <string name="runtime_oct02_tee_unreadable">unreadable</string>
+
+    <string name="runtime_oct02_vdso_checked_detail">Compares /proc/self/maps against dl_iterate_phdr and sanity-checks the current process [vdso] view.</string>
+    <string name="runtime_oct02_vdso_absent_detail">Compares /proc/self/maps against dl_iterate_phdr. The kernel mapped no vDSO into this process, which is normal for 32-bit processes on kernels built without a compat vDSO, so there was no [vdso] view to check.</string>
+    <string name="runtime_oct02_vdso_mapping_count_detail" formatted="false">Expected 1 [vdso] mapping but saw %1$s (AT_SYSINFO_EHDR=0x%2$s)</string>
+
+    <string name="runtime_oct02_midr_no_comparable_cpu">No logical CPU yielded both a cached MIDR and an emulated MIDR_EL1 read confirmed on that CPU.</string>
+    <string name="runtime_oct02_midr_read_unattributed" formatted="false">MRS read not confirmed on this CPU (%1$s ran elsewhere)</string>
+    <string name="runtime_oct02_midr_unstable">MIDR_EL1 changed between reads on this CPU</string>
+
+    <string name="runtime_oct02_widevine_l1_keybox_detail">Widevine reports L1 but returned the sentinel system ID or a lower maximum session. A wiped or invalid keybox can look the same as an unlock, so this needs review and does not change the bootloader verdict on its own.</string>
+</resources>

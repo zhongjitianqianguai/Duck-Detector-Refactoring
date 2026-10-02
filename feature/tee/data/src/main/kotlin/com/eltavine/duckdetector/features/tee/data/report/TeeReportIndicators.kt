@@ -1,5 +1,6 @@
 /*
  * Copyright 2026 Duck Apps Contributor
+ * If you have any questions, suggestions, or other inquiries, please email Eltavine <me@eltavine.com>.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -189,8 +190,14 @@ internal fun buildSignals(
                 ),
             ),
         )
-        if (generateModeAnomalyState(artifacts) == GenerateModeAnomalyState.MATCHED) {
-            add(TeeSignal("TEE Simulator generate-mode fingerprint", "Matched", TeeSignalLevel.FAIL))
+        when (generateModeAnomalyState(artifacts)) {
+            GenerateModeAnomalyState.MATCHED ->
+                add(TeeSignal("TEE Simulator generate-mode fingerprint", "Matched", TeeSignalLevel.FAIL))
+
+            GenerateModeAnomalyState.REVIEW ->
+                add(TeeSignal("TEE Simulator generate-mode fingerprint", "Review", TeeSignalLevel.WARN))
+
+            GenerateModeAnomalyState.CLEAN, GenerateModeAnomalyState.UNAVAILABLE -> Unit
         }
         add(TeeSignal("CRL", crlSignalValue(artifacts), crlSignalLevel(artifacts)))
         if (artifacts.native.trickyStoreDetected || artifacts.native.leafDerPrimaryDetected || artifacts.native.leafDerSecondaryDetected) {

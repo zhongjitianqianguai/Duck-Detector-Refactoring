@@ -1,5 +1,6 @@
 /*
  * Copyright 2026 Duck Apps Contributor
+ * If you have any questions, suggestions, or other inquiries, please email Eltavine <me@eltavine.com>.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -105,7 +106,6 @@ namespace duckdetector::selinux::detail {
             const char *permission,
             void *auditdata) {
         if (symbols.check_access != nullptr) {
-            g_selinux_access_attempted.store(true, std::memory_order_relaxed);
             errno = 0;
             const int result = symbols.check_access(source, target, target_class, permission, auditdata);
             const int call_errno = errno;

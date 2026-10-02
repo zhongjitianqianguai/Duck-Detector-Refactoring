@@ -1,5 +1,6 @@
 /*
  * Copyright 2026 Duck Apps Contributor
+ * If you have any questions, suggestions, or other inquiries, please email Eltavine <me@eltavine.com>.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -96,7 +97,7 @@ class UpdateViewModel internal constructor(
                         isDialogVisible = true,
                     )
                     if (result.update.manifest == displayedManifest) {
-                        UpdateDownloadResolution.Ready(result.update.manifest.apk.downloadUrl)
+                        UpdateDownloadResolution.Ready(result.update.downloadUrl)
                     } else {
                         UpdateDownloadResolution.Refreshed
                     }

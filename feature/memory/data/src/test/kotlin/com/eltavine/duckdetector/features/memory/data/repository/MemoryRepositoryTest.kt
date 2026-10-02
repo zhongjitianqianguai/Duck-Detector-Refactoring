@@ -1,5 +1,6 @@
 /*
  * Copyright 2026 Duck Apps Contributor
+ * If you have any questions, suggestions, or other inquiries, please email Eltavine <me@eltavine.com>.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -56,6 +57,25 @@ class MemoryRepositoryTest {
         )
 
         assertEquals(MemoryMethodOutcome.CLEAN, methods.first { it.label == "Entry prologue" }.outcome)
+    }
+
+    @Test
+    fun `loader visibility stays clean and explains a process without a vdso`() {
+        val loader = repository.buildMethods(MemoryNativeSnapshot(available = true, vdsoChecksRan = false))
+            .first { it.label == "Loader visibility" }
+
+        assertEquals(MemoryMethodOutcome.CLEAN, loader.outcome)
+        assertTrue(loader.detail.contains("no vDSO"))
+    }
+
+    @Test
+    fun `loader visibility reviews a remapped vdso once the checks ran`() {
+        val loader = repository.buildMethods(
+            MemoryNativeSnapshot(available = true, vdsoChecksRan = true, vdsoRemapped = true),
+        ).first { it.label == "Loader visibility" }
+
+        assertEquals(MemoryMethodOutcome.REVIEW, loader.outcome)
+        assertTrue(loader.detail.contains("[vdso] view"))
     }
 
     @Test

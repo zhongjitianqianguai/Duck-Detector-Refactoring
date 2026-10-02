@@ -1,0 +1,6 @@
+<resources>
+    <string name="screen_capture_title">스크린샷 감지됨</string>
+    <string name="screen_capture_message">스크린샷에 상세 정보가 없으면 이 문제는 처리되지 않습니다.</string>
+    <string name="dialog_continue">계속</string>
+    <string name="dialog_continue_waiting">계속 (%1$d초)</string>
+</resources>

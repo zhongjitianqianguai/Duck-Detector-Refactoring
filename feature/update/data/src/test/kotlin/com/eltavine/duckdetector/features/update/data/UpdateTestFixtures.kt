@@ -1,5 +1,6 @@
 /*
  * Copyright 2026 Duck Apps Contributor
+ * If you have any questions, suggestions, or other inquiries, please email Eltavine <me@eltavine.com>.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,14 +22,15 @@ import org.json.JSONObject
 
 internal const val TEST_HEAD_SHA = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
 internal const val TEST_BASE_SHA = "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+internal const val TEST_DOWNLOAD_URL =
+    "https://github.com/eltavine/Duck-Detector-Refactoring/releases/download/nightly/Duck.Detector-test.apk"
 
 internal fun validUpdateManifestJson(
     versionCode: Int = 500,
     commitSha: String = TEST_HEAD_SHA,
     builtAtUtc: String = "2026-08-08T12:30:00Z",
     branch: String = "master",
-    downloadUrl: String =
-        "https://github.com/eltavine/Duck-Detector-Refactoring/releases/download/nightly/Duck.Detector-test.apk",
+    downloadUrl: String = TEST_DOWNLOAD_URL,
 ): String {
     return JSONObject()
         .put("schemaVersion", 1)

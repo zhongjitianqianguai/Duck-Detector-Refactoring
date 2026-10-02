@@ -1,5 +1,6 @@
 /*
  * Copyright 2026 Duck Apps Contributor
+ * If you have any questions, suggestions, or other inquiries, please email Eltavine <me@eltavine.com>.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,15 +24,15 @@ import android.webkit.WebView
 import android.widget.FrameLayout
 import androidx.activity.ComponentActivity
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.mutableLongStateOf
 import androidx.compose.ui.platform.ComposeView
 import com.eltavine.duckdetector.core.cli.CliContract
-import androidx.compose.runtime.CompositionLocalProvider
+import com.eltavine.duckdetector.core.designsystem.theme.DuckDetectorTheme
+import com.eltavine.duckdetector.core.localization.DisplayTextLocalizer
 import com.eltavine.duckdetector.core.ui.AppBuildInfo
 import com.eltavine.duckdetector.core.ui.LocalAppBuildInfo
 import com.eltavine.duckdetector.core.ui.localization.LocalDisplayTextTranslator
-import com.eltavine.duckdetector.core.ui.theme.DuckDetectorTheme
-import com.eltavine.duckdetector.core.localization.DisplayTextLocalizer
 import com.eltavine.duckdetector.sdk.DuckDetector
 import com.eltavine.duckdetector.ui.DuckDetectorApp
 

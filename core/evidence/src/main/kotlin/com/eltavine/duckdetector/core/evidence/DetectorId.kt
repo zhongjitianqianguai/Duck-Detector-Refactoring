@@ -1,5 +1,6 @@
 /*
  * Copyright 2026 Duck Apps Contributor
+ * If you have any questions, suggestions, or other inquiries, please email Eltavine <me@eltavine.com>.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,7 +21,7 @@ package com.eltavine.duckdetector.core.evidence
  * Stable identity of a detector.
  *
  * Titles are presentation text and may change with wording or localisation; anything that needs
- * to recognise a detector (ordering, auto-expansion, exported sections) keys on this instead.
+ * to recognise a detector (ordering, exported sections) keys on this instead.
  */
 @JvmInline
 public value class DetectorId(public val value: String) {

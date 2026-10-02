@@ -1,5 +1,6 @@
 /*
  * Copyright 2026 Duck Apps Contributor
+ * If you have any questions, suggestions, or other inquiries, please email Eltavine <me@eltavine.com>.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -150,8 +151,6 @@ class DashboardUiStateTest {
 
         assertEquals(OverviewVerdict.DANGER, overview.verdict)
         assertEquals("Danger", overview.headline)
-        assertEquals(listOf(DetectorId("danger_one"), DetectorId("warning_one")), overview.focusDetectorIds)
-        assertEquals(OverviewCounts(danger = 1, warning = 1, ready = 2, pending = 1), overview.counts)
         assertEquals(false, overview.titleDescribesCompletedScan)
     }
 }

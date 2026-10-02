@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright 2026 Duck Apps Contributor
+If you have any questions, suggestions, or other inquiries, please email Eltavine <me@eltavine.com>.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<resources>
+    <string name="runtime_oct02_dashboard_build_time_line" formatted="false">构建时间（UTC）  %1$s</string>
+    <string name="runtime_oct02_selinux_status_page_readback" formatted="false">状态页读取结果：version=%1$s sequence=%2$s enforcing=%3$s policyload=%4$s deny_unknown=%5$s。</string>
+    <string name="runtime_oct02_selinux_status_page_netlink_fallback">无法映射状态页时，libselinux 会回退到 netlink，因此载体中的访问检查仍然安全。</string>
+    <string name="runtime_oct02_selinux_status_page_child_faulted" formatted="false">子进程已打开并映射 %1$s，但在首次读取映射时被 %2$s 终止。</string>
+    <string name="runtime_oct02_selinux_status_page_stock">原生 selinuxfs 会映射内核状态页，读取时不会触发故障。</string>
+    <string name="runtime_oct02_selinux_status_page_child_start_failed" formatted="false">无法启动状态页子进程（errno=%1$s）；未运行状态页探测。</string>
+    <string name="runtime_oct02_selinux_status_page_seccomp_setup_failed">状态页子进程无法安装 seccomp trap exit。</string>
+    <string name="runtime_oct02_selinux_status_page_seccomp_refused">seccomp 拒绝了子进程中的状态页系统调用。</string>
+    <string name="runtime_oct02_selinux_status_page_child_killed_before_map" formatted="false">状态页子进程在映射页面前被 %1$s 终止。</string>
+    <string name="runtime_oct02_selinux_status_page_mapped_timeout" formatted="false">状态页子进程已映射页面，但在 %1$s 毫秒内未完成读取，已将其停止。</string>
+    <string name="runtime_oct02_selinux_status_page_timeout" formatted="false">状态页子进程在 %1$s 毫秒内未完成，已将其停止。</string>
+    <string name="runtime_oct02_selinux_status_page_not_reaped" formatted="false">状态页子进程在 %1$s 毫秒内未完成；停止后 %2$s 毫秒仍未退出，因此保留了该进程。</string>
+    <string name="runtime_oct02_selinux_status_page_waitpid_failed" formatted="false">waitpid 失败（errno=%1$s）；状态页探测结果未知。</string>
+    <string name="runtime_oct02_selinux_status_page_child_exited" formatted="false">状态页子进程以退出码 %1$s 结束，但未报告页头信息。</string>
+    <string name="runtime_oct02_selinux_status_page_open_failed" formatted="false">打开 %1$s 失败（errno=%2$s）。</string>
+    <string name="runtime_oct02_selinux_status_page_mmap_failed" formatted="false">对 %1$s 执行 mmap 失败（errno=%2$s）。</string>
+    <string name="runtime_oct02_selinux_status_page_size_unavailable">无法获取页面大小；未运行状态页探测。</string>
+    <string name="runtime_oct02_selinux_status_page_bridge_failed" formatted="false">状态页探测桥接失败：%1$s</string>
+    <string name="runtime_oct02_selinux_status_page_bridge_failed_unknown">状态页探测桥接发生未知异常。</string>
+    <string name="runtime_oct02_selinux_status_page_unavailable" formatted="false">SELinux 状态页探测不可用：%1$s</string>
+    <string name="runtime_oct02_selinux_status_page_reason_unreported">状态页探测未报告原因。</string>
+    <string name="runtime_oct02_selinux_status_page_header_incomplete">状态页读取完成，但未获得完整页头。</string>
+    <string name="runtime_oct02_selinux_status_page_access_blocked_fault">已跳过：读取 /sys/fs/selinux/status 导致临时子进程被终止，而 libselinux 会在首次访问检查时读取该文件。</string>
+    <string name="runtime_oct02_selinux_status_page_access_blocked_fault_signal" formatted="false">已跳过：读取 /sys/fs/selinux/status 导致临时子进程被终止（signal %1$s），而 libselinux 会在首次访问检查时读取该文件。</string>
+    <string name="runtime_oct02_selinux_status_page_access_blocked_inconclusive" formatted="false">已跳过：状态页探测结果不确定（%1$s），因此未允许 libselinux 读取 /sys/fs/selinux/status。</string>
+    <string name="runtime_oct02_selinux_status_page_access_checks_skipped">已跳过：状态页探测未能确认 libselinux 可安全映射 /sys/fs/selinux/status。</string>
+
+    <string name="runtime_oct02_tee_dump_title">=== [GENERATEKEY 事务原子结构转储] ===</string>
+    <string name="runtime_oct02_tee_request_parse_heading">--- [请求数据解析] ---</string>
+    <string name="runtime_oct02_tee_request_hex_heading">--- [请求原始十六进制数据] ---</string>
+    <string name="runtime_oct02_tee_reply_parse_heading">--- [回复数据解析] ---</string>
+    <string name="runtime_oct02_tee_reply_hex_heading">--- [回复原始十六进制数据] ---</string>
+    <string name="runtime_oct02_tee_key_metadata_heading">[KeyMetadata（密钥元数据）]：</string>
+    <string name="runtime_oct02_tee_reply_checks_heading">[Keystore2 回复检查]：</string>
+    <string name="runtime_oct02_tee_request_unavailable">请求 parcel 不可用。</string>
+    <string name="runtime_oct02_tee_reply_unavailable">回复 parcel 不可用。</string>
+    <string name="runtime_oct02_tee_length" formatted="false">(长度：%1$s 字节)</string>
+    <string name="runtime_oct02_tee_offset_interface_header" formatted="false">偏移量：%1$s | 接口头：%2$s</string>
+    <string name="runtime_oct02_tee_offset_interface_descriptor" formatted="false">偏移量：%1$s | 接口描述符：%2$s</string>
+    <string name="runtime_oct02_tee_request_parse_interrupted" formatted="false">[!] 请求解析中断：%1$s</string>
+    <string name="runtime_oct02_tee_reply_parse_unavailable">[!] 回复解析不可用。</string>
+    <string name="runtime_oct02_tee_reply_parse_interrupted">[!] 回复解析中断。</string>
+    <string name="runtime_oct02_tee_transaction_failed">[!] 事务失败；未解析 KeyMetadata 正文。</string>
+    <string name="runtime_oct02_tee_anomaly_not_evaluated">异常：未评估</string>
+    <string name="runtime_oct02_tee_anomaly_none">异常：无</string>
+    <string name="runtime_oct02_tee_anomaly_value" formatted="false">异常：%1$s</string>
+    <string name="runtime_oct02_tee_parser_detail" formatted="false">解析器：%1$s</string>
+    <string name="runtime_oct02_tee_null_unreadable">null 或无法读取</string>
+    <string name="runtime_oct02_tee_unreadable">无法读取</string>
+
+    <string name="runtime_oct02_vdso_checked_detail">对照 /proc/self/maps 与 dl_iterate_phdr，并对当前进程的 [vdso] 视图执行一致性检查。</string>
+    <string name="runtime_oct02_vdso_absent_detail">对照 /proc/self/maps 与 dl_iterate_phdr。内核未为此进程映射 vDSO；对于未启用兼容 vDSO 的内核上的 32 位进程而言，这是正常情况，因此没有可检查的 [vdso] 视图。</string>
+    <string name="runtime_oct02_vdso_mapping_count_detail" formatted="false">[vdso] 映射数应为 1，实际为 %1$s（AT_SYSINFO_EHDR=0x%2$s）。</string>
+
+    <string name="runtime_oct02_midr_no_comparable_cpu">没有逻辑 CPU 同时获得缓存 MIDR，以及在该 CPU 上确认的模拟 MIDR_EL1 读取值。</string>
+    <string name="runtime_oct02_midr_read_unattributed" formatted="false">MRS 读取未能确认来自此 CPU（%1$s 次读取实际在其他 CPU 上执行）</string>
+    <string name="runtime_oct02_midr_unstable">此 CPU 上的 MIDR_EL1 在两次读取间发生变化。</string>
+
+    <string name="runtime_oct02_widevine_l1_keybox_detail">Widevine 报告 L1，但返回了哨兵 system ID 或较低的最高会话级别。密钥箱被清除或无效时也可能呈现相同迹象，因此需要审查，但此项本身不会改变 Bootloader 判定。</string>
+</resources>

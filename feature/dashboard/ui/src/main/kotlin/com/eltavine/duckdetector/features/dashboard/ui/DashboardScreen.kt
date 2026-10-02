@@ -1,5 +1,6 @@
 /*
  * Copyright 2026 Duck Apps Contributor
+ * If you have any questions, suggestions, or other inquiries, please email Eltavine <me@eltavine.com>.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,21 +29,23 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.add
+import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.ContainedLoadingIndicator
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
-import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Icon
+import androidx.compose.material3.LoadingIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -50,11 +53,14 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.eltavine.duckdetector.core.designsystem.components.StatusBarProtection
+import com.eltavine.duckdetector.core.designsystem.theme.DuckTheme
+import com.eltavine.duckdetector.core.designsystem.theme.DuckTypography
+import com.eltavine.duckdetector.core.designsystem.theme.ShapeTokens
 import com.eltavine.duckdetector.core.ui.detector.DetectorSession
 import com.eltavine.duckdetector.core.ui.detector.DeviceProfileSession
 import com.eltavine.duckdetector.core.ui.LocalAppBuildInfo
 import com.eltavine.duckdetector.core.ui.localization.LocalDisplayTextTranslator
-import com.eltavine.duckdetector.core.ui.components.LocalDetectorIdentity
 import com.eltavine.duckdetector.core.ui.components.WrapSafeText
 import com.eltavine.duckdetector.core.ui.presentation.formatBuildTimeUtc
 import com.eltavine.duckdetector.features.dashboard.presentation.export.DashboardExport
@@ -126,20 +132,15 @@ fun DashboardScreen(
     Box(
         modifier = modifier
             .fillMaxSize()
-            .background(MaterialTheme.colorScheme.background),
+            .background(DuckTheme.palette.groupedBackground),
     ) {
         LazyColumn(
-            modifier = Modifier
-                .fillMaxSize()
-                .statusBarsPadding()
-                .navigationBarsPadding(),
-            verticalArrangement = Arrangement.spacedBy(18.dp),
-            contentPadding = PaddingValues(
-                start = 20.dp,
-                top = 16.dp,
-                end = 20.dp,
-                bottom = 28.dp,
-            ),
+            modifier = Modifier.fillMaxSize(),
+            verticalArrangement = Arrangement.spacedBy(16.dp),
+            contentPadding = WindowInsets.safeDrawing
+                // The bottom clears the floating tab switcher the shell draws over the last card.
+                .add(WindowInsets(left = 16.dp, top = 12.dp, right = 16.dp, bottom = 96.dp))
+                .asPaddingValues(),
         ) {
             item { BrandHeader() }
             item {
@@ -160,14 +161,14 @@ fun DashboardScreen(
                 items = orderedDetectors,
                 key = { detector -> detector.id.value },
             ) { detector ->
-                CompositionLocalProvider(LocalDetectorIdentity provides detector.id) {
-                    detector.Card()
-                }
+                detector.Card()
             }
             item {
                 deviceProfile.Card()
             }
         }
+
+        StatusBarProtection(modifier = Modifier.align(Alignment.TopCenter))
     }
 }
 
@@ -178,7 +179,7 @@ private fun DashboardSummarySection(
     showLoadingOverlay: Boolean,
 ) {
     Box(modifier = Modifier.fillMaxWidth()) {
-        Column(verticalArrangement = Arrangement.spacedBy(18.dp)) {
+        Column(verticalArrangement = Arrangement.spacedBy(24.dp)) {
             DashboardOverviewCard(model = overview)
             DashboardFindingsCard(findings = findings)
         }
@@ -196,29 +197,30 @@ private fun DashboardSummarySection(
 private fun DashboardLoadingOverlay(
     modifier: Modifier = Modifier,
 ) {
+    // The summary it covers is taller than the screen, so the message sits near its top edge.
     Box(
-        modifier = modifier
-            .background(MaterialTheme.colorScheme.surface),
-        contentAlignment = Alignment.Center,
+        modifier = modifier.background(
+            color = DuckTheme.palette.groupedSurface,
+            shape = ShapeTokens.CornerExtraLargeIncreased,
+        ),
+        contentAlignment = Alignment.TopCenter,
     ) {
         Column(
-            modifier = Modifier.padding(horizontal = 24.dp, vertical = 20.dp),
+            modifier = Modifier.padding(start = 32.dp, end = 32.dp, top = 88.dp, bottom = 24.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(14.dp),
+            verticalArrangement = Arrangement.spacedBy(10.dp),
         ) {
-            ContainedLoadingIndicator(
-                containerColor = MaterialTheme.colorScheme.primaryContainer,
-                indicatorColor = MaterialTheme.colorScheme.onPrimaryContainer,
-            )
+            LoadingIndicator(modifier = Modifier.size(56.dp))
             WrapSafeText(
                 text = "Running local checks",
-                style = MaterialTheme.typography.titleSmall,
+                modifier = Modifier.padding(top = 6.dp),
+                style = DuckTypography.Headline,
                 color = MaterialTheme.colorScheme.onSurface,
                 textAlign = TextAlign.Center,
             )
             WrapSafeText(
                 text = "Dashboard summary will unlock when the detector cards finish collecting evidence.",
-                style = MaterialTheme.typography.bodySmall,
+                style = DuckTypography.Footnote,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 textAlign = TextAlign.Center,
             )
@@ -230,19 +232,25 @@ private fun DashboardLoadingOverlay(
 private fun ExportButton(
     onClick: () -> Unit,
 ) {
-    FilledTonalButton(
+    Button(
         onClick = onClick,
         modifier = Modifier.fillMaxWidth(),
+        shape = ShapeTokens.CornerLarge,
+        colors = ButtonDefaults.buttonColors(
+            containerColor = DuckTheme.palette.groupedSurface,
+            contentColor = MaterialTheme.colorScheme.primary,
+        ),
+        contentPadding = PaddingValues(vertical = 15.dp),
     ) {
         Icon(
             imageVector = Icons.Rounded.FileDownload,
             contentDescription = null,
-            modifier = Modifier.size(18.dp),
+            modifier = Modifier.size(20.dp),
         )
         Spacer(modifier = Modifier.size(8.dp))
         WrapSafeText(
             text = "Export Report",
-            style = MaterialTheme.typography.labelLarge,
+            style = DuckTypography.Headline,
         )
     }
 }

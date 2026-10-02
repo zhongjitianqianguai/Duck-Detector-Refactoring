@@ -1,5 +1,6 @@
 /*
  * Copyright 2026 Duck Apps Contributor
+ * If you have any questions, suggestions, or other inquiries, please email Eltavine <me@eltavine.com>.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,6 +28,7 @@ dependencies {
     implementation(project(":core:evidence"))
     implementation(project(":core:report"))
     api(project(":core:ui"))
+    implementation(project(":core:designsystem"))
     api(project(":feature:deviceinfo:domain"))
     api(project(":feature:deviceinfo:presentation"))
     api(libs.androidx.lifecycle.viewmodel.compose)

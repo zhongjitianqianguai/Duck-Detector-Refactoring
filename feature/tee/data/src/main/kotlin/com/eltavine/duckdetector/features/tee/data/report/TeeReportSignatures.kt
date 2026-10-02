@@ -1,5 +1,6 @@
 /*
  * Copyright 2026 Duck Apps Contributor
+ * If you have any questions, suggestions, or other inquiries, please email Eltavine <me@eltavine.com>.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,6 +17,7 @@
 
 package com.eltavine.duckdetector.features.tee.data.report
 
+import com.eltavine.duckdetector.features.tee.data.verification.keystore.GenerateKeyReplyAnomaly
 import com.eltavine.duckdetector.features.tee.data.verification.keystore.TimingSideChannelResult
 import com.eltavine.duckdetector.features.tee.domain.TeeSignalLevel
 
@@ -131,10 +133,11 @@ internal fun generateModeAnomalyState(artifacts: TeeScanArtifacts): GenerateMode
         .replace("\r\n", "\n")
         .takeIf { it.isNotBlank() && it != "null" }
     return when {
-        result.matched -> GenerateModeAnomalyState.MATCHED
+        result.anomaly == GenerateKeyReplyAnomaly.USER_ID_NOT_APPENDED_BY_KEYSTORE -> GenerateModeAnomalyState.MATCHED
         // tees 样例里的 code -75 + legacy-db 组合落在 timing skip payload 里时，语义上也属于 TEE Simulator 生成链路命中。
         // When the tees code -75 + legacy-db combination lands in a timing skip payload, it also counts as a TEE Simulator generate-path hit.
         timingPayload?.matchesTeeSimulatorLegacyDbSignature() == true -> GenerateModeAnomalyState.MATCHED
+        result.anomaly == GenerateKeyReplyAnomaly.CREATION_DATETIME_OUTSIDE_KEYSTORE -> GenerateModeAnomalyState.REVIEW
         result.available -> GenerateModeAnomalyState.CLEAN
         else -> GenerateModeAnomalyState.UNAVAILABLE
     }
@@ -142,6 +145,7 @@ internal fun generateModeAnomalyState(artifacts: TeeScanArtifacts): GenerateMode
 
 internal enum class GenerateModeAnomalyState {
     MATCHED,
+    REVIEW,
     CLEAN,
     UNAVAILABLE,
 }

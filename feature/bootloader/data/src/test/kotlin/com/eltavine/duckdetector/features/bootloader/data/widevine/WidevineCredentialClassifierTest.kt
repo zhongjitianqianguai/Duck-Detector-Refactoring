@@ -1,5 +1,6 @@
 /*
  * Copyright 2026 Duck Apps Contributor
+ * If you have any questions, suggestions, or other inquiries, please email Eltavine <me@eltavine.com>.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -100,7 +101,7 @@ class WidevineCredentialClassifierTest {
     }
 
     @Test
-    fun `sentinel with downgraded session is danger`() {
+    fun `sentinel with downgraded session stays a warning`() {
         val assessment = classifier.classify(
             snapshot(
                 systemId = WIDEVINE_SENTINEL_SYSTEM_ID,
@@ -109,8 +110,24 @@ class WidevineCredentialClassifierTest {
             lockedContext,
         )
 
-        assertEquals(WidevineAssessmentSeverity.DANGER, assessment.credential().severity)
-        assertEquals("Corroborated anomaly", assessment.credential().value)
+        assertEquals(WidevineAssessmentSeverity.WARNING, assessment.credential().severity)
+        assertEquals("Sentinel ID and lower session", assessment.credential().value)
+        assertEquals(WidevineAssessmentSeverity.WARNING, assessment.impact?.severity)
+    }
+
+    @Test
+    fun `credential findings corroborate while a parity mismatch stands on its own`() {
+        val assessment = classifier.classify(
+            snapshot(
+                systemId = WIDEVINE_SENTINEL_SYSTEM_ID,
+                nativeSystemId = "38497",
+            ),
+            lockedContext,
+        )
+
+        assertTrue(assessment.credential().corroborating)
+        assertEquals(WidevineAssessmentSeverity.WARNING, assessment.parity().severity)
+        assertFalse(assessment.parity().corroborating)
     }
 
     @Test
@@ -279,7 +296,7 @@ class WidevineCredentialClassifierTest {
     }
 
     @Test
-    fun `missing credential without sentinel is partial rather than clean or danger`() {
+    fun `missing credential without sentinel is partial rather than clean or warning`() {
         val assessment = classifier.classify(
             snapshot(
                 systemId = "38497",

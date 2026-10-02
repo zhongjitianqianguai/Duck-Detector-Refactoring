@@ -1,5 +1,6 @@
 /*
  * Copyright 2026 Duck Apps Contributor
+ * If you have any questions, suggestions, or other inquiries, please email Eltavine <me@eltavine.com>.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,12 +29,12 @@ kotlin {
 }
 
 dependencies {
+    implementation(project(":core:designsystem"))
     api(project(":core:detector"))
     api(project(":core:evidence"))
     api(project(":core:report"))
     api(project(":core:scan"))
     implementation(libs.androidx.annotation)
-    implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.browser)
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)

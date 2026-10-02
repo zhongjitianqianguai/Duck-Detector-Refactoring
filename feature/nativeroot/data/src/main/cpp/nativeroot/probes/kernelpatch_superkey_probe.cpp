@@ -1,5 +1,6 @@
 /*
  * Copyright 2026 Duck Apps Contributor
+ * If you have any questions, suggestions, or other inquiries, please email Eltavine <me@eltavine.com>.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,6 +17,8 @@
 
 #include "nativeroot/probes/kernelpatch_superkey_probe.h"
 #include "nativeroot/probes/kernelpatch_supercall_abi.h"
+
+#include "common/seccomp_child.h"
 
 #include <csignal>
 #include <cstdio>
@@ -220,6 +223,9 @@ namespace duckdetector::nativeroot {
 
             if (pid == 0) {
                 close(pipe_fds[0]);
+                if (!common::install_seccomp_trap_exit()) {
+                    _exit(1);
+                }
 
                 SuperkeyResult child_result{};
                 measure_residency(child_result);
@@ -242,7 +248,7 @@ namespace duckdetector::nativeroot {
                 return false;
             }
 
-            if (WIFSIGNALED(status) && WTERMSIG(status) == SIGSYS) {
+            if (common::seccomp_trapped(status)) {
                 blocked_by_seccomp = true;
                 close(pipe_fds[0]);
                 return false;
@@ -270,10 +276,10 @@ namespace duckdetector::nativeroot {
                         .group = "SECCOMP",
                         .label = "System Call Filtered",
                         .value = "SIGSYS Received",
-                        // The parent only observes that the child died from
-                        // SIGSYS, not which syscall raised it, so the syscall
+                        // The parent only learns that seccomp trapped the
+                        // child, not which syscall it trapped, so the syscall
                         // number is not claimed here.
-                        .detail = "The child process was killed by SIGSYS, so the probe was blocked by Seccomp on ARM64.",
+                        .detail = "Seccomp trapped the child process with SIGSYS, so the probe was blocked by Seccomp on ARM64.",
                         .severity = Severity::kDanger,
                     }
                 );

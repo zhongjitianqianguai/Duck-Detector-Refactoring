@@ -1,5 +1,6 @@
 /*
  * Copyright 2026 Duck Apps Contributor
+ * If you have any questions, suggestions, or other inquiries, please email Eltavine <me@eltavine.com>.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,6 +24,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.text.TextStyle
 import com.eltavine.duckdetector.core.ui.localization.LocalDisplayTextTranslator
 
@@ -36,6 +38,8 @@ public fun WrapSafeText(
     style: TextStyle = LocalTextStyle.current,
     color: Color = Color.Unspecified,
     textAlign: TextAlign? = null,
+    maxLines: Int = Int.MAX_VALUE,
+    overflow: TextOverflow = TextOverflow.Clip,
 ) {
     val localizedText = LocalDisplayTextTranslator.current(text)
     val safeText = remember(localizedText) { localizedText.withWrapOpportunities() }
@@ -45,6 +49,8 @@ public fun WrapSafeText(
         modifier = modifier,
         style = if (textAlign != null) style.copy(textAlign = textAlign) else style,
         color = color,
+        maxLines = maxLines,
+        overflow = overflow,
     )
 }
 

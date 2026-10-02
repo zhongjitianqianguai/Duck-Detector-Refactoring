@@ -1,0 +1,6 @@
+<resources>
+    <string name="screen_capture_title">تم اكتشاف لقطة شاشة</string>
+    <string name="screen_capture_message">إذا كانت لقطة الشاشة لا تحتوي على معلومات مفصلة، فلن تتم معالجة هذه المشكلة.</string>
+    <string name="dialog_continue">متابعة</string>
+    <string name="dialog_continue_waiting">متابعة (%1$d ثانية)</string>
+</resources>

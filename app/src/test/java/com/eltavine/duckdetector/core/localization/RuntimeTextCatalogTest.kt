@@ -332,4 +332,51 @@ class RuntimeTextCatalogTest {
     fun leavesUnknownTechnicalEvidenceUntouched() {
         assertEquals("ro.boot.verifiedbootstate=green", catalog.translate("ro.boot.verifiedbootstate=green"))
     }
+
+    @Test
+    fun translatesUpstreamOctoberDiagnosticsAndKeepsProtocolValues() {
+        val widevineSource =
+            "Widevine reports L1 but returned the sentinel system ID or a lower maximum session. " +
+                "A wiped or invalid keybox can look the same as an unlock, so this needs review and does not " +
+                "change the bootloader verdict on its own."
+        val widevineTarget =
+            "Widevine 报告 L1，但返回了哨兵 system ID 或较低的最高会话级别。" +
+                "密钥箱被清除或无效时也可能呈现相同迹象，因此需要审查，但此项本身不会改变 Bootloader 判定。"
+        val octoberCatalog = RuntimeTextCatalog(
+            listOf(
+                "Status page read back: version=%1\$s sequence=%2\$s enforcing=%3\$s policyload=%4\$s deny_unknown=%5\$s." to
+                    "状态页读取结果：version=%1\$s sequence=%2\$s enforcing=%3\$s policyload=%4\$s deny_unknown=%5\$s。",
+                "Expected 1 [vdso] mapping but saw %1\$s (AT_SYSINFO_EHDR=0x%2\$s)" to
+                    "[vdso] 映射数应为 1，实际为 %1\$s（AT_SYSINFO_EHDR=0x%2\$s）。",
+                "MRS read not confirmed on this CPU (%1\$s ran elsewhere)" to
+                    "MRS 读取未能确认来自此 CPU（%1\$s 次读取实际在其他 CPU 上执行）",
+                widevineSource to widevineTarget,
+                "--- [Reply Data Parse] ---" to "--- [回复数据解析] ---",
+                "[!] Reply parse unavailable." to "[!] 回复解析不可用。",
+                "anomaly: not evaluated" to "异常：未评估",
+                "parser: %1\$s" to "解析器：%1\$s",
+            ),
+        )
+        assertEquals(
+            "状态页读取结果：version=1 sequence=4 enforcing=1 policyload=2 deny_unknown=0。",
+            octoberCatalog.translate(
+                "Status page read back: version=1 sequence=4 enforcing=1 policyload=2 deny_unknown=0.",
+            ),
+        )
+        assertEquals(
+            "--- [回复数据解析] ---\n[!] 回复解析不可用。\nexception header: 5 (ERROR)\n异常：未评估\n解析器：malformed_size@8",
+            octoberCatalog.translate(
+                "--- [Reply Data Parse] ---\n[!] Reply parse unavailable.\nexception header: 5 (ERROR)\nanomaly: not evaluated\nparser: malformed_size@8",
+            ),
+        )
+        assertEquals(
+            "[vdso] 映射数应为 1，实际为 0（AT_SYSINFO_EHDR=0x0）。",
+            octoberCatalog.translate("Expected 1 [vdso] mapping but saw 0 (AT_SYSINFO_EHDR=0x0)"),
+        )
+        assertEquals(
+            "MRS 读取未能确认来自此 CPU（2 次读取实际在其他 CPU 上执行）",
+            octoberCatalog.translate("MRS read not confirmed on this CPU (2 ran elsewhere)"),
+        )
+        assertEquals(widevineTarget, octoberCatalog.translate(widevineSource))
+    }
 }

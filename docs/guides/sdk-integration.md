@@ -10,6 +10,8 @@ The SDK is Duck Detector without its UI: every detector, the native libraries an
 
 This publishes `com.eltavine.duckdetector:duckdetector-sdk:0.0.0-SNAPSHOT` to `sdk/aar/build/repository`; pass `-Pduckdetector.sdk.version=<version>` for another version. Assembling the AAR runs `verifySdkAar`, which fails if a headless module is missing from it or a UI library reaches it.
 
+The [Nightly release](https://github.com/eltavine/Duck-Detector-Refactoring/releases/tag/nightly) also includes a commit-named SDK AAR alongside the APK. That AAR is the fused library file; use the local Maven publication above when you need its POM to resolve external dependencies.
+
 ## Requirements
 
 | Requirement | Value |
@@ -102,6 +104,8 @@ class HostZygotePreload : ZygotePreload {
 
 The preload runs each detector's app zygote work, such as Native Root's throne-hunt watch, and then captures the SELinux context validity evidence, before any isolated process forks from the app zygote. Without it, the SELinux and LSPosed carriers report their app zygote evidence as unavailable, and Native Root's throne-hunt carrier reports its collection as failed.
 
+Each step of the preload is logged at info level under the `DuckZygotePreload` tag. If the app zygote is killed during the preload, it leaves no crash report, and the last line under that tag names the step it had reached.
+
 ### Early launch capture
 
 The Mount and Virtualization detectors compare their scan with evidence captured before the first Java activity. Make the SDK's launcher your launch activity and name the activity it hands over to:
@@ -127,6 +131,8 @@ The launcher captures the evidence, then starts the activity that `com.eltavine.
 ### Mount-view sampler
 
 The isolated mount-view scanner is ported from PrivIsolated, which creates a WebView before it binds any helper process. The app keeps that order. Before its UI starts, it attaches the invisible view from `DuckDetector.createProcMountSampler(activity)` as a 1x1 child, and destroys it with the activity. Do the same to scan under the same conditions as the app.
+
+The sampler's renderer runs as an isolated service of your package, so ActivityManager stops it whenever it stops the package's services, as it does when any of the package's processes fails to start. WebView kills a host whose renderer exits unless the host handles the exit, so the sampler handles it: it removes itself from its parent and destroys itself. Destroying it again with the activity is harmless.
 
 ## Permissions
 

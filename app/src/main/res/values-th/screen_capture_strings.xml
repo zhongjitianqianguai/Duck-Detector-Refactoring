@@ -1,0 +1,6 @@
+<resources>
+    <string name="screen_capture_title">ตรวจพบการจับภาพหน้าจอ</string>
+    <string name="screen_capture_message">หากภาพหน้าจอไม่มีข้อมูลรายละเอียด ปัญหานี้จะไม่ได้รับการดำเนินการ</string>
+    <string name="dialog_continue">ดำเนินการต่อ</string>
+    <string name="dialog_continue_waiting">ดำเนินการต่อ (%1$d วินาที)</string>
+</resources>

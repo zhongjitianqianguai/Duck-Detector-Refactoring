@@ -1,5 +1,6 @@
 /*
  * Copyright 2026 Duck Apps Contributor
+ * If you have any questions, suggestions, or other inquiries, please email Eltavine <me@eltavine.com>.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -79,17 +80,14 @@ internal fun trustStatus(report: BootloaderReport): DetectorStatus {
 }
 
 internal fun BootloaderReport.toCardAssessment(): BootloaderCardAssessment {
-    val widevineFindings = findings.filter { finding ->
-        finding.id.startsWith(WIDEVINE_FINDING_PREFIX)
+    val widevineReview = findings.any { finding ->
+        finding.id.startsWith(WIDEVINE_FINDING_PREFIX) &&
+            finding.severity == BootloaderFindingSeverity.WARNING
     }
-    return when {
-        widevineFindings.any { it.severity == BootloaderFindingSeverity.DANGER } ->
-            BootloaderCardAssessment.CONSISTENCY_CONFLICT
-
-        widevineFindings.any { it.severity == BootloaderFindingSeverity.WARNING } ->
-            BootloaderCardAssessment.CONSISTENCY_REVIEW
-
-        else -> BootloaderCardAssessment.AUTHORITATIVE
+    return if (widevineReview) {
+        BootloaderCardAssessment.CONSISTENCY_REVIEW
+    } else {
+        BootloaderCardAssessment.AUTHORITATIVE
     }
 }
 
