@@ -80,9 +80,9 @@ limitations under the License.
     <string name="settings_section_network">网络</string>
     <string name="settings_title">设置</string>
     <string name="update_settings_label">检查更新</string>
-    <string name="update_status_available">有新的 Nightly 构建；点按查看详情</string>
+    <string name="update_status_available">有新的定制 Nightly 构建；点按查看详情</string>
     <string name="update_status_checking">正在检查 GitHub…</string>
-    <string name="update_status_current">当前已是最新 Nightly 构建</string>
+    <string name="update_status_current">当前已是最新定制 Nightly 构建</string>
     <string name="update_status_failed">无法检查 GitHub；点按重试</string>
-    <string name="update_status_idle">冷启动后会检查 GitHub Main Nightly；点按可立即检查</string>
+    <string name="update_status_idle">冷启动后会检查我们的定制 Nightly；点按可立即检查</string>
 </resources>

@@ -25,6 +25,21 @@ import org.junit.Test
 class RuntimeTextCatalogResourcesTest {
 
     @Test
+    fun translatesNightlyEmptyInputDigestEvidenceWithoutChangingTheAlgorithmOrHash() {
+        val catalog = catalog()
+        assertEquals("空输入摘要", catalog.translate("Empty-input digest"))
+        assertEquals(
+            "这是空输入的 SHA-256 摘要。libavb 对已加载的 vbmeta 镜像求摘要，因此验证启动不会产生该值。",
+            catalog.translate(
+                "This is the SHA-256 digest of empty input. libavb digests the loaded vbmeta images, " +
+                    "so verified boot does not produce it.",
+            ),
+        )
+        val raw = "ro.boot.vbmeta.digest=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        assertEquals(raw, catalog.translate(raw))
+    }
+
+    @Test
     fun translatesDashboardBuildTimeWithoutChangingTheTimestamp() {
         assertEquals(
             "构建时间（UTC）  2026-10-02 03:00:00",
@@ -64,8 +79,11 @@ class RuntimeTextCatalogResourcesTest {
     private fun catalog(): RuntimeTextCatalog {
         val resourceRoot = listOf(File("src/main/res"), File("app/src/main/res"))
             .first { File(it, "values/$ResourceFile").isFile }
-        val english = strings(File(resourceRoot, "values/$ResourceFile"))
-        val chinese = strings(File(resourceRoot, "values-zh-rCN/$ResourceFile"))
+        val nightlyKeys = setOf("bootloader_value_empty_input_digest", "bootloader_detail_empty_input_digest")
+        val english = strings(File(resourceRoot, "values/$ResourceFile")) +
+            strings(File(resourceRoot, "values/detector_strings.xml")).filterKeys { it in nightlyKeys }
+        val chinese = strings(File(resourceRoot, "values-zh-rCN/$ResourceFile")) +
+            strings(File(resourceRoot, "values-zh-rCN/detector_strings.xml")).filterKeys { it in nightlyKeys }
         return RuntimeTextCatalog(english.map { (name, source) -> source to chinese.getValue(name) })
     }
 

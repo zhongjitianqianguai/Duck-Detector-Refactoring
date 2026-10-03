@@ -23,7 +23,7 @@ import org.json.JSONObject
 internal const val TEST_HEAD_SHA = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
 internal const val TEST_BASE_SHA = "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
 internal const val TEST_DOWNLOAD_URL =
-    "https://github.com/eltavine/Duck-Detector-Refactoring/releases/download/nightly/Duck.Detector-test.apk"
+    "https://github.com/zhongjitianqianguai/Duck-Detector-Refactoring/releases/download/nightly/Duck.Detector-test.apk"
 
 internal fun validUpdateManifestJson(
     versionCode: Int = 500,

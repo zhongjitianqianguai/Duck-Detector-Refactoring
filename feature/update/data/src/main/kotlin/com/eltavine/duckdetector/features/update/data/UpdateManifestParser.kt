@@ -110,10 +110,10 @@ class UpdateManifestParser {
     private companion object {
         private const val SUPPORTED_SCHEMA_VERSION = 1
         private const val EXPECTED_CHANNEL = "nightly"
-        private val EXPECTED_BRANCHES = setOf("main", "master")
+        private val EXPECTED_BRANCHES = NightlyReleaseSource.BUILD_BRANCHES
         private const val EXPECTED_DOWNLOAD_HOST = "github.com"
         private const val EXPECTED_DOWNLOAD_PATH_PREFIX =
-            "/eltavine/Duck-Detector-Refactoring/releases/download/nightly/"
+            NightlyReleaseSource.DOWNLOAD_PATH_PREFIX
         private const val MAX_ASSET_NAME_LENGTH = 255
         private val FULL_SHA_REGEX = Regex("^[0-9a-f]{40}$")
         private val SHA256_REGEX = Regex("^[0-9a-f]{64}$")

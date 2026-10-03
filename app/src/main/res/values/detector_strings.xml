@@ -176,6 +176,8 @@ limitations under the License.
     <string name="bootloader_value_anomaly">Anomaly</string>
     <string name="bootloader_value_attestation">Attestation</string>
     <string name="bootloader_value_digest_missing">Digest missing</string>
+    <string name="bootloader_value_empty_input_digest">Empty-input digest</string>
+    <string name="bootloader_detail_empty_input_digest">This is the %1$s digest of empty input. libavb digests the loaded vbmeta images, so verified boot does not produce it.</string>
     <string name="bootloader_value_factory">Factory</string>
     <string name="bootloader_value_failed">Failed</string>
     <string name="bootloader_value_fallback_only">Fallback only</string>

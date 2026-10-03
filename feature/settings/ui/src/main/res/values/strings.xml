@@ -80,9 +80,9 @@ limitations under the License.
     <string name="settings_section_network">Network</string>
     <string name="settings_title">Settings</string>
     <string name="update_settings_label">Check for updates</string>
-    <string name="update_status_available">A newer Nightly build is available; tap for details</string>
+    <string name="update_status_available">A newer fork Nightly build is available; tap for details</string>
     <string name="update_status_checking">Checking GitHub…</string>
-    <string name="update_status_current">You have the latest Nightly build</string>
+    <string name="update_status_current">You have the latest fork Nightly build</string>
     <string name="update_status_failed">Could not check GitHub; tap to retry</string>
-    <string name="update_status_idle">Checks Main Nightly on GitHub after a cold start; tap to check now</string>
+    <string name="update_status_idle">Checks this fork\'s Nightly on GitHub after a cold start; tap to check now</string>
 </resources>

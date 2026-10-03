@@ -219,6 +219,8 @@ limitations under the License.
         <item>@string/bootloader_value_anomaly</item>
         <item>@string/bootloader_value_attestation</item>
         <item>@string/bootloader_value_digest_missing</item>
+        <item>@string/bootloader_value_empty_input_digest</item>
+        <item>@string/bootloader_detail_empty_input_digest</item>
         <item>@string/bootloader_value_factory</item>
         <item>@string/bootloader_value_failed</item>
         <item>@string/bootloader_value_fallback_only</item>

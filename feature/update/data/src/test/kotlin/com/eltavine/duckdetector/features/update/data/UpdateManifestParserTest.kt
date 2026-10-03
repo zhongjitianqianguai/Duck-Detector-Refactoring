@@ -45,6 +45,23 @@ class UpdateManifestParserTest {
     }
 
     @Test
+    fun `parses the fork nightly branch`() {
+        assertEquals("nightly", parser.parse(validUpdateManifestJson(branch = "nightly")).branch)
+    }
+
+    @Test
+    fun `rejects an upstream APK even with the correct filename`() {
+        assertThrows(UpdateManifestValidationException::class.java) {
+            parser.parse(
+                validUpdateManifestJson(
+                    downloadUrl =
+                        "https://github.com/eltavine/Duck-Detector-Refactoring/releases/download/nightly/Duck.Detector-test.apk",
+                ),
+            )
+        }
+    }
+
+    @Test
     fun `rejects an unexpected Nightly branch`() {
         assertThrows(UpdateManifestValidationException::class.java) {
             parser.parse(validUpdateManifestJson(branch = "development"))
@@ -70,7 +87,7 @@ class UpdateManifestParserTest {
     }
 
     @Test
-    fun `rejects download URLs outside the official Nightly release`() {
+    fun `rejects download URLs outside the fork Nightly release`() {
         assertThrows(UpdateManifestValidationException::class.java) {
             parser.parse(
                 validUpdateManifestJson(
@@ -86,7 +103,7 @@ class UpdateManifestParserTest {
             parser.parse(
                 validUpdateManifestJson(
                     downloadUrl =
-                        "https://github.com/eltavine/Duck-Detector-Refactoring/releases/download/nightly/another.apk",
+                        "https://github.com/zhongjitianqianguai/Duck-Detector-Refactoring/releases/download/nightly/another.apk",
                 ),
             )
         }

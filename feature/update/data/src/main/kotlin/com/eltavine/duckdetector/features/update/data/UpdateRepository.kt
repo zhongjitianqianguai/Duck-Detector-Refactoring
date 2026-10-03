@@ -155,13 +155,12 @@ class UpdateRepository internal constructor(
     }
 
     companion object {
-        const val MANIFEST_URL =
-            "https://github.com/eltavine/Duck-Detector-Refactoring/releases/download/nightly/update.json"
+        const val MANIFEST_URL = NightlyReleaseSource.MANIFEST_URL
 
         private const val GITHUB_API_REPOSITORY =
-            "https://api.github.com/repos/eltavine/Duck-Detector-Refactoring"
+            NightlyReleaseSource.API_REPOSITORY
         private const val GITHUB_WEB_REPOSITORY =
-            "https://github.com/eltavine/Duck-Detector-Refactoring"
+            NightlyReleaseSource.WEB_REPOSITORY
         private const val JSON_ACCEPT = "application/json"
         private const val GITHUB_JSON_ACCEPT = "application/vnd.github+json"
         private const val COMPARE_PAGE_SIZE = 100

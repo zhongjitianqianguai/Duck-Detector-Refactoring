@@ -30,6 +30,30 @@ import org.junit.Test
 class UpdateRepositoryTest {
 
     @Test
+    fun `checks metadata and compares commits only in our fork`() = runBlocking {
+        val urls = mutableListOf<String>()
+        val repository = repository(
+            client = UpdateHttpClient { url, _ ->
+                urls += url
+                if (url.endsWith("/update.json")) validUpdateManifestJson(branch = "nightly")
+                else compareResponseJson(1, listOf(testCommit(1)))
+            },
+        )
+
+        val result = repository.check(400, TEST_BASE_SHA) as UpdateCheckResult.Available
+
+        assertEquals(
+            "https://github.com/zhongjitianqianguai/Duck-Detector-Refactoring/releases/download/nightly/update.json",
+            urls.first(),
+        )
+        assertTrue(urls.last().startsWith("https://api.github.com/repos/zhongjitianqianguai/"))
+        assertEquals(
+            "https://github.com/zhongjitianqianguai/Duck-Detector-Refactoring/compare/$TEST_BASE_SHA...$TEST_HEAD_SHA",
+            result.update.compareUrl,
+        )
+    }
+
+    @Test
     fun `same or lower remote version does not request a comparison`() = runBlocking {
         val urls = mutableListOf<String>()
         val repository = repository(
