@@ -39,12 +39,18 @@ tasks.withType<org.gradle.api.tasks.testing.Test>().configureEach {
     inputs.files(
         "src/main/res/values/sync_20261002_strings.xml",
         "src/main/res/values-zh-rCN/sync_20261002_strings.xml",
+        "src/main/res/values/sync_20261013_strings.xml",
+        "src/main/res/values-zh-rCN/sync_20261013_strings.xml",
         "src/main/res/values/detector_strings.xml",
         "src/main/res/values-zh-rCN/detector_strings.xml",
     ).withPropertyName("octoberRuntimeTranslations")
 }
 
 dependencies {
+    implementation(libs.uihelper)
+    implementation(libs.miuix.ui)
+    implementation(libs.miuix.nav)
+    implementation(project(":core:navigation"))
     implementation(project(":core:detector"))
     implementation(project(":core:evidence"))
     implementation(project(":core:report"))

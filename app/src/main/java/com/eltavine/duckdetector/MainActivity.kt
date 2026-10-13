@@ -26,15 +26,22 @@ import androidx.activity.ComponentActivity
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.mutableLongStateOf
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.produceState
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.platform.ComposeView
-import com.eltavine.duckdetector.core.cli.CliContract
 import com.eltavine.duckdetector.core.designsystem.theme.DuckDetectorTheme
+import com.eltavine.duckdetector.core.cli.CliContract
 import com.eltavine.duckdetector.core.localization.DisplayTextLocalizer
+import com.eltavine.duckdetector.core.ui.localization.LocalDisplayTextTranslator
 import com.eltavine.duckdetector.core.ui.AppBuildInfo
 import com.eltavine.duckdetector.core.ui.LocalAppBuildInfo
-import com.eltavine.duckdetector.core.ui.localization.LocalDisplayTextTranslator
 import com.eltavine.duckdetector.sdk.DuckDetector
 import com.eltavine.duckdetector.ui.DuckDetectorApp
+import com.eltavine.duckdetector.ui.StartupBootstrapLoadingScreen
+import com.eltavine.duckdetector.ui.appearance.UiAppearanceStore
+import io.github.xiaotong6666.uihelper.mode.UiMode
+import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
     private val cliScanRequestId = mutableLongStateOf(0L)
@@ -61,15 +68,32 @@ class MainActivity : ComponentActivity() {
             ),
         )
         setContentView(root)
+        val appearanceStore = UiAppearanceStore.getInstance(applicationContext)
         composeView.setContent {
+            // Resolve the saved mode before rendering the app, otherwise a saved Material choice
+            // briefly flashes MIUIX on every cold start.
+            val uiMode by produceState<UiMode?>(initialValue = null, key1 = appearanceStore) {
+                appearanceStore.mode.collect { value = it }
+            }
+            val scope = rememberCoroutineScope()
             CompositionLocalProvider(
                 LocalAppBuildInfo provides appBuildInfo,
                 LocalDisplayTextTranslator provides { text ->
                     DisplayTextLocalizer.translate(this@MainActivity, text)
                 },
             ) {
-                DuckDetectorTheme {
-                    DuckDetectorApp(cliScanRequestId = cliScanRequestId.longValue)
+                val resolvedMode = uiMode
+                if (resolvedMode == null) {
+                    StartupBootstrapLoadingScreen()
+                } else {
+                    DuckDetectorTheme(uiMode = resolvedMode) {
+                        DuckDetectorApp(
+                            cliScanRequestId = cliScanRequestId.longValue,
+                            onUiModeChange = { selected ->
+                                scope.launch { appearanceStore.setMode(selected) }
+                            },
+                        )
+                    }
                 }
             }
         }

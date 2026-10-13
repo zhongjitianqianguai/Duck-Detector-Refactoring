@@ -60,9 +60,11 @@ DuckDetector 在 Android 设备上采集并关联与安全相关的证据，用�
 
 当前覆盖以下功能域，每项都链接到对应的证据记录（英文），说明检测器检查什么、为什么构成证据，以及哪些情况它观察不到：
 
-[`Bootloader`](./feature/bootloader/EVIDENCE.md) · [`Custom ROM`](./feature/customrom/EVIDENCE.md) · [`Dangerous Apps`](./feature/dangerousapps/EVIDENCE.md) · [`Kernel Check`](./feature/kernelcheck/EVIDENCE.md) · [`LSPosed`](./feature/lsposed/EVIDENCE.md) · [`Memory`](./feature/memory/EVIDENCE.md) · [`Mount`](./feature/mount/EVIDENCE.md) · [`Native Root`](./feature/nativeroot/EVIDENCE.md) · [`Play Integrity Fix`](./feature/playintegrityfix/EVIDENCE.md) · [`SELinux`](./feature/selinux/EVIDENCE.md) · [`SU`](./feature/su/EVIDENCE.md) · [`System Properties`](./feature/systemproperties/EVIDENCE.md) · [`TEE`](./feature/tee/EVIDENCE.md) · [`Virtualization`](./feature/virtualization/EVIDENCE.md) · [`Zygisk`](./feature/zygisk/EVIDENCE.md)
+[`ADB Runtime`](./feature/adbruntime/EVIDENCE.md) · [`Bootloader`](./feature/bootloader/EVIDENCE.md) · [`Custom ROM`](./feature/customrom/EVIDENCE.md) · [`Dangerous Apps`](./feature/dangerousapps/EVIDENCE.md) · [`Kernel Check`](./feature/kernelcheck/EVIDENCE.md) · [`LSPosed`](./feature/lsposed/EVIDENCE.md) · [`Memory`](./feature/memory/EVIDENCE.md) · [`Mount`](./feature/mount/EVIDENCE.md) · [`Native Root`](./feature/nativeroot/EVIDENCE.md) · [`Play Integrity Fix`](./feature/playintegrityfix/EVIDENCE.md) · [`Root Managers`](./feature/rootmanagers/EVIDENCE.md) · [`SELinux`](./feature/selinux/EVIDENCE.md) · [`SU`](./feature/su/EVIDENCE.md) · [`System Properties`](./feature/systemproperties/EVIDENCE.md) · [`TEE`](./feature/tee/EVIDENCE.md) · [`Virtualization`](./feature/virtualization/EVIDENCE.md) · [`Zygisk`](./feature/zygisk/EVIDENCE.md)
 
 其中，`Play Integrity Fix` 检测的是与完整性伪装修改相关的本地迹象，并不会返回 Google Play Integrity API 的官方判定。TEE 模块检查 Android KeyStore 与设备证明证据，包括证书链、安全级别、吊销数据，以及设备支持时的部分 KeyMint、StrongBox 和 Soter 行为。
+
+SELinux 检测还保留了 app-zygote 阶段的 SID 表查询与注册对照实验。重复差异只作为辅助警告；同步注册的策略隐藏可能不留下差异。特权上下文写入在一次性子进程中执行，并加入畸形与合法载荷控制；上下文识别和普通 app 计时只作为辅助警告，app-zygote AVC 查找计数画像仅作信息展示，阴性观察不能排除隐藏策略。访问失败和不完整实验分别显示覆盖状态。源码依据与真机验证缺口见 [SELinux 证据记录](./feature/selinux/EVIDENCE.md)。
 
 项目还包含仪表盘、设备信息、设置、更新检查、通知、开源许可和通用 UI 等辅助模块。
 
@@ -73,6 +75,8 @@ DuckDetector 在 Android 设备上采集并关联与安全相关的证据，用�
 - **原生探针：** 共享原生库负责直接系统调用、`/proc` 检查、计时测量、链接器与运行时可见性检查，以及特定架构的汇编路径。
 - **进程隔离：** 部分 Zygisk、Mount、Native Root、虚拟化、SELinux、LSPosed 和 TEE 检查运行在独立进程或隔离服务中，用于对照不同进程边界下的证据。
 - **证据关联：** 仪表盘分别展示检测项与覆盖状态，不将单个启发式信号视为确定结论。
+
+Native Root 另有默认关闭的 [fsnotify SRCU 时序实验](feature/nativeroot/SRCU_TIMING.md)。用户明确启用后，它在支持的 Android 12–14 环境中临时修改私有动态权限，比较 inotify 实例关闭的延迟。重复延迟只作为竞争的辅助证据，不判定 KernelSU；阈值仍待真机校准，独立进程超时也无法恢复阻塞的内核。
 
 # 兼容性
 
@@ -96,6 +100,7 @@ Duck-Detector-Refactoring/
 ├─ feature/               # 每个目录一个检测器或辅助功能，按层拆分
 ├─ samples/sdk-consumer/  # 只依赖已发布 AAR 构建的独立示例应用
 ├─ build-logic/           # 约定插件、模块边界与依赖校验、生成资源任务
+├─ uihelper/              # 锁定提交的 Git 子模块：MIUIX / Material UI，独立 Gradle 构建
 ├─ docs/                  # 架构概览、指南与后续事项
 ├─ .github/policies/      # 模块、原生、检测器接触点、反射与文本协议策略
 ├─ .github/scripts/       # 仓库守卫脚本及其自测
@@ -136,6 +141,12 @@ python3 scripts/new_detector.py <name> --description "检测什么，以及为�
 
 依赖与工具版本以 [`gradle.properties`](./gradle.properties) 和 [`gradle/libs.versions.toml`](./gradle/libs.versions.toml) 为准。
 
+克隆后需要初始化 UI 子模块（也可在克隆时使用 `--recurse-submodules`）。它作为独立 Gradle 构建接入，不进入无 UI 的检测 SDK：
+
+```bash
+git submodule update --init --recursive
+```
+
 ## 常用命令
 
 ```bash
@@ -161,7 +172,7 @@ for s in .github/scripts/check-*.py; do python3 "$s"; done
 
 [Nightly Release](https://github.com/eltavine/Duck-Detector-Refactoring/releases/tag/nightly) 会同时提供 APK 和 SDK AAR。
 
-参与开发前请阅读 [`CODING_STANDARDS.md`](./CODING_STANDARDS.md)。
+参与开发前请阅读 [`CONTRIBUTING_ZH.md`](./CONTRIBUTING_ZH.md) 与 [`CODING_STANDARDS.md`](./CODING_STANDARDS.md)。
 
 ## Release 签名
 

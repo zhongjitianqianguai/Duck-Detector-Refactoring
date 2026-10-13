@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="su_section_root_artifacts">Root 痕迹</string>
+    <string name="su_section_native_context">原生上下文</string>
+    <string name="su_section_impact">影响</string>
+    <string name="su_section_detection_methods">检测方法</string>
+    <string name="su_section_scan_summary">扫描摘要</string>
+</resources>

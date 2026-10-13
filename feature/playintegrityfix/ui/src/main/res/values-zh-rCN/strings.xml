@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="playintegrityfix_section_spoof_properties">伪装属性</string>
+    <string name="playintegrityfix_section_cross_source_consistency">跨来源一致性</string>
+    <string name="playintegrityfix_section_runtime_traces">运行时痕迹</string>
+    <string name="playintegrityfix_section_impact">影响</string>
+    <string name="playintegrityfix_section_detection_methods">检测方法</string>
+    <string name="playintegrityfix_section_scan_summary">扫描摘要</string>
+</resources>

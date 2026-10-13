@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="zygisk_section_security_state">安全状态</string>
+    <string name="zygisk_section_impact">影响</string>
+    <string name="zygisk_section_detection_methods">检测方法</string>
+    <string name="zygisk_section_signals">信号</string>
+    <string name="zygisk_section_references">参考资料</string>
+</resources>

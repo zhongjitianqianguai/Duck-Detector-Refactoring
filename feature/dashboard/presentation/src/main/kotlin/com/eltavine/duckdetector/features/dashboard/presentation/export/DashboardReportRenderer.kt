@@ -55,21 +55,23 @@ object DashboardReportRenderer {
     fun render(
         export: DashboardExport,
         localize: (String) -> String = { it },
-    ): String = localize(buildString {
-        appendBanner(export)
-        appendExecutiveSummary(export.overview)
-        appendTopFindings(export.topFindings)
-        export.detectors.forEach { appendDetectorReport(it) }
+    ): String = buildString {
+        // Localize leaf values before labels, indentation and inline details are joined.
+        // The runtime catalog cannot reliably match those formatted composite lines.
+        appendBanner(export, localize)
+        appendExecutiveSummary(export.overview, localize)
+        appendTopFindings(export.topFindings, localize)
+        export.detectors.forEach { appendDetectorReport(it, localize) }
         appendLine()
-        appendDeviceReport(export.device)
-        appendFooter()
-    })
+        appendDeviceReport(export.device, localize)
+        appendFooter(localize)
+    }
 
-    private fun StringBuilder.appendBanner(export: DashboardExport) {
+    private fun StringBuilder.appendBanner(export: DashboardExport, localize: (String) -> String) {
         val identity = export.device.identity
         val header = export.header
         appendLine("================================================================================")
-        appendLine("                      DUCK DETECTOR — SECURITY SCAN REPORT                      ")
+        appendLine("                      ${localize("DUCK DETECTOR — SECURITY SCAN REPORT")}                      ")
         appendLine("================================================================================")
         if (!identity.brand.isNullOrBlank() && !identity.model.isNullOrBlank()) {
             val osStr = if (!identity.androidRelease.isNullOrBlank()) {
@@ -77,24 +79,24 @@ object DashboardReportRenderer {
             } else {
                 ""
             }
-            appendLine("  Target Device  : ${identity.brand} ${identity.model}$osStr")
+            appendLine("  ${localize("Target Device")}  : ${identity.brand} ${identity.model}$osStr")
         }
-        appendLine("  App Version    : ${header.versionName} (Build ${header.versionCode})")
-        appendLine("  Build Commit   : ${header.buildHash}")
-        appendLine("  Build Time     : ${header.buildTime} (UTC)")
-        appendLine("  Report Time    : ${header.reportTime}")
+        appendLine("  ${localize("App Version")}    : ${header.versionName} (Build ${header.versionCode})")
+        appendLine("  ${localize("Build Commit")}   : ${header.buildHash}")
+        appendLine("  ${localize("Build Time")}     : ${header.buildTime} (UTC)")
+        appendLine("  ${localize("Report Time")}    : ${header.reportTime}")
         appendLine()
     }
 
-    private fun StringBuilder.appendExecutiveSummary(overview: DashboardOverviewModel) {
+    private fun StringBuilder.appendExecutiveSummary(overview: DashboardOverviewModel, localize: (String) -> String) {
         appendLine("--------------------------------------------------------------------------------")
-        appendLine("  EXECUTIVE SUMMARY")
+        appendLine("  ${localize("EXECUTIVE SUMMARY")}")
         appendLine("--------------------------------------------------------------------------------")
-        val badge = severityBadge(overview.status.severity)
-        appendLine("  Overall Status : $badge ${overview.headline}")
-        appendLine("  Summary        : ${overview.summary}")
+        val badge = localize(severityBadge(overview.status.severity))
+        appendLine("  ${localize("Overall Status")} : $badge ${localize(overview.headline)}")
+        appendLine("  ${localize("Summary")}        : ${localize(overview.summary)}")
         appendLine()
-        appendLine("  Scan Statistics:")
+        appendLine("  ${localize("Scan Statistics:")}")
         overview.metrics.forEach { metric ->
             val icon = when (metric.metric) {
                 DashboardOverviewMetric.DANGER -> "[✖]"
@@ -102,26 +104,26 @@ object DashboardReportRenderer {
                 DashboardOverviewMetric.READY -> "[✔]"
                 DashboardOverviewMetric.PENDING -> "[·]"
             }
-            appendLine("    $icon ${metric.label.padEnd(9)}: ${metric.value}")
+            appendLine("    $icon ${localize(metric.label).padEnd(9)}: ${metric.value}")
         }
         appendLine()
     }
 
-    private fun StringBuilder.appendTopFindings(findings: List<DashboardFindingModel>) {
+    private fun StringBuilder.appendTopFindings(findings: List<DashboardFindingModel>, localize: (String) -> String) {
         appendLine("--------------------------------------------------------------------------------")
-        appendLine("  TOP FINDINGS")
+        appendLine("  ${localize("TOP FINDINGS")}")
         appendLine("--------------------------------------------------------------------------------")
         if (findings.isEmpty()) {
-            appendLine("  (No security threats or warnings detected)")
+            appendLine("  ${localize("(No security threats or warnings detected)")}")
         } else {
             findings.forEach { finding ->
-                val badge = severityBadge(finding.status.severity)
-                appendLine("  $badge ${finding.detectorTitle}")
-                appendLine("    Headline : ${finding.headline}")
+                val badge = localize(severityBadge(finding.status.severity))
+                appendLine("  $badge ${localize(finding.detectorTitle)}")
+                appendLine("    ${localize("Headline")} : ${localize(finding.headline)}")
                 if (finding.detail.isNotBlank() && finding.detail != finding.headline) {
-                    appendLine("    Details  :")
+                    appendLine("    ${localize("Details")}  :")
                     finding.detail.trim().lines().map { it.trimEnd() }.filter { it.isNotBlank() }.forEach { line ->
-                        appendLine("      $line")
+                        appendLine("      ${localize(line)}")
                     }
                 }
                 appendLine()
@@ -129,107 +131,109 @@ object DashboardReportRenderer {
         }
     }
 
-    private fun StringBuilder.appendDetectorReport(report: DetectorReport) {
+    private fun StringBuilder.appendDetectorReport(report: DetectorReport, localize: (String) -> String) {
         appendLine()
         appendLine("--------------------------------------------------------------------------------")
-        appendLine("  ${severityBadge(report.severity)} ${report.title}")
-        appendLine("  Verdict      : ${report.verdict}")
-        appendQuickFacts(report.quickFacts)
+        appendLine("  ${localize(severityBadge(report.severity))} ${localize(report.title)}")
+        appendLine("  ${localize("Verdict")}      : ${localize(report.verdict)}")
+        appendQuickFacts(report.quickFacts, localize)
         report.blocks.forEach { block ->
             when (block) {
-                is ReportBlock.Rows -> appendRows(block.title, block.rows)
-                is ReportBlock.Bullets -> appendBullets(block.title, block.items)
-                is ReportBlock.Verbatim -> appendVerbatim(block)
+                is ReportBlock.Rows -> appendRows(block.title, block.rows, localize)
+                is ReportBlock.Bullets -> appendBullets(block.title, block.items, localize)
+                is ReportBlock.Verbatim -> appendVerbatim(block, localize)
             }
         }
     }
 
-    private fun StringBuilder.appendQuickFacts(facts: List<ReportFact>) {
+    private fun StringBuilder.appendQuickFacts(facts: List<ReportFact>, localize: (String) -> String) {
         if (facts.isEmpty()) return
-        val formatted = facts.joinToString("  |  ") { "${it.label}: ${it.value}" }
-        appendLine("  Quick Facts  : $formatted")
+        val formatted = facts.joinToString("  |  ") { "${localize(it.label)}: ${localize(it.value)}" }
+        appendLine("  ${localize("Quick Facts")}  : $formatted")
     }
 
-    private fun StringBuilder.appendRows(title: String, rows: List<ReportRow>) {
+    private fun StringBuilder.appendRows(title: String, rows: List<ReportRow>, localize: (String) -> String) {
         if (rows.isEmpty()) return
         appendLine()
-        appendLine("  [$title]")
-        rows.forEach { appendRow(it) }
+        appendLine("  [${localize(title)}]")
+        rows.forEach { appendRow(it, localize) }
     }
 
-    private fun StringBuilder.appendRow(row: ReportRow) {
+    private fun StringBuilder.appendRow(row: ReportRow, localize: (String) -> String) {
+        val label = localize(row.label)
         val trimmedValue = row.value.trim()
+        val displayValue = localize(trimmedValue)
         val hasValue = trimmedValue.isNotBlank()
         val trimmedDetail = row.detail?.trim()
         val hasDetail = !trimmedDetail.isNullOrBlank() && trimmedDetail != trimmedValue
 
         if (!hasValue && !hasDetail) {
-            appendLine("    • ${row.label}")
+            appendLine("    • $label")
             return
         }
 
         if (!hasValue && hasDetail) {
-            appendLine("    • ${row.label}")
-            appendDetailLines(trimmedDetail)
+            appendLine("    • $label")
+            appendDetailLines(trimmedDetail, localize)
             return
         }
 
         if (!hasDetail) {
-            appendLine("    • ${row.label}: $trimmedValue")
+            appendLine("    • $label: $displayValue")
             return
         }
 
         val detailLines = trimmedDetail.lines().map { it.trimEnd() }.filter { it.isNotBlank() }
         if (detailLines.size == 1 && detailLines[0].length <= 60 && !detailLines[0].contains(" = ") && !detailLines[0].contains(" | ")) {
-            appendLine("    • ${row.label}: $trimmedValue (${detailLines[0]})")
+            appendLine("    • $label: $displayValue (${localize(detailLines[0])})")
         } else {
-            appendLine("    • ${row.label}: $trimmedValue")
+            appendLine("    • $label: $displayValue")
             detailLines.forEach { line ->
-                appendLine("        $line")
+                appendLine("        ${localize(line)}")
             }
         }
     }
 
-    private fun StringBuilder.appendDetailLines(detail: String) {
+    private fun StringBuilder.appendDetailLines(detail: String, localize: (String) -> String) {
         detail.lines().map { it.trimEnd() }.filter { it.isNotBlank() }.forEach { line ->
-            appendLine("        $line")
+            appendLine("        ${localize(line)}")
         }
     }
 
-    private fun StringBuilder.appendBullets(title: String, items: List<String>) {
+    private fun StringBuilder.appendBullets(title: String, items: List<String>, localize: (String) -> String) {
         if (items.isEmpty()) return
         appendLine()
-        appendLine("  [$title]")
+        appendLine("  [${localize(title)}]")
         items.forEach { text ->
             val lines = text.trim().lines().map { it.trimEnd() }.filter { it.isNotBlank() }
             if (lines.isNotEmpty()) {
-                appendLine("    • ${lines.first()}")
+                appendLine("    • ${localize(lines.first())}")
                 lines.drop(1).forEach { line ->
-                    appendLine("      $line")
+                    appendLine("      ${localize(line)}")
                 }
             }
         }
     }
 
-    private fun StringBuilder.appendVerbatim(block: ReportBlock.Verbatim) {
+    private fun StringBuilder.appendVerbatim(block: ReportBlock.Verbatim, localize: (String) -> String) {
         appendLine()
-        appendLine("  [${block.title}]")
-        block.lines.forEach { appendLine(it) }
+        appendLine("  [${localize(block.title)}]")
+        block.lines.forEach { appendLine(localize(it)) }
     }
 
-    private fun StringBuilder.appendDeviceReport(device: DeviceReport) {
+    private fun StringBuilder.appendDeviceReport(device: DeviceReport, localize: (String) -> String) {
         appendLine()
         appendLine("================================================================================")
-        appendLine("  DEVICE & SYSTEM SPECIFICATIONS")
+        appendLine("  ${localize("DEVICE & SYSTEM SPECIFICATIONS")}")
         appendLine("================================================================================")
-        appendQuickFacts(device.quickFacts)
-        device.sections.forEach { appendVerbatim(it) }
+        appendQuickFacts(device.quickFacts, localize)
+        device.sections.forEach { appendVerbatim(it, localize) }
     }
 
-    private fun StringBuilder.appendFooter() {
+    private fun StringBuilder.appendFooter(localize: (String) -> String) {
         appendLine()
         appendLine("================================================================================")
-        appendLine("                                 END OF REPORT                                  ")
+        appendLine("                                 ${localize("END OF REPORT")}                                  ")
         appendLine("================================================================================")
     }
 

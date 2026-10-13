@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="runtime_adbruntime_title" formatted="false">ADB 运行状态</string>
+    <string name="runtime_adbruntime_subtitle" formatted="false">交叉核验 Android 各个独立子系统中的调试状态</string>
+    <string name="runtime_adbruntime_verdict_contradiction" formatted="false">运行时状态矛盾</string>
+    <string name="runtime_adbruntime_verdict_enabled" formatted="false">ADB 已启用</string>
+    <string name="runtime_adbruntime_verdict_consistent" formatted="false">ADB 状态一致</string>
+    <string name="runtime_adbruntime_summary_loading" formatted="false">正在关联 Android 调试设置、USB 运行状态、系统属性与无线 ADB 发现结果。</string>
+    <string name="runtime_adbruntime_summary_conflict" formatted="false">独立的 ADB 状态来源彼此不一致。下方列出了持续存在的矛盾。</string>
+    <string name="runtime_adbruntime_summary_active" formatted="false">ADB 已启用或检测到了运行时活动；未确认存在持续的明确运行时矛盾。</string>
+    <string name="runtime_adbruntime_summary_consistent" formatted="false">在可用的 ADB 状态来源中未观察到持续矛盾。</string>
+    <string name="runtime_adbruntime_finding_endpoint_protocol" formatted="false">在两轮发现过程中，本机 %1$s 端点 %2$s:%3$d 均以 %4$s 响应，但 init.svc.adbd 始终处于 stopped 状态。</string>
+    <string name="runtime_adbruntime_mdns_permission_detail" formatted="false">Android 17 仅在授予本地网络权限后才允许静默使用 NsdManager 发现服务。Duck Detector 扫描时不会请求此权限；如需检查网络 ADB，请在应用系统设置中授予该权限。</string>
+    <string name="runtime_adbruntime_listener_timeout" formatted="false">本地监听端在超时前未响应 ADB 握手。</string>
+    <string name="runtime_adbruntime_mdns_no_service" formatted="false">在发现时段内未解析到本地 %1$s 服务。</string>
+    <string name="runtime_rootmanagers_title" formatted="false">Root 管理器</string>
+    <string name="runtime_rootmanagers_subtitle" formatted="false">Root 管理器可见性</string>
+    <string name="runtime_rootmanagers_subtitle_counts" formatted="false">匹配 %1$d 项 · 检查 %2$d 个应用 · 搜索 %3$d 个用户资料</string>
+    <string name="runtime_rootmanagers_verdict_hidden" formatted="false">Root 管理器隐藏了图标</string>
+    <string name="runtime_rootmanagers_verdict_found" formatted="false">发现 Root 管理器应用</string>
+    <string name="runtime_rootmanagers_verdict_weak" formatted="false">Root 管理器弱匹配</string>
+    <string name="runtime_rootmanagers_verdict_enumeration_unavailable" formatted="false">无法枚举启动器应用</string>
+    <string name="runtime_rootmanagers_verdict_profiles_missing" formatted="false">未枚举到用户资料</string>
+    <string name="runtime_rootmanagers_verdict_partial" formatted="false">仅完成部分评估</string>
+    <string name="runtime_rootmanagers_verdict_clean" formatted="false">未发现 Root 管理器应用</string>
+    <string name="runtime_rootmanagers_summary_loading" formatted="false">正在检查可访问用户资料中的已安装应用。</string>
+    <string name="runtime_rootmanagers_presence_not_root" formatted="false">匹配结果只能证明应用已安装，不能证明设备已获取 Root。</string>
+    <string name="runtime_rootmanagers_summary_hidden" formatted="false">识别到 %1$d 个 Root 管理器应用；其中至少一个已停用启动器图标，只能通过应用详情访问。匹配结果只能证明应用已安装，不能证明设备已获取 Root。</string>
+    <string name="runtime_rootmanagers_summary_found" formatted="false">在 %2$d 个用户资料中识别到 %1$d 个 Root 管理器应用；其中 %3$d 个通过对应内核家族的管理器密钥匹配。匹配结果只能证明应用已安装，不能证明设备已获取 Root。</string>
+    <string name="runtime_rootmanagers_summary_weak" formatted="false">仅匹配到较弱的特征，因此这些应用只作信息提示，不会触发警告。</string>
+    <string name="runtime_rootmanagers_summary_enumeration_unavailable" formatted="false">无法枚举启动器应用，因此未匹配到应用并不能说明没有 Root 管理器。</string>
+    <string name="runtime_rootmanagers_summary_profiles_missing" formatted="false">无法枚举任何用户资料，因此未匹配到应用并不能说明没有 Root 管理器。</string>
+    <string name="runtime_rootmanagers_summary_partial" formatted="false">未匹配到 Root 管理器，但%1$s，因此不能据此证明设备中不存在 Root 管理器。</string>
+    <string name="runtime_rootmanagers_summary_clean" formatted="false">已检查 %2$d 个用户资料中的 %1$d 个应用（包括 %3$d 张签名证书），未匹配到 Root 管理器应用。</string>
+    <string name="runtime_rootmanagers_read_failed_counts" formatted="false">已读取 %1$d 项 · 失败 %2$d 项</string>
+    <string name="runtime_rootmanagers_count_of_total" formatted="false">%1$d / %2$d</string>
+    <string name="runtime_heapresidue_title" formatted="false">Zygote 堆残留</string>
+    <string name="runtime_heapresidue_subtitle" formatted="false">实验性 ART 快照 · 低置信度</string>
+    <string name="runtime_heapresidue_loading" formatted="false">正在捕获新的隔离进程堆快照。</string>
+    <string name="runtime_heapresidue_unsupported" formatted="false">此版本早于已审计的 Android 12 至 17 基线，因此不受支持。</string>
+    <string name="runtime_heapresidue_unavailable" formatted="false">隔离堆探针不可用，无法据此得出未发现目标的结论。</string>
+    <string name="runtime_heapresidue_inconclusive" formatted="false">该快照未能建立可用的启动参数证据，覆盖情况未知。</string>
+    <string name="runtime_heapresidue_observed_summary" formatted="false">启动参数字符串中出现了完全匹配的目标名称。其来源和启动时间均未经验证；这不能证明目标目前仍已安装或设备已遭入侵。</string>
+    <string name="runtime_heapresidue_clean_summary" formatted="false">此快照中未观察到目标痕迹。GC、USAP、原生 fork 路径及其他 Zygote 实例都可能隐藏痕迹；启动历史并不完整。</string>
+    <string name="runtime_heapresidue_verdict_clean" formatted="false">未观察到目标痕迹</string>
+    <string name="runtime_heapresidue_verdict_observed" formatted="false">观察到目标参数痕迹</string>
+    <string name="runtime_heapresidue_correlated_evidence" formatted="false">这些是同一快照中相互关联的字符串，并非独立证据。</string>
+    <string name="runtime_heapresidue_coverage_note" formatted="false">仅包含同一 Zygote 的快照；不提供自启动以来的完整历史。包名可能伪造。OEM 行为和 GC 时序仍需真机验证。</string>
+    <string name="runtime_heapresidue_audited_baseline" formatted="false">已对 Android 12 至 17 的启动参数解析、HPROF 格式、转储路径和隔离进程管道策略进行源码审计。</string>
+    <string name="runtime_heapresidue_unaudited_release" formatted="false">仅对 Android 12 至 17 进行过源码审计。此构建仅依赖运行时检查：格式变化导致解析失败时结果为无法判定；转储路径或策略变化时结果为不可用。</string>
+    <string name="runtime_heapresidue_debug_retention" formatted="false">仅限可调试构建；无备份存储中最多保留两个转储、合计 64 MiB。原始堆数据绝不会包含在报告中。</string>
+    <string name="runtime_heapresidue_capture_age" formatted="false">进入转储时的运行时长：%1$d 毫秒</string>
+    <string name="runtime_heapresidue_dump_duration" formatted="false">转储调用耗时：%1$d 毫秒</string>
+    <string name="runtime_selinux_privileged_contexts" formatted="false">强制模式：识别到特权上下文</string>
+    <string name="runtime_selinux_attr_current_timing_verdict" formatted="false">强制模式：SELinux attr/current 时序异常</string>
+    <string name="runtime_selinux_sidtab_discrepancy_verdict" formatted="false">强制模式：SID 表查询不一致</string>
+    <string name="runtime_selinux_sidtab_summary" formatted="false">SELinux 处于强制模式，但 SID 表实验结果与原生注册行为不符。</string>
+    <string name="runtime_selinux_context_write_detail" formatted="false">受控的 app_zygote 写入反复识别出特权上下文：%1$s。这是辅助策略证据，版本覆盖有限。</string>
+    <string name="runtime_selinux_timing_asymmetry" formatted="false">观察到明显且可重复的普通应用 attr/current 时序不对称；其归因仍取决于具体设备。</string>
+    <string name="runtime_selinux_attr_current_impact" formatted="false">受控的 attr/current 写入反复识别出 %1$s 的上下文。这支持策略层面的观察，但不能识别 Root 工具。</string>
+    <string name="runtime_selinux_attr_current_not_recognized" formatted="false">受控的 app_zygote attr/current 写入未识别出受测特权上下文。隐藏的备用策略也可能产生相同的 EINVAL 结果。</string>
+    <string name="runtime_selinux_avc_lookup_impact" formatted="false">被拒绝的 app_zygote attr/current 写入反复多产生了一次 AVC 查询。每 CPU 计数器由多个代码路径共享，无法指出具体查询方；这只是辅助证据，不能用于识别工具或证明已获取 Root。</string>
+    <string name="runtime_selinux_avc_profile_one_two" formatted="false">每轮中，负载 B 的每次拒绝写入都比负载 A 多产生一次 AVC 查询。若 Hook 在将 B 交给原生处理程序前检查 SETCURRENT，就会出现这种结果。每 CPU 计数器由多个代码路径共享，无法指出具体查询方，因此这只是辅助证据，不能用于识别工具或证明 Root。</string>
+    <string name="runtime_selinux_avc_profile_two_two" formatted="false">每轮中，两种负载的每次拒绝写入都产生两次 AVC 查询，比原生处理程序多一次。每 CPU 计数器由多个代码路径共享，无法指出具体查询方，因此这只是辅助证据，不能用于识别工具或证明 Root。</string>
+    <string name="runtime_selinux_avc_profile_one_one" formatted="false">两种负载的每次拒绝写入都产生一次 AVC 查询，与原生处理程序相同。如果 Hook 仅在自身解析失败后才检查 SETCURRENT，成本也相同，因此这不能视为结果正常。</string>
+    <string name="runtime_selinux_avc_unclassified" formatted="false">至少一批数据超出一次或两次查询的范围；固定 CPU 上的其他活动可能导致这种情况。因此不报告查询模式。</string>
+    <string name="runtime_selinux_sidtab_discrepancy" formatted="false">在两轮有限实验中，接受上下文查询时 SID 表没有增长，而被拒绝的 attr/current 写入之后观察到表增长。这是查询/注册行为不一致的辅助证据；无法排除全局活动或隐藏的策略重载。此结果不能识别 KernelSU，也不能证明 Root。</string>
+    <string name="runtime_selinux_sidtab_no_discrepancy" formatted="false">两轮实验均观察到上下文查询后 SID 表增长，而随后 attr/current 写入未导致额外增长。未观察到不一致；同步隐藏实现也可能产生此结果。</string>
+    <string name="runtime_selinux_sidtab_inconclusive" formatted="false">该实验未能在安静对照条件下建立可重复的成对模式，因此未得出完整性结论。</string>
+    <string name="runtime_selinux_sidtab_unsupported" formatted="false">承载进程身份或原生 MLS 候选项不符合此实验的要求。</string>
+    <string name="runtime_selinux_sidtab_round_counts" formatted="false">第 %1$d 轮：条目数 %2$d → %3$d → %4$d → %5$d → %6$d → %7$d</string>
+    <string name="runtime_srcu_repeatable_delay" formatted="false">可重复的延迟（实验性）</string>
+    <string name="runtime_srcu_delay_not_observed" formatted="false">未观察到延迟</string>
+    <string name="runtime_srcu_unsupported_android" formatted="false">Android 触发条件不受支持</string>
+    <string name="runtime_srcu_unsupported_kernel" formatted="false">内核不受支持</string>
+    <string name="runtime_srcu_timeout_cleanup_unconfirmed" formatted="false">已超时；无法确认清理完成</string>
+    <string name="runtime_srcu_busy" formatted="false">实验已在运行</string>
+    <string name="runtime_srcu_permission_tree_unavailable" formatted="false">权限树不可用</string>
+    <string name="runtime_srcu_cleanup_failed" formatted="false">清理失败</string>
+    <string name="runtime_srcu_carrier_unavailable" formatted="false">承载进程不可用</string>
+    <string name="runtime_srcu_method_detail" formatted="false">比较同步 packages.list 刺激期间整实例 inotify 关闭延迟，并与匹配的空闲窗口及刺激后的顺序对照进行比较。</string>
+    <string name="runtime_srcu_interpretation" formatted="false">这是全局 fsnotify/SRCU 争用的实验性辅助证据，不能识别 KernelSU。KernelSU 的 ab23091e 将常规扫描移出此读取路径；6b5f55bd 还移除了管理器缺失时的完整扫描。未观察到延迟也不能排除 KernelSU。</string>
+    <string name="runtime_srcu_platform_coverage" formatted="false">仅适用于 Android 12–14 的旧版权限后端。Android 11 保存的是权限树记录，因此读回结果不能确认是否发生更改；Android 15+ 会单独持久化动态权限。内核分支匹配只是保守门槛，不能证明厂商保留了 ACK 语义。</string>
+    <string name="runtime_srcu_criterion" formatted="false">判定条件：完成 12 轮；每组至少 8 个候选重叠样本；至少 10 轮出现延迟，并在每个四轮区块中重复出现；p95 差距超过 6 倍对照尺度（MAD 与对照中位数十分之一中的较大值）。若刺激组关闭耗时比两个对照组的最长值多出 6 倍尺度，则判为无法确定，而非未发现。阈值仍待真机校准；并发扫描和后台读取仍是混杂因素。</string>
+    <string name="runtime_tee_soter_placeholder_pubkey" formatted="false">%1$s 中出现 D-Soter 固定占位公钥</string>
+    <string name="runtime_tee_soter_zero_signature" formatted="false">%1$s 中的签名为 256 个零字节；RSA 签名操作不会产生这种结果</string>
+    <string name="runtime_tee_soter_zero_signature_variant" formatted="false">%1$s 个零字节作为 %2$s 中的签名；RSA 签名操作不会产生这种结果</string>
+    <string name="runtime_tee_soter_zero_cpu_id" formatted="false">%1$s 中出现 D-Soter 的全零 cpu_id</string>
+    <string name="runtime_tee_soter_zero_cpu_id_length" formatted="false">%2$s 中出现长度为 %1$s 个字符的全零 cpu_id</string>
+    <string name="runtime_tee_soter_relay_cpu_id" formatted="false">%2$s 中出现 cpu_id %1$s；这是 OhMyKeymint 默认 Soter 中继所用设备</string>
+    <string name="runtime_tee_soter_relay_ask" formatted="false">%1$s 中出现 OhMyKeymint 默认 Soter 中继的 uid 0 ASK 公钥</string>
+    <string name="runtime_tee_soter_blob_uid_mismatch" formatted="false">Blob uid 为 %1$s，而非请求的 uid %2$d</string>
+    <string name="runtime_tee_soter_cpu_id_mismatch" formatted="false">ASK 与 AuthKey 报告的 cpu_id 不同（%1$s）</string>
+    <string name="runtime_tee_soter_nonpositive_counter" formatted="false">%2$s 中的计数器为 %1$s，不是正数</string>
+    <string name="runtime_tee_soter_service_stopped" formatted="false">原生 vendor.soter 服务在密钥准备前以及签名会话开启后均已停止</string>
+    <string name="runtime_systemproperties_mtimes_label" formatted="false">属性区修改时间</string>
+    <string name="runtime_systemproperties_mtimes_recorded" formatted="false">已记录 %1$d 项</string>
+    <string name="runtime_systemproperties_mtimes_recorded_total" formatted="false">已记录 %1$d / %2$d 项</string>
+    <string name="runtime_systemproperties_lstat_failed" formatted="false">lstat 失败：%1$d</string>
+    <string name="runtime_systemproperties_not_regular_file" formatted="false">不是普通文件</string>
+    <string name="runtime_systemproperties_timestamp_fallback" formatted="false">自纪元起 %1$d 秒 + %2$d 纳秒</string>
+    <string name="runtime_systemproperties_mtime_note" formatted="false">不参与评分。只有进程对共享映射发生写故障时，属性区的 mtime 才会变化；它取自精度较粗的系统时钟，而系统启动初期时钟可能尚未设置。</string>
+    <string name="runtime_oct13_detail_001" formatted="false">不一致项</string>
+    <string name="runtime_oct13_detail_002" formatted="false">来源</string>
+    <string name="runtime_oct13_detail_003" formatted="false">状态矛盾</string>
+    <string name="runtime_oct13_detail_004" formatted="false">调试功能受限</string>
+    <string name="runtime_oct13_detail_005" formatted="false">测试环境模式</string>
+    <string name="runtime_oct13_detail_006" formatted="false">USB 调试设置</string>
+    <string name="runtime_oct13_detail_007" formatted="false">无线调试设置</string>
+    <string name="runtime_oct13_detail_008" formatted="false">USB 运行状态</string>
+    <string name="runtime_oct13_detail_009" formatted="false">无 USB 功能</string>
+    <string name="runtime_oct13_detail_010" formatted="false">未探测</string>
+    <string name="runtime_oct13_detail_011" formatted="false">本机无线 ADB TLS 服务</string>
+    <string name="runtime_oct13_detail_012" formatted="false">本机传统 ADB TCP 服务</string>
+    <string name="runtime_oct13_detail_013" formatted="false">本机 ADB 服务</string>
+    <string name="runtime_oct13_detail_014" formatted="false">ADB 协议与 init 状态对照</string>
+    <string name="runtime_oct13_detail_015" formatted="false">传统 ADB</string>
+    <string name="runtime_oct13_detail_016" formatted="false">无线调试安全连接</string>
+    <string name="runtime_oct13_detail_017" formatted="false">ADB AUTH 令牌</string>
+    <string name="runtime_oct13_detail_018" formatted="false">ADB CNXN 标识</string>
+    <string name="runtime_oct13_detail_019" formatted="false">ADB STLS 请求</string>
+    <string name="runtime_oct13_detail_020" formatted="false">已确认</string>
+    <string name="runtime_oct13_detail_021" formatted="false">未确认</string>
+    <string name="runtime_oct13_detail_022" formatted="false">需要权限</string>
+    <string name="runtime_oct13_detail_023" formatted="false">未探测</string>
+    <string name="runtime_oct13_detail_024" formatted="false">Root 管理器用户资料扫描</string>
+    <string name="runtime_oct13_detail_025" formatted="false">用户 ID</string>
+    <string name="runtime_oct13_detail_026" formatted="false">观察到的启动器 Activity</string>
+    <string name="runtime_oct13_detail_027" formatted="false">已检查应用</string>
+    <string name="runtime_oct13_detail_028" formatted="false">枚举</string>
+    <string name="runtime_oct13_detail_029" formatted="false">已搜索用户资料</string>
+    <string name="runtime_oct13_detail_030" formatted="false">签名证书</string>
+    <string name="runtime_oct13_detail_031" formatted="false">原生载荷目录</string>
+    <string name="runtime_oct13_detail_032" formatted="false">应用包可见性</string>
+    <string name="runtime_oct13_detail_033" formatted="false">启动器自检</string>
+    <string name="runtime_oct13_detail_034" formatted="false">匹配应用</string>
+    <string name="runtime_oct13_detail_035" formatted="false">已搜索</string>
+    <string name="runtime_oct13_detail_036" formatted="false">无用户资料</string>
+    <string name="runtime_oct13_detail_037" formatted="false">已过滤</string>
+    <string name="runtime_oct13_detail_038" formatted="false">Root 管理器匹配</string>
+    <string name="runtime_oct13_detail_039" formatted="false">家族</string>
+    <string name="runtime_oct13_detail_040" formatted="false">置信度</string>
+    <string name="runtime_oct13_detail_041" formatted="false">匹配特征</string>
+    <string name="runtime_oct13_detail_042" formatted="false">签名密钥</string>
+    <string name="runtime_oct13_detail_043" formatted="false">无清单内密钥</string>
+    <string name="runtime_oct13_detail_044" formatted="false">原生载荷</string>
+    <string name="runtime_oct13_detail_045" formatted="false">启动器图标已隐藏</string>
+    <string name="runtime_oct13_detail_046" formatted="false">组件类</string>
+    <string name="runtime_oct13_detail_047" formatted="false">Application 类</string>
+    <string name="runtime_oct13_detail_048" formatted="false">安装源目录</string>
+    <string name="runtime_oct13_detail_049" formatted="false">首次安装时间</string>
+    <string name="runtime_oct13_detail_050" formatted="false">Root 管理器枚举</string>
+    <string name="runtime_oct13_detail_051" formatted="false">枚举状态</string>
+    <string name="runtime_oct13_detail_052" formatted="false">用户 %1$d</string>
+    <string name="runtime_oct13_detail_053" formatted="false">已读取 %1$d 项，失败 %2$d 项</string>
+    <string name="runtime_oct13_detail_054" formatted="false">签名证书</string>
+    <string name="runtime_oct13_detail_055" formatted="false">原生载荷</string>
+    <string name="runtime_oct13_detail_056" formatted="false">Application 类</string>
+    <string name="runtime_oct13_detail_057" formatted="false">Application 类名</string>
+    <string name="runtime_oct13_detail_058" formatted="false">Zygote 预加载</string>
+    <string name="runtime_oct13_detail_059" formatted="false">启动器类</string>
+    <string name="runtime_oct13_detail_060" formatted="false">参数痕迹</string>
+    <string name="runtime_oct13_detail_061" formatted="false">覆盖情况</string>
+    <string name="runtime_oct13_detail_062" formatted="false">Android 版本</string>
+    <string name="runtime_oct13_detail_063" formatted="false">已审计基线</string>
+    <string name="runtime_oct13_detail_064" formatted="false">超出已审计版本</string>
+    <string name="runtime_oct13_detail_065" formatted="false">预发布构建</string>
+    <string name="runtime_oct13_detail_066" formatted="false">已解析转储字节数</string>
+    <string name="runtime_oct13_detail_067" formatted="false">启动参数字符串</string>
+    <string name="runtime_oct13_detail_068" formatted="false">不包括本应用自身的参数，因为每个新建子进程都会携带这些参数。</string>
+    <string name="runtime_oct13_detail_069" formatted="false">进入转储时的运行时长</string>
+    <string name="runtime_oct13_detail_070" formatted="false">从 Process.getStartUptimeMillis 计算，并非精确的 fork 至快照时间间隔。隐藏 API 初始化发生在此测量之后。</string>
+    <string name="runtime_oct13_detail_071" formatted="false">转储调用耗时</string>
+    <string name="runtime_oct13_detail_072" formatted="false">转储前 GC 次数</string>
+    <string name="runtime_oct13_detail_073" formatted="false">此项仅为诊断计数，不能确定回收器代际或保留下来的历史覆盖范围。</string>
+    <string name="runtime_oct13_detail_074" formatted="false">本机调试保留</string>
+    <string name="runtime_oct13_detail_075" formatted="false">未报告</string>
+    <string name="runtime_oct13_detail_076" formatted="false">已在本机保存</string>
+    <string name="runtime_oct13_detail_077" formatted="false">超过大小限制</string>
+    <string name="runtime_oct13_detail_078" formatted="false">保留失败</string>
+    <string name="runtime_oct13_detail_079" formatted="false">不可用阶段</string>
+    <string name="runtime_oct13_detail_080" formatted="false">服务绑定</string>
+    <string name="runtime_oct13_detail_081" formatted="false">隐藏转储 API</string>
+    <string name="runtime_oct13_detail_082" formatted="false">ART 堆转储</string>
+    <string name="runtime_oct13_detail_083" formatted="false">捕获时限</string>
+    <string name="runtime_oct13_detail_084" formatted="false">HPROF 结构或字节数限制</string>
+    <string name="runtime_oct13_detail_085" formatted="false">堆数据流</string>
+    <string name="runtime_oct13_detail_086" formatted="false">探针详情</string>
+    <string name="runtime_oct13_detail_087" formatted="false">开发者预览版报告上一正式版本的 API 级别，但其源码未经审计。此构建仅依赖运行时检查：格式变化导致解析失败时结果为无法判定；转储路径或策略变化时结果为不可用。</string>
+    <string name="runtime_oct13_review_01" formatted="false">未评估</string>
+    <string name="runtime_oct13_review_02" formatted="false">扫描失败</string>
+    <string name="runtime_oct13_review_03" formatted="false">未请求</string>
+    <string name="runtime_oct13_review_04" formatted="false">触发失败</string>
+    <string name="runtime_oct13_review_05" formatted="false">原生采集失败</string>
+    <string name="runtime_oct13_review_06" formatted="false">fsnotify/SRCU 关闭时序</string>
+    <string name="runtime_oct13_review_07" formatted="false">未观察到某个用户空间</string>
+    <string name="runtime_oct13_review_08" formatted="false">启动器应用列表中缺少本应用</string>
+    <string name="runtime_oct13_review_09" formatted="false">应用包可见性不完整</string>
+    <string name="runtime_oct13_review_10" formatted="false">无法读取任何签名证书</string>
+    <string name="runtime_oct13_review_11" formatted="false">部分证据无法读取</string>
+    <string name="runtime_oct13_review_12" formatted="false">扫描在执行枚举之前失败。</string>
+    <string name="runtime_oct13_review_13" formatted="false">已测量成对写入的耗时，但未收集每 CPU 的 AVC 计数器。未启用 CONFIG_SECURITY_SELINUX_AVC_STATS 的内核没有 cache_stats 节点。</string>
+    <string name="runtime_oct13_review_14" formatted="false">承载进程无法打开 attr/current，或 SETCURRENT 被拒绝，因此负载未进入受测处理路径。</string>
+    <string name="runtime_oct13_review_15" formatted="false">承载进程身份或 SELinux 模式不符合此实验的要求。</string>
+    <string name="runtime_oct13_review_16" formatted="false">写入结果、身份变化或子进程结果不符合实验要求，因此未解读计数。</string>
+    <string name="runtime_oct13_review_17" formatted="false">此实验未能产生可用的观察结果。</string>
+    <string name="runtime_oct13_review_18" formatted="false">此承载进程未采集到 AVC 查询实验结果。</string>
+    <string name="runtime_oct13_review_19" formatted="false">原生处理程序本就会转换 A 并跳过 B，因此不解读此时序差异。</string>
+    <string name="runtime_oct13_review_20" formatted="false">此实验因权限被拒绝而受到限制。</string>
+    <string name="runtime_oct13_review_21" formatted="false">此承载进程未采集到 SID 表实验结果。</string>
+    <string name="runtime_oct13_review_22" formatted="false">%1$s 在 app_zygote 预加载期间采集；这是保留的测量结果，并非实时检查。</string>
+    <string name="runtime_oct13_review_23" formatted="false">%1$s 在 app_zygote 预加载期间、开机运行 %2$d 毫秒时采集；这是保留的测量结果，并非实时计数器检查。%3$s</string>
+    <string name="runtime_oct13_review_24" formatted="false">%1$s 在 app_zygote 预加载期间采集；这是保留的测量结果，并非实时计数器检查。%2$s</string>
+    <string name="runtime_oct13_review_25" formatted="false">%1$s 采集位置：app_zygote 预加载；未保留测量结果。%2$s</string>
+    <string name="runtime_oct13_review_26" formatted="false">app_zygote attr/current 写入</string>
+    <string name="runtime_oct13_review_27" formatted="false">SID 表查询一致性</string>
+    <string name="runtime_oct13_review_28" formatted="false">SELinux 隐藏 attr/current 时序（实验性）</string>
+    <string name="runtime_oct13_review_29" formatted="false">App Zygote AVC 查询模式（实验性）</string>
+    <string name="runtime_oct13_review_30" formatted="false">已识别上下文</string>
+    <string name="runtime_oct13_review_31" formatted="false">未识别受测上下文</string>
+    <string name="runtime_oct13_review_32" formatted="false">权限受限</string>
+    <string name="runtime_oct13_review_33" formatted="false">未观察到不一致</string>
+    <string name="runtime_oct13_review_34" formatted="false">重复出现 SID 表不一致</string>
+    <string name="runtime_oct13_review_35" formatted="false">未采集</string>
+    <string name="runtime_oct13_review_36" formatted="false">已采集</string>
+    <string name="runtime_oct13_review_37" formatted="false">仅测量时序，计数器不可用</string>
+    <string name="runtime_oct13_review_38" formatted="false">每次写入查询次数：A≈1 / B≈1</string>
+    <string name="runtime_oct13_review_39" formatted="false">每次写入查询次数：A≈1 / B≈2</string>
+    <string name="runtime_oct13_review_40" formatted="false">每次写入查询次数：A≈2 / B≈2</string>
+    <string name="runtime_oct13_review_41" formatted="false">计数超出 1× 和 2× 区间</string>
+    <string name="runtime_bootloader_summary_danger_device_trust" formatted="false">解锁状态、证明信息矛盾、证书信任异常或验证启动失败，提示设备可信度降低。</string>
+    <string name="runtime_memory_system_copy_modified_label" formatted="false">系统代码映射页已修改</string>
+    <string name="runtime_memory_system_copy_modified_detail" formatted="false">%1$s：%2$d / %3$d 个私有复制的可执行页面与文件不一致；首个差异位于文件偏移 0x%4$s（内存 %5$s，文件 %6$s）</string>
+    <string name="runtime_memory_system_copy_matches_label" formatted="false">私有复制的系统代码与文件一致</string>
+    <string name="runtime_memory_system_copy_matches_detail" formatted="false">%1$s：%2$d 个私有复制的可执行页面与文件逐字节一致</string>
+    <string name="runtime_memory_system_copy_unverified_label" formatted="false">系统映射中存在匿名可执行页面</string>
+    <string name="runtime_memory_system_copy_unverified_detail" formatted="false">%1$s 报告有 %2$d kB 匿名可执行页面无法与文件比较：%3$s</string>
+    <string name="runtime_sysprops_adb_root_request" formatted="false">ADB Root 请求</string>
+    <string name="runtime_tee_soter_reply_integrity_label" formatted="false">Soter 回复完整性</string>
+    <string name="runtime_tee_soter_replies_need_review" formatted="false">Soter 回复需要复核：%1$s。</string>
+    <string name="runtime_tee_soter_success_with_review" formatted="false">Soter ASK/AuthKey/initSigh 调用成功，但回复需要复核：%1$s。</string>
+    <string name="runtime_tee_soter_outcome_with_review" formatted="false">%1$s。回复需要复核：%2$s。</string>
+    <string name="runtime_memory_copy_reason_page_size_unknown" formatted="false">页面大小未知</string>
+    <string name="runtime_memory_copy_reason_pagemap_unavailable" formatted="false">无法读取 /proc/self/pagemap</string>
+    <string name="runtime_memory_copy_reason_pipe_unavailable" formatted="false">没有可用于读取这些页面的管道</string>
+    <string name="runtime_memory_copy_reason_mapping_unreadable" formatted="false">该映射不可读</string>
+    <string name="runtime_memory_copy_reason_file_deleted" formatted="false">映射对应的文件已删除</string>
+    <string name="runtime_memory_copy_reason_file_open_failed" formatted="false">无法打开文件（%1$s）</string>
+    <string name="runtime_memory_copy_reason_file_replaced" formatted="false">该路径当前指向的文件与映射所对应的文件不同</string>
+    <string name="runtime_memory_copy_reason_no_resident_page" formatted="false">读取 pagemap 时没有副本页驻留在内存中</string>
+    <string name="runtime_memory_copy_reason_memory_unreadable" formatted="false">无法读取副本页</string>
+    <string name="runtime_memory_copy_reason_file_unreadable" formatted="false">无法在副本页对应的偏移处读取文件</string>
+    <string name="runtime_memory_copy_reason_budget_exhausted" formatted="false">副本页数量超出单次扫描的比较上限</string>
+    <string name="runtime_memory_copy_reason_incomplete" formatted="false">比较未能完成</string>
+    <string name="runtime_tee_soter_checks_succeeded" formatted="false">Soter 检查成功：Treble 服务可访问，ASK/AuthKey/initSigh 调用均成功。</string>
+    <string name="runtime_tee_soter_check_skipped" formatted="false">Treble 服务不可访问，已跳过 Soter 检查。</string>
+    <string name="runtime_tee_soter_key_prep_failed" formatted="false">Treble 服务可访问后，Soter 密钥准备失败。</string>
+    <string name="runtime_tee_soter_sign_session_failed" formatted="false">Treble 服务可访问后，Soter 签名会话初始化失败。</string>
+    <string name="runtime_tee_soter_error_hint" formatted="false">Soter 检查：%1$s</string>
+    <string name="runtime_selinux_avc_native_collection_failed" formatted="false">原生 AVC 查询采集失败。</string>
+</resources>

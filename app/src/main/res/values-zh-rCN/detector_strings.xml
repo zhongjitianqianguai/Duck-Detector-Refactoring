@@ -748,7 +748,7 @@ limitations under the License.
     <string name="memory_detail_fd_backed">交叉检查可执行映射和活跃文件描述符，查找已删除的库、memfd 加载器、ashmem 和 /dev/zero 执行。</string>
     <string name="memory_detail_got_plt">检查关键 libc 和 linker 符号是否仍解析到其预期的原生模块。</string>
     <string name="memory_detail_loader_visibility">将 /proc/self/maps 与 dl_iterate_phdr 进行比较，并检查当前进程 [vdso] 视图的合理性。</string>
-    <string name="memory_detail_maps_smaps">扫描非 ART 可执行映射，查找可写代码、意外的交换页面和共享脏系统代码。</string>
+    <string name="memory_detail_maps_smaps">扫描非 ART 可执行映射中的可写或匿名代码、共享脏系统代码和换出页面，并将系统代码的每个私有副本页与对应文件进行比较。</string>
     <string name="memory_detail_signal_handlers">枚举 SIGTRAP/SIGBUS/SIGSEGV/SIGILL 处理程序，检查其是否指向匿名或加载器可疑内存。</string>
     <string name="memory_detail_unavailable_slice">原生内存证据不可用，因此无法验证此切片。</string>
     <string name="memory_header_critical">严重</string>

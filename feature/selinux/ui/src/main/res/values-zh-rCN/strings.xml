@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="selinux_section_security_state">安全状态</string>
+    <string name="selinux_section_impact">影响</string>
+    <string name="selinux_section_detection_methods">检测方法</string>
+    <string name="selinux_section_policy_analysis">策略分析</string>
+    <string name="selinux_section_audit_integrity">审计完整性</string>
+    <string name="selinux_section_device_info">设备信息</string>
+    <string name="selinux_section_reference">参考资料</string>
+</resources>

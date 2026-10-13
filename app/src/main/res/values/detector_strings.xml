@@ -748,7 +748,7 @@ limitations under the License.
     <string name="memory_detail_fd_backed">Cross-checks executable mappings and live file descriptors for deleted libraries, memfd loaders, ashmem, and /dev/zero execution.</string>
     <string name="memory_detail_got_plt">Checks whether critical libc and linker symbols still resolve into their expected native modules.</string>
     <string name="memory_detail_loader_visibility">Compares /proc/self/maps against dl_iterate_phdr and sanity-checks the current process [vdso] view.</string>
-    <string name="memory_detail_maps_smaps">Scans non-ART executable mappings for writable code, unexpected swapped pages, and shared-dirty system code.</string>
+    <string name="memory_detail_maps_smaps">Scans non-ART executable mappings for writable or anonymous code, shared-dirty system code and swapped pages, and compares each privately copied page of system code with its file.</string>
     <string name="memory_detail_signal_handlers">Enumerates SIGTRAP/SIGBUS/SIGSEGV/SIGILL handlers and checks whether they point into anonymous or loader-suspicious memory.</string>
     <string name="memory_detail_unavailable_slice">Native memory evidence was unavailable, so this slice could not be verified.</string>
     <string name="memory_header_critical">Critical</string>

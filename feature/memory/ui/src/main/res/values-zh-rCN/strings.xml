@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="memory_section_mappings_fd_code">映射与文件描述符支持的代码</string>
+    <string name="memory_section_impact">影响</string>
+    <string name="memory_section_detection_methods">检测方法</string>
+    <string name="memory_section_scan_summary">扫描摘要</string>
+</resources>

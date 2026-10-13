@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="virtualization_section_environment">环境</string>
+    <string name="virtualization_section_runtime">运行时</string>
+    <string name="virtualization_section_consistency">一致性</string>
+    <string name="virtualization_section_honeypots">诱饵检查</string>
+    <string name="virtualization_section_host_apps">宿主应用</string>
+    <string name="virtualization_section_impact">影响</string>
+    <string name="virtualization_section_detection_methods">检测方法</string>
+    <string name="virtualization_section_scan_state">扫描状态</string>
+    <string name="virtualization_section_references">参考资料</string>
+</resources>

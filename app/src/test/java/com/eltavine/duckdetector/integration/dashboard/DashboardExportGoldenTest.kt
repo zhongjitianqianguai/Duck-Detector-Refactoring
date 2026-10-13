@@ -18,12 +18,17 @@
 package com.eltavine.duckdetector.integration.dashboard
 
 import com.eltavine.duckdetector.core.detector.Detector
+import com.eltavine.duckdetector.core.evidence.DetectionSeverity
+import com.eltavine.duckdetector.core.report.DetectorReport
+import com.eltavine.duckdetector.core.report.ReportBlock
+import com.eltavine.duckdetector.core.report.ReportRow
 import com.eltavine.duckdetector.features.dashboard.presentation.export.DashboardReportRenderer
 import com.eltavine.duckdetector.features.dashboard.presentation.export.ExportHeader
 import com.eltavine.duckdetector.sdk.DetectorCatalog
 import java.io.File
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
+import org.junit.Assert.assertTrue
 import org.junit.Test
 
 /**
@@ -62,6 +67,37 @@ class DashboardExportGoldenTest {
         return recorded.orEmpty().lines().filter(String::isNotBlank).map { id ->
             checkNotNull(catalog[id]) { "the golden export records $id, which DetectorCatalog no longer has" }
         }
+    }
+
+    @Test
+    fun `localization receives leaf values before inline details and indentation`() {
+        val raw = "uid=10; kernel=6.1; sha256=0123456789ab"
+        val export = ExportScenario(0, emptyList()).export(FIXED_HEADER).copy(
+            detectors = listOf(DetectorReport(
+                title = "Bootloader",
+                verdict = "Unlocked",
+                severity = DetectionSeverity.WARNING,
+                quickFacts = emptyList(),
+                blocks = listOf(
+                    ReportBlock.Rows("Evidence", listOf(ReportRow("State", "Unlocked", "Derived from attestation."))),
+                    ReportBlock.Verbatim("Raw evidence", listOf(raw)),
+                ),
+            )),
+        )
+        val seen = mutableListOf<String>()
+        val translations = mapOf(
+            "Bootloader" to "引导加载器", "State" to "状态", "Unlocked" to "未锁定",
+            "Derived from attestation." to "来自证明。",
+        )
+        val rendered = DashboardReportRenderer.render(export) { text ->
+            seen += text
+            translations[text] ?: text
+        }
+        assertTrue(seen.containsAll(translations.keys))
+        assertTrue(rendered.contains("• 状态: 未锁定 (来自证明。)"))
+        assertTrue(rendered.contains(raw))
+        assertTrue(rendered.contains(FIXED_HEADER.buildHash))
+        assertTrue(DashboardReportRenderer.render(export).contains("• State: Unlocked (Derived from attestation.)"))
     }
 
     private fun write(resource: String, text: String) {

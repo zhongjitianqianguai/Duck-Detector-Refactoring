@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="root_managers_section_matches">匹配到的 Root 管理器</string>
+    <string name="root_managers_section_profiles">用户资料</string>
+    <string name="root_managers_section_scan">扫描</string>
+    <string name="root_managers_diagnostic_clipboard_label">Root 管理器诊断详情</string>
+</resources>

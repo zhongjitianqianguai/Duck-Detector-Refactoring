@@ -196,7 +196,9 @@ internal class RuntimeTextCatalog(
             return FormatTokenRegex.replace(targetTemplate) { token ->
                 val explicitIndex = token.groups[1]?.value?.toIntOrNull()
                 val argumentIndex = explicitIndex ?: implicitTargetIndex++
-                valuesByIndex[argumentIndex]?.let(localizeArgument) ?: token.value
+                // An anomaly argument may join independent explanations with semicolons.
+                valuesByIndex[argumentIndex]?.split("; ")?.joinToString("; ", transform = localizeArgument)
+                    ?: token.value
             }
         }
 

@@ -46,6 +46,10 @@ import com.eltavine.duckdetector.packagevisibility.preferences.PackageVisibility
 import com.eltavine.duckdetector.core.ui.components.ScreenshotWatermarkOverlay
 import com.eltavine.duckdetector.sdk.DuckDetector
 import com.eltavine.duckdetector.sdk.PackageVisibility
+import com.eltavine.duckdetector.startup.StartupPolicyReviewPrefs
+import com.eltavine.duckdetector.startup.StartupPolicyReviewStore
+import com.eltavine.duckdetector.ui.shell.StartupGateState
+import io.github.xiaotong6666.uihelper.mode.UiMode
 import com.eltavine.duckdetector.ui.shell.AppDestination
 import com.eltavine.duckdetector.ui.shell.ScreenCaptureNoticeDialog
 import com.eltavine.duckdetector.ui.shell.ScreenCaptureNoticeEffect
@@ -57,6 +61,7 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun DuckDetectorApp(
+    onUiModeChange: (UiMode) -> Unit,
     cliScanRequestId: Long = 0L,
 ) {
     val blacklistMatch = remember { DeviceBlacklist.matchCurrentDevice() }
@@ -74,6 +79,15 @@ fun DuckDetectorApp(
     val appContext = context.applicationContext
     val notificationConsentStore = remember(appContext) {
         ScanNotificationConsentStore.getInstance(appContext)
+    }
+    val startupPolicyReviewStore = remember(appContext) {
+        StartupPolicyReviewStore.getInstance(appContext)
+    }
+    val startupPolicyReviewPrefs by produceState<StartupPolicyReviewPrefs?>(
+        initialValue = null,
+        key1 = startupPolicyReviewStore,
+    ) {
+        startupPolicyReviewStore.prefs.collect { value = it }
     }
     val packageVisibilityReviewStore = remember(appContext) {
         PackageVisibilityReviewStore.getInstance(appContext)
@@ -166,6 +180,12 @@ fun DuckDetectorApp(
         }
     }
 
+    LaunchedEffect(startupPolicyReviewPrefs, gateState) {
+        if (startupPolicyReviewPrefs?.completed == false && gateState == StartupGateState.READY) {
+            startupPolicyReviewStore.complete()
+        }
+    }
+
     Surface {
         Box(modifier = Modifier.fillMaxSize()) {
             ScreenCaptureNoticeEffect(
@@ -180,6 +200,7 @@ fun DuckDetectorApp(
                     onSelectDestination = { selected -> destination = selected },
                     consentDecisions = requireNotNull(consentDecisions),
                     notificationPermissionState = notificationPermissionState,
+                    onUiModeChange = onUiModeChange,
                     canShowUpdateDialog = screenCaptureNoticeEventId == 0L,
                     cliScanRequestId = cliScanRequestId,
                 )
@@ -234,6 +255,8 @@ fun DuckDetectorApp(
                             packageVisibilityReviewStore.acknowledgeRestrictedInventory()
                         }
                     },
+                    showUiStyleSelection = startupPolicyReviewPrefs?.completed == false,
+                    onUiModeChange = onUiModeChange,
                     modifier = Modifier.fillMaxSize(),
                 )
             }

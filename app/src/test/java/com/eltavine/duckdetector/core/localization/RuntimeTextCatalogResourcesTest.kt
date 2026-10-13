@@ -37,6 +37,8 @@ class RuntimeTextCatalogResourcesTest {
         )
         val raw = "ro.boot.vbmeta.digest=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
         assertEquals(raw, catalog.translate(raw))
+        assertEquals("com.google.android.gms", catalog.translate("com.google.android.gms"))
+        assertEquals("/sdcard/Android/data/profiles", catalog.translate("/sdcard/Android/data/profiles"))
     }
 
     @Test
@@ -84,7 +86,42 @@ class RuntimeTextCatalogResourcesTest {
             strings(File(resourceRoot, "values/detector_strings.xml")).filterKeys { it in nightlyKeys }
         val chinese = strings(File(resourceRoot, "values-zh-rCN/$ResourceFile")) +
             strings(File(resourceRoot, "values-zh-rCN/detector_strings.xml")).filterKeys { it in nightlyKeys }
-        return RuntimeTextCatalog(english.map { (name, source) -> source to chinese.getValue(name) })
+        val deltaEnglish = strings(File(resourceRoot, "values/" + DeltaResourceFile))
+        val deltaChinese = strings(File(resourceRoot, "values-zh-rCN/" + DeltaResourceFile))
+        assertEquals(deltaEnglish.keys, deltaChinese.keys)
+        return RuntimeTextCatalog((english + deltaEnglish).map { (name, source) ->
+            source to (chinese + deltaChinese).getValue(name)
+        })
+    }
+
+    @Test
+    fun translatesNewDetectorEvidenceWhilePreservingRawProtocolFields() {
+        val catalog = catalog()
+        assertEquals("ADB 运行状态", catalog.translate("ADB Runtime"))
+        assertEquals("Root 管理器", catalog.translate("Root Managers"))
+        assertEquals("Zygote 堆残留", catalog.translate("Zygote heap residue"))
+        assertEquals(
+            "匹配结果只能证明应用已安装，不能证明设备已获取 Root。",
+            catalog.translate("A match is evidence an app is installed, not proof that the device is rooted."),
+        )
+        assertEquals("属性区修改时间", catalog.translate("Prop area mtimes"))
+        assertEquals("/data/key 中出现 D-Soter 固定占位公钥",
+            catalog.translate("D-Soter's fixed placeholder public key in /data/key"))
+        assertEquals("已记录 3 / 9 项", catalog.translate("3 of 9 recorded"))
+        assertEquals(
+            "Soter 回复需要复核：ASK 中出现 D-Soter 固定占位公钥; AuthKey 中的签名为 256 个零字节；RSA 签名操作不会产生这种结果。",
+            catalog.translate("Soter replies need review: D-Soter's fixed placeholder public key in ASK; " +
+                "256 zero bytes as the signature in AuthKey, which no RSA signing operation produces."),
+        )
+        assertEquals("未请求", catalog.translate("Not requested"))
+        assertEquals(
+            "此承载进程未采集到 AVC 查询实验结果。 在 app_zygote 预加载期间采集；" +
+                "这是保留的测量结果，并非实时检查。",
+            catalog.translate("No AVC lookup experiment was captured by this carrier. " +
+                "Captured during app_zygote preload; this is a retained measurement, not a live check."),
+        )
+        val raw = "round=1 arm=2 window=17..29 saturated=false"
+        assertEquals(raw, catalog.translate(raw))
     }
 
     private fun strings(file: File): Map<String, String> {
@@ -98,5 +135,6 @@ class RuntimeTextCatalogResourcesTest {
 
     private companion object {
         const val ResourceFile = "sync_20261002_strings.xml"
+        const val DeltaResourceFile = "sync_20261013_strings.xml"
     }
 }

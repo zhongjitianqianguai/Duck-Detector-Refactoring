@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="runtime_adbruntime_title" formatted="false">ADB Runtime</string>
+    <string name="runtime_adbruntime_subtitle" formatted="false">Cross-check debugging state across independent Android subsystems</string>
+    <string name="runtime_adbruntime_verdict_contradiction" formatted="false">Runtime contradiction</string>
+    <string name="runtime_adbruntime_verdict_enabled" formatted="false">ADB enabled</string>
+    <string name="runtime_adbruntime_verdict_consistent" formatted="false">ADB state consistent</string>
+    <string name="runtime_adbruntime_summary_loading" formatted="false">Correlating Android debugging settings, USB runtime, properties and wireless ADB discovery.</string>
+    <string name="runtime_adbruntime_summary_conflict" formatted="false">Independent ADB state sources disagree. The rows below show the persistent contradictions.</string>
+    <string name="runtime_adbruntime_summary_active" formatted="false">ADB is enabled or runtime activity was observed; no persistent hard runtime contradiction was confirmed.</string>
+    <string name="runtime_adbruntime_summary_consistent" formatted="false">No persistent contradiction was observed across the ADB state sources that were available.</string>
+    <string name="runtime_adbruntime_finding_endpoint_protocol" formatted="false">The local %1$s endpoint %2$s:%3$d answered with the %4$s in both discovery passes while init.svc.adbd stayed stopped.</string>
+    <string name="runtime_adbruntime_mdns_permission_detail" formatted="false">Android 17 allows silent NsdManager discovery only with the local network permission. Duck Detector never asks for it during a scan; grant it in the app\'s system settings to evaluate network ADB.</string>
+    <string name="runtime_adbruntime_listener_timeout" formatted="false">The local listener did not answer the ADB handshake before timeout.</string>
+    <string name="runtime_adbruntime_mdns_no_service" formatted="false">No local %1$s service was resolved during the discovery window.</string>
+    <string name="runtime_rootmanagers_title" formatted="false">Root Managers</string>
+    <string name="runtime_rootmanagers_subtitle" formatted="false">Root manager visibility</string>
+    <string name="runtime_rootmanagers_subtitle_counts" formatted="false">%1$d matched · %2$d apps checked · %3$d profile(s) searched</string>
+    <string name="runtime_rootmanagers_verdict_hidden" formatted="false">Root manager hiding its icon</string>
+    <string name="runtime_rootmanagers_verdict_found" formatted="false">Root manager apps found</string>
+    <string name="runtime_rootmanagers_verdict_weak" formatted="false">Weak root manager match</string>
+    <string name="runtime_rootmanagers_verdict_enumeration_unavailable" formatted="false">Launcher enumeration unavailable</string>
+    <string name="runtime_rootmanagers_verdict_profiles_missing" formatted="false">Profiles not enumerated</string>
+    <string name="runtime_rootmanagers_verdict_partial" formatted="false">Partially evaluated</string>
+    <string name="runtime_rootmanagers_verdict_clean" formatted="false">No root manager apps</string>
+    <string name="runtime_rootmanagers_summary_loading" formatted="false">Checking installed apps across the accessible profiles.</string>
+    <string name="runtime_rootmanagers_presence_not_root" formatted="false">A match is evidence an app is installed, not proof that the device is rooted.</string>
+    <string name="runtime_rootmanagers_summary_hidden" formatted="false">Identified %1$d root manager app(s); at least one disabled its launcher icon and is reachable only through app details. A match is evidence an app is installed, not proof that the device is rooted.</string>
+    <string name="runtime_rootmanagers_summary_found" formatted="false">Identified %1$d root manager app(s) across %2$d profile(s), %3$d by a family kernel\'s manager key. A match is evidence an app is installed, not proof that the device is rooted.</string>
+    <string name="runtime_rootmanagers_summary_weak" formatted="false">Only weak anchors matched, so these apps are informational, never warnings.</string>
+    <string name="runtime_rootmanagers_summary_enumeration_unavailable" formatted="false">The launcher enumeration was unavailable, so the absence of matches says nothing.</string>
+    <string name="runtime_rootmanagers_summary_profiles_missing" formatted="false">No profile could be enumerated, so the absence of matches says nothing.</string>
+    <string name="runtime_rootmanagers_summary_partial" formatted="false">No root manager matched, but %1$s, so the absence of matches is not proof.</string>
+    <string name="runtime_rootmanagers_summary_clean" formatted="false">Checked %1$d app(s) across %2$d profile(s), including %3$d signing certificates, and matched no root manager app.</string>
+    <string name="runtime_rootmanagers_read_failed_counts" formatted="false">%1$d read · %2$d failed</string>
+    <string name="runtime_rootmanagers_count_of_total" formatted="false">%1$d of %2$d</string>
+    <string name="runtime_heapresidue_title" formatted="false">Zygote heap residue</string>
+    <string name="runtime_heapresidue_subtitle" formatted="false">Experimental ART snapshot · low confidence</string>
+    <string name="runtime_heapresidue_loading" formatted="false">Capturing a fresh isolated-process heap.</string>
+    <string name="runtime_heapresidue_unsupported" formatted="false">This release predates the audited Android 12 to 17 baselines and is unsupported.</string>
+    <string name="runtime_heapresidue_unavailable" formatted="false">The isolated heap probe was unavailable. No absence conclusion is possible.</string>
+    <string name="runtime_heapresidue_inconclusive" formatted="false">The snapshot could not establish usable startup argument evidence. Coverage is unknown.</string>
+    <string name="runtime_heapresidue_observed_summary" formatted="false">Exact target names occurred in startup argument strings. Origin and launch time are unverified; this does not prove current installation or compromise.</string>
+    <string name="runtime_heapresidue_clean_summary" formatted="false">No target trace was observed in this snapshot. GC, USAP, native fork paths and other zygote instances can hide traces; startup history is incomplete.</string>
+    <string name="runtime_heapresidue_verdict_clean" formatted="false">No target trace observed</string>
+    <string name="runtime_heapresidue_verdict_observed" formatted="false">Target argument traces observed</string>
+    <string name="runtime_heapresidue_correlated_evidence" formatted="false">These are correlated strings from one snapshot, not independent evidence.</string>
+    <string name="runtime_heapresidue_coverage_note" formatted="false">Same-zygote snapshot only; no complete history since boot. Package names can be spoofed. OEM and GC timing require device validation.</string>
+    <string name="runtime_heapresidue_audited_baseline" formatted="false">Startup argument parsing, the HPROF format, the dump path and the isolated-process pipe policy were source-audited for Android 12 to 17.</string>
+    <string name="runtime_heapresidue_unaudited_release" formatted="false">Only Android 12 to 17 were source-audited. This build relies on runtime checks alone: a format change that breaks parsing yields inconclusive; a changed dump path or policy yields unavailable.</string>
+    <string name="runtime_heapresidue_debug_retention" formatted="false">Debuggable builds only; at most two dumps and 64 MiB in no-backup storage. Raw heaps are never included in reports.</string>
+    <string name="runtime_heapresidue_capture_age" formatted="false">Age at dump entry: %1$d ms</string>
+    <string name="runtime_heapresidue_dump_duration" formatted="false">Dump call duration: %1$d ms</string>
+    <string name="runtime_selinux_privileged_contexts" formatted="false">Enforcing with recognized privileged contexts</string>
+    <string name="runtime_selinux_attr_current_timing_verdict" formatted="false">Enforcing with SELinux attr/current timing anomaly</string>
+    <string name="runtime_selinux_sidtab_discrepancy_verdict" formatted="false">Enforcing with SID-table query discrepancy</string>
+    <string name="runtime_selinux_sidtab_summary" formatted="false">SELinux is enforcing, but the SID-table experiment did not match stock registration behavior.</string>
+    <string name="runtime_selinux_context_write_detail" formatted="false">Controlled app_zygote writes repeatedly recognized privileged contexts: %1$s. This is supporting policy evidence with limited version coverage.</string>
+    <string name="runtime_selinux_timing_asymmetry" formatted="false">A strong, repeatable ordinary-app attr/current timing asymmetry was observed; attribution remains device-dependent.</string>
+    <string name="runtime_selinux_attr_current_impact" formatted="false">Controlled attr/current writes repeatedly recognized contexts for %1$s. This supports a policy observation; it does not identify a root tool.</string>
+    <string name="runtime_selinux_attr_current_not_recognized" formatted="false">Controlled app_zygote attr/current writes did not recognize the tested privileged contexts. A hidden backup policy can produce the same EINVAL results.</string>
+    <string name="runtime_selinux_avc_lookup_impact" formatted="false">Rejected app_zygote attr/current writes repeatedly cost an extra AVC lookup. The per-CPU counter is shared and does not show which code queried it; this is supporting evidence, not tool identification or root proof.</string>
+    <string name="runtime_selinux_avc_profile_one_two" formatted="false">Payload B cost one more AVC lookup per rejected write than payload A in every round. A hook that checks SETCURRENT before passing B to the stock handler produces this. The per-CPU counter is shared and does not show which code queried it, so this is supporting evidence, not tool identification or root proof.</string>
+    <string name="runtime_selinux_avc_profile_two_two" formatted="false">Both payloads cost two AVC lookups per rejected write in every round, one more than the stock handler. The per-CPU counter is shared and does not show which code queried it, so this is supporting evidence, not tool identification or root proof.</string>
+    <string name="runtime_selinux_avc_profile_one_one" formatted="false">Both payloads cost one AVC lookup per rejected write, as the stock handler does. A hook that checks SETCURRENT only after its own parse fails costs the same, so this is not a clean result.</string>
+    <string name="runtime_selinux_avc_unclassified" formatted="false">At least one batch fell outside the one- and two-lookup bands, as other activity on the pinned CPU can cause. No lookup pattern is reported.</string>
+    <string name="runtime_selinux_sidtab_discrepancy" formatted="false">Two bounded rounds accepted contexts without SID-table growth, then observed growth after rejected attr/current writes. This is supporting evidence of a query/registration discrepancy; global activity and hidden policy reloads cannot be excluded. It does not identify KernelSU or prove root.</string>
+    <string name="runtime_selinux_sidtab_no_discrepancy" formatted="false">Both rounds observed context-query growth followed by no additional attr/current growth. No discrepancy was observed; synchronized hiding implementations can produce this result.</string>
+    <string name="runtime_selinux_sidtab_inconclusive" formatted="false">The experiment did not establish a repeatable paired pattern with quiet controls. No integrity conclusion was drawn.</string>
+    <string name="runtime_selinux_sidtab_unsupported" formatted="false">The carrier identity or stock MLS candidates did not meet this experiment\'s requirements.</string>
+    <string name="runtime_selinux_sidtab_round_counts" formatted="false">Round %1$d: entries %2$d → %3$d → %4$d → %5$d → %6$d → %7$d</string>
+    <string name="runtime_srcu_repeatable_delay" formatted="false">Repeatable delay (experimental)</string>
+    <string name="runtime_srcu_delay_not_observed" formatted="false">Delay not observed</string>
+    <string name="runtime_srcu_unsupported_android" formatted="false">Unsupported Android trigger</string>
+    <string name="runtime_srcu_unsupported_kernel" formatted="false">Unsupported kernel</string>
+    <string name="runtime_srcu_timeout_cleanup_unconfirmed" formatted="false">Timed out; cleanup unconfirmed</string>
+    <string name="runtime_srcu_busy" formatted="false">Experiment already running</string>
+    <string name="runtime_srcu_permission_tree_unavailable" formatted="false">Permission tree unavailable</string>
+    <string name="runtime_srcu_cleanup_failed" formatted="false">Cleanup failed</string>
+    <string name="runtime_srcu_carrier_unavailable" formatted="false">Carrier unavailable</string>
+    <string name="runtime_srcu_method_detail" formatted="false">Compares whole-instance inotify close latency during a synchronous packages.list stimulus, matched idle windows, and post-stimulus sequential controls.</string>
+    <string name="runtime_srcu_interpretation" formatted="false">Experimental supporting evidence of global fsnotify/SRCU contention; it does not identify KernelSU. KernelSU ab23091e moved normal scans outside this reader; 6b5f55bd also removed the manager-absent full scan. No delay cannot exclude KernelSU.</string>
+    <string name="runtime_srcu_platform_coverage" formatted="false">Android 12–14 legacy permission backend only. Android 11 stores the tree\'s record, so its readback cannot confirm a change; Android 15+ persists dynamic permissions separately. Kernel branch matching is a conservative gate, not proof that a vendor kept ACK semantics.</string>
+    <string name="runtime_srcu_criterion" formatted="false">Criterion: 12 complete rounds, at least 8 candidate-overlap samples per arm, 10 delayed rounds with replication in each four-round block, and a p95 gap over 6 control scales (maximum of MAD and one tenth of the control median). A stimulated close longer than both controls\' longest by 6 scales is inconclusive, not absence. Thresholds await device calibration; concurrent scans and background readers remain confounders.</string>
+    <string name="runtime_tee_soter_placeholder_pubkey" formatted="false">D-Soter\'s fixed placeholder public key in %1$s</string>
+    <string name="runtime_tee_soter_zero_signature" formatted="false">256 zero bytes as the signature in %1$s, which no RSA signing operation produces</string>
+    <string name="runtime_tee_soter_zero_signature_variant" formatted="false">%1$s zero bytes as the signature in %2$s, which no RSA signing operation produces</string>
+    <string name="runtime_tee_soter_zero_cpu_id" formatted="false">D-Soter\'s all-zero cpu_id in %1$s</string>
+    <string name="runtime_tee_soter_zero_cpu_id_length" formatted="false">an all-zero cpu_id of %1$s characters in %2$s</string>
+    <string name="runtime_tee_soter_relay_cpu_id" formatted="false">cpu_id %1$s in %2$s, the device behind OhMyKeymint\'s default Soter relay</string>
+    <string name="runtime_tee_soter_relay_ask" formatted="false">the uid 0 ASK public key of OhMyKeymint\'s default Soter relay in %1$s</string>
+    <string name="runtime_tee_soter_blob_uid_mismatch" formatted="false">blob uid %1$s instead of the requested uid %2$d</string>
+    <string name="runtime_tee_soter_cpu_id_mismatch" formatted="false">ASK and AuthKey report different cpu_ids (%1$s)</string>
+    <string name="runtime_tee_soter_nonpositive_counter" formatted="false">counter %1$s in %2$s, which is not positive</string>
+    <string name="runtime_tee_soter_service_stopped" formatted="false">the stock vendor.soter service was stopped before key preparation and after the signing session opened</string>
+    <string name="runtime_systemproperties_mtimes_label" formatted="false">Prop area mtimes</string>
+    <string name="runtime_systemproperties_mtimes_recorded" formatted="false">%1$d recorded</string>
+    <string name="runtime_systemproperties_mtimes_recorded_total" formatted="false">%1$d of %2$d recorded</string>
+    <string name="runtime_systemproperties_lstat_failed" formatted="false">lstat failed: %1$d</string>
+    <string name="runtime_systemproperties_not_regular_file" formatted="false">not a regular file</string>
+    <string name="runtime_systemproperties_timestamp_fallback" formatted="false">%1$d s + %2$d ns from the epoch</string>
+    <string name="runtime_systemproperties_mtime_note" formatted="false">Not scored. An area\'s mtime moves only when a process takes a write fault on its shared mapping, and it comes from the coarse wall clock, which can still be unset early in boot.</string>
+    <string name="runtime_oct13_detail_001" formatted="false">Inconsistencies</string>
+    <string name="runtime_oct13_detail_002" formatted="false">Sources</string>
+    <string name="runtime_oct13_detail_003" formatted="false">Contradiction</string>
+    <string name="runtime_oct13_detail_004" formatted="false">Debugging restricted</string>
+    <string name="runtime_oct13_detail_005" formatted="false">Test harness mode</string>
+    <string name="runtime_oct13_detail_006" formatted="false">USB debugging setting</string>
+    <string name="runtime_oct13_detail_007" formatted="false">Wireless debugging setting</string>
+    <string name="runtime_oct13_detail_008" formatted="false">USB runtime</string>
+    <string name="runtime_oct13_detail_009" formatted="false">No functions</string>
+    <string name="runtime_oct13_detail_010" formatted="false">Not probed</string>
+    <string name="runtime_oct13_detail_011" formatted="false">Local Wireless ADB TLS service</string>
+    <string name="runtime_oct13_detail_012" formatted="false">Local legacy ADB TCP service</string>
+    <string name="runtime_oct13_detail_013" formatted="false">Local ADB service</string>
+    <string name="runtime_oct13_detail_014" formatted="false">ADB protocol vs init</string>
+    <string name="runtime_oct13_detail_015" formatted="false">legacy ADB</string>
+    <string name="runtime_oct13_detail_016" formatted="false">Wireless debugging secure-connect</string>
+    <string name="runtime_oct13_detail_017" formatted="false">ADB AUTH token</string>
+    <string name="runtime_oct13_detail_018" formatted="false">ADB CNXN banner</string>
+    <string name="runtime_oct13_detail_019" formatted="false">ADB STLS request</string>
+    <string name="runtime_oct13_detail_020" formatted="false">confirmed</string>
+    <string name="runtime_oct13_detail_021" formatted="false">not confirmed</string>
+    <string name="runtime_oct13_detail_022" formatted="false">permission required</string>
+    <string name="runtime_oct13_detail_023" formatted="false">not probed</string>
+    <string name="runtime_oct13_detail_024" formatted="false">Root Managers profile scan</string>
+    <string name="runtime_oct13_detail_025" formatted="false">Profile user id</string>
+    <string name="runtime_oct13_detail_026" formatted="false">Launcher activities seen</string>
+    <string name="runtime_oct13_detail_027" formatted="false">Apps checked</string>
+    <string name="runtime_oct13_detail_028" formatted="false">Enumeration</string>
+    <string name="runtime_oct13_detail_029" formatted="false">Profiles searched</string>
+    <string name="runtime_oct13_detail_030" formatted="false">Signing certificates</string>
+    <string name="runtime_oct13_detail_031" formatted="false">Native payload directories</string>
+    <string name="runtime_oct13_detail_032" formatted="false">Package visibility</string>
+    <string name="runtime_oct13_detail_033" formatted="false">Launcher self-check</string>
+    <string name="runtime_oct13_detail_034" formatted="false">Matched apps</string>
+    <string name="runtime_oct13_detail_035" formatted="false">Searched</string>
+    <string name="runtime_oct13_detail_036" formatted="false">No profiles</string>
+    <string name="runtime_oct13_detail_037" formatted="false">Filtered</string>
+    <string name="runtime_oct13_detail_038" formatted="false">Root manager match</string>
+    <string name="runtime_oct13_detail_039" formatted="false">Family</string>
+    <string name="runtime_oct13_detail_040" formatted="false">Confidence</string>
+    <string name="runtime_oct13_detail_041" formatted="false">Anchors</string>
+    <string name="runtime_oct13_detail_042" formatted="false">Signing key</string>
+    <string name="runtime_oct13_detail_043" formatted="false">no catalogued key</string>
+    <string name="runtime_oct13_detail_044" formatted="false">Native payloads</string>
+    <string name="runtime_oct13_detail_045" formatted="false">Launcher icon hidden</string>
+    <string name="runtime_oct13_detail_046" formatted="false">Component class</string>
+    <string name="runtime_oct13_detail_047" formatted="false">Application class</string>
+    <string name="runtime_oct13_detail_048" formatted="false">Source dir</string>
+    <string name="runtime_oct13_detail_049" formatted="false">First install time</string>
+    <string name="runtime_oct13_detail_050" formatted="false">Root Managers enumeration</string>
+    <string name="runtime_oct13_detail_051" formatted="false">Enumeration state</string>
+    <string name="runtime_oct13_detail_052" formatted="false">user %1$d</string>
+    <string name="runtime_oct13_detail_053" formatted="false">%1$d read, %2$d failed</string>
+    <string name="runtime_oct13_detail_054" formatted="false">signing certificate</string>
+    <string name="runtime_oct13_detail_055" formatted="false">native payload</string>
+    <string name="runtime_oct13_detail_056" formatted="false">application class</string>
+    <string name="runtime_oct13_detail_057" formatted="false">application class name</string>
+    <string name="runtime_oct13_detail_058" formatted="false">zygote preload</string>
+    <string name="runtime_oct13_detail_059" formatted="false">launcher class</string>
+    <string name="runtime_oct13_detail_060" formatted="false">Argument trace</string>
+    <string name="runtime_oct13_detail_061" formatted="false">Coverage</string>
+    <string name="runtime_oct13_detail_062" formatted="false">Android release</string>
+    <string name="runtime_oct13_detail_063" formatted="false">Audited baseline</string>
+    <string name="runtime_oct13_detail_064" formatted="false">Newer than audited</string>
+    <string name="runtime_oct13_detail_065" formatted="false">Pre-release build</string>
+    <string name="runtime_oct13_detail_066" formatted="false">Dump bytes parsed</string>
+    <string name="runtime_oct13_detail_067" formatted="false">Startup argument strings</string>
+    <string name="runtime_oct13_detail_068" formatted="false">Excludes this app\'s own arguments, which every fresh child carries.</string>
+    <string name="runtime_oct13_detail_069" formatted="false">Age at dump entry</string>
+    <string name="runtime_oct13_detail_070" formatted="false">Measured from Process.getStartUptimeMillis, not an exact fork-to-snapshot interval. Hidden API setup follows this measurement.</string>
+    <string name="runtime_oct13_detail_071" formatted="false">Dump call duration</string>
+    <string name="runtime_oct13_detail_072" formatted="false">GC count before dump</string>
+    <string name="runtime_oct13_detail_073" formatted="false">Diagnostic counter; neither collector generation nor retained historical coverage is established.</string>
+    <string name="runtime_oct13_detail_074" formatted="false">Local debug retention</string>
+    <string name="runtime_oct13_detail_075" formatted="false">Not reported</string>
+    <string name="runtime_oct13_detail_076" formatted="false">Saved locally</string>
+    <string name="runtime_oct13_detail_077" formatted="false">Size limit exceeded</string>
+    <string name="runtime_oct13_detail_078" formatted="false">Retention failed</string>
+    <string name="runtime_oct13_detail_079" formatted="false">Unavailable stage</string>
+    <string name="runtime_oct13_detail_080" formatted="false">Service binding</string>
+    <string name="runtime_oct13_detail_081" formatted="false">Hidden dump API</string>
+    <string name="runtime_oct13_detail_082" formatted="false">ART heap dump</string>
+    <string name="runtime_oct13_detail_083" formatted="false">Capture deadline</string>
+    <string name="runtime_oct13_detail_084" formatted="false">HPROF structure or byte limit</string>
+    <string name="runtime_oct13_detail_085" formatted="false">Heap stream</string>
+    <string name="runtime_oct13_detail_086" formatted="false">Probe detail</string>
+    <string name="runtime_oct13_detail_087" formatted="false">A developer preview reports the previous release\'s API level, but its sources were not audited. This build relies on runtime checks alone: a format change that breaks parsing yields inconclusive; a changed dump path or policy yields unavailable.</string>
+    <string name="runtime_oct13_review_01" formatted="false">Not evaluated</string>
+    <string name="runtime_oct13_review_02" formatted="false">Scan failed</string>
+    <string name="runtime_oct13_review_03" formatted="false">Not requested</string>
+    <string name="runtime_oct13_review_04" formatted="false">Trigger failed</string>
+    <string name="runtime_oct13_review_05" formatted="false">Native collection failed</string>
+    <string name="runtime_oct13_review_06" formatted="false">fsnotifySrcuCloseTiming</string>
+    <string name="runtime_oct13_review_07" formatted="false">a profile was not observed</string>
+    <string name="runtime_oct13_review_08" formatted="false">this app was missing from its own launcher list</string>
+    <string name="runtime_oct13_review_09" formatted="false">package visibility is not full</string>
+    <string name="runtime_oct13_review_10" formatted="false">no signing certificate could be read</string>
+    <string name="runtime_oct13_review_11" formatted="false">part of the evidence could not be read</string>
+    <string name="runtime_oct13_review_12" formatted="false">The scan failed before the enumeration ran.</string>
+    <string name="runtime_oct13_review_13" formatted="false">The paired writes were timed, but the per-CPU AVC counters were not collected. Kernels built without CONFIG_SECURITY_SELINUX_AVC_STATS have no cache_stats node.</string>
+    <string name="runtime_oct13_review_14" formatted="false">The carrier could not open attr/current or was refused SETCURRENT, so the payloads never reached the measured handler path.</string>
+    <string name="runtime_oct13_review_15" formatted="false">The carrier identity or SELinux mode did not meet this experiment\'s requirements.</string>
+    <string name="runtime_oct13_review_16" formatted="false">A write result, identity change or child outcome did not fit the experiment, so no counts were interpreted.</string>
+    <string name="runtime_oct13_review_17" formatted="false">The experiment could not produce a usable observation.</string>
+    <string name="runtime_oct13_review_18" formatted="false">No AVC lookup experiment was captured by this carrier.</string>
+    <string name="runtime_oct13_review_19" formatted="false">The stock handler already converts A and skips B, so timing is not interpreted.</string>
+    <string name="runtime_oct13_review_20" formatted="false">The experiment was limited by permission denial.</string>
+    <string name="runtime_oct13_review_21" formatted="false">No SID-table experiment was captured by this carrier.</string>
+    <string name="runtime_oct13_review_22" formatted="false">%1$s Captured during app_zygote preload; this is a retained measurement, not a live check.</string>
+    <string name="runtime_oct13_review_23" formatted="false">%1$s Captured during app_zygote preload at boot uptime %2$d ms; this is a retained measurement, not a live counter check. %3$s</string>
+    <string name="runtime_oct13_review_24" formatted="false">%1$s Captured during app_zygote preload; this is a retained measurement, not a live counter check. %2$s</string>
+    <string name="runtime_oct13_review_25" formatted="false">%1$s Collection point: app_zygote preload; no measurement was retained. %2$s</string>
+    <string name="runtime_oct13_review_26" formatted="false">app_zygote attr/current write</string>
+    <string name="runtime_oct13_review_27" formatted="false">SID-table query consistency</string>
+    <string name="runtime_oct13_review_28" formatted="false">SELinux Hide attr/current timing (experimental)</string>
+    <string name="runtime_oct13_review_29" formatted="false">App Zygote AVC lookup profile (experimental)</string>
+    <string name="runtime_oct13_review_30" formatted="false">Context recognized</string>
+    <string name="runtime_oct13_review_31" formatted="false">Tested contexts not recognized</string>
+    <string name="runtime_oct13_review_32" formatted="false">Permission limited</string>
+    <string name="runtime_oct13_review_33" formatted="false">No discrepancy observed</string>
+    <string name="runtime_oct13_review_34" formatted="false">Repeated SID-table discrepancy</string>
+    <string name="runtime_oct13_review_35" formatted="false">Not collected</string>
+    <string name="runtime_oct13_review_36" formatted="false">Collected</string>
+    <string name="runtime_oct13_review_37" formatted="false">Timing only, counters unavailable</string>
+    <string name="runtime_oct13_review_38" formatted="false">A≈1 / B≈1 lookups per write</string>
+    <string name="runtime_oct13_review_39" formatted="false">A≈1 / B≈2 lookups per write</string>
+    <string name="runtime_oct13_review_40" formatted="false">A≈2 / B≈2 lookups per write</string>
+    <string name="runtime_oct13_review_41" formatted="false">Counts outside the 1× and 2× bands</string>
+    <string name="runtime_bootloader_summary_danger_device_trust" formatted="false">Unlocked state, attestation contradictions, broken certificate trust, or verified-boot failures indicate reduced device trust.</string>
+    <string name="runtime_memory_system_copy_modified_label" formatted="false">Modified page on system code mapping</string>
+    <string name="runtime_memory_system_copy_modified_detail" formatted="false">%1$s: %2$d of %3$d privately copied executable page(s) differ from the file, first at file offset 0x%4$s (memory %5$s, file %6$s)</string>
+    <string name="runtime_memory_system_copy_matches_label" formatted="false">Privately copied system code matches its file</string>
+    <string name="runtime_memory_system_copy_matches_detail" formatted="false">%1$s: %2$d privately copied executable page(s) match the file byte for byte</string>
+    <string name="runtime_memory_system_copy_unverified_label" formatted="false">Anonymous executable pages on system mapping</string>
+    <string name="runtime_memory_system_copy_unverified_detail" formatted="false">%1$s reports %2$d kB anonymous executable pages that could not be compared with the file: %3$s</string>
+    <string name="runtime_sysprops_adb_root_request" formatted="false">ADB root request</string>
+    <string name="runtime_tee_soter_reply_integrity_label" formatted="false">Soter reply integrity</string>
+    <string name="runtime_tee_soter_replies_need_review" formatted="false">Soter replies need review: %1$s.</string>
+    <string name="runtime_tee_soter_success_with_review" formatted="false">Soter ASK/AuthKey/initSigh calls succeeded, but the replies need review: %1$s.</string>
+    <string name="runtime_tee_soter_outcome_with_review" formatted="false">%1$s. Replies need review: %2$s.</string>
+    <string name="runtime_memory_copy_reason_page_size_unknown" formatted="false">the page size is unknown</string>
+    <string name="runtime_memory_copy_reason_pagemap_unavailable" formatted="false">/proc/self/pagemap could not be read</string>
+    <string name="runtime_memory_copy_reason_pipe_unavailable" formatted="false">no pipe was available to read the pages through</string>
+    <string name="runtime_memory_copy_reason_mapping_unreadable" formatted="false">the mapping is not readable</string>
+    <string name="runtime_memory_copy_reason_file_deleted" formatted="false">the mapped file was deleted</string>
+    <string name="runtime_memory_copy_reason_file_open_failed" formatted="false">the file could not be opened (%1$s)</string>
+    <string name="runtime_memory_copy_reason_file_replaced" formatted="false">the path now names a different file than the one mapped</string>
+    <string name="runtime_memory_copy_reason_no_resident_page" formatted="false">no copied page was resident when pagemap was read</string>
+    <string name="runtime_memory_copy_reason_memory_unreadable" formatted="false">a copied page could not be read</string>
+    <string name="runtime_memory_copy_reason_file_unreadable" formatted="false">the file could not be read at a copied page\'s offset</string>
+    <string name="runtime_memory_copy_reason_budget_exhausted" formatted="false">it has more copied pages than one scan compares</string>
+    <string name="runtime_memory_copy_reason_incomplete" formatted="false">the comparison did not finish</string>
+    <string name="runtime_tee_soter_checks_succeeded" formatted="false">Soter checks succeeded: Treble service was reachable and ASK/AuthKey/initSigh all succeeded.</string>
+    <string name="runtime_tee_soter_check_skipped" formatted="false">Soter check skipped because the Treble service was not reachable.</string>
+    <string name="runtime_tee_soter_key_prep_failed" formatted="false">Soter key preparation failed after the Treble service became reachable.</string>
+    <string name="runtime_tee_soter_sign_session_failed" formatted="false">Soter signing session initialization failed after the Treble service became reachable.</string>
+    <string name="runtime_tee_soter_error_hint" formatted="false">Soter check: %1$s</string>
+    <string name="runtime_selinux_avc_native_collection_failed" formatted="false">Native AVC lookup collection failed.</string>
+</resources>

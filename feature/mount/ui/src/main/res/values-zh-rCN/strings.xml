@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="mount_diagnostic_clipboard_label">跨进程挂载视图详情</string>
+    <string name="mount_section_isolated_process">隔离进程挂载</string>
+    <string name="mount_section_root_artifacts">Root 痕迹</string>
+    <string name="mount_section_runtime_mounts">运行时挂载</string>
+    <string name="mount_section_filesystem">文件系统</string>
+    <string name="mount_section_namespace_consistency">命名空间与一致性</string>
+    <string name="mount_section_impact">影响</string>
+    <string name="mount_section_detection_methods">检测方法</string>
+    <string name="mount_section_scan_summary">扫描摘要</string>
 </resources>

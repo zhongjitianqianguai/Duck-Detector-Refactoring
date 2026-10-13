@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="kernelcheck_section_identity">内核身份</string>
+    <string name="kernelcheck_section_anomalies">异常</string>
+    <string name="kernelcheck_section_behavior">内核行为</string>
+    <string name="kernelcheck_section_impact">影响</string>
+    <string name="kernelcheck_section_detection_methods">检测方法</string>
+    <string name="kernelcheck_section_scan_summary">扫描摘要</string>
+</resources>
