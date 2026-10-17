@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="runtime_selinux_status_abi_title" formatted="false">Status mmap ABI conformance</string>
+    <string name="runtime_selinux_status_abi_two_pages" formatted="false">2-page shared mmap</string>
+    <string name="runtime_selinux_status_abi_offset" formatted="false">mmap at page offset 1</string>
+    <string name="runtime_selinux_status_abi_private" formatted="false">writable private mmap</string>
+    <string name="runtime_selinux_status_abi_mprotect" formatted="false">mprotect to writable</string>
+    <string name="runtime_selinux_status_abi_violation" formatted="false">ABI violation</string>
+    <string name="runtime_selinux_status_abi_no_violation" formatted="false">No violation observed</string>
+    <string name="runtime_selinux_status_abi_details" formatted="false">The status node granted requests stock selinuxfs rejects: %1$s.</string>
+    <string name="runtime_selinux_status_abi_partial_details" formatted="false">The status node granted requests stock selinuxfs rejects: %1$s. The request set did not finish: %2$s</string>
+    <string name="runtime_selinux_status_abi_clean_details" formatted="false">Every nonconforming mmap/mprotect request to the status node was rejected, like stock selinuxfs. A handler that keeps the upstream checks answers the same way.</string>
+    <string name="runtime_selinux_status_abi_unavailable" formatted="false">SELinux status ABI probe was unavailable</string>
+    <string name="runtime_selinux_status_abi_unreported" formatted="false">The status ABI probe did not report a reason.</string>
+    <string name="runtime_selinux_status_abi_bridge_failed" formatted="false">Status ABI probe bridge failed: %1$s</string>
+    <string name="runtime_selinux_status_abi_bridge_exception" formatted="false">Status ABI probe bridge failed with an unknown exception.</string>
+    <string name="runtime_selinux_status_abi_request_missing" formatted="false">Request %1$s has no reported outcome.</string>
+    <string name="runtime_selinux_status_abi_request_granted" formatted="false">Request %1$s was granted on the status node.</string>
+    <string name="runtime_selinux_status_abi_request_rejected" formatted="false">Request %1$s was rejected (errno=%2$d).</string>
+    <string name="runtime_selinux_status_abi_no_node" formatted="false">Without the status node no conformance request reaches the status handler, so nothing can be concluded about it.</string>
+    <string name="runtime_selinux_status_abi_no_baseline" formatted="false">Without the baseline mapping no conformance request reaches the status handler, so nothing can be concluded about it.</string>
+    <string name="runtime_selinux_status_abi_baseline_failed" formatted="false">baseline mmap of %1$s failed (errno=%2$d).</string>
+    <string name="runtime_selinux_status_abi_grant_note" formatted="false">Stock selinuxfs rejects every request above; a grant means the status node\'s mmap handler dropped the corresponding upstream check.</string>
+    <string name="runtime_selinux_status_abi_reject_note" formatted="false">Every nonconforming request was rejected like stock selinuxfs does.</string>
+    <string name="runtime_selinux_status_abi_start_failed" formatted="false">Status ABI child could not be started (errno=%1$d); conformance requests not sent.</string>
+    <string name="runtime_selinux_status_abi_setup_failed" formatted="false">Status ABI child could not install its seccomp trap exit.</string>
+    <string name="runtime_selinux_status_abi_seccomp" formatted="false">Seccomp refused a status ABI syscall in the child.</string>
+    <string name="runtime_selinux_status_abi_killed" formatted="false">Status ABI child was killed by %1$s before it finished the request set.</string>
+    <string name="runtime_selinux_status_abi_timeout" formatted="false">Status ABI child did not finish within %1$d ms and was stopped.</string>
+    <string name="runtime_selinux_status_abi_not_reaped" formatted="false">Status ABI child did not finish within %1$d ms, and was left behind because it had not died %2$d ms after it was stopped.</string>
+    <string name="runtime_selinux_status_abi_wait_failed" formatted="false">waitpid failed (errno=%1$d); remaining status ABI requests are unevaluated.</string>
+    <string name="runtime_selinux_status_abi_exit" formatted="false">Status ABI child exited %1$d without finishing the request set.</string>
+    <string name="runtime_selinux_status_abi_page_size" formatted="false">Page size unavailable; status ABI probe not run.</string>
+    <string name="runtime_heapresidue_budget_retention" formatted="false">Debuggable builds only; recent dumps are kept in app-private no-backup storage under a fixed count and size budget. Raw heaps are never included in reports.</string>
+    <string name="runtime_kernelpatch_latency_invalid_samples" formatted="false">Unavailable: latency samples must be finite and positive.</string>
+    <string name="runtime_kernelpatch_latency_invalid_ratio" formatted="false">Unavailable: the latency ratio must be finite and positive.</string>
+    <string name="runtime_kernelpatch_latency_measurement" formatted="false">Key path: %1$s us, empty key: %2$s us, diff: %3$s us, ratio: %4$s, same-core: %5$s. Supporting timing evidence only; this ratio neither identifies nor excludes KernelPatch.</string>
+    <string name="runtime_kernelpatch_latency_label" formatted="false">Supercall key-length timing ratio</string>
+    <string name="runtime_kernelpatch_latency_elevated_support" formatted="false">Elevated ratio (supporting evidence)</string>
+    <string name="runtime_kernelpatch_latency_elevated" formatted="false">Elevated ratio</string>
+    <string name="runtime_kernelpatch_latency_below" formatted="false">Ratio below threshold</string>
+    <string name="runtime_kernelpatch_latency_method" formatted="false">Times arm64 syscall 45 with a 128-byte key and an empty key, and reports the full/empty ratio. KernelPatch commit 84169d5d6be12e589ccac81d71dcebb80b22043a reported ratios of approximately 9.3 before its fix, 1.6 after it, and 1.8 without KernelPatch; an additional reported device measured 1.94.</string>
+    <string name="runtime_kernelpatch_latency_threshold" formatted="false">The 3.0 threshold is provisional. A ratio cancels common multiplicative scaling, but not additive syscall overhead or differences in path lookup. Cross-device detection accuracy has not been established.</string>
+    <string name="runtime_kernelpatch_latency_limitations" formatted="false">An elevated ratio is supporting timing evidence only and does not identify APatch or KernelPatch. A lower ratio cannot exclude the older leak or KernelPatch itself. The separate superkey probe retains its own applicability limits.</string>
+    <string name="runtime_nativeroot_supporting_summary" formatted="false">Only weaker isolated-process mount drift, cross-process mount view divergence, manager manifest fingerprints, supporting syscall timing, process, cgroup, kernel, property, or metadata residue surfaced. These are review-worthy, but not as strong as direct native probes.</string>
+    <string name="runtime_nativeroot_clean_supporting_summary" formatted="false">KernelSU read-only supercall, prctl-side probes, self-process IOC, isolated-process mount drift and cross-process mount view comparison, manager manifest fingerprint, SUSFS side-channel, /data/adb artifacts, curated tmp/system/storage residue paths, /data/local/tmp metadata, root-process audit, cgroup/process leakage, kernel strings, and properties stayed clean. KernelPatch timing remains supporting evidence only.</string>
+</resources>

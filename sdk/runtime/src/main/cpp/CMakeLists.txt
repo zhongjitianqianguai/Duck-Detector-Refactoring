@@ -32,6 +32,16 @@ set(DUCKDETECTOR_NATIVE_UNITS
 )
 
 cmake_path(SET repository_root NORMALIZE "${CMAKE_CURRENT_SOURCE_DIR}/../../../../..")
+# The published SDK retains native debug symbols, not the build host's personal paths.
+# Debug builds keep their local source lookup; optimized SDK builds use remappable roots.
+if(CMAKE_BUILD_TYPE STREQUAL "RelWithDebInfo" OR CMAKE_BUILD_TYPE STREQUAL "Release")
+    file(TO_CMAKE_PATH "${CMAKE_ANDROID_NDK}" android_ndk_root)
+    add_compile_options(
+        "-fdebug-prefix-map=${repository_root}=."
+        "-fdebug-prefix-map=${android_ndk_root}=android-ndk"
+        "-fdebug-compilation-dir=."
+    )
+endif()
 set(duckdetector_units "")
 set(duckdetector_unit_dirs "")
 # Units include each other by unit directory, such as "common/payload_codec.h", so the source

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="runtime_selinux_status_abi_title" formatted="false">状态节点 mmap 接口规范检查</string>
+    <string name="runtime_selinux_status_abi_two_pages" formatted="false">两页共享 mmap 映射</string>
+    <string name="runtime_selinux_status_abi_offset" formatted="false">从第 1 页偏移处 mmap 映射</string>
+    <string name="runtime_selinux_status_abi_private" formatted="false">可写私有 mmap 映射</string>
+    <string name="runtime_selinux_status_abi_mprotect" formatted="false">通过 mprotect 改为可写</string>
+    <string name="runtime_selinux_status_abi_violation" formatted="false">接口行为违反 ABI 规范</string>
+    <string name="runtime_selinux_status_abi_no_violation" formatted="false">未观察到违反规范的行为</string>
+    <string name="runtime_selinux_status_abi_details" formatted="false">状态节点允许了原版 selinuxfs 会拒绝的请求：%1$s。</string>
+    <string name="runtime_selinux_status_abi_partial_details" formatted="false">状态节点允许了原版 selinuxfs 会拒绝的请求：%1$s。整组请求未能完成：%2$s</string>
+    <string name="runtime_selinux_status_abi_clean_details" formatted="false">状态节点拒绝了全部不符合规范的 mmap/mprotect 请求，行为与原版 selinuxfs 一致。但保留原有检查的 Hook 处理程序也会给出相同结果，不能据此排除 Hook。</string>
+    <string name="runtime_selinux_status_abi_unavailable" formatted="false">SELinux 状态节点 ABI 探测不可用</string>
+    <string name="runtime_selinux_status_abi_unreported" formatted="false">状态节点 ABI 探针未报告原因。</string>
+    <string name="runtime_selinux_status_abi_bridge_failed" formatted="false">状态节点 ABI 探针的原生桥接失败：%1$s</string>
+    <string name="runtime_selinux_status_abi_bridge_exception" formatted="false">状态节点 ABI 探针的原生桥接发生未知异常。</string>
+    <string name="runtime_selinux_status_abi_request_missing" formatted="false">请求 %1$s 未报告结果。</string>
+    <string name="runtime_selinux_status_abi_request_granted" formatted="false">状态节点允许了请求 %1$s。</string>
+    <string name="runtime_selinux_status_abi_request_rejected" formatted="false">请求 %1$s 被拒绝（errno=%2$d）。</string>
+    <string name="runtime_selinux_status_abi_no_node" formatted="false">状态节点不可用，规范检查请求未能到达其处理程序，因此无法判断它是否符合规范。</string>
+    <string name="runtime_selinux_status_abi_no_baseline" formatted="false">基准映射不可用，规范检查请求未能到达状态节点处理程序，因此无法判断它是否符合规范。</string>
+    <string name="runtime_selinux_status_abi_baseline_failed" formatted="false">对 %1$s 的基准 mmap 映射失败（errno=%2$d）。</string>
+    <string name="runtime_selinux_status_abi_grant_note" formatted="false">原版 selinuxfs 会拒绝上述所有请求；若请求获准，说明状态节点的 mmap 处理程序缺少了对应的原版检查。</string>
+    <string name="runtime_selinux_status_abi_reject_note" formatted="false">全部不符合规范的请求均被拒绝，与原版 selinuxfs 一致。</string>
+    <string name="runtime_selinux_status_abi_start_failed" formatted="false">状态节点 ABI 子进程无法启动（errno=%1$d）；未发送规范检查请求。</string>
+    <string name="runtime_selinux_status_abi_setup_failed" formatted="false">状态节点 ABI 子进程无法设置 seccomp 拦截后的退出处理。</string>
+    <string name="runtime_selinux_status_abi_seccomp" formatted="false">Seccomp 拒绝了子进程中的状态节点 ABI 系统调用。</string>
+    <string name="runtime_selinux_status_abi_killed" formatted="false">状态节点 ABI 子进程在完成整组请求前被 %1$s 终止。</string>
+    <string name="runtime_selinux_status_abi_timeout" formatted="false">状态节点 ABI 子进程未在 %1$d 毫秒内完成，已将其终止。</string>
+    <string name="runtime_selinux_status_abi_not_reaped" formatted="false">状态节点 ABI 子进程未在 %1$d 毫秒内完成，发出终止信号 %2$d 毫秒后仍未退出，因此未能回收。</string>
+    <string name="runtime_selinux_status_abi_wait_failed" formatted="false">waitpid 失败（errno=%1$d）；剩余状态节点 ABI 请求尚未评估。</string>
+    <string name="runtime_selinux_status_abi_exit" formatted="false">状态节点 ABI 子进程以状态码 %1$d 退出，整组请求未完成。</string>
+    <string name="runtime_selinux_status_abi_page_size" formatted="false">无法获取内存页大小；未运行状态节点 ABI 探测。</string>
+    <string name="runtime_heapresidue_budget_retention" formatted="false">仅限可调试构建；近期堆转储保存在应用私有、不参与备份的目录中，并受固定数量和容量上限约束。报告绝不会包含原始堆数据。</string>
+    <string name="runtime_kernelpatch_latency_invalid_samples" formatted="false">不可用：延迟样本必须是有限正数。</string>
+    <string name="runtime_kernelpatch_latency_invalid_ratio" formatted="false">不可用：延迟比值必须是有限正数。</string>
+    <string name="runtime_kernelpatch_latency_measurement" formatted="false">长密钥路径：%1$s 微秒，空密钥：%2$s 微秒，差值：%3$s 微秒，比值：%4$s，同一 CPU 核心：%5$s。仅作为时序辅助证据；该比值既不能确认也不能排除 KernelPatch。</string>
+    <string name="runtime_kernelpatch_latency_label" formatted="false">Supercall 密钥长度耗时比值</string>
+    <string name="runtime_kernelpatch_latency_elevated_support" formatted="false">比值偏高（辅助证据）</string>
+    <string name="runtime_kernelpatch_latency_elevated" formatted="false">比值偏高</string>
+    <string name="runtime_kernelpatch_latency_below" formatted="false">比值低于阈值</string>
+    <string name="runtime_kernelpatch_latency_method" formatted="false">分别用 128 字节密钥和空密钥测量 arm64 系统调用 45 的耗时，并报告二者比值。KernelPatch 提交 84169d5d6be12e589ccac81d71dcebb80b22043a 报告：修复前约为 9.3，修复后约为 1.6，未安装 KernelPatch 时约为 1.8；另有一台设备报告为 1.94。</string>
+    <string name="runtime_kernelpatch_latency_threshold" formatted="false">3.0 只是暂定阈值。比值可抵消共同的倍数变化，但无法消除额外的系统调用开销或路径查找差异。尚未验证跨设备检测准确率。</string>
+    <string name="runtime_kernelpatch_latency_limitations" formatted="false">比值偏高仅是时序辅助证据，不能据此确认 APatch 或 KernelPatch。较低比值也不能排除旧版泄漏或 KernelPatch 本身。独立的超级密钥探针仍有自己的适用范围限制。</string>
+    <string name="runtime_nativeroot_supporting_summary" formatted="false">仅发现较弱的隔离进程挂载偏差、跨进程挂载视图差异、管理器清单指纹、系统调用时序辅助证据，或进程、cgroup、内核、属性和元数据残留。这些值得复核，但弱于直接原生探针证据。</string>
+    <string name="runtime_nativeroot_clean_supporting_summary" formatted="false">KernelSU 只读 supercall、prctl 侧探针、自身进程异常指标、隔离进程挂载与跨进程挂载视图、管理器清单指纹、SUSFS 侧信道、/data/adb 痕迹、精选临时/系统/存储残留路径、/data/local/tmp 元数据、Root 进程审计、cgroup/进程泄漏、内核字符串及属性均未发现异常。KernelPatch 时序结果仍仅作辅助证据。</string>
+</resources>

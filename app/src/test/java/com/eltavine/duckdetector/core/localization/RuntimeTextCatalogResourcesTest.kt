@@ -86,8 +86,8 @@ class RuntimeTextCatalogResourcesTest {
             strings(File(resourceRoot, "values/detector_strings.xml")).filterKeys { it in nightlyKeys }
         val chinese = strings(File(resourceRoot, "values-zh-rCN/$ResourceFile")) +
             strings(File(resourceRoot, "values-zh-rCN/detector_strings.xml")).filterKeys { it in nightlyKeys }
-        val deltaEnglish = strings(File(resourceRoot, "values/" + DeltaResourceFile))
-        val deltaChinese = strings(File(resourceRoot, "values-zh-rCN/" + DeltaResourceFile))
+        val deltaEnglish = DeltaResourceFiles.flatMap { strings(File(resourceRoot, "values/$it")).toList() }.toMap()
+        val deltaChinese = DeltaResourceFiles.flatMap { strings(File(resourceRoot, "values-zh-rCN/$it")).toList() }.toMap()
         assertEquals(deltaEnglish.keys, deltaChinese.keys)
         return RuntimeTextCatalog((english + deltaEnglish).map { (name, source) ->
             source to (chinese + deltaChinese).getValue(name)
@@ -124,6 +124,46 @@ class RuntimeTextCatalogResourcesTest {
         assertEquals(raw, catalog.translate(raw))
     }
 
+    @Test
+    fun translatesStatusAbiPartialEvidenceAndKeepsRequestIdsAndErrno() {
+        val catalog = catalog()
+        assertEquals("状态节点 mmap 接口规范检查", catalog.translate("Status mmap ABI conformance"))
+        assertEquals(
+            "状态节点允许了原版 selinuxfs 会拒绝的请求：两页共享 mmap 映射、可写私有 mmap 映射。" +
+                "整组请求未能完成：状态节点 ABI 子进程在完成整组请求前被 SIGSEGV 终止。",
+            catalog.translate(
+                "The status node granted requests stock selinuxfs rejects: 2-page shared mmap, " +
+                    "writable private mmap. The request set did not finish: " +
+                    "Status ABI child was killed by SIGSEGV before it finished the request set.",
+            ),
+        )
+        assertEquals(
+            "请求 OFFSET_SHARED 被拒绝（errno=13）。",
+            catalog.translate("Request OFFSET_SHARED was rejected (errno=13)."),
+        )
+        assertEquals(
+            "状态节点 ABI 子进程未在 1000 毫秒内完成，发出终止信号 200 毫秒后仍未退出，因此未能回收。",
+            catalog.translate("Status ABI child did not finish within 1000 ms, " +
+                "and was left behind because it had not died 200 ms after it was stopped."),
+        )
+        val raw = "OUTCOME=VIOLATION\nVIOLATED=TWO_PAGE_SHARED,WRITABLE_PRIVATE\nPAGE_SIZE=4096"
+        assertEquals(raw, catalog.translate(raw))
+        assertEquals("com.google.android.gms", catalog.translate("com.google.android.gms"))
+    }
+
+    @Test
+    fun translatesProvisionalLatencyEvidenceWithoutChangingMeasurements() {
+        assertEquals(
+            "长密钥路径：4.2810 微秒，空密钥：0.4600 微秒，差值：3.8210 微秒，比值：9.31，" +
+                "同一 CPU 核心：yes。仅作为时序辅助证据；该比值既不能确认也不能排除 KernelPatch。",
+            catalog().translate("Key path: 4.2810 us, empty key: 0.4600 us, diff: 3.8210 us, " +
+                "ratio: 9.31, same-core: yes. Supporting timing evidence only; " +
+                "this ratio neither identifies nor excludes KernelPatch."),
+        )
+        assertEquals("比值偏高（辅助证据）", catalog().translate("Elevated ratio (supporting evidence)"))
+        assertEquals("比值低于阈值", catalog().translate("Ratio below threshold"))
+    }
+
     private fun strings(file: File): Map<String, String> {
         val elements = DocumentBuilderFactory.newInstance().newDocumentBuilder()
             .parse(file).getElementsByTagName("string")
@@ -135,6 +175,6 @@ class RuntimeTextCatalogResourcesTest {
 
     private companion object {
         const val ResourceFile = "sync_20261002_strings.xml"
-        const val DeltaResourceFile = "sync_20261013_strings.xml"
+        val DeltaResourceFiles = listOf("sync_20261013_strings.xml", "sync_20261017_strings.xml")
     }
 }

@@ -3436,5 +3436,49 @@ limitations under the License.
         <item>@string/runtime_tee_soter_sign_session_failed</item>
         <item>@string/runtime_tee_soter_error_hint</item>
         <item>@string/runtime_selinux_avc_native_collection_failed</item>
+        <item>@string/runtime_selinux_status_abi_title</item>
+        <item>@string/runtime_selinux_status_abi_two_pages</item>
+        <item>@string/runtime_selinux_status_abi_offset</item>
+        <item>@string/runtime_selinux_status_abi_private</item>
+        <item>@string/runtime_selinux_status_abi_mprotect</item>
+        <item>@string/runtime_selinux_status_abi_violation</item>
+        <item>@string/runtime_selinux_status_abi_no_violation</item>
+        <item>@string/runtime_selinux_status_abi_details</item>
+        <item>@string/runtime_selinux_status_abi_partial_details</item>
+        <item>@string/runtime_selinux_status_abi_clean_details</item>
+        <item>@string/runtime_selinux_status_abi_unavailable</item>
+        <item>@string/runtime_selinux_status_abi_unreported</item>
+        <item>@string/runtime_selinux_status_abi_bridge_failed</item>
+        <item>@string/runtime_selinux_status_abi_bridge_exception</item>
+        <item>@string/runtime_selinux_status_abi_request_missing</item>
+        <item>@string/runtime_selinux_status_abi_request_granted</item>
+        <item>@string/runtime_selinux_status_abi_request_rejected</item>
+        <item>@string/runtime_selinux_status_abi_no_node</item>
+        <item>@string/runtime_selinux_status_abi_no_baseline</item>
+        <item>@string/runtime_selinux_status_abi_baseline_failed</item>
+        <item>@string/runtime_selinux_status_abi_grant_note</item>
+        <item>@string/runtime_selinux_status_abi_reject_note</item>
+        <item>@string/runtime_selinux_status_abi_start_failed</item>
+        <item>@string/runtime_selinux_status_abi_setup_failed</item>
+        <item>@string/runtime_selinux_status_abi_seccomp</item>
+        <item>@string/runtime_selinux_status_abi_killed</item>
+        <item>@string/runtime_selinux_status_abi_timeout</item>
+        <item>@string/runtime_selinux_status_abi_not_reaped</item>
+        <item>@string/runtime_selinux_status_abi_wait_failed</item>
+        <item>@string/runtime_selinux_status_abi_exit</item>
+        <item>@string/runtime_selinux_status_abi_page_size</item>
+        <item>@string/runtime_heapresidue_budget_retention</item>
+        <item>@string/runtime_kernelpatch_latency_invalid_samples</item>
+        <item>@string/runtime_kernelpatch_latency_invalid_ratio</item>
+        <item>@string/runtime_kernelpatch_latency_measurement</item>
+        <item>@string/runtime_kernelpatch_latency_label</item>
+        <item>@string/runtime_kernelpatch_latency_elevated_support</item>
+        <item>@string/runtime_kernelpatch_latency_elevated</item>
+        <item>@string/runtime_kernelpatch_latency_below</item>
+        <item>@string/runtime_kernelpatch_latency_method</item>
+        <item>@string/runtime_kernelpatch_latency_threshold</item>
+        <item>@string/runtime_kernelpatch_latency_limitations</item>
+        <item>@string/runtime_nativeroot_supporting_summary</item>
+        <item>@string/runtime_nativeroot_clean_supporting_summary</item>
     </string-array>
 </resources>

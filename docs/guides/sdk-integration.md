@@ -10,7 +10,9 @@ The SDK is Duck Detector without its UI: every detector, the native libraries an
 
 This publishes `com.eltavine.duckdetector:duckdetector-sdk:0.0.0-SNAPSHOT` to `sdk/aar/build/repository`; pass `-Pduckdetector.sdk.version=<version>` for another version. Assembling the AAR runs `verifySdkAar`, which fails if a headless module is missing from it or a UI library reaches it.
 
-The [Nightly release](https://github.com/eltavine/Duck-Detector-Refactoring/releases/tag/nightly) also includes a commit-named SDK AAR alongside the APK. That AAR is the fused library file; use the local Maven publication above when you need its POM to resolve external dependencies.
+The [Nightly release](https://github.com/zhongjitianqianguai/Duck-Detector-Refactoring/releases/tag/nightly) also includes a commit-named SDK AAR alongside the APK. That AAR is the fused library file; use the local Maven publication above when you need its POM to resolve external dependencies.
+
+本 fork 的 SDK 优化构建保留原生调试符号和行号，但不记录构建机器的个人目录。调试器中可将源码根 `.` 映射到仓库目录，将 `android-ndk` 映射到本机 NDK；日常 Debug 构建仍使用原有本地路径。检测行为与 SDK 接口不变。
 
 ## Requirements
 
