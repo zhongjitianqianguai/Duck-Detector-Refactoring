@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="runtime_sync21_initrc_title" formatted="false">init.rc hook timing</string>
+    <string name="runtime_sync21_initrc_repeat" formatted="false">Repeatable interaction (experimental)</string>
+    <string name="runtime_sync21_initrc_no_repeat" formatted="false">No repeatable interaction</string>
+    <string name="runtime_sync21_cleanup_failed" formatted="false">Cleanup failed</string>
+    <string name="runtime_sync21_initrc_limit" formatted="false">Experimental supporting evidence; does not identify or exclude KernelSU.</string>
+    <string name="runtime_sync21_initrc_method" formatted="false">Tests the interaction of comm init and a private init.rc filename using raw arm64 fstat.</string>
+    <string name="runtime_sync21_initrc_hook_scope" formatted="false">The reviewed pre-3924 hook must still be installed; successful boot removes it and late-load skips it.</string>
+    <string name="runtime_sync21_initrc_controls" formatted="false">Same-metadata control, balanced order and single-CPU checks reduce confounding but do not establish causality.</string>
+    <string name="runtime_sync21_initrc_calibration" formatted="false">Repeatability rules are provisional; physical-device detection accuracy is uncalibrated.</string>
+    <string name="runtime_sync21_initrc_collection" formatted="false">Collection: %1$s; errno=%2$d; CPU=%3$d</string>
+    <string name="runtime_sync21_initrc_cleanup" formatted="false">Cleanup: %1$s; cleanup errno=%2$d</string>
+    <string name="runtime_sync21_initrc_rounds" formatted="false">Complete rounds: %1$d/32; calls/batch=%2$d</string>
+    <string name="runtime_sync21_initrc_median" formatted="false">Median interaction: %1$s ns/call; MAD: %2$s</string>
+    <string name="runtime_sync21_initrc_positive" formatted="false">Positive rounds: %1$d/32</string>
+    <string name="runtime_sync21_initrc_order" formatted="false">Order medians (ns/call): %1$s</string>
+    <string name="runtime_sync21_initrc_raw" formatted="false">Raw batch ns: round / duck-data / duck-init / init-data / init-init</string>
+    <string name="runtime_sync21_initrc_cache" formatted="false">App-private cache directory unavailable</string>
+    <string name="runtime_sync21_initrc_oversized" formatted="false">Oversized init.rc timing payload</string>
+    <string name="runtime_sync21_initrc_malformed" formatted="false">Malformed init.rc timing field</string>
+    <string name="runtime_sync21_initrc_excess" formatted="false">Too many init.rc timing rounds</string>
+    <string name="runtime_sync21_initrc_duplicate" formatted="false">Duplicate timing field</string>
+    <string name="runtime_sync21_initrc_stage" formatted="false">Unknown native timing stage</string>
+    <string name="runtime_sync21_canary_required" formatted="false">Installation authorization required</string>
+    <string name="runtime_sync21_canary_unexpected" formatted="false">Unexpected success; experiment disabled</string>
+    <string name="runtime_sync21_canary_owner" formatted="false">Permission owner observed</string>
+    <string name="runtime_sync21_canary_not_observed" formatted="false">Permission conflict not observed</string>
+    <string name="runtime_sync21_canary_diagnostic" formatted="false">Installer permission-owner observation: %1$s</string>
+    <string name="runtime_sync21_canary_permission" formatted="false">Candidate permission: %1$s</string>
+    <string name="runtime_sync21_canary_registry" formatted="false">Registry owner: %1$s (identity unverified)</string>
+    <string name="runtime_sync21_canary_directory" formatted="false">Directory observation: user=%1$d, uid=%2$d, appId=%3$d</string>
+    <string name="runtime_sync21_canary_search" formatted="false">Directory search: user IDs 0–999; not exhaustive. Failed stat does not establish absence.</string>
+    <string name="runtime_sync21_canary_errors" formatted="false">Directory errno counts: %1$s</string>
+    <string name="runtime_sync21_canary_limits" formatted="false">A rebuilt permission may differ; no result establishes root access or execution history.</string>
+    <string name="runtime_sync21_canary_probe" formatted="false">Installer permission probe</string>
+    <string name="runtime_sync21_canary_candidate_owner" formatted="false">Candidate permission owner</string>
+    <string name="runtime_sync21_canary_identity" formatted="false">Identity unverified. Permission ownership alone does not establish a root manager.</string>
+    <string name="runtime_sync21_canary_coordinates" formatted="false">Owner directory coordinates</string>
+    <string name="runtime_sync21_canary_user" formatted="false">user %1$d</string>
+    <string name="runtime_sync21_canary_not_observable" formatted="false">Not observable</string>
+    <string name="runtime_sync21_canary_mount_limit" formatted="false">User IDs 0–999 searched. Mount namespaces and access restrictions can hide existing directories.</string>
+    <string name="runtime_sync21_canary_platform" formatted="false">Researched platform range: Android 13–17.</string>
+    <string name="runtime_sync21_canary_asset" formatted="false">A host-signed installer canary asset is not available.</string>
+    <string name="runtime_sync21_canary_privilege" formatted="false">The host does not hold UPDATE_PACKAGES_WITHOUT_USER_ACTION.</string>
+    <string name="runtime_sync21_canary_source" formatted="false">Source-install authorization is unavailable; no settings screen was opened.</string>
+    <string name="runtime_sync21_canary_locked" formatted="false">Another probe owns the installer session.</string>
+    <string name="runtime_sync21_canary_throttle" formatted="false">Wait at least 60 seconds between installation checks.</string>
+    <string name="runtime_sync21_canary_timeout" formatted="false">Installer callback timed out.</string>
+    <string name="runtime_sync21_canary_unexpected_detail" formatted="false">Unexpected installation success; disable this experiment.</string>
+    <string name="runtime_sync21_canary_result" formatted="false">Installer returned status %1$d, legacy %2$s; no verified permission-owner result.</string>
+    <string name="runtime_sync21_canary_parse" formatted="false">Canary APK could not be parsed</string>
+    <string name="runtime_sync21_canary_shared" formatted="false">Shared-UID hosts are unsupported</string>
+    <string name="runtime_sync21_canary_system" formatted="false">System application hosts are unsupported</string>
+    <string name="runtime_sync21_canary_package" formatted="false">Canary package differs from host</string>
+    <string name="runtime_sync21_canary_version" formatted="false">Canary version must exceed the installed version</string>
+    <string name="runtime_sync21_canary_code" formatted="false">Canary must contain no executable application code</string>
+    <string name="runtime_sync21_canary_boundary" formatted="false">Shared-UID rejection boundary is missing</string>
+    <string name="runtime_sync21_canary_signer" formatted="false">Canary signer differs from installed host</string>
+    <string name="runtime_sync21_canary_platform_boundary" formatted="false">The platform shared-UID rejection boundary could not be established</string>
+    <string name="runtime_sync21_canary_platform_signer" formatted="false">Platform-signing hosts are unsupported</string>
+    <string name="runtime_sync21_canary_components" formatted="false">Canary must declare no application components</string>
+    <string name="runtime_sync21_mount_ns_match" formatted="false">The visible namespace identities match; identity alone does not establish root or failed isolation.</string>
+    <string name="runtime_sync21_mount_overlay_value" formatted="false">Overlay view observation</string>
+    <string name="runtime_sync21_mount_overlay_detail" formatted="false">Executable resolves to overlayfs; the separate mount-table capture did not expose a covering overlay. This does not establish a hidden mount.</string>
+    <string name="runtime_sync21_mount_source" formatted="false">Mount source</string>
+    <string name="runtime_sync21_mount_source_detail" formatted="false">Source=%1$s. A source pathname does not establish dm-verity state.</string>
+    <string name="runtime_sync21_mount_tmpfs" formatted="false">Tmpfs mount</string>
+    <string name="runtime_sync21_mount_root_source" formatted="false">Root manager mount source</string>
+    <string name="runtime_sync21_mount_magic_source" formatted="false">Magic-mount source</string>
+    <string name="runtime_sync21_mount_subset" formatted="false">Mount root subset</string>
+    <string name="runtime_sync21_mount_context" formatted="false">SELinux mount context</string>
+    <string name="runtime_sync21_mount_id" formatted="false">Mount ID discontinuity</string>
+    <string name="runtime_sync21_mount_id_adjacent" formatted="false">Adjacent mountinfo records: %1$s (ID %2$d) -&gt; %3$s (ID %4$d). Mount IDs need not be consecutive; this does not establish hidden mounts.</string>
+    <string name="runtime_sync21_mount_id_limits" formatted="false">Mount IDs need not be consecutive. Repeated startup/runtime observations do not establish hidden mounts.</string>
+    <string name="runtime_sync21_mount_vfs_attribute" formatted="false">%1$s reports the VFS mount-root attribute; this is not an integrity violation.</string>
+    <string name="runtime_sync21_mount_statx" formatted="false">statx mount ID observation</string>
+    <string name="runtime_sync21_mount_statx_detail" formatted="false">statx=%1$d was not in the earlier mountinfo capture. The captures are not atomic; mount changes or incomplete visibility must be excluded before inferring tampering.</string>
+    <string name="runtime_sync21_mount_api" formatted="false">API observations differ</string>
+    <string name="runtime_sync21_mount_api_detail" formatted="false">Low-level stat reported %1$s as accessible, but a later Java File query reported exists=%2$s, dir=%3$s. The queries are not atomic.</string>
+    <string name="runtime_sync21_mount_access_detail" formatted="false">Accessible checks: %1$d/%2$d. Permission-denied checks: %3$d. Restricted visibility is not evidence of root.</string>
+    <string name="runtime_sync21_mount_next_ns" formatted="false">Zygote next namespace observation</string>
+    <string name="runtime_sync21_mount_coverage" formatted="false">Coverage unverified</string>
+    <string name="runtime_sync21_mount_review" formatted="false">%1$d review item(s)</string>
+    <string name="runtime_sync21_mount_source_observed" formatted="false">Source observed</string>
+    <string name="runtime_sync21_mount_support" formatted="false">Support present</string>
+    <string name="runtime_sync21_mount_ns" formatted="false">Namespace observation</string>
+    <string name="runtime_sync21_mount_inode" formatted="false">Proc inode timestamps</string>
+    <string name="runtime_sync21_mount_minor" formatted="false">Minor device observation</string>
+    <string name="runtime_sync21_mount_peer" formatted="false">Peer group observation</string>
+    <string name="runtime_sync21_mount_multiple" formatted="false">Multiple observations</string>
+    <string name="runtime_sync21_mount_runtime" formatted="false">Runtime mount table scan for Magisk paths, writable system partitions, overlays, loop devices, and observed source paths.</string>
+    <string name="runtime_sync21_mount_statx_scope" formatted="false">Reports returned statx mount-ID and mount-root fields. Missing fields or syscall errors limit coverage; non-atomic differences do not establish tampering.</string>
+    <string name="runtime_sync21_mount_remount" formatted="false">Writable, overlaid, or loop-backed system mounts were observed. Development remounts can produce these records; they do not identify a root manager or establish verified-boot state.</string>
+    <string name="runtime_sync21_mount_filesystem" formatted="false">Filesystem and statx observations were collected at separate times and may resolve different paths or covering mounts. These observations do not establish mount hiding.</string>
+    <string name="runtime_sync21_mount_warning" formatted="false">Review the listed mount properties in the context of this device and build; a warning alone does not establish root.</string>
+    <string name="runtime_sync21_mount_private" formatted="false">The native isolated route has a private/slave root. Namespace policy can vary by build; this alone does not establish root or hiding.</string>
+    <string name="runtime_sync21_mount_propagation" formatted="false">Propagation or relative reusable mount IDs differ from the reference signature. This does not establish an integrity violation or namespace ancestry.</string>
+    <string name="runtime_sync21_mount_ns_ctime" formatted="false">ns/mnt inode ctime observation: delta=%1$d ns</string>
+    <string name="runtime_sync21_mount_info_ctime" formatted="false">mountinfo inode ctime observation: delta=%1$d ns</string>
+    <string name="runtime_sync21_mount_minor_next" formatted="false">Previous minor + 1=%1$d, got %2$d at %3$s</string>
+    <string name="runtime_sync21_mount_minor_tmpfs" formatted="false">Tmpfs minor lies between /dev and /sys: %1$s (minor %2$d)</string>
+    <string name="runtime_sync21_mount_peer_detail" formatted="false">Unrepresented group IDs=%1$d. Peer group IDs are global and need not be consecutive in this namespace.</string>
+    <string name="runtime_sync21_zygisk_families" formatted="false">%1$d heuristic families converged</string>
+    <string name="runtime_sync21_zygisk_one_family" formatted="false">One heuristic family needs review</string>
+    <string name="runtime_sync21_zygisk_summary" formatted="false">Multiple heuristic families surfaced in the current process. Review the individual findings and benign causes; these observations do not establish Zygisk injection.</string>
+    <string name="runtime_sync21_zygisk_policy" formatted="false">FD trap or a direct runtime strong hit is red. One heuristic family is yellow; multiple families escalate to red. Maps and FD loader-path residue count as one family.</string>
+    <string name="runtime_sync21_zygisk_direct" formatted="false">This process exposed direct runtime evidence or the cross-process specialization path behaved like a Zygisk-sanitized child process.</string>
+    <string name="runtime_sync21_zygisk_impact" formatted="false">Multiple heuristic families need review. Their convergence does not establish Zygisk injection.</string>
+    <string name="runtime_sync21_zygisk_review" formatted="false">Read the individual findings together with Memory and Mount; runtime residue can also have legitimate causes.</string>
+    <string name="runtime_sync21_danger_1" formatted="false">Thanox runtime IPC</string>
+    <string name="runtime_sync21_danger_2" formatted="false">Broadcast cross-user exception</string>
+    <string name="runtime_sync21_danger_3" formatted="false">Broadcast final callback completion</string>
+    <string name="runtime_sync21_danger_4" formatted="false">Broadcast final result callback</string>
+    <string name="runtime_sync21_danger_5" formatted="false">getPackageInfo exception</string>
+    <string name="runtime_sync21_danger_6" formatted="false">getApplicationInfo exception</string>
+    <string name="runtime_sync21_danger_7" formatted="false">getpriority UID visibility</string>
+    <string name="runtime_sync21_danger_8" formatted="false">Seccomp getpriority interference</string>
+    <string name="runtime_sync21_danger_9" formatted="false">UID permission visibility (experimental)</string>
+    <string name="runtime_sync21_danger_10" formatted="false">Consistent in evaluated scope</string>
+    <string name="runtime_sync21_danger_11" formatted="false">Behavior mismatch observed</string>
+    <string name="runtime_sync21_danger_12" formatted="false">Repeated callback timeout (lower confidence)</string>
+    <string name="runtime_sync21_danger_13" formatted="false">Partially evaluated</string>
+    <string name="runtime_sync21_danger_14" formatted="false">Experimental UID discrepancy observed</string>
+    <string name="runtime_sync21_danger_15" formatted="false">Caller-package control outcomes: %1$s / %2$s; both must throw SecurityException.</string>
+    <string name="runtime_sync21_danger_16" formatted="false">%1$d package(s) checked twice between permission controls; %2$d repeated exception mismatch(es). Outcomes: %3$s.</string>
+    <string name="runtime_sync21_danger_17" formatted="false">Initial caller-package callback control failed (%1$s); target calls were skipped.</string>
+    <string name="runtime_sync21_danger_18" formatted="false">%1$d/%2$d target(s) completed paired calls; %3$d passed caller controls before, between and after. Target outcomes: %4$d timeout(s), %5$d denial(s), %6$d failure(s). Batch deadline reached=%7$s. Failed controls: %8$s.</string>
+    <string name="runtime_sync21_danger_19" formatted="false">%1$s %2$d target(s) repeatedly missed the callback deadline with passing interleaved controls. This is a lower-confidence timing observation, not proof of a hook or permanent callback loss.</string>
+    <string name="runtime_sync21_danger_20" formatted="false">%1$s %2$d repeated flag, result-payload or callback-intent mismatch(es). Missing callbacks cannot establish a semantic mismatch.</string>
+    <string name="runtime_sync21_danger_21" formatted="false">Packages: %1$s.</string>
+    <string name="runtime_sync21_danger_22" formatted="false">UIDs: %1$s.</string>
+    <string name="runtime_sync21_danger_23" formatted="false">Platform semantics have not been verified for API %1$d.</string>
+    <string name="runtime_sync21_danger_24" formatted="false">%1$s Target scope: %2$d/%3$d; API %4$d.</string>
+    <string name="runtime_sync21_danger_25" formatted="false">Caller is outside the ordinary application UID range.</string>
+    <string name="runtime_sync21_danger_26" formatted="false">Full package visibility is required to compare UID tasks with package associations.</string>
+    <string name="runtime_sync21_danger_27" formatted="false">Full package visibility is required for the experimental UID permission comparison.</string>
+    <string name="runtime_sync21_danger_28" formatted="false">Requires reviewed Android 15/16 permission semantics, an ordinary caller UID and non-instant permission definitions.</string>
+    <string name="runtime_sync21_danger_29" formatted="false">Experimental UID permission comparison unavailable: %1$s</string>
+    <string name="runtime_sync21_danger_30" formatted="false">Native child status=%1$d, errno/signal=%2$d. %3$s</string>
+    <string name="runtime_sync21_danger_31" formatted="false">Native seccomp listener probe unavailable: %1$s</string>
+    <string name="runtime_sync21_danger_32" formatted="false">seccomp(SECCOMP_SET_MODE_FILTER, NEW_LISTENER) returned EBUSY (errno %1$d).</string>
+    <string name="runtime_sync21_danger_33" formatted="false">the probe child was terminated by a seccomp trap before reporting a listener result (signal %1$d).</string>
+    <string name="runtime_sync21_danger_34" formatted="false">the listener install returned errno %1$d (%2$s).</string>
+    <string name="runtime_sync21_danger_35" formatted="false">the listener install was refused with errno %1$d (%2$s).</string>
+    <string name="runtime_sync21_danger_36" formatted="false">the native child ended without a listener result (errno/signal %1$d).</string>
+    <string name="runtime_sync21_danger_37" formatted="false">SIGSYS identified getpriority(PRIO_USER) on the query ABI (signal %1$d); %2$d notification(s) arrived before it.</string>
+    <string name="runtime_sync21_danger_38" formatted="false">query outcome=%1$s, error=%2$d, notifications=%3$d, coordinator error=%4$d.</string>
+    <string name="runtime_sync21_danger_39" formatted="false">%1$d of %2$d queries produced no notification.</string>
+    <string name="runtime_sync21_danger_40" formatted="false">%1$d of %2$d queries produced a notification.</string>
+    <string name="runtime_sync21_danger_41" formatted="false">The completed notification claim lacks matching counts or a caller control (queried=%1$d, notified=%2$d, self=%3$s). Kernel %4$d.%5$d.</string>
+    <string name="runtime_sync21_danger_42" formatted="false">A NEW_LISTENER filter was installed and all %1$d getpriority(PRIO_USER) queries for the caller\'s app UID range produced notifications; no higher-priority suppression was observed. Kernel %2$d.%3$d. The probe covers seccomp filters in this process.</string>
+    <string name="runtime_sync21_danger_43" formatted="false">seccomp(SECCOMP_SET_MODE_FILTER, NEW_LISTENER) returned EBUSY. The ACK duplicate-listener path returns EBUSY when an existing filter already carries a listener; an inherited policy can also synthesize errno. Kernel %1$d.%2$d. This is seccomp interference evidence; it does not identify the module.</string>
+    <string name="runtime_sync21_danger_44" formatted="false">seccomp(SECCOMP_SET_MODE_FILTER, NEW_LISTENER) returned EBUSY, but Kernel %1$d.%2$d. predates the documented Linux 5.0 user-notification semantics, so the errno is not interpreted as listener evidence.</string>
+    <string name="runtime_sync21_danger_45" formatted="false">A NEW_LISTENER filter was installed, but %1$d of %2$d getpriority(PRIO_USER) queries produced no notification (first suppressed UID=%3$d, last=%4$d). A foreign filter answered them with a lower action than USER_NOTIF. Kernel %5$d.%6$d. This is seccomp interference evidence; it does not identify the module.</string>
+    <string name="runtime_sync21_danger_46" formatted="false">A getpriority(PRIO_USER) query was terminated by a seccomp trap after the NEW_LISTENER filter was installed; a non-platform filter or an OEM policy refused the call. Kernel %1$d.%2$d. This is seccomp interference evidence; it does not identify the module.</string>
+    <string name="runtime_sync21_danger_47" formatted="false">The disposable probe was refused by SIGSYS before reporting its result. The faulting syscall is unknown, so this is permission-limited coverage. Kernel %1$d.%2$d.</string>
+    <string name="runtime_sync21_danger_48" formatted="false">The listener probe did not install: %1$s Kernel %2$d.%3$d. The running kernel does not expose the documented NEW_LISTENER behavior (Linux &lt; 5.0) or rejected the probe program.</string>
+    <string name="runtime_sync21_danger_49" formatted="false">The listener probe was permission limited: %1$s Kernel %2$d.%3$d.</string>
+    <string name="runtime_sync21_danger_50" formatted="false">The listener probe failed: %1$s Kernel %2$d.%3$d.</string>
+    <string name="runtime_sync21_danger_51" formatted="false">The listener filter was installed, but the query phase did not complete (%1$s); query suppression cannot be established. Kernel %2$d.%3$d.</string>
+    <string name="runtime_sync21_danger_52" formatted="false">%1$d/10000 ordinary app UIDs queried for this Android user; first UID=%2$d; controls passed=%3$s; %4$d fresh permission/association discrepancy(s); unstable candidates=%5$d; candidate limit reached=%6$s. Non-instant permissions: %7$s. %8$s Experimental evidence only; this does not identify HMA or a package. A negative result does not exclude packages without these permissions. Failure=%9$s; %10$s</string>
+    <string name="runtime_sync21_danger_53" formatted="false">Shared task/permission UID(s): %1$s. Both comparisons use package associations; correlation adds no independent HMA confidence.</string>
+    <string name="runtime_sync21_danger_54" formatted="false">%1$d/10000 ordinary app UIDs queried for this Android user; %2$d task UID(s), %3$d repeatedly lacked a visible package association. First UID=%4$d; caller queried=%5$s; controls passed=%6$s; recheck failure=%7$s; recheck limit=%8$s. Fresh query failure=%9$s; %10$s. Instant-app visibility and OEM policy can also hide associations. This does not identify a hidden package or HMA.</string>
+    <string name="runtime_sync21_danger_55" formatted="false">The system dropbox service was unavailable.</string>
+    <string name="runtime_sync21_danger_56" formatted="false">The system dropbox service could not be queried.</string>
+    <string name="runtime_sync21_danger_57" formatted="false">The Thanox transaction was not handled.</string>
+    <string name="runtime_sync21_danger_58" formatted="false">The transaction returned an empty reply.</string>
+    <string name="runtime_sync21_danger_59" formatted="false">The reply contained no server Binder.</string>
+    <string name="runtime_sync21_danger_60" formatted="false">The returned Binder did not expose the Thanox interface.</string>
+    <string name="runtime_sync21_danger_61" formatted="false">The IPC query was denied.</string>
+    <string name="runtime_sync21_danger_62" formatted="false">The IPC transport or returned Binder was unavailable.</string>
+    <string name="runtime_sync21_danger_63" formatted="false">The IPC reply was malformed or unrecognized.</string>
+    <string name="runtime_sync21_danger_64" formatted="false">Not collected.</string>
+    <string name="runtime_sync21_danger_65" formatted="false">No compatible runtime service observed.</string>
+    <string name="runtime_sync21_danger_66" formatted="false">Compatible runtime interface observed; manager APK installation and concealment are unconfirmed.</string>
+    <string name="runtime_sync21_danger_67" formatted="false">Probe unavailable; no package presence or concealment is inferred.</string>
+    <string name="runtime_sync21_danger_68" formatted="false">Reply unrecognized; no package presence or concealment is inferred.</string>
+    <string name="runtime_sync21_danger_69" formatted="false">Returned interface: %1$s.</string>
+    <string name="runtime_sync21_danger_70" formatted="false">History resets on reboot and may be filtered by package visibility or hiding modules. It cannot establish current installation, running state or concealment.</string>
+    <string name="runtime_sync21_danger_71" formatted="false">Permission denied; change history is unavailable.</string>
+    <string name="runtime_sync21_danger_72" formatted="false">Query failed; change history is unavailable.</string>
+    <string name="runtime_sync21_danger_73" formatted="false">Invalid response; change history could not be evaluated.</string>
+    <string name="runtime_sync21_danger_74" formatted="false">%1$d monitored package(s) appeared in visible changes since boot.</string>
+    <string name="runtime_sync21_danger_75" formatted="false">Additions, updates and removals share this list; event type and time are not provided.</string>
+    <string name="runtime_sync21_danger_76" formatted="false">Returned sequence: %1$d.</string>
+    <string name="runtime_sync21_danger_77" formatted="false">No visible changes or sequence number were returned.</string>
+    <string name="runtime_sync21_danger_78" formatted="false">Package Changes Since Boot</string>
+    <string name="runtime_sync21_danger_79" formatted="false">    • %1$s (%2$s) [%3$s; current installation unconfirmed]</string>
+    <string name="runtime_sync21_danger_80" formatted="false">Platform behavior mismatch observed</string>
+    <string name="runtime_sync21_danger_81" formatted="false">Repeated callback timeout asymmetry</string>
+    <string name="runtime_sync21_danger_82" formatted="false">Thanox-compatible runtime service observed</string>
+    <string name="runtime_sync21_danger_83" formatted="false">Behavior checks incomplete</string>
+    <string name="runtime_sync21_danger_84" formatted="false">Thanox IPC check incomplete</string>
+    <string name="runtime_sync21_danger_85" formatted="false">Package change history incomplete</string>
+    <string name="runtime_sync21_danger_86" formatted="false">Package change history observed</string>
+    <string name="runtime_sync21_danger_87" formatted="false">Controlled interface checks observed inconsistent exception, broadcast callback, UID visibility or seccomp getpriority behavior. These signals do not identify a specific hiding module.</string>
+    <string name="runtime_sync21_danger_88" formatted="false">Target callbacks repeatedly missed their deadlines while interleaved caller controls succeeded. This is lower-confidence timing evidence; scheduling and OEM behavior can also delay delivery.</string>
+    <string name="runtime_sync21_danger_89" formatted="false">A returned Binder matched the Thanox runtime interface. This does not establish installation of the manager APK or package concealment.</string>
+    <string name="runtime_sync21_danger_90" formatted="false">Some UIDs held non-instant permissions while fresh package queries exposed no association. This experimental observation does not establish a hiding module.</string>
+    <string name="runtime_sync21_danger_91" formatted="false">No behavior mismatch was established, but some checks were partial, unavailable or inconclusive. Review each check\'s scope and controls.</string>
+    <string name="runtime_sync21_danger_92" formatted="false">The Thanox IPC check was unavailable or its reply could not be identified. No package presence or concealment is inferred from this response.</string>
+    <string name="runtime_sync21_danger_93" formatted="false">The package change history query did not complete successfully. Its missing evidence cannot establish that monitored packages have not appeared.</string>
+    <string name="runtime_sync21_danger_94" formatted="false">This boot\'s package change history includes %1$d monitored package(s). Current installation and running state are unconfirmed; normal removal can leave the same evidence.</string>
+    <string name="runtime_sync21_danger_95" formatted="false">Could not save experiment choice</string>
+    <string name="runtime_sync21_danger_96" formatted="false">Invalid UID association response</string>
+    <string name="runtime_sync21_danger_97" formatted="false">Invalid UID association entry</string>
+    <string name="runtime_sync21_danger_98" formatted="false">Invalid UID permission response</string>
+    <string name="runtime_sync21_danger_99" formatted="false">Package service is unavailable</string>
+    <string name="runtime_sync21_danger_100" formatted="false">Package service interface is unavailable</string>
+    <string name="runtime_sync21_danger_101" formatted="false">Native child status=%1$d, errno/signal=%2$d. </string>
+    <string name="runtime_sync21_danger_102" formatted="false">%1$d/10000 ordinary app UIDs queried for this Android user; first UID=%2$d; controls passed=%3$s; %4$d fresh permission/association discrepancy(s); unstable candidates=%5$d; candidate limit reached=%6$s. Non-instant permissions: %7$s.  Experimental evidence only; this does not identify HMA or a package. A negative result does not exclude packages without these permissions. Failure=%9$s; %10$s</string>
+    <string name="runtime_sync21_danger_103" formatted="false">%1$d/10000 ordinary app UIDs queried for this Android user; first UID=%2$d; controls passed=%3$s; %4$d fresh permission/association discrepancy(s); unstable candidates=%5$d; candidate limit reached=%6$s. Non-instant permissions: %7$s. %8$s Experimental evidence only; this does not identify HMA or a package. A negative result does not exclude packages without these permissions. Failure=%9$s; </string>
+    <string name="runtime_sync21_danger_104" formatted="false">%1$d/10000 ordinary app UIDs queried for this Android user; first UID=%2$d; controls passed=%3$s; %4$d fresh permission/association discrepancy(s); unstable candidates=%5$d; candidate limit reached=%6$s. Non-instant permissions: %7$s.  Experimental evidence only; this does not identify HMA or a package. A negative result does not exclude packages without these permissions. Failure=%9$s; </string>
+    <string name="runtime_sync21_danger_105" formatted="false">%1$d/10000 ordinary app UIDs queried for this Android user; %2$d task UID(s), %3$d repeatedly lacked a visible package association. First UID=%4$d; caller queried=%5$s; controls passed=%6$s; recheck failure=%7$s; recheck limit=%8$s. Fresh query failure=%9$s; . Instant-app visibility and OEM policy can also hide associations. This does not identify a hidden package or HMA.</string>
+    <string name="runtime_sync21_composed_1" formatted="false">Not collected. History resets on reboot and may be filtered by package visibility or hiding modules. It cannot establish current installation, running state or concealment.</string>
+    <string name="runtime_sync21_composed_2" formatted="false">Permission denied; change history is unavailable. History resets on reboot and may be filtered by package visibility or hiding modules. It cannot establish current installation, running state or concealment.</string>
+    <string name="runtime_sync21_composed_3" formatted="false">Query failed; change history is unavailable. History resets on reboot and may be filtered by package visibility or hiding modules. It cannot establish current installation, running state or concealment.</string>
+    <string name="runtime_sync21_composed_4" formatted="false">Invalid response; change history could not be evaluated. History resets on reboot and may be filtered by package visibility or hiding modules. It cannot establish current installation, running state or concealment.</string>
+    <string name="runtime_sync21_composed_5" formatted="false">%1$d monitored package(s) appeared in visible changes since boot. Additions, updates and removals share this list; event type and time are not provided. Returned sequence: %2$d. History resets on reboot and may be filtered by package visibility or hiding modules. It cannot establish current installation, running state or concealment.</string>
+    <string name="runtime_sync21_composed_6" formatted="false">%1$d monitored package(s) appeared in visible changes since boot. Additions, updates and removals share this list; event type and time are not provided. No visible changes or sequence number were returned. History resets on reboot and may be filtered by package visibility or hiding modules. It cannot establish current installation, running state or concealment.</string>
+    <string name="runtime_sync21_composed_7" formatted="false">Consistent in evaluated scope. %1$s</string>
+    <string name="runtime_sync21_composed_8" formatted="false">Behavior mismatch observed. %1$s</string>
+    <string name="runtime_sync21_composed_9" formatted="false">Repeated callback timeout (lower confidence). %1$s</string>
+    <string name="runtime_sync21_composed_10" formatted="false">Inconclusive. %1$s</string>
+    <string name="runtime_sync21_composed_11" formatted="false">Unavailable. %1$s</string>
+    <string name="runtime_sync21_composed_12" formatted="false">Unsupported. %1$s</string>
+    <string name="runtime_sync21_composed_13" formatted="false">Permission limited. %1$s</string>
+    <string name="runtime_sync21_composed_14" formatted="false">Partially evaluated. %1$s</string>
+    <string name="runtime_sync21_composed_15" formatted="false">Experimental UID discrepancy observed. %1$s</string>
+    <string name="runtime_sync21_composed_16" formatted="false">%1$s Packages: %2$s. UIDs: %3$s.</string>
+    <string name="runtime_sync21_composed_17" formatted="false">%1$s Packages: %2$s.</string>
+    <string name="runtime_sync21_composed_18" formatted="false">%1$s UIDs: %2$s.</string>
+    <string name="runtime_sync21_composed_19" formatted="false">Not collected. %1$s</string>
+    <string name="runtime_sync21_composed_20" formatted="false">Not collected. Returned interface: %1$s.</string>
+    <string name="runtime_sync21_composed_21" formatted="false">Not collected. Returned interface: %1$s. %2$s</string>
+    <string name="runtime_sync21_composed_22" formatted="false">No compatible runtime service observed. %1$s</string>
+    <string name="runtime_sync21_composed_23" formatted="false">No compatible runtime service observed. Returned interface: %1$s.</string>
+    <string name="runtime_sync21_composed_24" formatted="false">No compatible runtime service observed. Returned interface: %1$s. %2$s</string>
+    <string name="runtime_sync21_composed_25" formatted="false">Compatible runtime interface observed; manager APK installation and concealment are unconfirmed. %1$s</string>
+    <string name="runtime_sync21_composed_26" formatted="false">Compatible runtime interface observed; manager APK installation and concealment are unconfirmed. Returned interface: %1$s.</string>
+    <string name="runtime_sync21_composed_27" formatted="false">Compatible runtime interface observed; manager APK installation and concealment are unconfirmed. Returned interface: %1$s. %2$s</string>
+    <string name="runtime_sync21_composed_28" formatted="false">Probe unavailable; no package presence or concealment is inferred. %1$s</string>
+    <string name="runtime_sync21_composed_29" formatted="false">Probe unavailable; no package presence or concealment is inferred. Returned interface: %1$s.</string>
+    <string name="runtime_sync21_composed_30" formatted="false">Probe unavailable; no package presence or concealment is inferred. Returned interface: %1$s. %2$s</string>
+    <string name="runtime_sync21_composed_31" formatted="false">Reply unrecognized; no package presence or concealment is inferred. %1$s</string>
+    <string name="runtime_sync21_composed_32" formatted="false">Reply unrecognized; no package presence or concealment is inferred. Returned interface: %1$s.</string>
+    <string name="runtime_sync21_composed_33" formatted="false">Reply unrecognized; no package presence or concealment is inferred. Returned interface: %1$s. %2$s</string>
+    <string name="runtime_sync21_composed_34" formatted="false">%1$s Shared task/permission UID(s): %2$s. Both comparisons use package associations; correlation adds no independent HMA confidence.</string>
+</resources>

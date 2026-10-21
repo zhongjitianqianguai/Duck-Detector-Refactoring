@@ -26,7 +26,10 @@ fun DangerousAppsReport.toDetectorStatus(): DetectorStatus {
         DangerousAppsStage.FAILED -> DetectorStatus.info(InfoKind.ERROR)
         DangerousAppsStage.READY -> when {
             hiddenCount > 0 -> DetectorStatus.danger()
+            behaviorChecks.any { it.state == HmaCheckState.INCONSISTENT } -> DetectorStatus.warning()
+            behaviorChecks.any { it.state == HmaCheckState.TIMING_ANOMALY } -> DetectorStatus.warning()
             detectedCount > 0 -> DetectorStatus.warning()
+            thanoxIpc.state == ThanoxIpcState.MATCHED -> DetectorStatus.warning()
             suspiciousSharedStorageDenied -> DetectorStatus.warning()
             suspiciousLowPmInventory -> DetectorStatus.warning()
             packageVisibility == DangerousPackageVisibility.RESTRICTED -> DetectorStatus.info(
@@ -36,6 +39,12 @@ fun DangerousAppsReport.toDetectorStatus(): DetectorStatus {
             packageVisibility == DangerousPackageVisibility.UNKNOWN -> DetectorStatus.info(
                 InfoKind.SUPPORT
             )
+
+            behaviorChecks.any { it.state != HmaCheckState.CONSISTENT } -> DetectorStatus.info(InfoKind.SUPPORT)
+            !thanoxIpc.complete -> DetectorStatus.info(InfoKind.SUPPORT)
+
+            packageChangeHistory.state != PackageChangeHistoryState.AVAILABLE -> DetectorStatus.info(InfoKind.SUPPORT)
+            packageChangeHistory.matchedTargets.isNotEmpty() -> DetectorStatus.info(InfoKind.SUPPORT)
 
             else -> DetectorStatus.allClear()
         }

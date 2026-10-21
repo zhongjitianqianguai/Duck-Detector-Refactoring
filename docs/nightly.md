@@ -10,6 +10,8 @@ git push origin refs/heads/nightly:refs/heads/nightly
 
 应用只读取本 fork 的 [Nightly 更新清单](https://github.com/zhongjitianqianguai/Duck-Detector-Refactoring/releases/download/nightly/update.json)，APK 下载地址也必须属于同一仓库的 Nightly 发布。官方仓库的 Nightly APK 不会被此更新源接受。
 
+已融合上游新增的逐构建归档解析与独立校验能力；归档 URL 仍限制到本 fork，并核对标签日期及提交。当前保留 `nightly` 发现入口和既有发布，兼容已安装的定制版，不自动采用原作者删除旧入口的策略，也不更改 GitHub 仓库发布策略。
+
 发布制品须与清单中的提交、版本号、大小和 SHA-256 一致，并保持 APK 签名与已安装版本兼容。当前定制构建使用本机已有调试签名；私钥不得进入仓库或发布附件。
 
 这里只规定分支与发布制品的对应关系，不自动发送 Telegram 消息。原有官方工作流仍保留；本 fork 的 Nightly 发布独立完成。

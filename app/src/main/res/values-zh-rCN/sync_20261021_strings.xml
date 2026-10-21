@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="runtime_sync21_initrc_title" formatted="false">init.rc Hook 时序</string>
+    <string name="runtime_sync21_initrc_repeat" formatted="false">可重复的交互差异（实验性）</string>
+    <string name="runtime_sync21_initrc_no_repeat" formatted="false">未观察到可重复的交互差异</string>
+    <string name="runtime_sync21_cleanup_failed" formatted="false">清理失败</string>
+    <string name="runtime_sync21_initrc_limit" formatted="false">实验性辅助证据；既不能确认也不能排除 KernelSU。</string>
+    <string name="runtime_sync21_initrc_method" formatted="false">通过 arm64 原始 fstat 系统调用，检查线程名 init 与私有文件名 init.rc 之间的时序交互。</string>
+    <string name="runtime_sync21_initrc_hook_scope" formatted="false">仅适用于所审查的 #3924 修复前 Hook 仍驻留的情况；启动时成功识别会将其移除，后期加载则不会安装该 Hook。</string>
+    <string name="runtime_sync21_initrc_controls" formatted="false">使用元数据一致的对照文件、均衡顺序和单 CPU 检查来减少干扰，但不能据此证明因果关系。</string>
+    <string name="runtime_sync21_initrc_calibration" formatted="false">重复性判定规则尚属暂定；真机检测准确率尚未校准。</string>
+    <string name="runtime_sync21_initrc_collection" formatted="false">采集状态：%1$s；errno=%2$d；CPU=%3$d</string>
+    <string name="runtime_sync21_initrc_cleanup" formatted="false">清理完成：%1$s；清理 errno=%2$d</string>
+    <string name="runtime_sync21_initrc_rounds" formatted="false">完整轮数：%1$d/32；每批调用次数=%2$d</string>
+    <string name="runtime_sync21_initrc_median" formatted="false">交互差值中位数：%1$s 纳秒/次；中位绝对偏差：%2$s</string>
+    <string name="runtime_sync21_initrc_positive" formatted="false">正差值轮数：%1$d/32</string>
+    <string name="runtime_sync21_initrc_order" formatted="false">各顺序中位数（纳秒/次）：%1$s</string>
+    <string name="runtime_sync21_initrc_raw" formatted="false">原始批次耗时（纳秒）：轮次 / duck-data / duck-init / init-data / init-init</string>
+    <string name="runtime_sync21_initrc_cache" formatted="false">应用私有缓存目录不可用</string>
+    <string name="runtime_sync21_initrc_oversized" formatted="false">init.rc 时序数据超过大小限制</string>
+    <string name="runtime_sync21_initrc_malformed" formatted="false">init.rc 时序字段格式错误</string>
+    <string name="runtime_sync21_initrc_excess" formatted="false">init.rc 时序轮数过多</string>
+    <string name="runtime_sync21_initrc_duplicate" formatted="false">时序字段重复</string>
+    <string name="runtime_sync21_initrc_stage" formatted="false">未知的原生时序阶段</string>
+    <string name="runtime_sync21_canary_required" formatted="false">需要安装来源授权</string>
+    <string name="runtime_sync21_canary_unexpected" formatted="false">意外安装成功；实验已关闭</string>
+    <string name="runtime_sync21_canary_owner" formatted="false">观察到权限归属者</string>
+    <string name="runtime_sync21_canary_not_observed" formatted="false">未观察到权限冲突</string>
+    <string name="runtime_sync21_canary_diagnostic" formatted="false">安装器权限归属观测：%1$s</string>
+    <string name="runtime_sync21_canary_permission" formatted="false">候选权限：%1$s</string>
+    <string name="runtime_sync21_canary_registry" formatted="false">注册归属包：%1$s（身份未验证）</string>
+    <string name="runtime_sync21_canary_directory" formatted="false">目录观测：user=%1$d，uid=%2$d，appId=%3$d</string>
+    <string name="runtime_sync21_canary_search" formatted="false">目录搜索范围为用户 ID 0–999，并非穷尽搜索。stat 失败不能证明目录不存在。</string>
+    <string name="runtime_sync21_canary_errors" formatted="false">目录错误 errno 计数：%1$s</string>
+    <string name="runtime_sync21_canary_limits" formatted="false">重新编译的权限名称可能不同；任何结果都不能证明已获取 Root 或存在执行历史。</string>
+    <string name="runtime_sync21_canary_probe" formatted="false">安装器权限探针</string>
+    <string name="runtime_sync21_canary_candidate_owner" formatted="false">候选权限归属包</string>
+    <string name="runtime_sync21_canary_identity" formatted="false">身份尚未验证。仅凭权限归属不能确认其为 Root 管理器。</string>
+    <string name="runtime_sync21_canary_coordinates" formatted="false">归属包目录位置</string>
+    <string name="runtime_sync21_canary_user" formatted="false">用户 %1$d</string>
+    <string name="runtime_sync21_canary_not_observable" formatted="false">无法观测</string>
+    <string name="runtime_sync21_canary_mount_limit" formatted="false">已搜索用户 ID 0–999。挂载命名空间和访问限制可能让已存在的目录不可见。</string>
+    <string name="runtime_sync21_canary_platform" formatted="false">已研究的平台范围：Android 13–17。</string>
+    <string name="runtime_sync21_canary_asset" formatted="false">缺少由宿主应用签名的安装诊断 APK。</string>
+    <string name="runtime_sync21_canary_privilege" formatted="false">宿主应用未持有 UPDATE_PACKAGES_WITHOUT_USER_ACTION 权限。</string>
+    <string name="runtime_sync21_canary_source" formatted="false">未获得安装来源授权；未打开设置页面。</string>
+    <string name="runtime_sync21_canary_locked" formatted="false">另一个探针正占用安装会话。</string>
+    <string name="runtime_sync21_canary_throttle" formatted="false">两次安装检查之间需至少间隔 60 秒。</string>
+    <string name="runtime_sync21_canary_timeout" formatted="false">等待安装器回调超时。</string>
+    <string name="runtime_sync21_canary_unexpected_detail" formatted="false">安装意外成功；请关闭此实验。</string>
+    <string name="runtime_sync21_canary_result" formatted="false">安装器返回状态 %1$d，旧版状态 %2$s；未得到可验证的权限归属结果。</string>
+    <string name="runtime_sync21_canary_parse" formatted="false">无法解析安装诊断 APK</string>
+    <string name="runtime_sync21_canary_shared" formatted="false">不支持使用共享 UID 的宿主应用</string>
+    <string name="runtime_sync21_canary_system" formatted="false">不支持系统应用宿主</string>
+    <string name="runtime_sync21_canary_package" formatted="false">诊断 APK 包名与宿主不一致</string>
+    <string name="runtime_sync21_canary_version" formatted="false">诊断 APK 版本必须高于已安装版本</string>
+    <string name="runtime_sync21_canary_code" formatted="false">诊断 APK 不得含有可执行应用代码</string>
+    <string name="runtime_sync21_canary_boundary" formatted="false">缺少用于拒绝安装的共享 UID 边界</string>
+    <string name="runtime_sync21_canary_signer" formatted="false">诊断 APK 签名与已安装宿主不一致</string>
+    <string name="runtime_sync21_canary_platform_boundary" formatted="false">无法确认平台共享 UID 的拒绝安装边界</string>
+    <string name="runtime_sync21_canary_platform_signer" formatted="false">不支持使用平台签名的宿主</string>
+    <string name="runtime_sync21_canary_components" formatted="false">诊断 APK 不得声明应用组件</string>
+    <string name="runtime_sync21_mount_ns_match" formatted="false">可见的命名空间标识相同；仅凭标识不能证明 Root 或隔离失效。</string>
+    <string name="runtime_sync21_mount_overlay_value" formatted="false">Overlay 视图观测</string>
+    <string name="runtime_sync21_mount_overlay_detail" formatted="false">可执行文件解析到 overlayfs，但另一次挂载表采集未显示覆盖它的 Overlay。这不能证明存在隐藏挂载。</string>
+    <string name="runtime_sync21_mount_source" formatted="false">挂载来源</string>
+    <string name="runtime_sync21_mount_source_detail" formatted="false">来源=%1$s。仅凭来源路径不能判断 dm-verity 状态。</string>
+    <string name="runtime_sync21_mount_tmpfs" formatted="false">Tmpfs 挂载</string>
+    <string name="runtime_sync21_mount_root_source" formatted="false">Root 管理器挂载来源</string>
+    <string name="runtime_sync21_mount_magic_source" formatted="false">Magic-mount 来源</string>
+    <string name="runtime_sync21_mount_subset" formatted="false">挂载根目录子集</string>
+    <string name="runtime_sync21_mount_context" formatted="false">SELinux 挂载上下文</string>
+    <string name="runtime_sync21_mount_id" formatted="false">挂载 ID 不连续</string>
+    <string name="runtime_sync21_mount_id_adjacent" formatted="false">相邻 mountinfo 记录：%1$s（ID %2$d）→ %3$s（ID %4$d）。挂载 ID 不必连续；这不能证明隐藏挂载。</string>
+    <string name="runtime_sync21_mount_id_limits" formatted="false">挂载 ID 不必连续。启动和运行时重复观察到不连续，也不能证明存在隐藏挂载。</string>
+    <string name="runtime_sync21_mount_vfs_attribute" formatted="false">%1$s 报告了 VFS 挂载根属性；这不是完整性违规。</string>
+    <string name="runtime_sync21_mount_statx" formatted="false">statx 挂载 ID 观测</string>
+    <string name="runtime_sync21_mount_statx_detail" formatted="false">statx=%1$d 未出现在此前采集的 mountinfo 中。两次采集不是原子操作；判断篡改前须排除挂载变化或可见性不完整。</string>
+    <string name="runtime_sync21_mount_api" formatted="false">API 观测结果不同</string>
+    <string name="runtime_sync21_mount_api_detail" formatted="false">底层 stat 报告 %1$s 可访问，但之后的 Java File 查询报告 exists=%2$s，dir=%3$s。查询并非原子操作。</string>
+    <string name="runtime_sync21_mount_access_detail" formatted="false">可访问检查：%1$d/%2$d。权限拒绝检查：%3$d。可见性受限不是 Root 证据。</string>
+    <string name="runtime_sync21_mount_next_ns" formatted="false">Zygote next 命名空间观测</string>
+    <string name="runtime_sync21_mount_coverage" formatted="false">覆盖范围未验证</string>
+    <string name="runtime_sync21_mount_review" formatted="false">%1$d 项待复核</string>
+    <string name="runtime_sync21_mount_source_observed" formatted="false">观察到来源</string>
+    <string name="runtime_sync21_mount_support" formatted="false">具备支持能力</string>
+    <string name="runtime_sync21_mount_ns" formatted="false">命名空间观测</string>
+    <string name="runtime_sync21_mount_inode" formatted="false">Proc inode 时间戳</string>
+    <string name="runtime_sync21_mount_minor" formatted="false">次设备号观测</string>
+    <string name="runtime_sync21_mount_peer" formatted="false">共享传播组观测</string>
+    <string name="runtime_sync21_mount_multiple" formatted="false">多项观测</string>
+    <string name="runtime_sync21_mount_runtime" formatted="false">运行时挂载表检查包括 Magisk 路径、可写系统分区、Overlay、Loop 设备及观察到的来源路径。</string>
+    <string name="runtime_sync21_mount_statx_scope" formatted="false">报告 statx 返回的挂载 ID 和挂载根字段。字段缺失或系统调用错误会限制覆盖范围；非原子采集的差异不能证明篡改。</string>
+    <string name="runtime_sync21_mount_remount" formatted="false">观察到可写、Overlay 或 Loop 支撑的系统挂载。开发用重新挂载也会产生这些记录；它们不能确认 Root 管理器或验证启动状态。</string>
+    <string name="runtime_sync21_mount_filesystem" formatted="false">文件系统与 statx 结果采集于不同时刻，可能解析到不同路径或覆盖挂载。这些观测不能证明挂载隐藏。</string>
+    <string name="runtime_sync21_mount_warning" formatted="false">请结合设备和系统版本复核列出的挂载属性；单条警告不能证明设备已获取 Root。</string>
+    <string name="runtime_sync21_mount_private" formatted="false">原生隔离路径的根挂载为 private/slave。命名空间策略会因系统版本而异；仅凭这一点不能证明 Root 或隐藏。</string>
+    <string name="runtime_sync21_mount_propagation" formatted="false">传播属性或可重用挂载 ID 的相对关系与参考特征不同。这不能证明完整性违规或命名空间继承关系。</string>
+    <string name="runtime_sync21_mount_ns_ctime" formatted="false">ns/mnt inode ctime 观测：差值=%1$d 纳秒</string>
+    <string name="runtime_sync21_mount_info_ctime" formatted="false">mountinfo inode ctime 观测：差值=%1$d 纳秒</string>
+    <string name="runtime_sync21_mount_minor_next" formatted="false">前一次设备号 + 1=%1$d，在 %3$s 观察到 %2$d</string>
+    <string name="runtime_sync21_mount_minor_tmpfs" formatted="false">Tmpfs 次设备号介于 /dev 与 /sys 之间：%1$s（次设备号 %2$d）</string>
+    <string name="runtime_sync21_mount_peer_detail" formatted="false">未显示的共享传播组 ID 数量=%1$d。组 ID 是全局分配的，不必在此命名空间内连续。</string>
+    <string name="runtime_sync21_zygisk_families" formatted="false">%1$d 类启发式证据同时出现</string>
+    <string name="runtime_sync21_zygisk_one_family" formatted="false">一类启发式证据需要复核</string>
+    <string name="runtime_sync21_zygisk_summary" formatted="false">当前进程出现多类启发式证据。请逐项检查发现及其正常原因；这些观测不能证明 Zygisk 注入。</string>
+    <string name="runtime_sync21_zygisk_policy" formatted="false">FD 陷阱或直接运行时强证据显示红色；一类启发式证据显示黄色，多类升为红色。Maps 与 FD 的加载路径残留合计只算一类。</string>
+    <string name="runtime_sync21_zygisk_direct" formatted="false">此进程出现直接运行时证据，或跨进程特化路径的表现类似经过 Zygisk 清理的子进程。</string>
+    <string name="runtime_sync21_zygisk_impact" formatted="false">多类启发式证据需要复核。同时出现也不能证明 Zygisk 注入。</string>
+    <string name="runtime_sync21_zygisk_review" formatted="false">请结合内存与挂载检测逐项复核；运行时残留也可能有正常原因。</string>
+    <string name="runtime_sync21_danger_1" formatted="false">Thanox 运行时 IPC</string>
+    <string name="runtime_sync21_danger_2" formatted="false">跨用户广播异常</string>
+    <string name="runtime_sync21_danger_3" formatted="false">广播最终回调完成情况</string>
+    <string name="runtime_sync21_danger_4" formatted="false">广播最终结果回调</string>
+    <string name="runtime_sync21_danger_5" formatted="false">getPackageInfo 异常</string>
+    <string name="runtime_sync21_danger_6" formatted="false">getApplicationInfo 异常</string>
+    <string name="runtime_sync21_danger_7" formatted="false">getpriority 的 UID 可见性</string>
+    <string name="runtime_sync21_danger_8" formatted="false">seccomp 对 getpriority 的干扰</string>
+    <string name="runtime_sync21_danger_9" formatted="false">UID 权限可见性（实验性）</string>
+    <string name="runtime_sync21_danger_10" formatted="false">已评估范围内结果一致</string>
+    <string name="runtime_sync21_danger_11" formatted="false">观察到行为不一致</string>
+    <string name="runtime_sync21_danger_12" formatted="false">多次回调超时（置信度较低）</string>
+    <string name="runtime_sync21_danger_13" formatted="false">部分完成评估</string>
+    <string name="runtime_sync21_danger_14" formatted="false">观察到实验性 UID 差异</string>
+    <string name="runtime_sync21_danger_15" formatted="false">调用方自身应用包的对照结果：%1$s / %2$s；两次都必须抛出 SecurityException。</string>
+    <string name="runtime_sync21_danger_16" formatted="false">在两次权限对照之间，对 %1$d 个应用包各检查两次；%2$d 项重复出现异常不一致。结果统计：%3$s。</string>
+    <string name="runtime_sync21_danger_17" formatted="false">调用方自身应用包的初始回调对照失败（%1$s）；已跳过目标调用。</string>
+    <string name="runtime_sync21_danger_18" formatted="false">%1$d/%2$d 个目标完成成对调用；%3$d 个目标在调用前、两次调用之间和调用后均通过调用方对照。目标结果：超时 %4$d 次、拒绝 %5$d 次、失败 %6$d 次。是否达到批次时限=%7$s。未通过的对照项：%8$s。</string>
+    <string name="runtime_sync21_danger_19" formatted="false">%1$s 有 %2$d 个目标在穿插对照均通过的情况下多次超出回调时限。这是置信度较低的时序观测，不能证明存在 Hook 或回调永久丢失。</string>
+    <string name="runtime_sync21_danger_20" formatted="false">%1$s 重复出现 %2$d 项标志位、结果数据或回调 Intent 不匹配。未收到回调不能证明存在语义不匹配。</string>
+    <string name="runtime_sync21_danger_21" formatted="false">应用包：%1$s。</string>
+    <string name="runtime_sync21_danger_22" formatted="false">UID：%1$s。</string>
+    <string name="runtime_sync21_danger_23" formatted="false">尚未针对 API %1$d 验证平台语义。</string>
+    <string name="runtime_sync21_danger_24" formatted="false">%1$s 目标范围：%2$d/%3$d；API %4$d。</string>
+    <string name="runtime_sync21_danger_25" formatted="false">调用方 UID 不在普通应用 UID 范围内。</string>
+    <string name="runtime_sync21_danger_26" formatted="false">必须具有完整的应用包可见性，才能比较 UID 任务与应用包关联信息。</string>
+    <string name="runtime_sync21_danger_27" formatted="false">实验性 UID 权限比较需要完整的应用包可见性。</string>
+    <string name="runtime_sync21_danger_28" formatted="false">需要已核实的 Android 15/16 权限语义、普通应用调用方 UID，以及非即时应用权限定义。</string>
+    <string name="runtime_sync21_danger_29" formatted="false">实验性 UID 权限比较不可用：%1$s</string>
+    <string name="runtime_sync21_danger_30" formatted="false">原生子进程状态=%1$d，errno/信号=%2$d。%3$s</string>
+    <string name="runtime_sync21_danger_31" formatted="false">原生 seccomp 监听器探测不可用：%1$s</string>
+    <string name="runtime_sync21_danger_32" formatted="false">seccomp(SECCOMP_SET_MODE_FILTER, NEW_LISTENER) 返回 EBUSY（errno %1$d）。</string>
+    <string name="runtime_sync21_danger_33" formatted="false">探测子进程在报告监听器结果前被 seccomp 陷阱终止（信号 %1$d）。</string>
+    <string name="runtime_sync21_danger_34" formatted="false">安装监听器时返回 errno %1$d（%2$s）。</string>
+    <string name="runtime_sync21_danger_35" formatted="false">安装监听器被拒绝，返回 errno %1$d（%2$s）。</string>
+    <string name="runtime_sync21_danger_36" formatted="false">原生子进程结束时未返回监听器结果（errno/信号 %1$d）。</string>
+    <string name="runtime_sync21_danger_37" formatted="false">SIGSYS 在查询 ABI 上指向 getpriority(PRIO_USER)（信号 %1$d）；此前已收到 %2$d 次通知。</string>
+    <string name="runtime_sync21_danger_38" formatted="false">查询结果=%1$s，错误=%2$d，通知数=%3$d，协调进程错误=%4$d。</string>
+    <string name="runtime_sync21_danger_39" formatted="false">%1$d/%2$d 次查询未产生通知。</string>
+    <string name="runtime_sync21_danger_40" formatted="false">%1$d/%2$d 次查询产生了通知。</string>
+    <string name="runtime_sync21_danger_41" formatted="false">已完成的通知结论缺少匹配的计数或调用方对照（查询数=%1$d、通知数=%2$d、自身通知=%3$s）。内核版本 %4$d.%5$d。</string>
+    <string name="runtime_sync21_danger_42" formatted="false">已安装 NEW_LISTENER 过滤器；调用方应用 UID 范围内的全部 %1$d 次 getpriority(PRIO_USER) 查询均产生通知，未观察到更高优先级的抑制。内核版本 %2$d.%3$d。本探测只覆盖当前进程中的 seccomp 过滤器。</string>
+    <string name="runtime_sync21_danger_43" formatted="false">seccomp(SECCOMP_SET_MODE_FILTER, NEW_LISTENER) 返回 EBUSY。已有过滤器携带监听器时，ACK 的重复监听器路径会返回 EBUSY；继承的策略也可能合成此 errno。内核版本 %1$d.%2$d。这是 seccomp 干扰证据，不能据此识别具体模块。</string>
+    <string name="runtime_sync21_danger_44" formatted="false">seccomp(SECCOMP_SET_MODE_FILTER, NEW_LISTENER) 返回 EBUSY，但内核版本 %1$d.%2$d 早于文档所述的 Linux 5.0 用户通知语义，因此不将该 errno 解释为监听器证据。</string>
+    <string name="runtime_sync21_danger_45" formatted="false">已安装 NEW_LISTENER 过滤器，但 %1$d/%2$d 次 getpriority(PRIO_USER) 查询未产生通知（首个被抑制的 UID=%3$d，最后一个=%4$d）。另一个过滤器以数值低于 USER_NOTIF、优先级更高的动作处理这些查询。内核版本 %5$d.%6$d。这是 seccomp 干扰证据，不能据此识别具体模块。</string>
+    <string name="runtime_sync21_danger_46" formatted="false">安装 NEW_LISTENER 过滤器后，一次 getpriority(PRIO_USER) 查询被 seccomp 陷阱终止；非平台过滤器或 OEM 策略拒绝了调用。内核版本 %1$d.%2$d。这是 seccomp 干扰证据，不能据此识别具体模块。</string>
+    <string name="runtime_sync21_danger_47" formatted="false">一次性探测在报告结果前被 SIGSYS 拒绝。触发故障的系统调用未知，因此只能视为覆盖范围受权限限制。内核版本 %1$d.%2$d。</string>
+    <string name="runtime_sync21_danger_48" formatted="false">监听器探测未能安装：%1$s 内核版本 %2$d.%3$d。当前内核不具备文档所述的 NEW_LISTENER 行为（Linux &lt; 5.0），或拒绝了探测程序。</string>
+    <string name="runtime_sync21_danger_49" formatted="false">监听器探测受到权限限制：%1$s 内核版本 %2$d.%3$d。</string>
+    <string name="runtime_sync21_danger_50" formatted="false">监听器探测失败：%1$s 内核版本 %2$d.%3$d。</string>
+    <string name="runtime_sync21_danger_51" formatted="false">监听器过滤器已安装，但查询阶段未完成（%1$s）；无法确认查询是否遭到抑制。内核版本 %2$d.%3$d。</string>
+    <string name="runtime_sync21_danger_52" formatted="false">已针对此 Android 用户查询 %1$d/10000 个普通应用 UID；起始 UID=%2$d；对照已通过=%3$s；发现 %4$d 项新的权限/关联差异；不稳定候选=%5$d；是否达到候选上限=%6$s。非即时应用权限：%7$s。%8$s 这只是实验性证据，不能据此识别 HMA 或具体应用包。未发现异常也不能排除未持有这些权限的应用包。失败状态=%9$s；%10$s</string>
+    <string name="runtime_sync21_danger_53" formatted="false">共享的任务/权限 UID：%1$s。两项比较都基于应用包关联；这种相关性不会增加独立的 HMA 可信度。</string>
+    <string name="runtime_sync21_danger_54" formatted="false">已针对此 Android 用户查询 %1$d/10000 个普通应用 UID；任务 UID 数=%2$d，其中 %3$d 个反复缺少可见应用包关联。起始 UID=%4$d；是否查询了调用方=%5$s；对照已通过=%6$s；复核失败=%7$s；是否达到复核上限=%8$s。重新查询失败=%9$s；%10$s。即时应用可见性和 OEM 策略也可能隐藏关联信息。这不能识别被隐藏的应用包或 HMA。</string>
+    <string name="runtime_sync21_danger_55" formatted="false">系统 dropbox 服务不可用。</string>
+    <string name="runtime_sync21_danger_56" formatted="false">无法查询系统 dropbox 服务。</string>
+    <string name="runtime_sync21_danger_57" formatted="false">Thanox 事务未被处理。</string>
+    <string name="runtime_sync21_danger_58" formatted="false">事务返回了空回复。</string>
+    <string name="runtime_sync21_danger_59" formatted="false">回复中不包含服务端 Binder。</string>
+    <string name="runtime_sync21_danger_60" formatted="false">返回的 Binder 未提供 Thanox 接口。</string>
+    <string name="runtime_sync21_danger_61" formatted="false">IPC 查询被拒绝。</string>
+    <string name="runtime_sync21_danger_62" formatted="false">IPC 传输或返回的 Binder 不可用。</string>
+    <string name="runtime_sync21_danger_63" formatted="false">IPC 回复格式错误或无法识别。</string>
+    <string name="runtime_sync21_danger_64" formatted="false">未采集。</string>
+    <string name="runtime_sync21_danger_65" formatted="false">未观察到兼容的运行时服务。</string>
+    <string name="runtime_sync21_danger_66" formatted="false">观察到兼容的运行时接口；尚未确认管理器 APK 是否安装，也未确认是否存在隐藏行为。</string>
+    <string name="runtime_sync21_danger_67" formatted="false">探测不可用；不能据此推断应用包存在或被隐藏。</string>
+    <string name="runtime_sync21_danger_68" formatted="false">回复无法识别；不能据此推断应用包存在或被隐藏。</string>
+    <string name="runtime_sync21_danger_69" formatted="false">返回的接口：%1$s。</string>
+    <string name="runtime_sync21_danger_70" formatted="false">历史记录在重启后重置，也可能受应用包可见性或隐藏模块过滤。它不能证明当前是否安装、是否正在运行或是否存在隐藏行为。</string>
+    <string name="runtime_sync21_danger_71" formatted="false">权限被拒绝；无法获取变更历史。</string>
+    <string name="runtime_sync21_danger_72" formatted="false">查询失败；无法获取变更历史。</string>
+    <string name="runtime_sync21_danger_73" formatted="false">响应无效；无法评估变更历史。</string>
+    <string name="runtime_sync21_danger_74" formatted="false">本次开机以来的可见变更中出现了 %1$d 个受监测应用包。</string>
+    <string name="runtime_sync21_danger_75" formatted="false">此列表混合显示新增、更新和移除记录；不提供事件类型和时间。</string>
+    <string name="runtime_sync21_danger_76" formatted="false">返回的变更序号：%1$d。</string>
+    <string name="runtime_sync21_danger_77" formatted="false">未返回可见变更或序号。</string>
+    <string name="runtime_sync21_danger_78" formatted="false">本次开机以来的应用包变更</string>
+    <string name="runtime_sync21_danger_79" formatted="false">    • %1$s (%2$s) [%3$s；当前是否安装尚未确认]</string>
+    <string name="runtime_sync21_danger_80" formatted="false">观察到平台行为不一致</string>
+    <string name="runtime_sync21_danger_81" formatted="false">观察到回调超时不对称</string>
+    <string name="runtime_sync21_danger_82" formatted="false">观察到兼容 Thanox 的运行时服务</string>
+    <string name="runtime_sync21_danger_83" formatted="false">行为检查未完成</string>
+    <string name="runtime_sync21_danger_84" formatted="false">Thanox IPC 检查未完成</string>
+    <string name="runtime_sync21_danger_85" formatted="false">应用包变更历史未完整获取</string>
+    <string name="runtime_sync21_danger_86" formatted="false">观察到应用包变更历史</string>
+    <string name="runtime_sync21_danger_87" formatted="false">受控接口检查观察到异常、广播回调、UID 可见性或 seccomp getpriority 行为不一致。这些信号不能识别具体的隐藏模块。</string>
+    <string name="runtime_sync21_danger_88" formatted="false">穿插的调用方对照均成功时，目标回调仍多次超时。这是置信度较低的时序证据；调度和 OEM 行为也可能延迟回调。</string>
+    <string name="runtime_sync21_danger_89" formatted="false">返回的 Binder 与 Thanox 运行时接口匹配。这不能证明管理器 APK 已安装，也不能证明应用包被隐藏。</string>
+    <string name="runtime_sync21_danger_90" formatted="false">部分 UID 持有非即时应用权限，但重新查询应用包时未发现关联。这只是实验性观测，不能证明存在隐藏模块。</string>
+    <string name="runtime_sync21_danger_91" formatted="false">未能确认行为不一致，但部分检查只完成了一部分、不可用或无法得出结论。请查看各项检查的范围和对照结果。</string>
+    <string name="runtime_sync21_danger_92" formatted="false">Thanox IPC 检查不可用，或回复无法识别。不能据此推断应用包存在或被隐藏。</string>
+    <string name="runtime_sync21_danger_93" formatted="false">应用包变更历史查询未成功完成。缺少这项证据不能证明受监测应用包未曾出现。</string>
+    <string name="runtime_sync21_danger_94" formatted="false">本次开机以来的应用包变更历史包含 %1$d 个受监测应用包。目前是否安装或正在运行尚未确认；正常卸载也可能留下相同记录。</string>
+    <string name="runtime_sync21_danger_95" formatted="false">无法保存实验选择</string>
+    <string name="runtime_sync21_danger_96" formatted="false">UID 关联响应无效</string>
+    <string name="runtime_sync21_danger_97" formatted="false">UID 关联条目无效</string>
+    <string name="runtime_sync21_danger_98" formatted="false">UID 权限响应无效</string>
+    <string name="runtime_sync21_danger_99" formatted="false">应用包服务不可用</string>
+    <string name="runtime_sync21_danger_100" formatted="false">应用包服务接口不可用</string>
+    <string name="runtime_sync21_danger_101" formatted="false">原生子进程状态=%1$d，errno/信号=%2$d。</string>
+    <string name="runtime_sync21_danger_102" formatted="false">已针对此 Android 用户查询 %1$d/10000 个普通应用 UID；起始 UID=%2$d；对照已通过=%3$s；发现 %4$d 项新的权限/关联差异；不稳定候选=%5$d；是否达到候选上限=%6$s。非即时应用权限：%7$s。 这只是实验性证据，不能据此识别 HMA 或具体应用包。未发现异常也不能排除未持有这些权限的应用包。失败状态=%9$s；%10$s</string>
+    <string name="runtime_sync21_danger_103" formatted="false">已针对此 Android 用户查询 %1$d/10000 个普通应用 UID；起始 UID=%2$d；对照已通过=%3$s；发现 %4$d 项新的权限/关联差异；不稳定候选=%5$d；是否达到候选上限=%6$s。非即时应用权限：%7$s。%8$s 这只是实验性证据，不能据此识别 HMA 或具体应用包。未发现异常也不能排除未持有这些权限的应用包。失败状态=%9$s；</string>
+    <string name="runtime_sync21_danger_104" formatted="false">已针对此 Android 用户查询 %1$d/10000 个普通应用 UID；起始 UID=%2$d；对照已通过=%3$s；发现 %4$d 项新的权限/关联差异；不稳定候选=%5$d；是否达到候选上限=%6$s。非即时应用权限：%7$s。 这只是实验性证据，不能据此识别 HMA 或具体应用包。未发现异常也不能排除未持有这些权限的应用包。失败状态=%9$s；</string>
+    <string name="runtime_sync21_danger_105" formatted="false">已针对此 Android 用户查询 %1$d/10000 个普通应用 UID；任务 UID 数=%2$d，其中 %3$d 个反复缺少可见应用包关联。起始 UID=%4$d；是否查询了调用方=%5$s；对照已通过=%6$s；复核失败=%7$s；是否达到复核上限=%8$s。重新查询失败=%9$s；。即时应用可见性和 OEM 策略也可能隐藏关联信息。这不能识别被隐藏的应用包或 HMA。</string>
+    <string name="runtime_sync21_composed_1" formatted="false">未采集。历史记录在重启后重置，也可能受应用包可见性或隐藏模块过滤。它不能证明当前是否安装、是否正在运行或是否存在隐藏行为。</string>
+    <string name="runtime_sync21_composed_2" formatted="false">权限被拒绝；无法获取变更历史。历史记录在重启后重置，也可能受应用包可见性或隐藏模块过滤。它不能证明当前是否安装、是否正在运行或是否存在隐藏行为。</string>
+    <string name="runtime_sync21_composed_3" formatted="false">查询失败；无法获取变更历史。历史记录在重启后重置，也可能受应用包可见性或隐藏模块过滤。它不能证明当前是否安装、是否正在运行或是否存在隐藏行为。</string>
+    <string name="runtime_sync21_composed_4" formatted="false">响应无效；无法评估变更历史。历史记录在重启后重置，也可能受应用包可见性或隐藏模块过滤。它不能证明当前是否安装、是否正在运行或是否存在隐藏行为。</string>
+    <string name="runtime_sync21_composed_5" formatted="false">本次开机以来的可见变更中出现了 %1$d 个受监测应用包。此列表混合显示新增、更新和移除记录；不提供事件类型和时间。返回的变更序号：%2$d。历史记录在重启后重置，也可能受应用包可见性或隐藏模块过滤。它不能证明当前是否安装、是否正在运行或是否存在隐藏行为。</string>
+    <string name="runtime_sync21_composed_6" formatted="false">本次开机以来的可见变更中出现了 %1$d 个受监测应用包。此列表混合显示新增、更新和移除记录；不提供事件类型和时间。未返回可见变更或序号。历史记录在重启后重置，也可能受应用包可见性或隐藏模块过滤。它不能证明当前是否安装、是否正在运行或是否存在隐藏行为。</string>
+    <string name="runtime_sync21_composed_7" formatted="false">已评估范围内结果一致。%1$s</string>
+    <string name="runtime_sync21_composed_8" formatted="false">观察到行为不一致。%1$s</string>
+    <string name="runtime_sync21_composed_9" formatted="false">多次回调超时（置信度较低）。%1$s</string>
+    <string name="runtime_sync21_composed_10" formatted="false">无法确定。%1$s</string>
+    <string name="runtime_sync21_composed_11" formatted="false">不可用。%1$s</string>
+    <string name="runtime_sync21_composed_12" formatted="false">不支持。%1$s</string>
+    <string name="runtime_sync21_composed_13" formatted="false">受权限限制。%1$s</string>
+    <string name="runtime_sync21_composed_14" formatted="false">部分完成评估。%1$s</string>
+    <string name="runtime_sync21_composed_15" formatted="false">观察到实验性 UID 差异。%1$s</string>
+    <string name="runtime_sync21_composed_16" formatted="false">%1$s 应用包：%2$s。UID：%3$s。</string>
+    <string name="runtime_sync21_composed_17" formatted="false">%1$s 应用包：%2$s。</string>
+    <string name="runtime_sync21_composed_18" formatted="false">%1$s UID：%2$s。</string>
+    <string name="runtime_sync21_composed_19" formatted="false">未采集。 %1$s</string>
+    <string name="runtime_sync21_composed_20" formatted="false">未采集。 返回的接口：%1$s。</string>
+    <string name="runtime_sync21_composed_21" formatted="false">未采集。 返回的接口：%1$s。%2$s</string>
+    <string name="runtime_sync21_composed_22" formatted="false">未观察到兼容的运行时服务。 %1$s</string>
+    <string name="runtime_sync21_composed_23" formatted="false">未观察到兼容的运行时服务。 返回的接口：%1$s。</string>
+    <string name="runtime_sync21_composed_24" formatted="false">未观察到兼容的运行时服务。 返回的接口：%1$s。%2$s</string>
+    <string name="runtime_sync21_composed_25" formatted="false">观察到兼容的运行时接口；尚未确认管理器 APK 是否安装，也未确认是否存在隐藏行为。 %1$s</string>
+    <string name="runtime_sync21_composed_26" formatted="false">观察到兼容的运行时接口；尚未确认管理器 APK 是否安装，也未确认是否存在隐藏行为。 返回的接口：%1$s。</string>
+    <string name="runtime_sync21_composed_27" formatted="false">观察到兼容的运行时接口；尚未确认管理器 APK 是否安装，也未确认是否存在隐藏行为。 返回的接口：%1$s。%2$s</string>
+    <string name="runtime_sync21_composed_28" formatted="false">探测不可用；不能据此推断应用包存在或被隐藏。 %1$s</string>
+    <string name="runtime_sync21_composed_29" formatted="false">探测不可用；不能据此推断应用包存在或被隐藏。 返回的接口：%1$s。</string>
+    <string name="runtime_sync21_composed_30" formatted="false">探测不可用；不能据此推断应用包存在或被隐藏。 返回的接口：%1$s。%2$s</string>
+    <string name="runtime_sync21_composed_31" formatted="false">回复无法识别；不能据此推断应用包存在或被隐藏。 %1$s</string>
+    <string name="runtime_sync21_composed_32" formatted="false">回复无法识别；不能据此推断应用包存在或被隐藏。 返回的接口：%1$s。</string>
+    <string name="runtime_sync21_composed_33" formatted="false">回复无法识别；不能据此推断应用包存在或被隐藏。 返回的接口：%1$s。%2$s</string>
+    <string name="runtime_sync21_composed_34" formatted="false">%1$s 共享的任务/权限 UID：%2$s。两项比较都基于应用包关联；这种相关性不会增加独立的 HMA 可信度。</string>
+</resources>

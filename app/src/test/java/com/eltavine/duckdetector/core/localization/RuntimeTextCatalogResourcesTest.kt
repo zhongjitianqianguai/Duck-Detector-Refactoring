@@ -164,6 +164,74 @@ class RuntimeTextCatalogResourcesTest {
         assertEquals("比值低于阈值", catalog().translate("Ratio below threshold"))
     }
 
+    @Test
+    fun translatesNewExperimentalEvidenceWithoutPromotingItToRootProof() {
+        val catalog = catalog()
+        assertEquals("init.rc Hook 时序", catalog.translate("init.rc hook timing"))
+        assertEquals(
+            "实验性辅助证据；既不能确认也不能排除 KernelSU。",
+            catalog.translate("Experimental supporting evidence; does not identify or exclude KernelSU."),
+        )
+        assertEquals("采集状态：COLLECTED；errno=0；CPU=7",
+            catalog.translate("Collection: COLLECTED; errno=0; CPU=7"))
+        assertEquals("归属包目录位置", catalog.translate("Owner directory coordinates"))
+        assertEquals("注册归属包：com.example.owner（身份未验证）",
+            catalog.translate("Registry owner: com.example.owner (identity unverified)"))
+        assertEquals(
+            "挂载 ID 不必连续。启动和运行时重复观察到不连续，也不能证明存在隐藏挂载。",
+            catalog.translate("Mount IDs need not be consecutive. Repeated startup/runtime observations do not establish hidden mounts."),
+        )
+        assertEquals("2 类启发式证据同时出现", catalog.translate("2 heuristic families converged"))
+        for (raw in listOf("com.google.android.gms", "me.weishu.kernelsu.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION",
+            "ROUND=0\t128\t256\t512\t1024", "/data/user_de/10/com.example.owner")) {
+            assertEquals(raw, catalog.translate(raw))
+        }
+    }
+
+    @Test
+    fun translatesSeccompAndHistoryWhileRetainingEvidenceLimits() {
+        val catalog = catalog()
+        assertEquals("seccomp 对 getpriority 的干扰", catalog.translate("Seccomp getpriority interference"))
+        assertEquals(
+            "监听器探测受到权限限制：安装监听器被拒绝，返回 errno 13（EACCES）。 内核版本 6.1。",
+            catalog.translate("The listener probe was permission limited: " +
+                "the listener install was refused with errno 13 (EACCES). Kernel 6.1."),
+        )
+        assertEquals(
+            "本次开机以来的应用包变更历史包含 3 个受监测应用包。目前是否安装或正在运行尚未确认；正常卸载也可能留下相同记录。",
+            catalog.translate("This boot's package change history includes 3 monitored package(s). " +
+                "Current installation and running state are unconfirmed; normal removal can leave the same evidence."),
+        )
+        assertEquals(
+            "1/2 个目标完成成对调用；1 个目标在调用前、两次调用之间和调用后均通过调用方对照。" +
+                "目标结果：超时 2 次、拒绝 0 次、失败 0 次。是否达到批次时限=false。未通过的对照项：none。",
+            catalog.translate("1/2 target(s) completed paired calls; 1 passed caller controls before, between and after. " +
+                "Target outcomes: 2 timeout(s), 0 denial(s), 0 failure(s). Batch deadline reached=false. Failed controls: none."),
+        )
+    }
+
+    @Test
+    fun translatesComposedHistoryAndContextInsteadOfOnlyTheirFragments() {
+        val catalog = catalog()
+        assertEquals(
+            "本次开机以来的可见变更中出现了 3 个受监测应用包。此列表混合显示新增、更新和移除记录；不提供事件类型和时间。" +
+                "返回的变更序号：7。历史记录在重启后重置，也可能受应用包可见性或隐藏模块过滤。它不能证明当前是否安装、是否正在运行或是否存在隐藏行为。",
+            catalog.translate("3 monitored package(s) appeared in visible changes since boot. " +
+                "Additions, updates and removals share this list; event type and time are not provided. Returned sequence: 7. " +
+                "History resets on reboot and may be filtered by package visibility or hiding modules. " +
+                "It cannot establish current installation, running state or concealment."),
+        )
+        assertEquals(
+            "受权限限制。调用方 UID 不在普通应用 UID 范围内。 应用包：com.google.android.gms。UID：10123。",
+            catalog.translate("Permission limited. Caller is outside the ordinary application UID range. " +
+                "Packages: com.google.android.gms. UIDs: 10123."),
+        )
+        assertEquals(
+            "未观察到兼容的运行时服务。 Thanox 事务未被处理。",
+            catalog.translate("No compatible runtime service observed. The Thanox transaction was not handled."),
+        )
+    }
+
     private fun strings(file: File): Map<String, String> {
         val elements = DocumentBuilderFactory.newInstance().newDocumentBuilder()
             .parse(file).getElementsByTagName("string")
@@ -175,6 +243,6 @@ class RuntimeTextCatalogResourcesTest {
 
     private companion object {
         const val ResourceFile = "sync_20261002_strings.xml"
-        val DeltaResourceFiles = listOf("sync_20261013_strings.xml", "sync_20261017_strings.xml")
+        val DeltaResourceFiles = listOf("sync_20261013_strings.xml", "sync_20261017_strings.xml", "sync_20261021_strings.xml")
     }
 }

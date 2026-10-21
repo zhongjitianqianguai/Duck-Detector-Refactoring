@@ -4,4 +4,12 @@
     <string name="root_managers_section_profiles">用户资料</string>
     <string name="root_managers_section_scan">扫描</string>
     <string name="root_managers_diagnostic_clipboard_label">Root 管理器诊断详情</string>
+    <string name="installer_canary_title">实验性权限归属探针</string>
+    <string name="installer_canary_headline">检查是否仍保留 Root 管理器的权限名称</string>
+    <string name="installer_canary_detail">发起一项按设计应被拒绝的安装检查。需要已有安装来源授权，且可能受设备限制。匹配结果仅指出权限归属者，不能证明已获取 Root。</string>
+    <string name="installer_canary_allow">启用可选检查</string>
+    <string name="installer_canary_decline">保持关闭</string>
+    <string name="installer_canary_granted">已启用可选安装检查</string>
+    <string name="installer_canary_disabled">已关闭</string>
+    <string name="installer_canary_declined_detail">应用包与签名证书检查仍然可用。</string>
 </resources>

@@ -8,7 +8,7 @@
 
 <p align="center">
   <strong>
-    <a href="https://github.com/eltavine/Duck-Detector-Refactoring/releases/tag/nightly">Download Nightly</a> ·
+    <a href="https://github.com/zhongjitianqianguai/Duck-Detector-Refactoring/releases/tag/nightly">Download Nightly</a> ·
     <a href="#quick-start">Documentation</a> ·
     <a href="docs/guides/sdk-integration.md">SDK Integration</a>
   </strong>
@@ -36,9 +36,11 @@ DuckDetector collects and correlates security-relevant evidence on an Android de
 
 The app combines a Jetpack Compose interface, feature-oriented Gradle modules, and a native C++/assembly library. The same detectors are also published as a UI-free SDK AAR that other applications can embed. Results are diagnostic signals, not an authoritative statement that a device is secure or compromised.
 
+> This fork preserves Chinese runtime localization, direct ADB CLI and existing UI customizations. Download customized APK/SDK builds from [this fork's Nightly](https://github.com/zhongjitianqianguai/Duck-Detector-Refactoring/releases/tag/nightly). Its legacy discovery endpoint remains available; the official archive/channel migration below applies to upstream. See [fork release notes](docs/nightly.md).
+
 # Quick start
 
-1. **Download** the APK from the [Nightly release](https://github.com/eltavine/Duck-Detector-Refactoring/releases/tag/nightly). Nightly builds are published from `main` and are also posted to the [Telegram channel](https://t.me/duck_detector); there is no stable release yet.
+1. **Download** the APK from the [Nightly release](https://github.com/eltavine/Duck-Detector-Refactoring/releases). Each Nightly from `main` has its own `nightly-yyyy-MM-dd-gitshortHash` archive tag. The fixed `update` release contains only `update.json`, which points to the latest immutable archive. Older app versions using the removed `nightly` entry require a manual upgrade. Builds are also posted to the [Telegram channel](https://t.me/duck_detector); there is no stable release yet.
 2. **Install** it on a device running Android 10 or later. Root access is not required.
 3. **Scan.** The first launch asks you to accept the user agreement and to settle a few startup choices: notifications, Live Update, the online revocation refresh used by the TEE check, and package visibility. Scanning then starts by itself, and each card fills in when its detector finishes.
 4. **Read the results** as described below. To report a result or ask for help, [open an issue](https://github.com/eltavine/Duck-Detector-Refactoring/issues) and attach the file saved by **Export Report** at the top of the dashboard; a screenshot of the summary alone is not enough.
@@ -62,11 +64,17 @@ Current feature areas, each linked to its evidence record, which explains what t
 
 [`ADB Runtime`](./feature/adbruntime/EVIDENCE.md) · [`Bootloader`](./feature/bootloader/EVIDENCE.md) · [`Custom ROM`](./feature/customrom/EVIDENCE.md) · [`Dangerous Apps`](./feature/dangerousapps/EVIDENCE.md) · [`Kernel Check`](./feature/kernelcheck/EVIDENCE.md) · [`LSPosed`](./feature/lsposed/EVIDENCE.md) · [`Memory`](./feature/memory/EVIDENCE.md) · [`Mount`](./feature/mount/EVIDENCE.md) · [`Native Root`](./feature/nativeroot/EVIDENCE.md) · [`Play Integrity Fix`](./feature/playintegrityfix/EVIDENCE.md) · [`Root Managers`](./feature/rootmanagers/EVIDENCE.md) · [`SELinux`](./feature/selinux/EVIDENCE.md) · [`SU`](./feature/su/EVIDENCE.md) · [`System Properties`](./feature/systemproperties/EVIDENCE.md) · [`TEE`](./feature/tee/EVIDENCE.md) · [`Virtualization`](./feature/virtualization/EVIDENCE.md) · [`Zygisk`](./feature/zygisk/EVIDENCE.md)
 
+Dangerous Apps also compares controlled broadcast/package-query behavior, kernel UID task visibility and seccomp user-notification interference with getpriority queries, based on the report supplied by frknkrc44. Exception and callback-semantic mismatches are supporting warnings. Repeated callback timeouts require interleaved caller controls and remain lower-confidence timing evidence; limited visibility and incomplete scans retain explicit coverage states. See the [HMA behavior evidence](./feature/dangerousapps/EVIDENCE.md#hma-behavior-checks) for version limits and attribution.
+
+Android 15/16 additionally collect an informational, experimental comparison of non-instant UID permissions with fresh package associations. It does not identify a hiding module and does not require the target process to run. UID association rechecks bypass Java client caches.
+
 The SELinux area also retains an app-zygote SID-table query/registration experiment. Repeated discrepancies are supporting warnings; synchronized policy hiding can leave no discrepancy. Controlled privileged-context writes run in a disposable child with malformed/stock controls; recognition and ordinary-app timing are supporting warnings, an app-zygote AVC lookup-count profile is informational only, and negative observations cannot exclude hidden policy. Access failures and incomplete experiments remain explicit coverage states. See the [SELinux evidence record](./feature/selinux/EVIDENCE.md) for source references and device-validation limits.
 
 `Play Integrity Fix` refers to local indicators associated with integrity-spoofing modifications; DuckDetector does not return an official Google Play Integrity API verdict. The TEE area evaluates Android KeyStore and attestation evidence, including certificate chains, security levels, revocation data, and selected KeyMint, StrongBox, and Soter behavior where supported.
 
 Native Root also offers an optional [fsnotify SRCU timing experiment](feature/nativeroot/SRCU_TIMING.md), disabled by default. It requires an explicit choice, uses a temporary private dynamic permission on supported Android 12–14 systems, and reports repeatable contention as supporting evidence. Its thresholds await device calibration; it does not identify KernelSU, and its private-process deadline cannot recover a blocked kernel.
+
+On arm64, Native Root also collects an experimental [init.rc hook timing contrast](feature/nativeroot/INIT_RC_TIMING.md) using private same-metadata files and a dedicated worker. Results remain supporting evidence, preserve failures and raw samples, and do not identify or exclude KernelSU; physical-device calibration is outstanding.
 
 Supporting modules provide the dashboard, device information, settings, update checks, notifications, license information, and common UI infrastructure.
 
@@ -171,7 +179,7 @@ The same build also produces the headless SDK as one AAR, without any UI, publis
 ./gradlew :sdk:aar:publish
 ```
 
-The [Nightly release](https://github.com/eltavine/Duck-Detector-Refactoring/releases/tag/nightly) includes the SDK AAR alongside the APK.
+The [Nightly release](https://github.com/eltavine/Duck-Detector-Refactoring/releases) includes the SDK AAR alongside the APK.
 
 Before contributing, read [`CONTRIBUTING.md`](./CONTRIBUTING.md) and [`CODING_STANDARDS.md`](./CODING_STANDARDS.md).
 
