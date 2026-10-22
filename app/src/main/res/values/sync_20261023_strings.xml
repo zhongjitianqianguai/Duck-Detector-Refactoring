@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="runtime_sync23_001" formatted="false">Contradictions</string>
+    <string name="runtime_sync23_002" formatted="false">No completed runtime conclusion is available.</string>
+    <string name="runtime_sync23_003" formatted="false">A stable, protocol-confirmed ADB endpoint disagrees with the observed adbd lifecycle. This does not identify a root or hiding implementation.</string>
+    <string name="runtime_sync23_004" formatted="false">Debugging settings or runtime activity were observed. ADB can be enabled on an ordinary device and does not establish root access.</string>
+    <string name="runtime_sync23_005" formatted="false">Only available sources were evaluated. Permission restrictions, discovery failures and lifecycle transitions limit negative observations.</string>
+    <string name="runtime_sync23_006" formatted="false">Settings and policy</string>
+    <string name="runtime_sync23_007" formatted="false">Context collected</string>
+    <string name="runtime_sync23_008" formatted="false">Debugging restrictions and Test Harness Mode qualify settings; settings and USB gadget state are not hard contradictions against init.</string>
+    <string name="runtime_sync23_009" formatted="false">Persistent contradiction</string>
+    <string name="runtime_sync23_010" formatted="false">No contradiction established</string>
+    <string name="runtime_sync23_011" formatted="false">Not established</string>
+    <string name="runtime_sync23_012" formatted="false">%1$d lifecycle sample(s), %2$d discovery pass(es); latest protocol=%3$s. A contradiction requires the same confirmed listener in repeated passes while init reports stopped.</string>
+    <string name="runtime_sync23_013" formatted="false">Settings are context only while policy or Test Harness Mode prevents an ordinary activity interpretation.</string>
+    <string name="runtime_sync23_014" formatted="false">Protocol: %1$s</string>
+    <string name="runtime_sync23_015" formatted="false">Evidence scope</string>
+    <string name="runtime_sync23_016" formatted="false">Presence with concealed launcher</string>
+    <string name="runtime_sync23_017" formatted="false">Manager app presence</string>
+    <string name="runtime_sync23_018" formatted="false">Weak anchors only</string>
+    <string name="runtime_sync23_019" formatted="false">No catalog match observed</string>
+    <string name="runtime_sync23_020" formatted="false">Coverage incomplete</string>
+    <string name="runtime_sync23_021" formatted="false">An app match does not establish root access, current execution or device compromise. Weak anchors and permission ownership alone do not identify a manager. Missing profiles or signing evidence limit absence conclusions.</string>
+    <string name="runtime_sync23_022" formatted="false">Launcher enumeration</string>
+    <string name="runtime_sync23_023" formatted="false">Accessible profiles and caller-profile package observations are matched against the manager catalog. Unmatched app identities are excluded from diagnostics.</string>
+    <string name="runtime_sync23_024" formatted="false">Signing fingerprints provide catalog identity anchors; unreadable certificates reduce coverage.</string>
+    <string name="runtime_sync23_025" formatted="false">Visible payload names provide additional manager anchors; inaccessible directories remain unknown.</string>
+    <string name="runtime_sync23_026" formatted="false">Traces</string>
+    <string name="runtime_sync23_027" formatted="false">Arguments</string>
+    <string name="runtime_sync23_028" formatted="false">Low-confidence argument residue</string>
+    <string name="runtime_sync23_029" formatted="false">Historical coverage unknown</string>
+    <string name="runtime_sync23_030" formatted="false">Strings from one snapshot are correlated evidence. Names can be spoofed; origin and launch time are unverified. Neither a match nor a negative snapshot establishes current installation or compromise.</string>
+    <string name="runtime_sync23_031" formatted="false">Snapshot collected</string>
+    <string name="runtime_sync23_032" formatted="false">Isolated ART heap capture</string>
+    <string name="runtime_sync23_033" formatted="false">A fresh isolated process streams a bounded HPROF snapshot. Binding, dump, timeout and parser failures remain distinguishable in the scan summary.</string>
+    <string name="runtime_sync23_034" formatted="false">Startup argument matching</string>
+    <string name="runtime_sync23_035" formatted="false">%1$d target trace(s)</string>
+    <string name="runtime_sync23_036" formatted="false">Exact catalog names are matched in package-name, nice-name and app-data-dir arguments. This app\'s own arguments are excluded; a completed negative snapshot is informational.</string>
+    <string name="runtime_sync23_037" formatted="false">Evaluation incomplete</string>
+    <string name="runtime_sync23_038" formatted="false">Package visibility mismatch</string>
+    <string name="runtime_sync23_039" formatted="false">Behavior evidence observed</string>
+    <string name="runtime_sync23_040" formatted="false">Catalog package presence</string>
+    <string name="runtime_sync23_041" formatted="false">Runtime service presence</string>
+    <string name="runtime_sync23_042" formatted="false">Available evidence only</string>
+    <string name="runtime_sync23_043" formatted="false">Package matches, runtime interfaces and platform behavior checks have separate scopes. Behavior mismatches do not identify a hiding module; timing anomalies have lower confidence. Package history does not establish current installation, and none of these observations proves root access.</string>
+    <string name="runtime_sync23_044" formatted="false">Package and behavior probes</string>
+    <string name="runtime_sync23_045" formatted="false">%1$d package hit(s)</string>
+    <string name="runtime_sync23_046" formatted="false">A listed probe ran in this scan. Zero hits do not establish full visibility; related package probes can share the same underlying mechanism.</string>
+    <string name="runtime_sync23_047" formatted="false">%1$d signal(s)</string>
+    <string name="runtime_sync23_048" formatted="false">Experimental observation</string>
+    <string name="runtime_sync23_049" formatted="false">Fixed baseline paths returned EACCES/EPERM. This is a storage visibility indicator and does not identify an installed package or a hiding implementation.</string>
+    <string name="runtime_sync23_050" formatted="false">Compatible runtime interface</string>
+    <string name="runtime_sync23_051" formatted="false">App Zygote attr/current timing (experimental)</string>
+    <string name="runtime_sync23_052" formatted="false">Positive A−B timing asymmetry</string>
+    <string name="runtime_sync23_053" formatted="false">Negative A−B timing asymmetry</string>
+    <string name="runtime_sync23_054" formatted="false">Zero A−B timing baseline</string>
+    <string name="runtime_sync23_055" formatted="false">Timing direction inconclusive</string>
+    <string name="runtime_sync23_056" formatted="false">Timing unavailable</string>
+    <string name="runtime_sync23_057" formatted="false">Collection failed: %1$s (AVC child).</string>
+    <string name="runtime_sync23_058" formatted="false">No parent timing sample was collected; this is not a negative detection.</string>
+    <string name="runtime_sync23_059" formatted="false">A=invalid type, B=same-length newline prefix; both must return EINVAL. 512 AB/BA pairs, 32 warmups; CLOCK_MONOTONIC_RAW; paired A−B &gt; 0 ns is positive, 0 ns is baseline, and &lt; 0 ns is negative. Block counts are diagnostic only. Measured in the preload parent without changing CPU affinity. A change from the entry CPU at any sampled endpoint or an incomplete sample invalidates classification. One retained preload is one measurement.</string>
+    <string name="runtime_sync23_060" formatted="false">This parent sample supplies the timing verdict.</string>
+    <string name="runtime_sync23_061" formatted="false">Legacy pinned parent diagnostic; unavailable for PoC classification.</string>
+    <string name="runtime_sync23_062" formatted="false">Partial-sample medians are diagnostic only.</string>
+    <string name="runtime_sync23_063" formatted="false">This parent sample supplies the timing verdict. Partial-sample medians are diagnostic only.</string>
+    <string name="runtime_sync23_064" formatted="false">Legacy pinned parent diagnostic; unavailable for PoC classification. Partial-sample medians are diagnostic only.</string>
+    <string name="runtime_sync23_065" formatted="false">Parent preload: N/A (not collected).</string>
+    <string name="runtime_sync23_066" formatted="false">Parent preload (PID=%1$d, entry CPU=%2$d): A−B=%3$s; A=%4$s, B=%5$s; A slower=%6$d/%7$d; blocks positive/negative/zero=%8$d/%9$d/%10$d; migrations=%11$d; complete=%12$s; errno=%13$d. %14$s</string>
+    <string name="runtime_sync23_067" formatted="false">Pinned child diagnostic (PID=%1$d, CPU=%2$d): paired A−B=%3$s; A=%4$s, B=%5$s; A slower=%6$d/%7$d; blocks positive/negative/zero=%8$d/%9$d/%10$d; CPU migrations=%11$d; collection=%12$s. Child timing is diagnostic only and never replaces the parent sample. Stock A and B already take different kernel paths. Timing direction is supporting information, not proof of hiding, a specific root tool, or a clean environment.</string>
+    <string name="runtime_sync23_068" formatted="false">%1$s Collection failed: %2$s. This is not a negative detection. Captured during app_zygote preload; this is a retained measurement, not a live check.</string>
+    <string name="runtime_sync23_069" formatted="false">Timing over %1$d pairs: median A=%2$s, B=%3$s, paired A−B=%4$s. The separate App Zygote timing row interprets a validated 512-pair sample; the AVC profile still uses child counts only.</string>
+    <string name="runtime_sync23_070" formatted="false">The App Zygote invalid-context A−B paired median was positive. Stock kernels also take different paths for A and B, and CPU/load can change the sign. This is a strong timing anomaly, not proof of KernelSU or root. The AVC counts share the same measurement carrier.</string>
+    <string name="runtime_sync23_071" formatted="false">RKP build metadata</string>
+    <string name="runtime_sync23_072" formatted="false">Unavailable: provisioning info was not authenticated by the local chain.</string>
+    <string name="runtime_sync23_073" formatted="false">Unavailable: provisioning info was not fully decoded.</string>
+    <string name="runtime_sync23_074" formatted="false">Provisioning key 5 was not included in this certificate.</string>
+    <string name="runtime_sync23_075" formatted="false">Informational only: approval fields have undocumented semantics. CTS status cannot be determined from these fields, including on RKP V3.</string>
+    <string name="runtime_sync23_076" formatted="false">Provisioning info exceeded the 64 KiB decoding limit.</string>
+    <string name="runtime_sync23_077" formatted="false">Provisioning info could not be decoded as a DER-wrapped CBOR map.</string>
+    <string name="runtime_sync23_078" formatted="false">Provisioning key %1$d was not a text string.</string>
+    <string name="runtime_sync23_079" formatted="false">Required provisioning key 1 was absent.</string>
+    <string name="runtime_sync23_080" formatted="false">Required provisioning key 4 was absent.</string>
+    <string name="runtime_sync23_081" formatted="false">Provisioning key 1 was not a non-negative supported certificate count.</string>
+    <string name="runtime_sync23_082" formatted="false">Provisioning key 5 exceeded the %1$d-level display nesting limit.</string>
+    <string name="runtime_sync23_083" formatted="false">Provisioning key 5 display was truncated at %1$d characters.</string>
+    <string name="runtime_sync23_084" formatted="false">Provisioning key 5 (CBOR): %1$r</string>
+    <string name="runtime_sync23_085" formatted="false">Network Risk</string>
+    <string name="runtime_sync23_086" formatted="false">Network context, proxy configuration and client evidence</string>
+    <string name="runtime_sync23_087" formatted="false">Network context incomplete</string>
+    <string name="runtime_sync23_088" formatted="false">Network changed during scan</string>
+    <string name="runtime_sync23_089" formatted="false">Network context collected</string>
+    <string name="runtime_sync23_090" formatted="false">Collecting caller-visible evidence.</string>
+    <string name="runtime_sync23_091" formatted="false">Collection failed.</string>
+    <string name="runtime_sync23_092" formatted="false">Some probes failed; available observations are retained. VPNs, proxy settings and installed clients are informational. Service activity and request routing remain unevaluated.</string>
+    <string name="runtime_sync23_093" formatted="false">VPNs, proxy settings and installed clients are informational. Service activity and request routing remain unevaluated.</string>
+    <string name="runtime_sync23_094" formatted="false">VPN transport</string>
+    <string name="runtime_sync23_095" formatted="false">Visible networks only.</string>
+    <string name="runtime_sync23_096" formatted="false">HTTP proxy</string>
+    <string name="runtime_sync23_097" formatted="false">Configuration only.</string>
+    <string name="runtime_sync23_098" formatted="false">Client packages</string>
+    <string name="runtime_sync23_099" formatted="false">Exact package matches; installation does not establish service activity.</string>
+    <string name="runtime_sync23_100" formatted="false">Active tests</string>
+    <string name="runtime_sync23_101" formatted="false">Disabled; zero requests and zero bytes sent.</string>
+    <string name="runtime_sync23_102" formatted="false">Network context</string>
+    <string name="runtime_sync23_103" formatted="false">Proxy and DNS context</string>
+    <string name="runtime_sync23_104" formatted="false">Proxy module coverage</string>
+    <string name="runtime_sync23_105" formatted="false">Observed</string>
+    <string name="runtime_sync23_106" formatted="false">%1$r; calling user/profile only. Other users and work profiles are not queried. Not observed never means globally uninstalled.</string>
+    <string name="runtime_sync23_107" formatted="false">Signature verified against sampled upstream release key</string>
+    <string name="runtime_sync23_108" formatted="false">Identity unverified</string>
+    <string name="runtime_sync23_109" formatted="false">%1$r; %2$s; signature read: %3$s; version code: %4$r. Installed does not mean running.</string>
+    <string name="runtime_sync23_110" formatted="false">%1$s deployment trace</string>
+    <string name="runtime_sync23_111" formatted="false">Exact module.prop ID only; version %1$r. %2$s Protected or renamed paths are outside coverage; metadata can be modified. Does not identify the running core or mechanism.</string>
+    <string name="runtime_sync23_112" formatted="false">Exact module.prop ID only; version %1$r.  Protected or renamed paths are outside coverage; metadata can be modified. Does not identify the running core or mechanism.</string>
+    <string name="runtime_sync23_113" formatted="false">%1$s service response</string>
+    <string name="runtime_sync23_114" formatted="false">Not probed. No ports scanned; changed ports and disabled control interfaces are outside coverage.</string>
+    <string name="runtime_sync23_115" formatted="false">%1$s traffic effect</string>
+    <string name="runtime_sync23_116" formatted="false">Not evaluated. App exclusions and direct rules cannot be inferred from installation, TUN interfaces or service responses.</string>
+    <string name="runtime_sync23_117" formatted="false">Sample consistency</string>
+    <string name="runtime_sync23_118" formatted="false">%1$d adjacent comparisons; %2$d ms; sample epoch %3$d. Repeated reads are not atomic and cannot exclude intermediate changes.</string>
+    <string name="runtime_sync23_119" formatted="false">Repeated sample</string>
+    <string name="runtime_sync23_120" formatted="false">Active protocol / DNS / egress tests</string>
+    <string name="runtime_sync23_121" formatted="false">Disabled. No endpoints, payloads, sockets or DNS requests; timeout not applicable; data budget 0 bytes, request budget 0.</string>
+    <string name="runtime_sync23_122" formatted="false">Routing coverage</string>
+    <string name="runtime_sync23_123" formatted="false">No privileged firewall rules, other-UID process state, module logs or per-request traffic observation. Enterprise VPNs, local filters, DNS64/NAT64 and captive portals are legitimate contexts.</string>
+    <string name="runtime_sync23_124" formatted="false">Export privacy</string>
+    <string name="runtime_sync23_125" formatted="false">No interface names or network handles in export; no addresses, PAC URLs, DNS hostnames, subscriptions, credentials or connection history retained.</string>
+    <string name="runtime_sync23_126" formatted="false">Caller default network</string>
+    <string name="runtime_sync23_127" formatted="false">Calling UID scope. A null result can mean disconnected or blocked. %1$s</string>
+    <string name="runtime_sync23_128" formatted="false">Calling UID scope. A null result can mean disconnected or blocked.</string>
+    <string name="runtime_sync23_129" formatted="false">%1$s (local handle %2$d)</string>
+    <string name="runtime_sync23_130" formatted="false">Process binding</string>
+    <string name="runtime_sync23_131" formatted="false">Explicit process binding only; unbound does not mean offline. %1$s</string>
+    <string name="runtime_sync23_132" formatted="false">Explicit process binding only; unbound does not mean offline.</string>
+    <string name="runtime_sync23_133" formatted="false">Visible networks</string>
+    <string name="runtime_sync23_134" formatted="false">Framework-visible handles only; not every UID, profile, socket or kernel routing table. %1$s</string>
+    <string name="runtime_sync23_135" formatted="false">Framework-visible handles only; not every UID, profile, socket or kernel routing table.</string>
+    <string name="runtime_sync23_136" formatted="false">%1$s; %2$d returned</string>
+    <string name="runtime_sync23_137" formatted="false">Network %1$d transports</string>
+    <string name="runtime_sync23_138" formatted="false">caller default</string>
+    <string name="runtime_sync23_139" formatted="false">process bound</string>
+    <string name="runtime_sync23_140" formatted="false">caller default, process bound</string>
+    <string name="runtime_sync23_141" formatted="false">other visible</string>
+    <string name="runtime_sync23_142" formatted="false">%1$s; %2$s VPN transport is context and does not establish proxying of this app\'s requests.</string>
+    <string name="runtime_sync23_143" formatted="false">%1$s;  VPN transport is context and does not establish proxying of this app\'s requests.</string>
+    <string name="runtime_sync23_144" formatted="false">Network %1$d interface / routes</string>
+    <string name="runtime_sync23_145" formatted="false">%1$s; LinkProperties routes only; addresses and gateways omitted. %2$s</string>
+    <string name="runtime_sync23_146" formatted="false">%1$s; LinkProperties routes only; addresses and gateways omitted.</string>
+    <string name="runtime_sync23_147" formatted="false">%1$s; %2$r; %3$d routes (IPv4 %4$d, IPv6 %5$d, default %6$d)</string>
+    <string name="runtime_sync23_148" formatted="false">%1$s; %2$d routes (IPv4 %3$d, IPv6 %4$d, default %5$d)</string>
+    <string name="runtime_sync23_149" formatted="false">unnamed</string>
+    <string name="runtime_sync23_150" formatted="false">Default HTTP proxy</string>
+    <string name="runtime_sync23_151" formatted="false">Global proxy takes precedence, then the process-bound network, otherwise the calling UID\'s network. Configuration is not actual request use. %1$s</string>
+    <string name="runtime_sync23_152" formatted="false">Global proxy takes precedence, then the process-bound network, otherwise the calling UID\'s network. Configuration is not actual request use.</string>
+    <string name="runtime_sync23_153" formatted="false">PAC configured; URL omitted; request-level proxy selection not evaluated.</string>
+    <string name="runtime_sync23_154" formatted="false">HTTP proxy configured; port %1$d; %2$d exclusions; host omitted.</string>
+    <string name="runtime_sync23_155" formatted="false">JVM HTTP proxy</string>
+    <string name="runtime_sync23_156" formatted="false">Process-local http.proxyHost/http.proxyPort only; host omitted. Partial or invalid pairs are inconclusive; exclusions, HTTPS/SOCKS and custom ProxySelectors are outside this check. %1$s</string>
+    <string name="runtime_sync23_157" formatted="false">Process-local http.proxyHost/http.proxyPort only; host omitted. Partial or invalid pairs are inconclusive; exclusions, HTTPS/SOCKS and custom ProxySelectors are outside this check.</string>
+    <string name="runtime_sync23_158" formatted="false">%1$s; port %2$d</string>
+    <string name="runtime_sync23_159" formatted="false">Proxy source cross-check</string>
+    <string name="runtime_sync23_160" formatted="false">ConnectivityManager and JVM static HTTP endpoint views; correlated sources, not independent evidence of traffic use. Process overrides and asynchronous updates can differ.</string>
+    <string name="runtime_sync23_161" formatted="false">Inconclusive: views differ</string>
+    <string name="runtime_sync23_162" formatted="false">Not comparable: PAC</string>
+    <string name="runtime_sync23_163" formatted="false">Not comparable: source unavailable</string>
+    <string name="runtime_sync23_164" formatted="false">Network %1$d link proxy / PAC</string>
+    <string name="runtime_sync23_165" formatted="false">Network-specific configuration only; no PAC fetch or request performed. %1$s</string>
+    <string name="runtime_sync23_166" formatted="false">Network-specific configuration only; no PAC fetch or request performed.</string>
+    <string name="runtime_sync23_167" formatted="false">Network %1$d Private DNS</string>
+    <string name="runtime_sync23_168" formatted="false">Context only; not proxy evidence. Strict name configured: %1$r; DNS servers: %2$d; names and addresses omitted.</string>
+    <string name="runtime_sync23_169" formatted="false">Access denied.</string>
+    <string name="runtime_sync23_170" formatted="false">Platform query or read failed.</string>
+    <string name="runtime_sync23_171" formatted="false">Network disappeared or its properties became inaccessible.</string>
+    <string name="runtime_sync23_172" formatted="false">Collection budget exceeded.</string>
+    <string name="runtime_sync23_173" formatted="false">Metadata is malformed, ambiguous or not a regular file.</string>
+    <string name="runtime_sync23_174" formatted="false">Not evaluated.</string>
+    <string name="runtime_sync23_175" formatted="false">Observed; %1$r</string>
+    <string name="runtime_sync23_176" formatted="false">Not observed; %1$r</string>
+    <string name="runtime_sync23_177" formatted="false">Unavailable; %1$r</string>
+    <string name="runtime_sync23_178" formatted="false">Permission limited; %1$r</string>
+    <string name="runtime_sync23_179" formatted="false">Unsupported; %1$r</string>
+    <string name="runtime_sync23_180" formatted="false">Inconclusive; %1$r</string>
+    <string name="runtime_sync23_181" formatted="false">Location Risk</string>
+    <string name="runtime_sync23_182" formatted="false">Location API contracts and optional cached mock metadata</string>
+    <string name="runtime_sync23_183" formatted="false">Location contract mismatch observed</string>
+    <string name="runtime_sync23_184" formatted="false">Local contracts partially evaluated</string>
+    <string name="runtime_sync23_185" formatted="false">No local contract mismatch observed</string>
+    <string name="runtime_sync23_186" formatted="false">Local contracts not evaluated</string>
+    <string name="runtime_sync23_187" formatted="false">Local contract checks can reveal broad getter rewrites. Cached mock flags and installed packages are context; none authenticates the device\'s real position.</string>
+    <string name="runtime_sync23_188" formatted="false">Local contracts</string>
+    <string name="runtime_sync23_189" formatted="false">Four contracts share one framework surface; they are not independent trust sources.</string>
+    <string name="runtime_sync23_190" formatted="false">Cached mock marks</string>
+    <string name="runtime_sync23_191" formatted="false">Historical cached fixes only; false does not authenticate a position.</string>
+    <string name="runtime_sync23_192" formatted="false">Reference package</string>
+    <string name="runtime_sync23_193" formatted="false">Exact package name; identity unverified; installation does not establish activity.</string>
+    <string name="runtime_sync23_194" formatted="false">Cache access</string>
+    <string name="runtime_sync23_195" formatted="false">Opt-in, foreground permission, up to three cached reads; no sensor request.</string>
+    <string name="runtime_sync23_196" formatted="false">App-owned Location contracts</string>
+    <string name="runtime_sync23_197" formatted="false">Optional cached location context</string>
+    <string name="runtime_sync23_198" formatted="false">Reference project package</string>
+    <string name="runtime_sync23_199" formatted="false">Coverage and privacy</string>
+    <string name="runtime_sync23_200" formatted="false">Setter / getter round trip</string>
+    <string name="runtime_sync23_201" formatted="false">Optional field flags</string>
+    <string name="runtime_sync23_202" formatted="false">Reset semantics</string>
+    <string name="runtime_sync23_203" formatted="false">Synthetic mock flag round trip</string>
+    <string name="runtime_sync23_204" formatted="false">Up to two synthetic objects; no real fix. Fields: %1$r. %2$s</string>
+    <string name="runtime_sync23_205" formatted="false">Up to two synthetic objects; no real fix. Fields: %1$r.</string>
+    <string name="runtime_sync23_206" formatted="false">Up to two synthetic objects; no real fix. Fields: %1$r. %2$s Public setMock requires API 31; older releases are unsupported.</string>
+    <string name="runtime_sync23_207" formatted="false">Up to two synthetic objects; no real fix. Fields: %1$r.  Public setMock requires API 31; older releases are unsupported.</string>
+    <string name="runtime_sync23_208" formatted="false">com.vincenthzr.locationspoofer; source revision dcbe6203; identity unverified. No upstream release signer was established; no name-based matching. Installed does not mean enabled or running.</string>
+    <string name="runtime_sync23_209" formatted="false">VirtualLocation package</string>
+    <string name="runtime_sync23_210" formatted="false">%1$r; caller user/profile only. Not observed does not mean globally uninstalled.</string>
+    <string name="runtime_sync23_211" formatted="false">Observation boundary</string>
+    <string name="runtime_sync23_212" formatted="false">System-service-only spoofing, selective hooks, an excluded app or coherent forged metadata can pass local checks. No GNSS, Wi-Fi, cell, IP or trajectory cross-validation; no module attribution.</string>
+    <string name="runtime_sync23_213" formatted="false">Legitimate contexts</string>
+    <string name="runtime_sync23_214" formatted="false">Test providers, emulators, automation and development can mark locations as mock. No cache, a disabled location switch, old timestamps or provider differences do not prove spoofing.</string>
+    <string name="runtime_sync23_215" formatted="false">Data budget</string>
+    <string name="runtime_sync23_216" formatted="false">No external endpoints or network payloads. No active fixes, listeners or background location permission. Coordinates, raw fix times, extras and history are never retained in reports or export.</string>
+    <string name="runtime_sync23_217" formatted="false">Cache collection</string>
+    <string name="runtime_sync23_218" formatted="false">Permission: %1$r; location switch: %2$r; sample start (elapsed ms): %3$r. %4$s</string>
+    <string name="runtime_sync23_219" formatted="false">Permission: %1$r; location switch: %2$r; sample start (elapsed ms): %3$r.</string>
+    <string name="runtime_sync23_220" formatted="false">%1$r mock marker</string>
+    <string name="runtime_sync23_221" formatted="false">Age bucket: %1$r; cached metadata only, not current service state. %2$s</string>
+    <string name="runtime_sync23_222" formatted="false">Age bucket: %1$r; cached metadata only, not current service state.</string>
+    <string name="runtime_sync23_223" formatted="false">%1$r freshness</string>
+    <string name="runtime_sync23_224" formatted="false">%1$r; recent means at most five minutes, a display policy rather than proof of authenticity. No cross-provider contradiction rule. %2$s</string>
+    <string name="runtime_sync23_225" formatted="false">%1$r; recent means at most five minutes, a display policy rather than proof of authenticity. No cross-provider contradiction rule.</string>
+    <string name="runtime_sync23_226" formatted="false">Access denied; permission or AppOps may restrict the caller.</string>
+    <string name="runtime_sync23_227" formatted="false">Platform query failed; evidence unavailable.</string>
+    <string name="runtime_sync23_228" formatted="false">Provider absent or rejected; outside coverage.</string>
+    <string name="runtime_sync23_229" formatted="false">No accessible cached fix; not evidence of absence.</string>
+    <string name="runtime_sync23_230" formatted="false">Disabled by default; enable in setup or settings.</string>
+    <string name="runtime_sync23_231" formatted="false">Could not persist location cache consent</string>
+    <string name="runtime_sync23_profile_matches" formatted="false">%1$d apps checked · %2$d match(es)</string>
+    <string name="runtime_sync23_rkp_chain_failed" formatted="false">Provisioning info was not authenticated because local chain signatures failed.</string>
+    <!-- Preserve the optional blank failure suffix before unrelated range templates can match. -->
+    <string name="runtime_sync23_contract_blank_suffix" formatted="false">Up to two synthetic objects; no real fix. Fields: %1$r.%2$r</string>
+    <string name="runtime_sync23_argument_1" formatted="false">Access denied</string>
+    <string name="runtime_sync23_argument_2" formatted="false">permission or AppOps may restrict the caller.</string>
+    <string name="runtime_sync23_argument_3" formatted="false">Disabled by default</string>
+    <string name="runtime_sync23_argument_4" formatted="false">enable in setup or settings.</string>
+    <string name="runtime_sync23_argument_5" formatted="false">Legacy pinned parent diagnostic</string>
+    <string name="runtime_sync23_argument_6" formatted="false">unavailable for PoC classification.</string>
+    <string name="runtime_sync23_argument_7" formatted="false">unavailable for PoC classification. Partial-sample medians are diagnostic only.</string>
+</resources>

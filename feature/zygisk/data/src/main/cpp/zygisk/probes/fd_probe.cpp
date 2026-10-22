@@ -18,6 +18,7 @@
 #include "zygisk/probes/fd_probe.h"
 
 #include <array>
+#include <cstdio>
 #include <dirent.h>
 #include <sstream>
 #include <unistd.h>

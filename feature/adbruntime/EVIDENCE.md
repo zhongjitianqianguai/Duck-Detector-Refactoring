@@ -44,6 +44,8 @@ the second state sample only when the first pass protocol-confirmed an endpoint:
 finding needs both passes to confirm the same endpoint, so without a first confirmation a second
 pass could not change the verdict.
 
+Property strings are interpreted by typed `AdbPropertySnapshot` accessors shared by domain rules and presentation. Daemon state distinguishes RUNNING, STOPPED, an unknown present value (OTHER), and an absent property (null); only STOPPED can satisfy the stopped-daemon contradiction precondition. This refactoring preserves running/stopped case handling, comma-separated USB function matching and the exact `persist.sys.test_harness=1` check; unknown and absent values remain informational and the severity rules are unchanged.
+
 ## Signals
 
 ### Settings and lifecycle context

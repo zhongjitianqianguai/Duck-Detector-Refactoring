@@ -8,7 +8,9 @@
     <string name="target_app_list_view">查看目标应用（%1$d）</string>
     <string name="target_app_list_overview">概览</string>
     <string name="dangerousapps_section_packages">应用包</string>
-    <string name="dangerousapps_section_context">上下文</string>
+    <string name="dangerousapps_section_context">扫描摘要</string>
+    <string name="dangerousapps_section_impact">影响</string>
+    <string name="dangerousapps_section_detection_methods">检测方法</string>
     <string name="dangerousapps_no_package_hits">未匹配到应用包</string>
     <string name="dangerousapps_section_package_history">本次开机以来的应用包变更</string>
 </resources>

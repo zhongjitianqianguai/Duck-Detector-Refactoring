@@ -179,6 +179,7 @@ internal class RuntimeTextCatalog(
     private data class TemplateTranslation(
         val sourceRegex: Regex,
         val captureIndices: List<Int>,
+        val rawArgumentIndices: Set<Int>,
         val targetTemplate: String,
         val literalCharacterCount: Int,
     ) {
@@ -197,8 +198,10 @@ internal class RuntimeTextCatalog(
                 val explicitIndex = token.groups[1]?.value?.toIntOrNull()
                 val argumentIndex = explicitIndex ?: implicitTargetIndex++
                 // An anomaly argument may join independent explanations with semicolons.
-                valuesByIndex[argumentIndex]?.split("; ")?.joinToString("; ", transform = localizeArgument)
-                    ?: token.value
+                valuesByIndex[argumentIndex]?.let { argument ->
+                    if (argumentIndex in rawArgumentIndices) argument
+                    else argument.split("; ").joinToString("; ", transform = localizeArgument)
+                } ?: token.value
             }
         }
 
@@ -208,6 +211,7 @@ internal class RuntimeTextCatalog(
                 if (matches.isEmpty()) return null
 
                 val captureIndices = mutableListOf<Int>()
+                val rawArgumentIndices = mutableSetOf<Int>()
                 var implicitSourceIndex = 1
                 var cursor = 0
                 val regexPattern = buildString {
@@ -215,9 +219,11 @@ internal class RuntimeTextCatalog(
                     matches.forEach { token ->
                         append(Regex.escape(source.substring(cursor, token.range.first)))
                         val explicitIndex = token.groups[1]?.value?.toIntOrNull()
-                        captureIndices += explicitIndex ?: implicitSourceIndex++
+                        val argumentIndex = explicitIndex ?: implicitSourceIndex++
+                        captureIndices += argumentIndex
                         val valueKind = formatValueKindsByCode[token.groups[2]?.value]
                             ?: error("Format token regex matched an unsupported value kind")
+                        if (valueKind == FormatValueKind.RAW_TEXT) rawArgumentIndices += argumentIndex
                         append(valueKind.capturePattern)
                         cursor = token.range.last + 1
                     }
@@ -228,6 +234,7 @@ internal class RuntimeTextCatalog(
                 return TemplateTranslation(
                     sourceRegex = Regex(regexPattern),
                     captureIndices = captureIndices,
+                    rawArgumentIndices = rawArgumentIndices,
                     targetTemplate = target,
                     literalCharacterCount = FormatTokenRegex.replace(source, "").length,
                 )
@@ -236,7 +243,8 @@ internal class RuntimeTextCatalog(
     }
 
     private companion object {
-        val FormatTokenRegex = Regex("%(?:(\\d+)\\$)?([ds])")
+        // %r is catalog-only: retain structured evidence without recursive text localization.
+        val FormatTokenRegex = Regex("%(?:(\\d+)\\$)?([dsr])")
         const val ChineseColonDelimiter = "："
         const val MaximumNestingDepth = 8
         val lineSuffixKindsByCode = mapOf(
@@ -246,6 +254,7 @@ internal class RuntimeTextCatalog(
         val formatValueKindsByCode = mapOf(
             "d" to FormatValueKind.NUMBER,
             "s" to FormatValueKind.TEXT,
+            "r" to FormatValueKind.RAW_TEXT,
         )
         val CompositeDelimiters = listOf(
             CompositeDelimiter("\n"),
@@ -279,5 +288,6 @@ internal class RuntimeTextCatalog(
     private enum class FormatValueKind(val capturePattern: String) {
         NUMBER("(-?\\d+)"),
         TEXT("(.+?)"),
+        RAW_TEXT("(.+?)"),
     }
 }

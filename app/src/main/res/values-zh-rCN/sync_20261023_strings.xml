@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="runtime_sync23_001" formatted="false">矛盾项</string>
+    <string name="runtime_sync23_002" formatted="false">尚无已完成的运行状态结论。</string>
+    <string name="runtime_sync23_003" formatted="false">稳定且经协议确认的 ADB 端点与观测到的 adbd 生命周期不符。这不能据此识别具体的 Root 或隐藏实现。</string>
+    <string name="runtime_sync23_004" formatted="false">观测到了调试设置或运行活动。普通设备也可以启用 ADB，这不代表已获取 Root 权限。</string>
+    <string name="runtime_sync23_005" formatted="false">只评估了可用来源。权限限制、发现失败和生命周期切换都会限制未检出结果的意义。</string>
+    <string name="runtime_sync23_006" formatted="false">设置与策略</string>
+    <string name="runtime_sync23_007" formatted="false">已采集上下文</string>
+    <string name="runtime_sync23_008" formatted="false">调试限制和测试工具模式会影响设置的解释；设置和 USB gadget 状态不能作为与 init 矛盾的确证。</string>
+    <string name="runtime_sync23_009" formatted="false">持续存在矛盾</string>
+    <string name="runtime_sync23_010" formatted="false">尚未确认矛盾</string>
+    <string name="runtime_sync23_011" formatted="false">尚未确认</string>
+    <string name="runtime_sync23_012" formatted="false">生命周期采样 %1$d 次，发现探测 %2$d 轮；最新协议=%3$s。只有在 init 报告已停止时，多轮探测均确认同一监听端点，才构成矛盾。</string>
+    <string name="runtime_sync23_013" formatted="false">当策略或测试工具模式使其不能按普通活动解释时，设置仅作背景信息。</string>
+    <string name="runtime_sync23_014" formatted="false">协议：%1$s</string>
+    <string name="runtime_sync23_015" formatted="false">证据范围</string>
+    <string name="runtime_sync23_016" formatted="false">存在应用且启动器入口被隐藏</string>
+    <string name="runtime_sync23_017" formatted="false">管理器应用存在</string>
+    <string name="runtime_sync23_018" formatted="false">仅有弱识别线索</string>
+    <string name="runtime_sync23_019" formatted="false">未观测到目录匹配项</string>
+    <string name="runtime_sync23_020" formatted="false">覆盖不完整</string>
+    <string name="runtime_sync23_021" formatted="false">匹配到应用不代表已获取 Root、正在运行或设备已被入侵。弱识别线索和权限归属本身不足以识别管理器。缺少用户资料或签名证据会限制未检出结论。</string>
+    <string name="runtime_sync23_022" formatted="false">启动器枚举</string>
+    <string name="runtime_sync23_023" formatted="false">将可访问的用户资料和调用方用户资料中的软件包观测与管理器目录匹配。诊断中不包含未匹配应用的身份。</string>
+    <string name="runtime_sync23_024" formatted="false">签名指纹提供目录身份识别线索；证书无法读取时会降低覆盖范围。</string>
+    <string name="runtime_sync23_025" formatted="false">可见的载荷名称提供额外的管理器识别线索；不可访问的目录仍属未知。</string>
+    <string name="runtime_sync23_026" formatted="false">痕迹</string>
+    <string name="runtime_sync23_027" formatted="false">参数</string>
+    <string name="runtime_sync23_028" formatted="false">低置信度的参数残留</string>
+    <string name="runtime_sync23_029" formatted="false">历史覆盖范围未知</string>
+    <string name="runtime_sync23_030" formatted="false">同一快照中的字符串属于相关证据。名称可能被伪造；来源和启动时间未验证。匹配结果和未检出快照都不能证明当前安装状态或设备被入侵。</string>
+    <string name="runtime_sync23_031" formatted="false">已采集快照</string>
+    <string name="runtime_sync23_032" formatted="false">隔离进程 ART 堆采集</string>
+    <string name="runtime_sync23_033" formatted="false">新建隔离进程以流式方式输出有大小限制的 HPROF 快照。扫描摘要会区分绑定、转储、超时和解析失败。</string>
+    <string name="runtime_sync23_034" formatted="false">启动参数匹配</string>
+    <string name="runtime_sync23_035" formatted="false">%1$d 项目标痕迹</string>
+    <string name="runtime_sync23_036" formatted="false">在 package-name、nice-name 和 app-data-dir 参数中精确匹配目录名称。排除本应用自身的参数；完成采集但未检出的快照仅作参考。</string>
+    <string name="runtime_sync23_037" formatted="false">评估未完成</string>
+    <string name="runtime_sync23_038" formatted="false">软件包可见性不匹配</string>
+    <string name="runtime_sync23_039" formatted="false">观测到行为证据</string>
+    <string name="runtime_sync23_040" formatted="false">目录内软件包存在</string>
+    <string name="runtime_sync23_041" formatted="false">运行时服务存在</string>
+    <string name="runtime_sync23_042" formatted="false">仅限可用证据</string>
+    <string name="runtime_sync23_043" formatted="false">软件包匹配、运行时接口和平台行为检查的范围各不相同。行为不匹配不能识别具体隐藏模块；时序异常的置信度较低。软件包历史不能证明当前已安装，以上任何观测也都不能证明已获取 Root。</string>
+    <string name="runtime_sync23_044" formatted="false">软件包与行为探测</string>
+    <string name="runtime_sync23_045" formatted="false">命中 %1$d 个软件包</string>
+    <string name="runtime_sync23_046" formatted="false">本次扫描执行了所列探针。零命中不代表完全可见；相关软件包探针可能共用同一底层机制。</string>
+    <string name="runtime_sync23_047" formatted="false">%1$d 项信号</string>
+    <string name="runtime_sync23_048" formatted="false">实验性观测</string>
+    <string name="runtime_sync23_049" formatted="false">固定基线路径返回 EACCES/EPERM。这是存储可见性指标，不能识别已安装的软件包或具体隐藏实现。</string>
+    <string name="runtime_sync23_050" formatted="false">兼容的运行时接口</string>
+    <string name="runtime_sync23_051" formatted="false">App Zygote attr/current 时序（实验性）</string>
+    <string name="runtime_sync23_052" formatted="false">A−B 时序差为正</string>
+    <string name="runtime_sync23_053" formatted="false">A−B 时序差为负</string>
+    <string name="runtime_sync23_054" formatted="false">A−B 时序差为零（基线）</string>
+    <string name="runtime_sync23_055" formatted="false">时序方向无法确定</string>
+    <string name="runtime_sync23_056" formatted="false">时序不可用</string>
+    <string name="runtime_sync23_057" formatted="false">采集失败：%1$s（AVC 子进程）。</string>
+    <string name="runtime_sync23_058" formatted="false">未采集到父进程时序样本；这不代表检测结果为阴性。</string>
+    <string name="runtime_sync23_059" formatted="false">A 为无效类型，B 为等长的换行前缀；两者都必须返回 EINVAL。执行 512 对 AB/BA 和 32 次预热；使用 CLOCK_MONOTONIC_RAW；成对 A−B 大于 0 ns 为正，小于 0 ns 为负，等于 0 ns 为基线。分块计数仅供诊断。在预加载父进程中测量，不更改 CPU 亲和性。任一采样端点偏离初始 CPU 或样本不完整，都会使分类无效。每次保留的预加载仅算一次测量。</string>
+    <string name="runtime_sync23_060" formatted="false">此父进程样本用于时序判定。</string>
+    <string name="runtime_sync23_061" formatted="false">旧版固定 CPU 的父进程诊断；不能用于 PoC 分类。</string>
+    <string name="runtime_sync23_062" formatted="false">不完整样本的中位数仅供诊断。</string>
+    <string name="runtime_sync23_063" formatted="false">此父进程样本用于时序判定。不完整样本的中位数仅供诊断。</string>
+    <string name="runtime_sync23_064" formatted="false">旧版固定 CPU 的父进程诊断；不能用于 PoC 分类。不完整样本的中位数仅供诊断。</string>
+    <string name="runtime_sync23_065" formatted="false">父进程预加载：N/A（未采集）。</string>
+    <string name="runtime_sync23_066" formatted="false">父进程预加载（PID=%1$d，初始 CPU=%2$d）：A−B=%3$s；A=%4$s，B=%5$s；A 较慢=%6$d/%7$d；正/负/零分块数=%8$d/%9$d/%10$d；迁移次数=%11$d；完整=%12$s；errno=%13$d。%14$s</string>
+    <string name="runtime_sync23_067" formatted="false">固定 CPU 的子进程诊断（PID=%1$d，CPU=%2$d）：成对 A−B=%3$s；A=%4$s，B=%5$s；A 较慢=%6$d/%7$d；正/负/零分块数=%8$d/%9$d/%10$d；CPU 迁移次数=%11$d；采集=%12$s。子进程时序仅供诊断，绝不替代父进程样本。原版内核中 A 和 B 本就经过不同路径。时序方向只是辅助信息，不能证明存在隐藏、具体 Root 工具或环境干净。</string>
+    <string name="runtime_sync23_068" formatted="false">%1$s 采集失败：%2$s。这不代表检测结果为阴性。在 app_zygote 预加载期间采集；这是保留的测量结果，并非实时检查。</string>
+    <string name="runtime_sync23_069" formatted="false">%1$d 对样本的时序：A 中位数=%2$s，B=%3$s，成对 A−B=%4$s。单独的 App Zygote 时序行解释通过校验的 512 对样本；AVC 模式仍然只使用子进程计数。</string>
+    <string name="runtime_sync23_070" formatted="false">App Zygote 无效上下文的成对 A−B 中位数为正。原版内核中 A 和 B 也经过不同路径，CPU 和负载可能改变差值的正负。这是较强的时序异常，不是 KernelSU 或 Root 的证明。AVC 计数共用同一测量承载进程。</string>
+    <string name="runtime_sync23_071" formatted="false">RKP 构建元数据</string>
+    <string name="runtime_sync23_072" formatted="false">不可用：配置供应信息未经本地证书链认证。</string>
+    <string name="runtime_sync23_073" formatted="false">不可用：配置供应信息未被完整解码。</string>
+    <string name="runtime_sync23_074" formatted="false">此证书不包含配置供应字段 5。</string>
+    <string name="runtime_sync23_075" formatted="false">仅供参考：批准状态字段的含义尚无文档说明。不能根据这些字段判断 CTS 状态，RKP V3 也不例外。</string>
+    <string name="runtime_sync23_076" formatted="false">配置供应信息超过了 64 KiB 的解码限制。</string>
+    <string name="runtime_sync23_077" formatted="false">配置供应信息无法解码为 DER 包装的 CBOR 映射。</string>
+    <string name="runtime_sync23_078" formatted="false">配置供应字段 %1$d 不是文本字符串。</string>
+    <string name="runtime_sync23_079" formatted="false">缺少必需的配置供应字段 1。</string>
+    <string name="runtime_sync23_080" formatted="false">缺少必需的配置供应字段 4。</string>
+    <string name="runtime_sync23_081" formatted="false">配置供应字段 1 不是受支持的非负证书数量。</string>
+    <string name="runtime_sync23_082" formatted="false">配置供应字段 5 超过了 %1$d 层的显示嵌套限制。</string>
+    <string name="runtime_sync23_083" formatted="false">配置供应字段 5 的显示内容已截断为 %1$d 个字符。</string>
+    <string name="runtime_sync23_084" formatted="false">配置供应字段 5（CBOR）：%1$r</string>
+    <string name="runtime_sync23_085" formatted="false">网络风险</string>
+    <string name="runtime_sync23_086" formatted="false">网络上下文、代理配置与客户端证据</string>
+    <string name="runtime_sync23_087" formatted="false">网络上下文不完整</string>
+    <string name="runtime_sync23_088" formatted="false">扫描期间网络发生变化</string>
+    <string name="runtime_sync23_089" formatted="false">已采集网络上下文</string>
+    <string name="runtime_sync23_090" formatted="false">正在采集调用方可见的证据。</string>
+    <string name="runtime_sync23_091" formatted="false">采集失败。</string>
+    <string name="runtime_sync23_092" formatted="false">部分探测失败；已保留可用观测。VPN、代理设置和已安装客户端仅作背景信息；尚未评估服务活动和请求的实际路由。</string>
+    <string name="runtime_sync23_093" formatted="false">VPN、代理设置和已安装客户端仅作背景信息；尚未评估服务活动和请求的实际路由。</string>
+    <string name="runtime_sync23_094" formatted="false">VPN 传输</string>
+    <string name="runtime_sync23_095" formatted="false">仅限框架可见的网络。</string>
+    <string name="runtime_sync23_096" formatted="false">HTTP 代理</string>
+    <string name="runtime_sync23_097" formatted="false">仅检查配置。</string>
+    <string name="runtime_sync23_098" formatted="false">客户端软件包</string>
+    <string name="runtime_sync23_099" formatted="false">仅匹配完全一致的软件包名；已安装不代表服务正在运行。</string>
+    <string name="runtime_sync23_100" formatted="false">主动测试</string>
+    <string name="runtime_sync23_101" formatted="false">已禁用；发送请求数为 0，发送数据量为 0 字节。</string>
+    <string name="runtime_sync23_102" formatted="false">网络上下文</string>
+    <string name="runtime_sync23_103" formatted="false">代理与 DNS 上下文</string>
+    <string name="runtime_sync23_104" formatted="false">代理模块覆盖范围</string>
+    <string name="runtime_sync23_105" formatted="false">已观测</string>
+    <string name="runtime_sync23_106" formatted="false">%1$r；仅检查调用方所在的用户或配置文件。不查询其他用户和工作资料。未观测到不代表该软件包未在设备上安装。</string>
+    <string name="runtime_sync23_107" formatted="false">已使用抽样的上游发布密钥核验签名</string>
+    <string name="runtime_sync23_108" formatted="false">身份未核验</string>
+    <string name="runtime_sync23_109" formatted="false">%1$r；%2$s；签名读取状态：%3$s；版本代码：%4$r。已安装不代表正在运行。</string>
+    <string name="runtime_sync23_110" formatted="false">%1$s 部署痕迹</string>
+    <string name="runtime_sync23_111" formatted="false">仅按 module.prop 中完全匹配的 ID 检查；版本 %1$r。%2$s 受保护或已改名的路径不在覆盖范围内；元数据可能被修改。无法据此识别正在运行的核心或机制。</string>
+    <string name="runtime_sync23_112" formatted="false">仅按 module.prop 中完全匹配的 ID 检查；版本 %1$r。受保护或已改名的路径不在覆盖范围内；元数据可能被修改。无法据此识别正在运行的核心或机制。</string>
+    <string name="runtime_sync23_113" formatted="false">%1$s 服务响应</string>
+    <string name="runtime_sync23_114" formatted="false">未探测。未扫描端口；端口已更改或控制接口已禁用的情况不在覆盖范围内。</string>
+    <string name="runtime_sync23_115" formatted="false">%1$s 流量影响</string>
+    <string name="runtime_sync23_116" formatted="false">未评估。无法根据安装状态、TUN 接口或服务响应推断应用排除项或直连规则。</string>
+    <string name="runtime_sync23_117" formatted="false">采样一致性</string>
+    <string name="runtime_sync23_118" formatted="false">相邻比较次数：%1$d；耗时：%2$d 毫秒；采样时刻（epoch）：%3$d。重复读取不是原子操作，无法排除读取间隙发生的变化。</string>
+    <string name="runtime_sync23_119" formatted="false">重复采样</string>
+    <string name="runtime_sync23_120" formatted="false">主动协议 / DNS / 出口测试</string>
+    <string name="runtime_sync23_121" formatted="false">已禁用。不会访问端点、发送载荷、创建套接字或发出 DNS 请求；不适用超时；数据预算为 0 字节，请求预算为 0。</string>
+    <string name="runtime_sync23_122" formatted="false">路由覆盖范围</string>
+    <string name="runtime_sync23_123" formatted="false">不检查特权防火墙规则、其他 UID 的进程状态、模块日志或逐请求流量。企业 VPN、本地过滤器、DNS64/NAT64 和强制门户都可能是正常环境。</string>
+    <string name="runtime_sync23_124" formatted="false">导出隐私</string>
+    <string name="runtime_sync23_125" formatted="false">导出内容不包含接口名称或网络句柄；不会保留地址、PAC URL、DNS 主机名、订阅、凭据或连接历史。</string>
+    <string name="runtime_sync23_126" formatted="false">调用方默认网络</string>
+    <string name="runtime_sync23_127" formatted="false">仅限调用方 UID 的范围。结果为 null 可能表示已断开连接或访问受阻。%1$s</string>
+    <string name="runtime_sync23_128" formatted="false">仅限调用方 UID 的范围。结果为 null 可能表示已断开连接或访问受阻。</string>
+    <string name="runtime_sync23_129" formatted="false">%1$s（本地句柄 %2$d）</string>
+    <string name="runtime_sync23_130" formatted="false">进程绑定</string>
+    <string name="runtime_sync23_131" formatted="false">仅检查显式的进程绑定；未绑定不代表离线。%1$s</string>
+    <string name="runtime_sync23_132" formatted="false">仅检查显式的进程绑定；未绑定不代表离线。</string>
+    <string name="runtime_sync23_133" formatted="false">可见网络</string>
+    <string name="runtime_sync23_134" formatted="false">仅限框架可见的句柄；不代表所有 UID、配置文件、套接字或内核路由表。%1$s</string>
+    <string name="runtime_sync23_135" formatted="false">仅限框架可见的句柄；不代表所有 UID、配置文件、套接字或内核路由表。</string>
+    <string name="runtime_sync23_136" formatted="false">%1$s；返回数量：%2$d</string>
+    <string name="runtime_sync23_137" formatted="false">网络 %1$d 的传输类型</string>
+    <string name="runtime_sync23_138" formatted="false">调用方默认网络</string>
+    <string name="runtime_sync23_139" formatted="false">进程绑定网络</string>
+    <string name="runtime_sync23_140" formatted="false">调用方默认网络、进程绑定网络</string>
+    <string name="runtime_sync23_141" formatted="false">其他可见网络</string>
+    <string name="runtime_sync23_142" formatted="false">%1$s；%2$s VPN 传输仅是背景信息，不能证明此应用的请求经过代理。</string>
+    <string name="runtime_sync23_143" formatted="false">%1$s；VPN 传输仅是背景信息，不能证明此应用的请求经过代理。</string>
+    <string name="runtime_sync23_144" formatted="false">网络 %1$d 接口 / 路由</string>
+    <string name="runtime_sync23_145" formatted="false">%1$s；仅检查 LinkProperties 路由；不显示地址和网关。%2$s</string>
+    <string name="runtime_sync23_146" formatted="false">%1$s；仅检查 LinkProperties 路由；不显示地址和网关。</string>
+    <string name="runtime_sync23_147" formatted="false">%1$s；接口 %2$r；共 %3$d 条路由（IPv4 %4$d，IPv6 %5$d，默认路由 %6$d）</string>
+    <string name="runtime_sync23_148" formatted="false">%1$s；共 %2$d 条路由（IPv4 %3$d，IPv6 %4$d，默认路由 %5$d）</string>
+    <string name="runtime_sync23_149" formatted="false">未命名</string>
+    <string name="runtime_sync23_150" formatted="false">默认 HTTP 代理</string>
+    <string name="runtime_sync23_151" formatted="false">优先使用全局代理，其次是进程绑定网络中的代理，否则使用调用方 UID 网络中的代理。配置不代表请求实际使用了该代理。%1$s</string>
+    <string name="runtime_sync23_152" formatted="false">优先使用全局代理，其次是进程绑定网络中的代理，否则使用调用方 UID 网络中的代理。配置不代表请求实际使用了该代理。</string>
+    <string name="runtime_sync23_153" formatted="false">已配置 PAC；不显示 URL；未评估逐请求的代理选择。</string>
+    <string name="runtime_sync23_154" formatted="false">已配置 HTTP 代理；端口 %1$d；排除项 %2$d 个；不显示主机名。</string>
+    <string name="runtime_sync23_155" formatted="false">JVM HTTP 代理</string>
+    <string name="runtime_sync23_156" formatted="false">仅检查进程本地的 http.proxyHost/http.proxyPort；不显示主机名。配置不完整或无效时无法得出结论；不检查排除项、HTTPS/SOCKS 或自定义 ProxySelector。%1$s</string>
+    <string name="runtime_sync23_157" formatted="false">仅检查进程本地的 http.proxyHost/http.proxyPort；不显示主机名。配置不完整或无效时无法得出结论；不检查排除项、HTTPS/SOCKS 或自定义 ProxySelector。</string>
+    <string name="runtime_sync23_158" formatted="false">%1$s；端口 %2$d</string>
+    <string name="runtime_sync23_159" formatted="false">代理来源交叉核对</string>
+    <string name="runtime_sync23_160" formatted="false">ConnectivityManager 与 JVM 静态 HTTP 端点视图属于相关来源，并非流量实际使用代理的独立证据。进程覆盖设置和异步更新可能导致视图不一致。</string>
+    <string name="runtime_sync23_161" formatted="false">无法得出结论：视图不一致</string>
+    <string name="runtime_sync23_162" formatted="false">无法比较：PAC</string>
+    <string name="runtime_sync23_163" formatted="false">无法比较：来源不可用</string>
+    <string name="runtime_sync23_164" formatted="false">网络 %1$d 链路代理 / PAC</string>
+    <string name="runtime_sync23_165" formatted="false">仅检查网络专属配置；未获取 PAC 文件，也未发出请求。%1$s</string>
+    <string name="runtime_sync23_166" formatted="false">仅检查网络专属配置；未获取 PAC 文件，也未发出请求。</string>
+    <string name="runtime_sync23_167" formatted="false">网络 %1$d 私人 DNS</string>
+    <string name="runtime_sync23_168" formatted="false">仅作背景信息，不是代理证据。是否配置严格主机名：%1$r；DNS 服务器数：%2$d；不显示名称和地址。</string>
+    <string name="runtime_sync23_169" formatted="false">访问被拒绝。</string>
+    <string name="runtime_sync23_170" formatted="false">平台查询或读取失败。</string>
+    <string name="runtime_sync23_171" formatted="false">网络已消失，或其属性已无法访问。</string>
+    <string name="runtime_sync23_172" formatted="false">超出采集预算。</string>
+    <string name="runtime_sync23_173" formatted="false">元数据格式错误、存在歧义或不是普通文件。</string>
+    <string name="runtime_sync23_174" formatted="false">未评估。</string>
+    <string name="runtime_sync23_175" formatted="false">已观测；%1$r</string>
+    <string name="runtime_sync23_176" formatted="false">未观测；%1$r</string>
+    <string name="runtime_sync23_177" formatted="false">不可用；%1$r</string>
+    <string name="runtime_sync23_178" formatted="false">受权限限制；%1$r</string>
+    <string name="runtime_sync23_179" formatted="false">不支持；%1$r</string>
+    <string name="runtime_sync23_180" formatted="false">无法得出结论；%1$r</string>
+    <string name="runtime_sync23_181" formatted="false">位置风险</string>
+    <string name="runtime_sync23_182" formatted="false">位置 API 合约与可选的缓存模拟元数据</string>
+    <string name="runtime_sync23_183" formatted="false">观测到位置合约不匹配</string>
+    <string name="runtime_sync23_184" formatted="false">本地合约仅完成部分评估</string>
+    <string name="runtime_sync23_185" formatted="false">未观测到本地合约不匹配</string>
+    <string name="runtime_sync23_186" formatted="false">未评估本地合约</string>
+    <string name="runtime_sync23_187" formatted="false">本地合约检查可发现广泛的 getter 重写。缓存模拟标记和已安装软件包仅作背景信息；这些信息都无法验证设备的真实位置。</string>
+    <string name="runtime_sync23_188" formatted="false">本地合约</string>
+    <string name="runtime_sync23_189" formatted="false">四项合约共用同一个框架接口，并非相互独立的可信来源。</string>
+    <string name="runtime_sync23_190" formatted="false">缓存位置的模拟标记</string>
+    <string name="runtime_sync23_191" formatted="false">仅涉及历史缓存位置；false 值不能验证位置真实性。</string>
+    <string name="runtime_sync23_192" formatted="false">参考软件包</string>
+    <string name="runtime_sync23_193" formatted="false">软件包名完全匹配；身份未核验；已安装不代表正在运行。</string>
+    <string name="runtime_sync23_194" formatted="false">缓存访问</string>
+    <string name="runtime_sync23_195" formatted="false">需主动启用并授予前台权限；最多读取三条缓存；不会请求传感器数据。</string>
+    <string name="runtime_sync23_196" formatted="false">应用自有的 Location 合约</string>
+    <string name="runtime_sync23_197" formatted="false">可选的缓存位置上下文</string>
+    <string name="runtime_sync23_198" formatted="false">参考项目软件包</string>
+    <string name="runtime_sync23_199" formatted="false">覆盖范围与隐私</string>
+    <string name="runtime_sync23_200" formatted="false">setter / getter 往返校验</string>
+    <string name="runtime_sync23_201" formatted="false">可选字段标记</string>
+    <string name="runtime_sync23_202" formatted="false">重置语义</string>
+    <string name="runtime_sync23_203" formatted="false">合成模拟标记往返校验</string>
+    <string name="runtime_sync23_204" formatted="false">最多创建两个合成对象；不获取真实位置。字段：%1$r。%2$s</string>
+    <string name="runtime_sync23_205" formatted="false">最多创建两个合成对象；不获取真实位置。字段：%1$r。</string>
+    <string name="runtime_sync23_206" formatted="false">最多创建两个合成对象；不获取真实位置。字段：%1$r。%2$s 公开的 setMock 需要 API 31；更早版本不支持。</string>
+    <string name="runtime_sync23_207" formatted="false">最多创建两个合成对象；不获取真实位置。字段：%1$r。公开的 setMock 需要 API 31；更早版本不支持。</string>
+    <string name="runtime_sync23_208" formatted="false">com.vincenthzr.locationspoofer；源码修订版本 dcbe6203；身份未核验。未能确认上游发布签名者；不按名称匹配。已安装不代表已启用或正在运行。</string>
+    <string name="runtime_sync23_209" formatted="false">VirtualLocation 软件包</string>
+    <string name="runtime_sync23_210" formatted="false">%1$r；仅检查调用方所在的用户或配置文件。未观测到不代表该软件包未在设备上安装。</string>
+    <string name="runtime_sync23_211" formatted="false">观测边界</string>
+    <string name="runtime_sync23_212" formatted="false">仅在系统服务层伪造位置、选择性 Hook、被排除的应用或相互一致的伪造元数据，都可能通过本地检查。不与 GNSS、Wi-Fi、蜂窝网络、IP 或轨迹交叉验证；也不归因到具体模块。</string>
+    <string name="runtime_sync23_213" formatted="false">正常使用场景</string>
+    <string name="runtime_sync23_214" formatted="false">测试提供程序、模拟器、自动化和开发环境都可能将位置标记为模拟位置。没有缓存、位置开关关闭、时间戳较旧或提供程序不同，都不能证明位置遭到伪造。</string>
+    <string name="runtime_sync23_215" formatted="false">数据范围</string>
+    <string name="runtime_sync23_216" formatted="false">不会访问外部端点或发送网络载荷。不会主动获取定位、注册监听器或申请后台位置权限。报告和导出中不会保留坐标、原始定位时间、附加字段或历史记录。</string>
+    <string name="runtime_sync23_217" formatted="false">缓存采集</string>
+    <string name="runtime_sync23_218" formatted="false">权限：%1$r；位置开关：%2$r；采样起始时间（已运行毫秒数）：%3$r。%4$s</string>
+    <string name="runtime_sync23_219" formatted="false">权限：%1$r；位置开关：%2$r；采样起始时间（已运行毫秒数）：%3$r。</string>
+    <string name="runtime_sync23_220" formatted="false">%1$r 模拟标记</string>
+    <string name="runtime_sync23_221" formatted="false">时间范围：%1$r；仅为缓存元数据，不代表服务当前状态。%2$s</string>
+    <string name="runtime_sync23_222" formatted="false">时间范围：%1$r；仅为缓存元数据，不代表服务当前状态。</string>
+    <string name="runtime_sync23_223" formatted="false">%1$r 新鲜度</string>
+    <string name="runtime_sync23_224" formatted="false">%1$r；“近期”指不超过五分钟，这是显示规则，不是真实性证明。不会据此判定不同提供程序之间存在矛盾。%2$s</string>
+    <string name="runtime_sync23_225" formatted="false">%1$r；“近期”指不超过五分钟，这是显示规则，不是真实性证明。不会据此判定不同提供程序之间存在矛盾。</string>
+    <string name="runtime_sync23_226" formatted="false">访问被拒绝；权限或 AppOps 可能限制了调用方。</string>
+    <string name="runtime_sync23_227" formatted="false">平台查询失败；无法取得证据。</string>
+    <string name="runtime_sync23_228" formatted="false">提供程序不存在或已拒绝请求；不在覆盖范围内。</string>
+    <string name="runtime_sync23_229" formatted="false">没有可访问的缓存位置；这不能证明位置不存在。</string>
+    <string name="runtime_sync23_230" formatted="false">默认关闭；可在初始设置或设置中启用。</string>
+    <string name="runtime_sync23_231" formatted="false">无法保存缓存位置诊断的授权选择</string>
+    <string name="runtime_sync23_profile_matches" formatted="false">已检查 %1$d 个应用 · 匹配 %2$d 项</string>
+    <string name="runtime_sync23_rkp_chain_failed" formatted="false">由于本地证书链签名验证失败，配置供应信息未通过认证。</string>
+    <string name="runtime_sync23_contract_blank_suffix" formatted="false">最多创建两个合成对象；不获取真实位置。字段：%1$r。%2$r</string>
+    <string name="runtime_sync23_argument_1" formatted="false">访问被拒绝</string>
+    <string name="runtime_sync23_argument_2" formatted="false">权限或 AppOps 可能限制了调用方。</string>
+    <string name="runtime_sync23_argument_3" formatted="false">默认关闭</string>
+    <string name="runtime_sync23_argument_4" formatted="false">可在初始设置或设置中启用。</string>
+    <string name="runtime_sync23_argument_5" formatted="false">旧版固定 CPU 的父进程诊断</string>
+    <string name="runtime_sync23_argument_6" formatted="false">不能用于 PoC 分类。</string>
+    <string name="runtime_sync23_argument_7" formatted="false">不能用于 PoC 分类。不完整样本的中位数仅供诊断。</string>
+</resources>

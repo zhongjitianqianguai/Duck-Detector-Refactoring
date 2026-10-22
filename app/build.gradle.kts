@@ -42,14 +42,13 @@ generateDetectorCards(packageName = "com.eltavine.duckdetector.ui")
 
 // The runtime translation regression reads these source pairs rather than a duplicate test fixture.
 tasks.withType<org.gradle.api.tasks.testing.Test>().configureEach {
-    inputs.files(
-        "src/main/res/values/sync_20261002_strings.xml",
-        "src/main/res/values-zh-rCN/sync_20261002_strings.xml",
-        "src/main/res/values/sync_20261013_strings.xml",
-        "src/main/res/values-zh-rCN/sync_20261013_strings.xml",
-        "src/main/res/values/detector_strings.xml",
-        "src/main/res/values-zh-rCN/detector_strings.xml",
-    ).withPropertyName("octoberRuntimeTranslations")
+    inputs.files(fileTree("src/main/res") {
+        include("values*/*.xml")
+    }).withPropertyName("runtimeTranslations")
+    inputs.files(rootProject.fileTree(".") {
+        include("core/*/src/main/res/values*/*.xml", "feature/*/*/src/main/res/values*/*.xml",
+            "uihelper/src/main/res/values*/*.xml")
+    }).withPropertyName("moduleRuntimeTranslations")
 }
 
 dependencies {
@@ -92,9 +91,11 @@ dependencies {
     testImplementation(project(":feature:deviceinfo:presentation"))
     testImplementation(libs.bundles.test.unit)
     androidTestImplementation(platform(libs.androidx.compose.bom))
+    androidTestImplementation(project(":feature:selinux:domain"))
     androidTestImplementation(project(":feature:rootmanagers:data"))
     androidTestImplementation(project(":feature:rootmanagers:domain"))
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.test.runner)
+    androidTestImplementation(libs.androidx.tracing)
     debugImplementation(libs.androidx.ui.tooling)
 }
