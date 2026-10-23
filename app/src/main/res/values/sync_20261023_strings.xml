@@ -58,7 +58,7 @@
     <string name="runtime_sync23_056" formatted="false">Timing unavailable</string>
     <string name="runtime_sync23_057" formatted="false">Collection failed: %1$s (AVC child).</string>
     <string name="runtime_sync23_058" formatted="false">No parent timing sample was collected; this is not a negative detection.</string>
-    <string name="runtime_sync23_059" formatted="false">A=invalid type, B=same-length newline prefix; both must return EINVAL. 512 AB/BA pairs, 32 warmups; CLOCK_MONOTONIC_RAW; paired A−B &gt; 0 ns is positive, 0 ns is baseline, and &lt; 0 ns is negative. Block counts are diagnostic only. Measured in the preload parent without changing CPU affinity. A change from the entry CPU at any sampled endpoint or an incomplete sample invalidates classification. One retained preload is one measurement.</string>
+    <string name="runtime_sync23_059" formatted="false">A=invalid type, B=same-length newline prefix; both must return EINVAL. 512 AB/BA pairs, 32 warmups; CLOCK_MONOTONIC_RAW; paired A−B &gt; 0 ns is positive, 0 ns is baseline, and &lt; 0 ns is negative. Block counts are diagnostic only. Measured in the preload parent without changing CPU affinity. A CPU change within a sampled A/B pair or an incomplete sample invalidates classification; CPU switches between completed pairs are allowed. One retained preload is one measurement.</string>
     <string name="runtime_sync23_060" formatted="false">This parent sample supplies the timing verdict.</string>
     <string name="runtime_sync23_061" formatted="false">Legacy pinned parent diagnostic; unavailable for PoC classification.</string>
     <string name="runtime_sync23_062" formatted="false">Partial-sample medians are diagnostic only.</string>

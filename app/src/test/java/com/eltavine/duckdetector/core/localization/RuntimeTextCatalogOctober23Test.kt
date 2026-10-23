@@ -101,6 +101,26 @@ class RuntimeTextCatalogOctober23Test {
     }
 
     @Test
+    fun translatesTimingRulesWithCpuSwitchesBetweenCompletedPairs() {
+        val method = "A=invalid type, B=same-length newline prefix; both must return EINVAL. " +
+            "512 AB/BA pairs, 32 warmups; CLOCK_MONOTONIC_RAW; paired A−B > 0 ns is positive, " +
+            "0 ns is baseline, and < 0 ns is negative. Block counts are diagnostic only. " +
+            "Measured in the preload parent without changing CPU affinity. " +
+            "A CPU change within a sampled A/B pair or an incomplete sample invalidates classification; " +
+            "CPU switches between completed pairs are allowed. " +
+            "One retained preload is one measurement."
+        val translated = catalog.translate(method)
+        assertEquals("A 为无效类型，B 为等长的换行前缀；两者都必须返回 EINVAL。" +
+            "执行 512 对 AB/BA 和 32 次预热；使用 CLOCK_MONOTONIC_RAW；" +
+            "成对 A−B 大于 0 ns 为正，小于 0 ns 为负，等于 0 ns 为基线。分块计数仅供诊断。" +
+            "在预加载父进程中测量，不更改 CPU 亲和性。" +
+            "同一对 A/B 采样内发生 CPU 切换或样本不完整，都会使分类无效；" +
+            "允许在已完成的采样对之间切换 CPU。每次保留的预加载仅算一次测量。", translated)
+        assertEquals("$translated\n父进程预加载：N/A（未采集）。 ",
+            catalog.translate("$method\nParent preload: N/A (not collected). "))
+    }
+
+    @Test
     fun keepsMachineValuesUnchanged() {
         for (raw in listOf("com.google.android.gms", "com.vincenthzr.locationspoofer", "/sys/fs/selinux/status",
             "http.proxyHost", "APPROVED", "NOT_APPROVED", "ROUND=1\t128\t256", "2026-10-23T00:00:00Z")) {
