@@ -31,6 +31,7 @@ import androidx.compose.material.icons.outlined.Home as HomeOutline
 import androidx.compose.material.icons.outlined.Settings as SettingsOutline
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.LaunchedEffect
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.compose.runtime.getValue
@@ -144,7 +145,8 @@ internal fun AppReadyShell(
     val scanViewModel: DetectorScanViewModel = viewModel(
         factory = remember { DetectorScanViewModel.factory(detectors.map { it.summary }) },
     )
-    val scanState by scanViewModel.coordinator.state.collectAsStateWithLifecycle()
+    // The CLI snapshot must keep following scans while this Activity is in the background.
+    val scanState by scanViewModel.coordinator.state.collectAsState()
     val detectorSummaries = scanState.detectors
     val isDashboardLoading = scanState.isLoading
     val dashboardScanDurationMillis = scanState.timeline.durationMillis
