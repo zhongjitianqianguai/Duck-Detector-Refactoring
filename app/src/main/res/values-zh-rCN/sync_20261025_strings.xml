@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="runtime_sync25_adb_count" formatted="false">%1$d 项运行状态矛盾</string>
+    <string name="runtime_sync25_adb_fallback" formatted="false">已确认的 ADB 端点与 init.svc.adbd 状态不一致。</string>
+    <string name="runtime_sync25_adb_init_contradiction" formatted="false">两次采样中 init 创建的 adbd 套接字均可见，但 init.svc.adbd 显示已停止。init 会先移除该套接字，再发布已停止状态。</string>
+    <string name="runtime_sync25_adb_jdwp_contradiction" formatted="false">两次采样中 adbd 的 JDWP 控制套接字均有响应，但 init.svc.adbd 显示已停止。当 init 回收的进程退出时，adbd 会关闭该监听器。</string>
+    <string name="runtime_sync25_adb_interpretation" formatted="false">ADB 运行时接口与 init 生命周期不一致。这不能确认具体的 Root 或隐藏实现。</string>
+    <string name="runtime_sync25_adb_init_label" formatted="false">init 套接字</string>
+    <string name="runtime_sync25_adb_jdwp_label" formatted="false">JDWP 控制套接字</string>
+    <string name="runtime_sync25_adb_init_finding" formatted="false">ADB init 套接字与 init 状态对照</string>
+    <string name="runtime_sync25_adb_jdwp_finding" formatted="false">ADB JDWP 套接字与 init 状态对照</string>
+    <string name="runtime_sync25_adb_present_stopped" formatted="false">存在，但 init 显示已停止</string>
+    <string name="runtime_sync25_adb_present_denied" formatted="false">存在（安全标签拒绝访问）</string>
+    <string name="runtime_sync25_adb_not_observable" formatted="false">不可观测</string>
+    <string name="runtime_sync25_adb_stopped_detail" formatted="false">init.svc.adbd 显示已停止，但 init 为该服务创建的套接字仍存在；init 会先移除套接字，再发布此状态值。</string>
+    <string name="runtime_sync25_adb_all_unavailable" formatted="false">当前应用进程无法获取设置、USB 状态、属性、套接字探测和 mDNS 信息。</string>
+    <string name="runtime_sync25_adb_stat_ok" formatted="false">stat(%1$r) 成功，确认套接字路径可解析。%2$s</string>
+    <string name="runtime_sync25_adb_stat_denied" formatted="false">对套接字 inode 执行 stat(%1$r) 被拒绝，而同目录的对照路径不存在，因此该 inode 存在，其安全标签阻止了属性读取。%2$s</string>
+    <string name="runtime_sync25_adb_stat_absent" formatted="false">目录可解析，未观察到 adbd 条目或 inode。%1$s</string>
+    <string name="runtime_sync25_adb_stat_directory" formatted="false">当前进程无法解析 %1$r 中的名称，因此无法观测套接字是否存在。%2$s</string>
+    <string name="runtime_sync25_adb_stat_unknown" formatted="false">套接字探测未产生可解释的结果。%1$s</string>
+    <string name="runtime_sync25_adb_stat_fields" formatted="false">目录列表=%1$s，目录=%2$s，套接字=%3$s，对照=%4$s</string>
+    <string name="runtime_sync25_adb_jdwp_result" formatted="false">抽象套接字（@jdwp-control）=%1$s</string>
+    <string name="runtime_sync25_adb_readable" formatted="false">可读取</string>
+    <string name="runtime_sync25_adb_connected" formatted="false">已连接</string>
+    <string name="runtime_sync25_adb_ok" formatted="false">成功</string>
+    <string name="runtime_sync25_mount_label" formatted="false">匿名设备次设备号</string>
+    <string name="runtime_sync25_mount_missing" formatted="false">未采集匿名设备诊断详情。</string>
+    <string name="runtime_sync25_mount_native_missing" formatted="false">原生层未采集匿名设备观察结果。</string>
+    <string name="runtime_sync25_mount_detail_missing" formatted="false">原生匿名设备结果缺少诊断详情。</string>
+    <string name="runtime_sync25_mount_gaps" formatted="false">观察到编号空缺</string>
+    <string name="runtime_sync25_mount_no_gaps" formatted="false">未观察到编号空缺</string>
+    <string name="runtime_sync25_mount_coverage" formatted="false">挂载观察覆盖范围受限</string>
+    <string name="runtime_sync25_mount_limits" formatted="false">匿名设备观察的覆盖范围有限。请查看报告中的观察区间和可见性限制。</string>
+    <string name="runtime_sync25_mount_capture" formatted="false">需要完整且有效的 /proc/self/mountinfo 采集结果。</string>
+    <string name="runtime_sync25_mount_floor" formatted="false">没有可用的 tmpfs/cgroup 下界。%1$s</string>
+    <string name="runtime_sync25_mount_storage" formatted="false">当前用户的外部存储路径不可用。</string>
+    <string name="runtime_sync25_mount_ceiling" formatted="false">当前用户没有可访问的 FUSE 上界。%1$s</string>
+    <string name="runtime_sync25_mount_order" formatted="false">锚点顺序不可用：%1$r=0:%2$d，%3$r=0:%4$d。</string>
+    <string name="runtime_sync25_mount_stat_errno" formatted="false">%1$r：stat 失败，errno=%2$d</string>
+    <string name="runtime_sync25_mount_statfs_errno" formatted="false">%1$r：statfs 失败，errno=%2$d</string>
+    <string name="runtime_sync25_mount_wrong_type" formatted="false">%1$r：设备或文件系统类型不符合预期</string>
+    <string name="runtime_sync25_mount_window" formatted="false">观察区间：%1$r=0:%2$d .. %3$r=0:%4$d；可见的不同设备共 %5$d 个。仅比较区间内部可见设备之间的间隔。</string>
+    <string name="runtime_sync25_mount_partial" formatted="false">观察区间在应用私有 tmpfs 频繁变化的区域之前截止；覆盖范围不完整。FUSE 上界：%1$r=0:%2$d。</string>
+    <string name="runtime_sync25_mount_few" formatted="false">区间内部设备过少，无法比较。</string>
+    <string name="runtime_sync25_mount_gap" formatted="false">%3$r 和 %4$r 之间存在编号空缺 0:%1$d..0:%2$d。</string>
+    <string name="runtime_sync25_mount_runs" formatted="false">连续编号空缺共 %1$d 段。</string>
+    <string name="runtime_sync25_mount_first_eight" formatted="false">仅显示前八个区间。</string>
+    <string name="runtime_sync25_mount_overlay" formatted="false">Overlayfs 记录共 %1$d 条；此视图无法完整统计各层的伪设备。</string>
+    <string name="runtime_sync25_mount_caution" formatted="false">已释放的编号、内核内部的分配及其他命名空间都可能造成编号空缺。这些观察并非原子操作，不能证明存在 Root 或 Vector；绑定挂载复用超级块，可能不会产生额外的匿名设备号。</string>
+    <string name="runtime_sync25_location_mock" formatted="false">观察到缓存的模拟位置</string>
+    <string name="runtime_sync25_location_package" formatted="false">观察到位置参考项目应用包</string>
+    <string name="runtime_sync25_location_warning" formatted="false">警告提示本地契约不匹配、缓存模拟标记或参考项目应用包。缓存标记可能来自历史记录或正常测试；应用包身份未经验证，已安装不代表正在运行。所有检查均不能验证真实位置。</string>
+    <string name="runtime_sync25_network_warning" formatted="false">观察到网络风险指标</string>
+    <string name="runtime_sync25_network_warning_partial" formatted="false">观察到网络风险指标；背景信息不完整</string>
+    <string name="runtime_sync25_network_warning_changed" formatted="false">观察到网络风险指标；扫描期间网络发生变化</string>
+    <string name="runtime_sync25_network_summary" formatted="false">警告提示观察到的 VPN/代理配置、客户端应用包或模块部署痕迹，需进一步复核。正常 VPN 和测试也可能触发警告；服务活动和请求路由仍未评估。</string>
+    <string name="runtime_sync25_network_summary_failed" formatted="false">部分探测失败；保留了可用的观察结果。警告提示观察到的 VPN/代理配置、客户端应用包或模块部署痕迹，需进一步复核。正常 VPN 和测试也可能触发警告；服务活动和请求路由仍未评估。</string>
+    <string name="runtime_sync25_network_visible" formatted="false">仅限可见网络；这不能确认本应用的请求路径。</string>
+    <string name="runtime_sync25_network_vpn" formatted="false">%1$s；%2$s VPN 传输不能证明此应用的请求经过代理。</string>
+    <string name="runtime_sync25_network_vpn_blank" formatted="false">%1$s；VPN 传输不能证明此应用的请求经过代理。</string>
+    <string name="runtime_sync25_network_client" formatted="false">%1$r；%2$s；签名读取：%3$s；%4$s 版本代码：%5$r。已安装不代表正在运行。</string>
+    <string name="runtime_sync25_network_client_blank" formatted="false">%1$r；%2$s；签名读取：%3$s；版本代码：%4$r。已安装不代表正在运行。</string>
+    <string name="runtime_sync25_selinux_partial" formatted="false">仅因 CPU 迁移而不完整的样本满足至少 90% 的采样对中 A 更慢的条件。</string>
+    <string name="runtime_sync25_selinux_partial_combined" formatted="false">此父进程样本用于时序判定。仅因 CPU 迁移而不完整的样本满足至少 90% 的采样对中 A 更慢的条件。</string>
+    <string name="runtime_sync25_mount_window_rest" formatted="false">观察区间：%1$r=0:%2$d .. %3$r=0:%4$d；可见的不同设备共 %5$d 个。仅比较区间内部可见设备之间的间隔。%6$c</string>
+    <string name="runtime_sync25_mount_partial_rest" formatted="false">观察区间在应用私有 tmpfs 频繁变化的区域之前截止；覆盖范围不完整。FUSE 上界：%1$r=0:%2$d。%3$c</string>
+    <string name="runtime_sync25_mount_gap_rest" formatted="false">%3$r 和 %4$r 之间存在编号空缺 0:%1$d..0:%2$d。%5$c</string>
+    <string name="runtime_sync25_mount_runs_rest" formatted="false">连续编号空缺共 %1$d 段。%2$c</string>
+    <string name="runtime_sync25_mount_first_eight_rest" formatted="false">仅显示前八个区间。%1$c</string>
+    <string name="runtime_sync25_mount_overlay_rest" formatted="false">Overlayfs 记录共 %1$d 条；此视图无法完整统计各层的伪设备。%2$c</string>
+    <string name="runtime_sync25_adb_absent" formatted="false">不存在</string>
+</resources>

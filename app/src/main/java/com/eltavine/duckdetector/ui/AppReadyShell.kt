@@ -18,66 +18,44 @@
 package com.eltavine.duckdetector.ui
 
 import android.widget.Toast
-import androidx.compose.animation.core.LinearEasing
-import androidx.compose.animation.core.RepeatMode
-import androidx.compose.animation.core.animateFloat
-import androidx.compose.animation.core.infiniteRepeatable
-import androidx.compose.animation.core.rememberInfiniteTransition
-import androidx.compose.animation.core.tween
-import androidx.compose.foundation.Canvas
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.foundation.text.BasicText
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Home
 import androidx.compose.material.icons.rounded.Settings
 import androidx.compose.material.icons.outlined.Home as HomeOutline
 import androidx.compose.material.icons.outlined.Settings as SettingsOutline
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
 import androidx.compose.runtime.key
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.rotate
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.StrokeCap
-import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.eltavine.duckdetector.BuildConfig
 import com.eltavine.duckdetector.R
-import com.eltavine.duckdetector.core.cli.CliSnapshotStore
 import com.eltavine.duckdetector.core.detector.ConsentDecision
 import com.eltavine.duckdetector.core.detector.ConsentId
 import com.eltavine.duckdetector.core.navigation.DuckNavHost
 import com.eltavine.duckdetector.core.navigation.DuckRoute
 import com.eltavine.duckdetector.core.navigation.rememberDuckRoutes
-import com.eltavine.duckdetector.core.designsystem.theme.DuckTheme
+import com.eltavine.duckdetector.core.ui.copyPlainTextToClipboard
 import com.eltavine.duckdetector.core.ui.openExternalUri
 import com.eltavine.duckdetector.features.dashboard.presentation.model.DashboardUiState
 import com.eltavine.duckdetector.features.dashboard.presentation.model.buildDashboardFindings
@@ -92,7 +70,6 @@ import com.eltavine.duckdetector.features.settings.ui.SettingsScreen
 import com.eltavine.duckdetector.features.settings.ui.licenses.OpenSourceLicensesScreen
 import com.eltavine.duckdetector.features.update.data.GitHubAccelerationStore
 import com.eltavine.duckdetector.features.update.domain.GitHubAcceleration
-import com.eltavine.duckdetector.features.update.domain.AvailableNightlyUpdate
 import com.eltavine.duckdetector.features.update.domain.UpdateInstallResult
 import com.eltavine.duckdetector.features.update.presentation.UpdateDownloadState
 import com.eltavine.duckdetector.features.update.presentation.shouldOfferGitHubAcceleration
@@ -106,10 +83,6 @@ import com.eltavine.duckdetector.ui.shell.AppDestination
 import io.github.xiaotong6666.uihelper.chrome.AdaptiveNavigationShell
 import io.github.xiaotong6666.uihelper.chrome.NavigationShellItem
 import io.github.xiaotong6666.uihelper.chrome.NavigationShellPagerGesturePolicy
-import com.eltavine.duckdetector.core.ui.components.WrapSafeText
-import io.github.xiaotong6666.uihelper.adaptive.adaptiveValue
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 import kotlinx.coroutines.launch
 import io.github.xiaotong6666.uihelper.dialog.rememberRetainedDialogPayload
 import io.github.xiaotong6666.uihelper.mode.UiMode
@@ -131,12 +104,16 @@ internal fun AppReadyShell(
     val updateInstallPermissionMessage = stringResource(R.string.update_install_permission_required)
     val updateApkUnavailableMessage = stringResource(R.string.update_apk_unavailable)
     val updateInstallFailedMessage = stringResource(R.string.update_install_failed)
+    val fallbackCopiedOpenedMessage = stringResource(R.string.update_install_fallback_copied_opened)
+    val fallbackCopiedOnlyMessage = stringResource(R.string.update_install_fallback_copied_only)
+    val fallbackOpenedOnlyMessage = stringResource(R.string.update_install_fallback_opened_only)
+    val fallbackCopiedConfirmation = stringResource(R.string.update_install_link_copied)
     val scope = rememberCoroutineScope()
     val notifier = remember(appContext) { ScanProgressNotifier(appContext) }
     val updateFactory = remember(context) { updateViewModelFactory(context) }
     val updateViewModel: UpdateViewModel = viewModel(factory = updateFactory)
     val accelerationStore = remember(appContext) { GitHubAccelerationStore.getInstance(appContext) }
-    val gitHubAcceleration by accelerationStore.acceleration.collectAsState(initial = null)
+    val gitHubAcceleration by accelerationStore.acceleration.collectAsStateWithLifecycle(initialValue = null)
     var accelerationOfferDismissed by rememberSaveable { mutableStateOf(false) }
     val appLocale = LocalConfiguration.current.locales[0]
     val offerGitHubAcceleration = !accelerationOfferDismissed &&
@@ -147,7 +124,7 @@ internal fun AppReadyShell(
     val deviceProfile = DetectorFeatures.deviceProfile.rememberSession()
     // The scan coordinator, the dashboard and the export list detectors by id.
     val detectors = remember(detectorSessions) { detectorSessions.sortedBy { it.id.value } }
-    val updateUiState by updateViewModel.uiState.collectAsState()
+    val updateUiState by updateViewModel.uiState.collectAsStateWithLifecycle()
     val visibleUpdate = updateUiState.availableUpdate.takeIf {
         updateUiState.isDialogVisible && canShowUpdateDialog
     }
@@ -167,7 +144,7 @@ internal fun AppReadyShell(
     val scanViewModel: DetectorScanViewModel = viewModel(
         factory = remember { DetectorScanViewModel.factory(detectors.map { it.summary }) },
     )
-    val scanState by scanViewModel.coordinator.state.collectAsState()
+    val scanState by scanViewModel.coordinator.state.collectAsStateWithLifecycle()
     val detectorSummaries = scanState.detectors
     val isDashboardLoading = scanState.isLoading
     val dashboardScanDurationMillis = scanState.timeline.durationMillis
@@ -190,24 +167,15 @@ internal fun AppReadyShell(
             isLoading = isDashboardLoading,
         )
     }
-    LaunchedEffect(cliScanRequestId) {
-        if (cliScanRequestId <= 0L) return@LaunchedEffect
-        withContext(Dispatchers.IO) {
-            CliSnapshotStore.markScanRequested(appContext)
-        }
-        detectorSessions.forEach { detector -> detector.rescan() }
-    }
-    LaunchedEffect(dashboardState, detectorSummaries) {
-        withContext(Dispatchers.IO) {
-            CliSnapshotStore.persist(
-                context = appContext,
-                state = dashboardState,
-                summaries = detectorSummaries,
-                detectors = detectors,
-                deviceProfile = deviceProfile,
-            )
-        }
-    }
+    AppCliSnapshotEffects(
+        context = appContext,
+        requestId = cliScanRequestId,
+        sessions = detectorSessions,
+        state = dashboardState,
+        summaries = detectorSummaries,
+        detectors = detectors,
+        deviceProfile = deviceProfile,
+    )
     val settingsState = remember(updateUiState.status, gitHubAcceleration) {
         SettingsUiState(
             versionName = BuildConfig.VERSION_NAME,
@@ -355,24 +323,37 @@ internal fun AppReadyShell(
                 onConfirm = {
                     when (updateUiState.download) {
                         is UpdateDownloadState.Ready -> {
-                            when (updateViewModel.installDownloaded()) {
+                            when (val installResult = updateViewModel.installDownloaded()) {
                                 UpdateInstallResult.PermissionRequired -> Toast.makeText(
                                     context,
                                     updateInstallPermissionMessage,
                                     Toast.LENGTH_LONG,
                                 ).show()
 
-                                UpdateInstallResult.ApkUnavailable -> Toast.makeText(
-                                    context,
-                                    updateApkUnavailableMessage,
-                                    Toast.LENGTH_SHORT,
-                                ).show()
-
-                                UpdateInstallResult.Failed -> Toast.makeText(
-                                    context,
-                                    updateInstallFailedMessage,
-                                    Toast.LENGTH_SHORT,
-                                ).show()
+                                UpdateInstallResult.ApkUnavailable,
+                                UpdateInstallResult.Failed -> {
+                                    val fallback = fallbackFromFailedLocalInstall(
+                                        result = installResult,
+                                        downloadUrl = updateUiState.availableUpdate?.downloadUrl,
+                                        copy = { url ->
+                                            copyPlainTextToClipboard(
+                                                context,
+                                                "Duck Detector APK",
+                                                url,
+                                                fallbackCopiedConfirmation,
+                                            )
+                                        },
+                                        open = { url -> openExternalUri(context, url) },
+                                    )
+                                    val message = when {
+                                        fallback?.let { it.copied && it.browserOpened } == true -> fallbackCopiedOpenedMessage
+                                        fallback?.copied == true -> fallbackCopiedOnlyMessage
+                                        fallback?.browserOpened == true -> fallbackOpenedOnlyMessage
+                                        installResult == UpdateInstallResult.ApkUnavailable -> updateApkUnavailableMessage
+                                        else -> updateInstallFailedMessage
+                                    }
+                                    Toast.makeText(context, message, Toast.LENGTH_LONG).show()
+                                }
 
                                 UpdateInstallResult.Launched -> Unit
                             }

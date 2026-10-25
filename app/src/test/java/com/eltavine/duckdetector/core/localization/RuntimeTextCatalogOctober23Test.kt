@@ -106,16 +106,18 @@ class RuntimeTextCatalogOctober23Test {
             "512 AB/BA pairs, 32 warmups; CLOCK_MONOTONIC_RAW; paired A−B > 0 ns is positive, " +
             "0 ns is baseline, and < 0 ns is negative. Block counts are diagnostic only. " +
             "Measured in the preload parent without changing CPU affinity. " +
-            "A CPU change within a sampled A/B pair or an incomplete sample invalidates classification; " +
-            "CPU switches between completed pairs are allowed. " +
+            "CPU switches between completed pairs are allowed. Incomplete measurements are normally " +
+            "inconclusive, except migration-only samples with at least 256 accepted pairs, positive " +
+            "A−B, and at least 90% A-slower pairs. " +
             "One retained preload is one measurement."
         val translated = catalog.translate(method)
         assertEquals("A 为无效类型，B 为等长的换行前缀；两者都必须返回 EINVAL。" +
             "执行 512 对 AB/BA 和 32 次预热；使用 CLOCK_MONOTONIC_RAW；" +
             "成对 A−B 大于 0 ns 为正，小于 0 ns 为负，等于 0 ns 为基线。分块计数仅供诊断。" +
             "在预加载父进程中测量，不更改 CPU 亲和性。" +
-            "同一对 A/B 采样内发生 CPU 切换或样本不完整，都会使分类无效；" +
-            "允许在已完成的采样对之间切换 CPU。每次保留的预加载仅算一次测量。", translated)
+            "允许在已完成的采样对之间切换 CPU。不完整的测量通常无法判定，" +
+            "但若仅因 CPU 迁移而不完整、至少接受了 256 对采样、A−B 为正" +
+            "且至少 90% 的采样对中 A 更慢，则仍判为阳性。每次保留的预加载仅算一次测量。", translated)
         assertEquals("$translated\n父进程预加载：N/A（未采集）。 ",
             catalog.translate("$method\nParent preload: N/A (not collected). "))
     }

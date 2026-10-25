@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="runtime_sync25_adb_count" formatted="false">%1$d runtime contradiction(s)</string>
+    <string name="runtime_sync25_adb_fallback" formatted="false">A confirmed ADB endpoint disagreed with init.svc.adbd.</string>
+    <string name="runtime_sync25_adb_init_contradiction" formatted="false">init\'s adbd socket stayed visible in both samples while init.svc.adbd reported stopped. init unlinks that socket before it publishes stopped.</string>
+    <string name="runtime_sync25_adb_jdwp_contradiction" formatted="false">adbd\'s JDWP control socket answered in both samples while init.svc.adbd reported stopped. adbd closes that listener when the process init reaps goes away.</string>
+    <string name="runtime_sync25_adb_interpretation" formatted="false">An ADB runtime surface disagrees with the init lifecycle. This does not identify a root or hiding implementation.</string>
+    <string name="runtime_sync25_adb_init_label" formatted="false">init socket</string>
+    <string name="runtime_sync25_adb_jdwp_label" formatted="false">JDWP control socket</string>
+    <string name="runtime_sync25_adb_init_finding" formatted="false">ADB init socket vs init</string>
+    <string name="runtime_sync25_adb_jdwp_finding" formatted="false">ADB JDWP socket vs init</string>
+    <string name="runtime_sync25_adb_present_stopped" formatted="false">Present, init reports stopped</string>
+    <string name="runtime_sync25_adb_present_denied" formatted="false">Present (label denied)</string>
+    <string name="runtime_sync25_adb_not_observable" formatted="false">Not observable</string>
+    <string name="runtime_sync25_adb_stopped_detail" formatted="false">init.svc.adbd reads stopped while the socket init creates for that service is still present; init removes the socket before it publishes that value.</string>
+    <string name="runtime_sync25_adb_all_unavailable" formatted="false">Settings, USB state, properties, socket probes and mDNS were all unavailable from this app process.</string>
+    <string name="runtime_sync25_adb_stat_ok" formatted="false">stat(%1$r) succeeded, confirming the socket path was resolvable. %2$s</string>
+    <string name="runtime_sync25_adb_stat_denied" formatted="false">stat(%1$r) was refused on the socket inode while the sibling control path did not exist, so the inode is present and its label hides the attributes. %2$s</string>
+    <string name="runtime_sync25_adb_stat_absent" formatted="false">The directory could be resolved and no adbd entry or inode was observed. %1$s</string>
+    <string name="runtime_sync25_adb_stat_directory" formatted="false">This process cannot resolve names in %1$r, so socket presence is not observable. %2$s</string>
+    <string name="runtime_sync25_adb_stat_unknown" formatted="false">The socket probe produced no interpretable result. %1$s</string>
+    <string name="runtime_sync25_adb_stat_fields" formatted="false">listing=%1$s, directory=%2$s, socket=%3$s, control=%4$s</string>
+    <string name="runtime_sync25_adb_jdwp_result" formatted="false">abstract(@jdwp-control)=%1$s</string>
+    <string name="runtime_sync25_adb_readable" formatted="false">readable</string>
+    <string name="runtime_sync25_adb_connected" formatted="false">connected</string>
+    <string name="runtime_sync25_adb_ok" formatted="false">ok</string>
+    <string name="runtime_sync25_mount_label" formatted="false">Anonymous device minors</string>
+    <string name="runtime_sync25_mount_missing" formatted="false">Anonymous-device diagnostic detail was not collected.</string>
+    <string name="runtime_sync25_mount_native_missing" formatted="false">Anonymous-device observations were not collected by the native layer.</string>
+    <string name="runtime_sync25_mount_detail_missing" formatted="false">The native anonymous-device result omitted its diagnostic detail.</string>
+    <string name="runtime_sync25_mount_gaps" formatted="false">Gaps observed</string>
+    <string name="runtime_sync25_mount_no_gaps" formatted="false">No gaps observed</string>
+    <string name="runtime_sync25_mount_coverage" formatted="false">Mount observation coverage is limited</string>
+    <string name="runtime_sync25_mount_limits" formatted="false">Anonymous-device observations have limited coverage. Review the reported window and visibility limits.</string>
+    <string name="runtime_sync25_mount_capture" formatted="false">A complete, valid /proc/self/mountinfo capture is required.</string>
+    <string name="runtime_sync25_mount_floor" formatted="false">No usable tmpfs/cgroup floor. %1$s</string>
+    <string name="runtime_sync25_mount_storage" formatted="false">The current user\'s external-storage path is unavailable.</string>
+    <string name="runtime_sync25_mount_ceiling" formatted="false">No accessible FUSE ceiling for this user. %1$s</string>
+    <string name="runtime_sync25_mount_order" formatted="false">Anchor order is not usable: %1$r=0:%2$d, %3$r=0:%4$d.</string>
+    <string name="runtime_sync25_mount_stat_errno" formatted="false">%1$r: stat errno=%2$d</string>
+    <string name="runtime_sync25_mount_statfs_errno" formatted="false">%1$r: statfs errno=%2$d</string>
+    <string name="runtime_sync25_mount_wrong_type" formatted="false">%1$r: unexpected device/filesystem</string>
+    <string name="runtime_sync25_mount_window" formatted="false">Window: %1$r=0:%2$d .. %3$r=0:%4$d; visible unique devices=%5$d. Only interior intervals between visible devices are compared.</string>
+    <string name="runtime_sync25_mount_partial" formatted="false">Window stops before app-private tmpfs churn; coverage is partial. FUSE ceiling: %1$r=0:%2$d.</string>
+    <string name="runtime_sync25_mount_few" formatted="false">Too few interior devices to compare.</string>
+    <string name="runtime_sync25_mount_gap" formatted="false">Gap 0:%1$d..0:%2$d between %3$r and %4$r.</string>
+    <string name="runtime_sync25_mount_runs" formatted="false">Gap runs=%1$d.</string>
+    <string name="runtime_sync25_mount_first_eight" formatted="false">Only the first eight ranges are shown.</string>
+    <string name="runtime_sync25_mount_overlay" formatted="false">Overlayfs records=%1$d; layer pseudo-devices cannot be fully accounted for from this view.</string>
+    <string name="runtime_sync25_mount_caution" formatted="false">Released IDs, kernel-only allocations and other namespaces can explain gaps. These are non-atomic observations, not proof of root or Vector; bind mounts reuse a superblock and may leave no additional anonymous device number.</string>
+    <string name="runtime_sync25_location_mock" formatted="false">Cached mock location observed</string>
+    <string name="runtime_sync25_location_package" formatted="false">Location reference package observed</string>
+    <string name="runtime_sync25_location_warning" formatted="false">Warnings highlight local contract mismatches, cached mock marks or the reference package. Cached marks can be historical or legitimate tests; package identity is unverified and installation does not establish activity. No check authenticates the real position.</string>
+    <string name="runtime_sync25_network_warning" formatted="false">Network risk indicators observed</string>
+    <string name="runtime_sync25_network_warning_partial" formatted="false">Network risk indicators observed; context incomplete</string>
+    <string name="runtime_sync25_network_warning_changed" formatted="false">Network risk indicators observed; network changed during scan</string>
+    <string name="runtime_sync25_network_summary" formatted="false">Warnings highlight observed VPN/proxy configuration, client packages or module deployment traces for review. Legitimate VPNs and tests can trigger them; service activity and request routing remain unevaluated.</string>
+    <string name="runtime_sync25_network_summary_failed" formatted="false">Some probes failed; available observations are retained. Warnings highlight observed VPN/proxy configuration, client packages or module deployment traces for review. Legitimate VPNs and tests can trigger them; service activity and request routing remain unevaluated.</string>
+    <string name="runtime_sync25_network_visible" formatted="false">Visible networks only; this does not establish this app\'s request path.</string>
+    <string name="runtime_sync25_network_vpn" formatted="false">%1$s; %2$s VPN transport does not establish proxying of this app\'s requests.</string>
+    <string name="runtime_sync25_network_vpn_blank" formatted="false">%1$s;  VPN transport does not establish proxying of this app\'s requests.</string>
+    <string name="runtime_sync25_network_client" formatted="false">%1$r; %2$s; signature read: %3$s; %4$s version code: %5$r. Installed does not mean running.</string>
+    <string name="runtime_sync25_network_client_blank" formatted="false">%1$r; %2$s; signature read: %3$s;  version code: %4$r. Installed does not mean running.</string>
+    <string name="runtime_sync25_selinux_partial" formatted="false">Migration-only partial sample met the 90% A-slower criterion.</string>
+    <string name="runtime_sync25_selinux_partial_combined" formatted="false">This parent sample supplies the timing verdict. Migration-only partial sample met the 90% A-slower criterion.</string>
+    <string name="runtime_sync25_mount_window_rest" formatted="false">Window: %1$r=0:%2$d .. %3$r=0:%4$d; visible unique devices=%5$d. Only interior intervals between visible devices are compared. %6$c</string>
+    <string name="runtime_sync25_mount_partial_rest" formatted="false">Window stops before app-private tmpfs churn; coverage is partial. FUSE ceiling: %1$r=0:%2$d. %3$c</string>
+    <string name="runtime_sync25_mount_gap_rest" formatted="false">Gap 0:%1$d..0:%2$d between %3$r and %4$r. %5$c</string>
+    <string name="runtime_sync25_mount_runs_rest" formatted="false">Gap runs=%1$d. %2$c</string>
+    <string name="runtime_sync25_mount_first_eight_rest" formatted="false">Only the first eight ranges are shown. %1$c</string>
+    <string name="runtime_sync25_mount_overlay_rest" formatted="false">Overlayfs records=%1$d; layer pseudo-devices cannot be fully accounted for from this view. %2$c</string>
+    <string name="runtime_sync25_adb_absent" formatted="false">Absent</string>
+</resources>

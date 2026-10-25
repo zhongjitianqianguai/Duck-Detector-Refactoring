@@ -58,7 +58,7 @@
     <string name="runtime_sync23_056" formatted="false">时序不可用</string>
     <string name="runtime_sync23_057" formatted="false">采集失败：%1$s（AVC 子进程）。</string>
     <string name="runtime_sync23_058" formatted="false">未采集到父进程时序样本；这不代表检测结果为阴性。</string>
-    <string name="runtime_sync23_059" formatted="false">A 为无效类型，B 为等长的换行前缀；两者都必须返回 EINVAL。执行 512 对 AB/BA 和 32 次预热；使用 CLOCK_MONOTONIC_RAW；成对 A−B 大于 0 ns 为正，小于 0 ns 为负，等于 0 ns 为基线。分块计数仅供诊断。在预加载父进程中测量，不更改 CPU 亲和性。同一对 A/B 采样内发生 CPU 切换或样本不完整，都会使分类无效；允许在已完成的采样对之间切换 CPU。每次保留的预加载仅算一次测量。</string>
+    <string name="runtime_sync23_059" formatted="false">A 为无效类型，B 为等长的换行前缀；两者都必须返回 EINVAL。执行 512 对 AB/BA 和 32 次预热；使用 CLOCK_MONOTONIC_RAW；成对 A−B 大于 0 ns 为正，小于 0 ns 为负，等于 0 ns 为基线。分块计数仅供诊断。在预加载父进程中测量，不更改 CPU 亲和性。允许在已完成的采样对之间切换 CPU。不完整的测量通常无法判定，但若仅因 CPU 迁移而不完整、至少接受了 256 对采样、A−B 为正且至少 90% 的采样对中 A 更慢，则仍判为阳性。每次保留的预加载仅算一次测量。</string>
     <string name="runtime_sync23_060" formatted="false">此父进程样本用于时序判定。</string>
     <string name="runtime_sync23_061" formatted="false">旧版固定 CPU 的父进程诊断；不能用于 PoC 分类。</string>
     <string name="runtime_sync23_062" formatted="false">不完整样本的中位数仅供诊断。</string>
