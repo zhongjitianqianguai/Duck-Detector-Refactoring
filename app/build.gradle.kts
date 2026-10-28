@@ -30,6 +30,11 @@ android {
     defaultConfig {
         applicationId = "com.eltavine.duckdetector"
     }
+
+    // This fixture needs the app's assembled native library; its source stays with the feature.
+    sourceSets.getByName("androidTest").kotlin.srcDir(
+        rootProject.file("feature/zygisk/data/src/deviceTest/kotlin"),
+    )
 }
 
 registerInstallerCanaryAssets(
@@ -89,12 +94,19 @@ dependencies {
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
     implementation(libs.material)
+    constraints {
+        implementation(libs.androidx.tracing)
+    }
+    testImplementation(project(":core:report"))
     testImplementation(project(":feature:deviceinfo:presentation"))
     testImplementation(libs.bundles.test.unit)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(project(":feature:selinux:domain"))
     androidTestImplementation(project(":feature:rootmanagers:data"))
     androidTestImplementation(project(":feature:rootmanagers:domain"))
+    androidTestImplementation(project(":feature:zygisk:data"))
+    androidTestImplementation(project(":feature:zygisk:domain"))
+    androidTestImplementation(project(":core:native"))
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.test.runner)
     androidTestImplementation(libs.androidx.tracing)

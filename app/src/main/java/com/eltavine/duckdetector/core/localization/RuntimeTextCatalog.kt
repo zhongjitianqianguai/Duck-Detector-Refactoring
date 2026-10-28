@@ -63,6 +63,7 @@ internal class RuntimeTextCatalog(
     ): String? {
         if (depth > MaximumNestingDepth) return null
         translateAtom(value, depth)?.let { return it }
+        if (RawProtocolFieldRegex.matches(value)) return value
 
         val leadingWhitespace = value.takeWhile(Char::isWhitespace)
         val trailingWhitespace = value.takeLastWhile(Char::isWhitespace)
@@ -228,7 +229,9 @@ internal class RuntimeTextCatalog(
                         captureIndices += argumentIndex
                         val valueKind = formatValueKindsByCode[token.groups[2]?.value]
                             ?: error("Format token regex matched an unsupported value kind")
-                        if (valueKind == FormatValueKind.RAW_TEXT) rawArgumentIndices += argumentIndex
+                        if (valueKind == FormatValueKind.RAW_TEXT || valueKind == FormatValueKind.REPORT_VALUE) {
+                            rawArgumentIndices += argumentIndex
+                        }
                         if (valueKind == FormatValueKind.COMPOSITE_TEXT) compositeArgumentIndices += argumentIndex
                         append(valueKind.capturePattern)
                         cursor = token.range.last + 1
@@ -250,8 +253,9 @@ internal class RuntimeTextCatalog(
     }
 
     private companion object {
-        // Catalog-only: %r preserves evidence verbatim; %c localizes a whole composite argument.
-        val FormatTokenRegex = Regex("%(?:(\\d+)\\$)?([dsrc])")
+        // %r preserves evidence, %v stops at report separators, and %c localizes composite prose.
+        val FormatTokenRegex = Regex("%(?:(\\d+)\\$)?([dsrcv])")
+        val RawProtocolFieldRegex = Regex("^[A-Z][A-Z0-9_]*=[^\\r\\n]*$")
         const val ChineseColonDelimiter = "："
         // Native mount paragraphs contain up to eight gap ranges plus bounded context sections.
         const val MaximumNestingDepth = 24
@@ -264,6 +268,7 @@ internal class RuntimeTextCatalog(
             "s" to FormatValueKind.TEXT,
             "r" to FormatValueKind.RAW_TEXT,
             "c" to FormatValueKind.COMPOSITE_TEXT,
+            "v" to FormatValueKind.REPORT_VALUE,
         )
         val CompositeDelimiters = listOf(
             CompositeDelimiter("\n"),
@@ -298,6 +303,7 @@ internal class RuntimeTextCatalog(
         NUMBER("(-?\\d+)"),
         TEXT("(.+?)"),
         RAW_TEXT("(.+?)"),
+        REPORT_VALUE("((?:(?! \\| ).)+?)"),
         COMPOSITE_TEXT("(.+?)"),
     }
 }

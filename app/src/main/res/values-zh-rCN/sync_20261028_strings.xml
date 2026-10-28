@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="runtime_sync28_history_save" formatted="false">无法保存扫描历史</string>
+    <string name="runtime_sync28_history_load" formatted="false">无法加载扫描历史</string>
+    <string name="runtime_sync28_history_directory" formatted="false">无法创建历史记录目录</string>
+    <string name="runtime_sync28_not_compared" formatted="false">未进行比较</string>
+    <string name="runtime_sync28_boot_summary" formatted="false">可用的启动证据中未观察到解锁或完整性矛盾。各项检查分别显示比较覆盖范围。</string>
+    <string name="runtime_sync28_ksu_label" formatted="false">KernelSU prctl 时序</string>
+    <string name="runtime_sync28_ksu_repeated" formatted="false">可重复的时序特征（辅助证据）</string>
+    <string name="runtime_sync28_ksu_not_observed" formatted="false">所有现有 CPU 均未观察到该特征</string>
+    <string name="runtime_sync28_ksu_unsupported" formatted="false">不支持的 ABI 或 UID</string>
+    <string name="runtime_sync28_ksu_noninteractive" formatted="false">未完成：设备不处于交互状态</string>
+    <string name="runtime_sync28_ksu_worker_dead" formatted="false">工作进程已退出；原因未知</string>
+    <string name="runtime_sync28_ksu_preflight" formatted="false">预检查未通过</string>
+    <string name="runtime_sync28_ksu_bad_reply" formatted="false">工作进程回复无效</string>
+    <string name="runtime_sync28_ksu_incomplete" formatted="false">未完成或不可用</string>
+    <string name="runtime_sync28_ksu_support" formatted="false">AArch64 prctl 时序观察仅提供辅助证据；不能据此确认 KernelSU 或 Root。未观察到特征也不能排除二者。</string>
+    <string name="runtime_sync28_ksu_headline" formatted="false">可重复的 prctl 时序特征</string>
+    <string name="runtime_sync28_ksu_summary" formatted="false">同一 CPU 上连续三轮测量均匹配两种 prctl 时序分类器。这仅是辅助证据，不能证明存在 KernelSU 或 Root；调度、虚拟化和安全 Hook 仍可能造成干扰。</string>
+    <string name="runtime_sync28_ksu_impact" formatted="false">可重复的 prctl 时序仅提供辅助证据。调度、虚拟化及无关的安全 Hook 都可能产生类似效果；这不能确认 KernelSU 或 Root。</string>
+    <string name="runtime_sync28_ksu_collection" formatted="false">采集状态=%1$v；判定=%2$v；清理完成=%3$v</string>
+    <string name="runtime_sync28_ksu_scope" formatted="false">覆盖范围=所有现有 CPU；覆盖稳定=%1$v</string>
+    <string name="runtime_sync28_ksu_inventory" formatted="false">初始 CPU 快照=%1$v；最终 CPU 快照=%2$v</string>
+    <string name="runtime_sync28_ksu_sampled" formatted="false"> 已采样 CPU=%1$v；已完成 CPU=%2$v</string>
+    <string name="runtime_sync28_ksu_sampled_line" formatted="false">已采样 CPU=%1$v；已完成 CPU=%2$v</string>
+    <string name="runtime_sync28_ksu_cpu" formatted="false">请求 CPU=%1$d；实际 CPU=%2$v；状态=%3$v；确认=%4$v</string>
+    <string name="runtime_sync28_ksu_excluded" formatted="false">CPU=%1$d；排除原因=%2$s</string>
+    <string name="runtime_sync28_ksu_excluded_new" formatted="false">CPU=%1$d；排除原因=[初始清点后新增，未采样]</string>
+    <string name="runtime_sync28_ksu_online_unknown" formatted="false">在线状态不可用</string>
+    <string name="runtime_sync28_ksu_offline" formatted="false">离线</string>
+    <string name="runtime_sync28_ksu_affinity_unknown" formatted="false">CPU 亲和性或 cpuset 不可用</string>
+    <string name="runtime_sync28_ksu_affinity_excluded" formatted="false">不在工作进程亲和性或 cpuset 快照范围内</string>
+    <string name="runtime_sync28_ksu_budget" formatted="false">CPU 数量预算限制</string>
+    <string name="runtime_sync28_ksu_not_sampled" formatted="false">未采样</string>
+    <string name="runtime_sync28_ksu_preflight_line" formatted="false">预检查=%1$v；分箱数=%2$d；最小计数器刻度=%3$v</string>
+    <string name="runtime_sync28_ksu_window" formatted="false">采样窗口=%1$d；计数器频率（Hz）=%2$v；单位=CNTVCT 刻度；稳定=%3$v</string>
+    <string name="runtime_sync28_ksu_before_after" formatted="false">采样前=%1$v；采样后=%2$v；工作进程允许的 CPU=%3$v</string>
+    <string name="runtime_sync28_ksu_syscalls" formatted="false">系统调用结果=%1$v</string>
+    <string name="runtime_sync28_ksu_round" formatted="false">轮次=%1$d；距离=%2$v；相似度=%3$v；有效性=%4$v；支持度=%5$v；匹配=%6$v</string>
+    <string name="runtime_sync28_ksu_context" formatted="false">应用上下文不可用</string>
+    <string name="runtime_sync28_ksu_busy" formatted="false">时序检测忙碌</string>
+    <string name="runtime_sync28_ksu_carrier_reply" formatted="false">承载进程回复无效</string>
+    <string name="runtime_sync28_ksu_request_failed" formatted="false">承载进程请求失败</string>
+    <string name="runtime_sync28_ksu_null_binding" formatted="false">承载服务返回空绑定</string>
+    <string name="runtime_sync28_ksu_binding_dead" formatted="false">承载服务绑定已失效；清理状态未确认</string>
+    <string name="runtime_sync28_ksu_disconnected" formatted="false">承载进程已断开；原因和清理状态未知</string>
+    <string name="runtime_sync28_ksu_bind_rejected" formatted="false">承载服务绑定被拒绝</string>
+    <string name="runtime_sync28_ksu_deadline" formatted="false">主进程等待超时；清理状态未确认</string>
+    <string name="runtime_sync28_ksu_wrong_process" formatted="false">承载进程不符合预期</string>
+    <string name="runtime_sync28_ksu_carrier_busy" formatted="false">承载进程忙碌</string>
+    <string name="runtime_sync28_ksu_encoding" formatted="false">承载进程编码失败</string>
+    <string name="runtime_sync28_raw_label" formatted="false">DirtySepolicy 原始访问协议</string>
+    <string name="runtime_sync28_raw_error" formatted="false">DirtySepolicy 错误</string>
+    <string name="runtime_sync28_raw_warning" formatted="false">DirtySepolicy 警告</string>
+    <string name="runtime_sync28_raw_invalid" formatted="false">访问结果无效</string>
+    <string name="runtime_sync28_raw_header" formatted="false">状态头异常</string>
+    <string name="runtime_sync28_raw_contexts" formatted="false">观察到 Root 相关上下文</string>
+    <string name="runtime_sync28_raw_rules" formatted="false">观察到允许的规则</string>
+    <string name="runtime_sync28_raw_api_diff" formatted="false">原始访问与 API 结果不一致</string>
+    <string name="runtime_sync28_raw_repeat_diff" formatted="false">重复访问结果不一致</string>
+    <string name="runtime_sync28_raw_partial" formatted="false">部分已采集</string>
+    <string name="runtime_sync28_raw_untrusted" formatted="false">访问对照不可信</string>
+    <string name="runtime_sync28_raw_context_partial" formatted="false">上下文部分已采集</string>
+    <string name="runtime_sync28_raw_policy_obs" formatted="false">策略观察结果</string>
+    <string name="runtime_sync28_raw_epoch" formatted="false">非初始策略代次</string>
+    <string name="runtime_sync28_raw_valid" formatted="false">响应有效</string>
+    <string name="runtime_sync28_raw_method" formatted="false">方法=直接访问 /sys/fs/selinux/access；重放已有 Dirty Policy 规则查询</string>
+    <string name="runtime_sync28_raw_transactions" formatted="false">事务数=%1$d，不同查询数=%2$d</string>
+    <string name="runtime_sync28_raw_six_fields" formatted="false">六字段响应数=%1$d</string>
+    <string name="runtime_sync28_raw_invalid_count" formatted="false">无效响应数=%1$d</string>
+    <string name="runtime_sync28_raw_unavailable_count" formatted="false">不可用响应数=%1$d</string>
+    <string name="runtime_sync28_raw_controls" formatted="false">对照项=%1$s；稳定=%2$v</string>
+    <string name="runtime_sync28_raw_collection" formatted="false">访问采集状态=%1$v；上下文采集状态=%2$v</string>
+    <string name="runtime_sync28_raw_compatibility" formatted="false">DirtySepolicy 2.2 兼容判定=%1$v</string>
+    <string name="runtime_sync28_raw_original_checks" formatted="false">DirtySepolicy 原版检查=%1$c</string>
+    <string name="runtime_sync28_raw_allows" formatted="false">可信原始访问允许的规则=%1$v</string>
+    <string name="runtime_sync28_raw_alert_rules" formatted="false">可触发告警的允许规则=%1$v</string>
+    <string name="runtime_sync28_raw_java_diff" formatted="false">原始访问与 Java 结果不一致=%1$v</string>
+    <string name="runtime_sync28_raw_epoch_diff" formatted="false">同一策略代次的重复访问结果不一致=%1$v</string>
+    <string name="runtime_sync28_raw_context_controls" formatted="false">上下文对照项=%1$s</string>
+    <string name="runtime_sync28_raw_zero_controls" formatted="false">Class=0 对照项=%1$s</string>
+    <string name="runtime_sync28_raw_context_hits" formatted="false">命中的上下文=%1$v</string>
+    <string name="runtime_sync28_raw_seqno" formatted="false">DirtySepolicy avdSeqNo=%1$v；原版查询使用 class=0</string>
+    <string name="runtime_sync28_raw_epoch_caution" formatted="false">avdSeqNo 不是初始值；也可能来自正常的策略重载</string>
+    <string name="runtime_sync28_raw_permissive" formatted="false">观察到 SELinux 访问宽容标志；API 与原始访问判定可能正常地存在差异</string>
+    <string name="runtime_sync28_raw_status_baseline" formatted="false">状态基线=%1$c</string>
+    <string name="runtime_sync28_raw_status_deviations" formatted="false">状态偏差=%1$c</string>
+    <string name="runtime_sync28_raw_fallback" formatted="false">上下文回退检查=%1$d 个目标（context -&gt; access -&gt; 受控 attr/current）</string>
+    <string name="runtime_sync28_raw_context_detail" formatted="false">%1$v：context=%2$v，access=%3$v，attr=%4$v，判定=%5$v</string>
+    <string name="runtime_sync28_raw_failed_query" formatted="false">失败的查询=%1$v</string>
+    <string name="runtime_sync28_raw_response" formatted="false">原始响应=%1$v</string>
+    <string name="runtime_sync28_raw_caution" formatted="false">有效响应只证明传输成功，不能证明策略干净。</string>
+    <string name="runtime_sync28_raw_edge" formatted="false">观察到的策略关系：%1$v。DirtySepolicy 2.2 会检查此访问规则；仅凭规则允许，无法确定其来源。</string>
+    <string name="runtime_sync28_raw_verdict" formatted="false">强制模式下存在 DirtySepolicy 异常</string>
+    <string name="runtime_sync28_raw_startup" formatted="false">强制模式下 app_zygote 承载进程启动失败</string>
+    <string name="runtime_sync28_raw_unknown_mode" formatted="false">SELinux 模式未知，且存在 DirtySepolicy 异常</string>
+    <string name="runtime_sync28_raw_unknown_startup" formatted="false">App Zygote 承载进程启动失败；SELinux 模式未知</string>
+    <string name="runtime_sync28_raw_summary" formatted="false">DirtySepolicy 2.2 兼容判定：%1$s。请查看原始协议详情中的失败或警告原因；这不自动归因于 Root。</string>
+    <string name="runtime_sync28_raw_carrier_warning" formatted="false">警告：专用 app_zygote 承载进程未能启动或连接，SELinux 预加载检查未完成。这属于检测环境故障，不能证明策略被篡改。</string>
+    <string name="runtime_sync28_raw_audit" formatted="false">可读取的 AVC 拒绝记录提及 Root 相关进程名（comm）或可执行文件（exe）。仅访问 /data/adb 不算 Root 进程信号。</string>
+    <string name="runtime_sync28_raw_audit_support" formatted="false">可读取的 AVC 拒绝记录提及 Root 相关进程名或可执行文件。这是辅助证据，不能直接证明存在运行中的 Root 守护进程。</string>
+    <string name="runtime_sync28_raw_replay_failed" formatted="false">DirtySepolicy 原始访问重放失败：%1$c</string>
+    <string name="runtime_sync28_raw_cause_unknown" formatted="false">原因未知</string>
+    <string name="runtime_sync28_raw_expected" formatted="false">需要可用且经过验证的 app_zygote 承载进程。</string>
+    <string name="runtime_sync28_raw_status_unavailable" formatted="false">状态页不可用；未评估策略代次基线</string>
+    <string name="runtime_sync28_raw_status_version" formatted="false">未知状态版本=%1$v</string>
+    <string name="runtime_sync28_raw_status_transition" formatted="false">状态序列正在变化=%1$v</string>
+    <string name="runtime_sync28_raw_legacy_counters" formatted="false">旧版初始状态计数器</string>
+    <string name="runtime_sync28_raw_modern_counters" formatted="false">新版初始状态计数器</string>
+    <string name="runtime_sync28_raw_noninitial_counters" formatted="false">非初始状态计数器：sequence=%1$v，policyload=%2$v</string>
+    <string name="runtime_sync28_raw_enforcing" formatted="false">状态头 enforcing=%1$v</string>
+    <string name="runtime_sync28_raw_deny_unknown" formatted="false">状态头 deny_unknown=%1$v</string>
+    <string name="runtime_sync28_raw_invalid_detail" formatted="false">访问结果无效：%1$v</string>
+    <string name="runtime_sync28_raw_self_failed" formatted="false">DirtySepolicy 访问自检失败。</string>
+    <string name="runtime_sync28_compat_selinux_disabled" formatted="false">SELinux 已禁用</string>
+    <string name="runtime_sync28_compat_selinux_unknown" formatted="false">SELinux 启用状态不可用</string>
+    <string name="runtime_sync28_compat_context" formatted="false">SELinux 上下文不符合预期：%1$v</string>
+    <string name="runtime_sync28_compat_pid" formatted="false">PID 上下文不匹配或不可读</string>
+    <string name="runtime_sync28_compat_proc" formatted="false">/proc/self 上下文不匹配或不可读</string>
+    <string name="runtime_sync28_compat_missing" formatted="false">缺少重复采样：%1$v</string>
+    <string name="runtime_sync28_compat_access_failed" formatted="false">访问失败：%1$v</string>
+    <string name="runtime_sync28_compat_unstable" formatted="false">访问响应不稳定：%1$v</string>
+    <string name="runtime_sync28_compat_outcome" formatted="false">无法识别的访问结果：%1$v</string>
+    <string name="runtime_sync28_compat_context_missing" formatted="false">未采集上下文：%1$v</string>
+    <string name="runtime_sync28_compat_context_untrusted" formatted="false">上下文节点不可信：%1$v</string>
+    <string name="runtime_sync28_compat_context_failed" formatted="false">上下文节点失败：%1$v（%2$v）</string>
+    <string name="runtime_sync28_compat_zero_untrusted" formatted="false">class=0 结果不可信：%1$v</string>
+    <string name="runtime_sync28_compat_zero_invalid" formatted="false">class=0 响应无效：%1$v</string>
+    <string name="runtime_sync28_compat_zero_failed" formatted="false">class=0 失败：%1$v（%2$v）</string>
+    <string name="runtime_sync28_compat_attr_untrusted" formatted="false">attr/current 阳性结果不可信：%1$v</string>
+    <string name="runtime_sync28_compat_attr_unavailable" formatted="false">attr/current 不可用：%1$v（%2$v）</string>
+    <string name="runtime_sync28_compat_attr_failed" formatted="false">attr/current 失败：%1$v（%2$v）</string>
+    <string name="runtime_sync28_compat_access_self" formatted="false">无法检查 SELinux 访问</string>
+    <string name="runtime_sync28_compat_context_self" formatted="false">无法检查 SELinux 上下文</string>
+    <string name="runtime_sync28_compat_permissive" formatted="false">SELinux 处于宽容模式</string>
+    <string name="runtime_sync28_compat_enforcing_unreadable" formatted="false">无法读取 SELinux enforcing 状态（原版工具将其视为宽容模式）</string>
+    <string name="runtime_sync28_compat_execmem" formatted="false">system_server 被允许执行 execmem</string>
+    <string name="runtime_sync28_compat_aosp" formatted="false">在 user 构建中发现 AOSP su</string>
+    <string name="runtime_sync28_compat_adbroot" formatted="false">发现 adb_root</string>
+    <string name="runtime_sync28_compat_magisk" formatted="false">发现 Magisk</string>
+    <string name="runtime_sync28_compat_ksu" formatted="false">发现 KernelSU</string>
+    <string name="runtime_sync28_compat_lsposed" formatted="false">发现 LSPosed</string>
+    <string name="runtime_sync28_compat_xposed" formatted="false">发现 Xposed</string>
+    <string name="runtime_sync28_compat_zygisknext" formatted="false">发现 ZygiskNext</string>
+    <string name="runtime_sync28_compat_status" formatted="false">read_status 失败或状态头不可用</string>
+    <string name="runtime_sync28_compat_status_version" formatted="false">未知状态版本：%1$v</string>
+    <string name="runtime_sync28_compat_kernel_unavailable" formatted="false">内核版本不可用，无法确定 DirtySepolicy 初始基线</string>
+    <string name="runtime_sync28_compat_kernel_invalid" formatted="false">内核版本无效：%1$v</string>
+    <string name="runtime_sync28_compat_seqno" formatted="false">avdSeqNo 访问失败或格式无效</string>
+    <string name="runtime_sync28_compat_epoch_changed" formatted="false">采集期间原始访问策略代次发生变化</string>
+    <string name="runtime_sync28_compat_none" formatted="false">未发现异常 SELinux 策略</string>
+    <string name="runtime_sync28_zygisk_table" formatted="false">退出处理器表</string>
+    <string name="runtime_sync28_zygisk_busy" formatted="false">忙碌</string>
+    <string name="runtime_sync28_zygisk_invalid" formatted="false">布局无效</string>
+    <string name="runtime_sync28_zygisk_partial" formatted="false">部分已评估</string>
+    <string name="runtime_sync28_zygisk_residue" formatted="false">观察到残留</string>
+    <string name="runtime_sync28_zygisk_not_evaluated" formatted="false">未评估退出处理器表。</string>
+    <string name="runtime_sync28_zygisk_anonymous" formatted="false">匿名退出处理器回调</string>
+    <string name="runtime_sync28_zygisk_gap" formatted="false">系统运行时附近的退出处理器空缺</string>
+    <string name="runtime_sync28_zygisk_callback" formatted="false">应用注册条目之前的处理器 %1$d 指向 %2$v。这是启发式残留，不能确认具体框架。</string>
+    <string name="runtime_sync28_zygisk_gap_detail" formatted="false">索引 %2$d–%3$d 处的 %1$d 个已清空处理器位于应用注册条目之前，且紧邻运行时锚点。正常 DSO 终结也可能产生相同特征；需结合其他证据复核。</string>
+    <string name="runtime_sync28_zygisk_map_failed" formatted="false">无法读取当前进程的内存映射。</string>
+    <string name="runtime_sync28_zygisk_boundary" formatted="false">未找到稳定的应用注册边界。</string>
+    <string name="runtime_sync28_zygisk_cleared" formatted="false">至少 60% 的条目已被清空；现有条目的顺序信息不足。</string>
+    <string name="runtime_sync28_zygisk_owners" formatted="false">部分回调无法在稳定的可执行映射中确定归属。</string>
+    <string name="runtime_sync28_zygisk_layout" formatted="false">退出处理器布局仅核对过 Android 11–17。</string>
+    <string name="runtime_sync28_zygisk_libc_unknown" formatted="false">无法识别已加载的 libc 镜像。</string>
+    <string name="runtime_sync28_zygisk_entry" formatted="false">atexit 入口不属于 libc。</string>
+    <string name="runtime_sync28_zygisk_identity" formatted="false">已加载的 libc 映射与符号文件身份不一致。</string>
+    <string name="runtime_sync28_zygisk_size" formatted="false">libc 镜像超出符号读取器的大小限制。</string>
+    <string name="runtime_sync28_zygisk_symbols" formatted="false">libc 内部的退出处理器数组或锁符号缺失或不兼容。</string>
+    <string name="runtime_sync28_zygisk_lock_layout" formatted="false">libc 退出处理器锁布局不兼容。</string>
+    <string name="runtime_sync28_zygisk_metadata" formatted="false">libc 退出处理器元数据不在可读映射内。</string>
+    <string name="runtime_sync28_zygisk_lock" formatted="false">libc 退出处理器锁不可用（错误 %1$d）。</string>
+    <string name="runtime_sync28_zygisk_unlock" formatted="false">libc 退出处理器锁释放失败。</string>
+    <string name="runtime_sync28_zygisk_counts" formatted="false">libc 退出处理器数量或布局未通过验证。</string>
+    <string name="runtime_sync28_zygisk_capacity" formatted="false">退出处理器表超出读取器的容量限制。</string>
+    <string name="runtime_sync28_zygisk_pages" formatted="false">退出处理器页面发生变化或无法读取。</string>
+    <string name="runtime_sync28_zygisk_null_count" formatted="false">退出处理器空条目数量与 libc 元数据不一致。</string>
+    <string name="runtime_sync28_zygisk_read" formatted="false">在 libc 互斥锁保护下读取了当前进程的 %1$d 个退出处理器；其中 %2$d 个条目已清空。正常终结也可能留下已清空条目。</string>
+    <string name="runtime_sync28_zygisk_entries" formatted="false">%1$c 条目数：%2$d；已清空：%3$d；运行时附近空缺：%4$d；匿名回调：%5$d。这些观察不能确认注入框架或版本。</string>
+    <string name="runtime_sync28_zygisk_open" formatted="false">打开 libc</string>
+    <string name="runtime_sync28_zygisk_inspect" formatted="false">检查 libc</string>
+    <string name="runtime_sync28_zygisk_symbols_read" formatted="false">读取 libc 符号</string>
+    <string name="runtime_sync28_zygisk_pipe" formatted="false">创建私有内存复制管道</string>
+    <string name="runtime_sync28_zygisk_metadata_read" formatted="false">读取退出处理器元数据</string>
+    <string name="runtime_sync28_zygisk_io" formatted="false">%1$s失败（errno %2$d）。</string>
+    <string name="runtime_sync28_zygisk_coverage" formatted="false">评估退出处理器覆盖范围需要非空且有界的表。</string>
+    <string name="runtime_sync28_zygisk_payload_counts" formatted="false">原生载荷中的退出处理器数量互相矛盾。</string>
+    <string name="runtime_sync28_zygisk_invalid_count" formatted="false">原生载荷中的退出处理器数量无效。</string>
+    <string name="runtime_sync28_rkp_build" formatted="false">配置供应字段 5（CBOR）：%1$r 未将指纹和 VBMeta 与当前系统构建比较：证书字段映射没有文档说明。配置供应元数据可能早于系统更新。</string>
+    <string name="runtime_sync28_rkp_note" formatted="false">未将指纹和 VBMeta 与当前系统构建比较：证书字段映射没有文档说明。配置供应元数据可能早于系统更新。</string>
+    <string name="runtime_sync28_raw_carrier_warning_rest" formatted="false">警告：专用 app_zygote 承载进程未能启动或连接，SELinux 预加载检查未完成。这属于检测环境故障，不能证明策略被篡改。%1$c</string>
+    <string name="runtime_sync28_zygisk_boundary_rest" formatted="false">未找到稳定的应用注册边界。%1$c</string>
+    <string name="runtime_sync28_zygisk_cleared_rest" formatted="false">至少 60% 的条目已被清空；现有条目的顺序信息不足。%1$c</string>
+    <string name="runtime_sync28_zygisk_owners_rest" formatted="false">部分回调无法在稳定的可执行映射中确定归属。%1$c</string>
+    <string name="runtime_sync28_zygisk_read_rest" formatted="false">在 libc 互斥锁保护下读取了当前进程的 %1$d 个退出处理器；其中 %2$d 个条目已清空。正常终结也可能留下已清空条目。%3$c</string>
+    <string name="runtime_sync28_ksu_excluded_list" formatted="false">CPU=%1$d；排除原因=[%2$c]</string>
+    <string name="runtime_sync28_raw_track" formatted="false">%1$s；承载上下文=%2$v；匹配=%3$v；对照=%4$s；稳定=%5$v；可信=%6$v；查询=%7$v</string>
+    <string name="runtime_sync28_raw_track_reason" formatted="false">%1$s；承载上下文=%2$v；匹配=%3$v；对照=%4$s；稳定=%5$v；可信=%6$v；查询=%7$v；原因=%8$c</string>
+    <string name="runtime_sync28_raw_passed" formatted="false">通过</string>
+    <string name="runtime_sync28_raw_not_passed" formatted="false">未通过</string>
+    <string name="runtime_sync28_raw_failed" formatted="false">失败</string>
+    <string name="runtime_sync28_raw_status_epoch_initial" formatted="false">状态基线=%1$c；avdSeqNo=1</string>
+    <string name="runtime_sync28_raw_status_epoch_missing" formatted="false">状态基线=%1$c；avdSeqNo 不可用</string>
+    <string name="runtime_sync28_raw_status_epoch_changed" formatted="false">状态基线=%1$c；avdSeqNo=%2$v（非初始策略代次；可能是重载或策略差异）</string>
+</resources>

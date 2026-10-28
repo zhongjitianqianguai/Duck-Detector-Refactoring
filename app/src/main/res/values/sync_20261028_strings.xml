@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="runtime_sync28_history_save" formatted="false">Could not save scan history</string>
+    <string name="runtime_sync28_history_load" formatted="false">Could not load scan history</string>
+    <string name="runtime_sync28_history_directory" formatted="false">Cannot create history directory</string>
+    <string name="runtime_sync28_not_compared" formatted="false">Not compared</string>
+    <string name="runtime_sync28_boot_summary" formatted="false">No unlock or integrity contradiction was observed in the available boot evidence. Individual checks show comparison coverage.</string>
+    <string name="runtime_sync28_ksu_label" formatted="false">kernelSuPrctlTiming</string>
+    <string name="runtime_sync28_ksu_repeated" formatted="false">Repeated timing pattern (supporting)</string>
+    <string name="runtime_sync28_ksu_not_observed" formatted="false">Pattern not observed on all present CPUs</string>
+    <string name="runtime_sync28_ksu_unsupported" formatted="false">Unsupported ABI or UID</string>
+    <string name="runtime_sync28_ksu_noninteractive" formatted="false">Incomplete: noninteractive</string>
+    <string name="runtime_sync28_ksu_worker_dead" formatted="false">Worker died; cause unknown</string>
+    <string name="runtime_sync28_ksu_preflight" formatted="false">Preflight rejected</string>
+    <string name="runtime_sync28_ksu_bad_reply" formatted="false">Invalid worker reply</string>
+    <string name="runtime_sync28_ksu_incomplete" formatted="false">Incomplete or unavailable</string>
+    <string name="runtime_sync28_ksu_support" formatted="false">Supporting AArch64 prctl timing observation; not a KernelSU or root identification. Absence does not exclude either.</string>
+    <string name="runtime_sync28_ksu_headline" formatted="false">Repeated prctl timing pattern</string>
+    <string name="runtime_sync28_ksu_summary" formatted="false">Three consecutive rounds on one CPU matched both prctl timing classifiers. This is supporting evidence, not proof of KernelSU or root; scheduling, virtualization and security hooks remain confounders.</string>
+    <string name="runtime_sync28_ksu_impact" formatted="false">Repeated prctl timing is supporting evidence only. Scheduling, virtualization and unrelated security hooks can produce similar effects; this is not a KernelSU or root identification.</string>
+    <string name="runtime_sync28_ksu_collection" formatted="false">collection=%1$v; verdict=%2$v; cleanup=%3$v</string>
+    <string name="runtime_sync28_ksu_scope" formatted="false">coverageScope=all present CPUs; coverageStable=%1$v</string>
+    <string name="runtime_sync28_ksu_inventory" formatted="false">initialCpus=%1$v; finalCpus=%2$v</string>
+    <string name="runtime_sync28_ksu_sampled" formatted="false"> sampledCpus=%1$v; completedCpus=%2$v</string>
+    <string name="runtime_sync28_ksu_sampled_line" formatted="false">sampledCpus=%1$v; completedCpus=%2$v</string>
+    <string name="runtime_sync28_ksu_cpu" formatted="false">cpu=%1$d; actual=%2$v; status=%3$v; confirmed=%4$v</string>
+    <string name="runtime_sync28_ksu_excluded" formatted="false">cpu=%1$d; exclusions=%2$s</string>
+    <string name="runtime_sync28_ksu_excluded_new" formatted="false">cpu=%1$d; exclusions=[appeared after initial inventory, not sampled]</string>
+    <string name="runtime_sync28_ksu_online_unknown" formatted="false">online state unavailable</string>
+    <string name="runtime_sync28_ksu_offline" formatted="false">offline</string>
+    <string name="runtime_sync28_ksu_affinity_unknown" formatted="false">affinity/cpuset unavailable</string>
+    <string name="runtime_sync28_ksu_affinity_excluded" formatted="false">outside worker affinity/cpuset snapshot</string>
+    <string name="runtime_sync28_ksu_budget" formatted="false">CPU budget limit</string>
+    <string name="runtime_sync28_ksu_not_sampled" formatted="false">not sampled</string>
+    <string name="runtime_sync28_ksu_preflight_line" formatted="false">preflight=%1$v; bins=%2$d; minimumTicks=%3$v</string>
+    <string name="runtime_sync28_ksu_window" formatted="false">window=%1$d; counterFrequencyHz=%2$v; unit=CNTVCT ticks; stable=%3$v</string>
+    <string name="runtime_sync28_ksu_before_after" formatted="false">before=%1$v; after=%2$v; workerAllowed=%3$v</string>
+    <string name="runtime_sync28_ksu_syscalls" formatted="false">syscallOutcomes=%1$v</string>
+    <string name="runtime_sync28_ksu_round" formatted="false">round=%1$d; distance=%2$v; similarity=%3$v; validity=%4$v; support=%5$v; matched=%6$v</string>
+    <string name="runtime_sync28_ksu_context" formatted="false">Context unavailable</string>
+    <string name="runtime_sync28_ksu_busy" formatted="false">Timing method busy</string>
+    <string name="runtime_sync28_ksu_carrier_reply" formatted="false">Invalid carrier reply</string>
+    <string name="runtime_sync28_ksu_request_failed" formatted="false">Carrier request failed</string>
+    <string name="runtime_sync28_ksu_null_binding" formatted="false">Null carrier binding</string>
+    <string name="runtime_sync28_ksu_binding_dead" formatted="false">Carrier binding died; cleanup unconfirmed</string>
+    <string name="runtime_sync28_ksu_disconnected" formatted="false">Carrier disconnected; cause and cleanup unknown</string>
+    <string name="runtime_sync28_ksu_bind_rejected" formatted="false">Carrier bind rejected</string>
+    <string name="runtime_sync28_ksu_deadline" formatted="false">Host deadline exceeded; cleanup unconfirmed</string>
+    <string name="runtime_sync28_ksu_wrong_process" formatted="false">Incorrect carrier process</string>
+    <string name="runtime_sync28_ksu_carrier_busy" formatted="false">Carrier busy</string>
+    <string name="runtime_sync28_ksu_encoding" formatted="false">Carrier encoding failed</string>
+    <string name="runtime_sync28_raw_label" formatted="false">DirtySepolicy raw access protocol</string>
+    <string name="runtime_sync28_raw_error" formatted="false">DirtySepolicy ERROR</string>
+    <string name="runtime_sync28_raw_warning" formatted="false">DirtySepolicy WARNING</string>
+    <string name="runtime_sync28_raw_invalid" formatted="false">Invalid access result</string>
+    <string name="runtime_sync28_raw_header" formatted="false">Status header anomaly</string>
+    <string name="runtime_sync28_raw_contexts" formatted="false">Root contexts observed</string>
+    <string name="runtime_sync28_raw_rules" formatted="false">Allowed rules observed</string>
+    <string name="runtime_sync28_raw_api_diff" formatted="false">Raw/API disagreement</string>
+    <string name="runtime_sync28_raw_repeat_diff" formatted="false">Repeated access disagreement</string>
+    <string name="runtime_sync28_raw_partial" formatted="false">Partially collected</string>
+    <string name="runtime_sync28_raw_untrusted" formatted="false">Untrusted access controls</string>
+    <string name="runtime_sync28_raw_context_partial" formatted="false">Context partially collected</string>
+    <string name="runtime_sync28_raw_policy_obs" formatted="false">Policy observations</string>
+    <string name="runtime_sync28_raw_epoch" formatted="false">Non-initial policy epoch</string>
+    <string name="runtime_sync28_raw_valid" formatted="false">Response valid</string>
+    <string name="runtime_sync28_raw_method" formatted="false">Method=direct /sys/fs/selinux/access; replay of existing Dirty Policy rule queries</string>
+    <string name="runtime_sync28_raw_transactions" formatted="false">Transactions=%1$d, distinct queries=%2$d</string>
+    <string name="runtime_sync28_raw_six_fields" formatted="false">Six-field responses=%1$d</string>
+    <string name="runtime_sync28_raw_invalid_count" formatted="false">Invalid=%1$d</string>
+    <string name="runtime_sync28_raw_unavailable_count" formatted="false">Unavailable=%1$d</string>
+    <string name="runtime_sync28_raw_controls" formatted="false">Controls=%1$s; stable=%2$v</string>
+    <string name="runtime_sync28_raw_collection" formatted="false">Access collection=%1$v; context collection=%2$v</string>
+    <string name="runtime_sync28_raw_compatibility" formatted="false">DirtySepolicy 2.2 compatibility=%1$v</string>
+    <string name="runtime_sync28_raw_original_checks" formatted="false">DirtySepolicy original checks=%1$c</string>
+    <string name="runtime_sync28_raw_allows" formatted="false">Trusted raw allows=%1$v</string>
+    <string name="runtime_sync28_raw_alert_rules" formatted="false">Alert-eligible allowed rules=%1$v</string>
+    <string name="runtime_sync28_raw_java_diff" formatted="false">Raw vs Java disagreement=%1$v</string>
+    <string name="runtime_sync28_raw_epoch_diff" formatted="false">Same-epoch repeated access disagreement=%1$v</string>
+    <string name="runtime_sync28_raw_context_controls" formatted="false">Context controls=%1$s</string>
+    <string name="runtime_sync28_raw_zero_controls" formatted="false">Class=0 controls=%1$s</string>
+    <string name="runtime_sync28_raw_context_hits" formatted="false">Context hits=%1$v</string>
+    <string name="runtime_sync28_raw_seqno" formatted="false">DirtySepolicy avdSeqNo=%1$v; original query uses class=0</string>
+    <string name="runtime_sync28_raw_epoch_caution" formatted="false">Non-initial avdSeqNo; may be a legitimate policy reload</string>
+    <string name="runtime_sync28_raw_permissive" formatted="false">SELinux access permissive flags observed; API and raw decisions may differ normally</string>
+    <string name="runtime_sync28_raw_status_baseline" formatted="false">Status baseline=%1$c</string>
+    <string name="runtime_sync28_raw_status_deviations" formatted="false">Status deviations=%1$c</string>
+    <string name="runtime_sync28_raw_fallback" formatted="false">Context fallback=%1$d targets (context -&gt; access -&gt; controlled attr/current)</string>
+    <string name="runtime_sync28_raw_context_detail" formatted="false">%1$v: context=%2$v, access=%3$v, attr=%4$v, verdict=%5$v</string>
+    <string name="runtime_sync28_raw_failed_query" formatted="false">Failed query=%1$v</string>
+    <string name="runtime_sync28_raw_response" formatted="false">Raw response=%1$v</string>
+    <string name="runtime_sync28_raw_caution" formatted="false">A valid response is transport evidence, not proof of a clean policy.</string>
+    <string name="runtime_sync28_raw_edge" formatted="false">Observed edge: %1$v. DirtySepolicy 2.2 checks this access rule; an allowed edge alone cannot identify its origin.</string>
+    <string name="runtime_sync28_raw_verdict" formatted="false">Enforcing with DirtySepolicy anomaly</string>
+    <string name="runtime_sync28_raw_startup" formatted="false">Enforcing with app_zygote carrier startup failure</string>
+    <string name="runtime_sync28_raw_unknown_mode" formatted="false">SELinux mode unknown with DirtySepolicy anomaly</string>
+    <string name="runtime_sync28_raw_unknown_startup" formatted="false">App Zygote carrier startup failure; SELinux mode unknown</string>
+    <string name="runtime_sync28_raw_summary" formatted="false">DirtySepolicy 2.2 compatibility: %1$s. Check its Raw protocol details for the original failure or warning reasons; this is not automatically root attribution.</string>
+    <string name="runtime_sync28_raw_carrier_warning" formatted="false">WARNING: The dedicated app_zygote carrier failed to start or connect, so its SELinux preload checks did not complete. This is a detection-environment failure, not proof of policy tampering.</string>
+    <string name="runtime_sync28_raw_audit" formatted="false">Readable AVC denials referenced a root-related process name (comm) or executable (exe). Access to /data/adb alone is not a root-process signal.</string>
+    <string name="runtime_sync28_raw_audit_support" formatted="false">Readable AVC denials referenced a root-related process name or executable. Treat this as supporting evidence, not direct proof of a live root daemon.</string>
+    <string name="runtime_sync28_raw_replay_failed" formatted="false">DirtySepolicy Raw replay failed: %1$c</string>
+    <string name="runtime_sync28_raw_cause_unknown" formatted="false">unknown cause</string>
+    <string name="runtime_sync28_raw_expected" formatted="false">Expected an available, verified app_zygote carrier.</string>
+    <string name="runtime_sync28_raw_status_unavailable" formatted="false">Status page unavailable; epoch baseline not evaluated</string>
+    <string name="runtime_sync28_raw_status_version" formatted="false">Unknown status version=%1$v</string>
+    <string name="runtime_sync28_raw_status_transition" formatted="false">Status sequence in transition=%1$v</string>
+    <string name="runtime_sync28_raw_legacy_counters" formatted="false">Legacy initial status counters</string>
+    <string name="runtime_sync28_raw_modern_counters" formatted="false">Modern initial status counters</string>
+    <string name="runtime_sync28_raw_noninitial_counters" formatted="false">Non-initial status counters: sequence=%1$v, policyload=%2$v</string>
+    <string name="runtime_sync28_raw_enforcing" formatted="false">Status header enforcing=%1$v</string>
+    <string name="runtime_sync28_raw_deny_unknown" formatted="false">Status header deny_unknown=%1$v</string>
+    <string name="runtime_sync28_raw_invalid_detail" formatted="false">Invalid access result: %1$v</string>
+    <string name="runtime_sync28_raw_self_failed" formatted="false">DirtySepolicy access self-check failed.</string>
+    <string name="runtime_sync28_compat_selinux_disabled" formatted="false">SELinux is disabled</string>
+    <string name="runtime_sync28_compat_selinux_unknown" formatted="false">SELinux enabled state unavailable</string>
+    <string name="runtime_sync28_compat_context" formatted="false">unexpected SELinux context: %1$v</string>
+    <string name="runtime_sync28_compat_pid" formatted="false">PID context mismatch or unreadable</string>
+    <string name="runtime_sync28_compat_proc" formatted="false">/proc/self context mismatch or unreadable</string>
+    <string name="runtime_sync28_compat_missing" formatted="false">missing repeated samples: %1$v</string>
+    <string name="runtime_sync28_compat_access_failed" formatted="false">access failed: %1$v</string>
+    <string name="runtime_sync28_compat_unstable" formatted="false">unstable access response: %1$v</string>
+    <string name="runtime_sync28_compat_outcome" formatted="false">unrecognized access outcome: %1$v</string>
+    <string name="runtime_sync28_compat_context_missing" formatted="false">context not collected: %1$v</string>
+    <string name="runtime_sync28_compat_context_untrusted" formatted="false">context node not trusted: %1$v</string>
+    <string name="runtime_sync28_compat_context_failed" formatted="false">context node failed: %1$v (%2$v)</string>
+    <string name="runtime_sync28_compat_zero_untrusted" formatted="false">class=0 result not trusted: %1$v</string>
+    <string name="runtime_sync28_compat_zero_invalid" formatted="false">invalid class=0 response: %1$v</string>
+    <string name="runtime_sync28_compat_zero_failed" formatted="false">class=0 failed: %1$v (%2$v)</string>
+    <string name="runtime_sync28_compat_attr_untrusted" formatted="false">attr/current positive not trusted: %1$v</string>
+    <string name="runtime_sync28_compat_attr_unavailable" formatted="false">attr/current unavailable: %1$v (%2$v)</string>
+    <string name="runtime_sync28_compat_attr_failed" formatted="false">attr/current failed: %1$v (%2$v)</string>
+    <string name="runtime_sync28_compat_access_self" formatted="false">cannot check SELinux access</string>
+    <string name="runtime_sync28_compat_context_self" formatted="false">cannot check SELinux context</string>
+    <string name="runtime_sync28_compat_permissive" formatted="false">SELinux is permissive</string>
+    <string name="runtime_sync28_compat_enforcing_unreadable" formatted="false">SELinux enforcing unreadable (upstream treats this as permissive)</string>
+    <string name="runtime_sync28_compat_execmem" formatted="false">system_server can execmem</string>
+    <string name="runtime_sync28_compat_aosp" formatted="false">found AOSP su in user build</string>
+    <string name="runtime_sync28_compat_adbroot" formatted="false">found adb_root</string>
+    <string name="runtime_sync28_compat_magisk" formatted="false">found Magisk</string>
+    <string name="runtime_sync28_compat_ksu" formatted="false">found KernelSU</string>
+    <string name="runtime_sync28_compat_lsposed" formatted="false">found LSPosed</string>
+    <string name="runtime_sync28_compat_xposed" formatted="false">found Xposed</string>
+    <string name="runtime_sync28_compat_zygisknext" formatted="false">found ZygiskNext</string>
+    <string name="runtime_sync28_compat_status" formatted="false">read_status failed or status header unavailable</string>
+    <string name="runtime_sync28_compat_status_version" formatted="false">unknown status version: %1$v</string>
+    <string name="runtime_sync28_compat_kernel_unavailable" formatted="false">kernel version unavailable for DirtySepolicy initial baseline</string>
+    <string name="runtime_sync28_compat_kernel_invalid" formatted="false">invalid kernel version: %1$v</string>
+    <string name="runtime_sync28_compat_seqno" formatted="false">avdSeqNo access failed or malformed</string>
+    <string name="runtime_sync28_compat_epoch_changed" formatted="false">Raw access policy epoch changed during collection</string>
+    <string name="runtime_sync28_compat_none" formatted="false">no dirty sepolicy found</string>
+    <string name="runtime_sync28_zygisk_table" formatted="false">Exit-handler table</string>
+    <string name="runtime_sync28_zygisk_busy" formatted="false">Busy</string>
+    <string name="runtime_sync28_zygisk_invalid" formatted="false">Invalid layout</string>
+    <string name="runtime_sync28_zygisk_partial" formatted="false">Partially evaluated</string>
+    <string name="runtime_sync28_zygisk_residue" formatted="false">Residue observed</string>
+    <string name="runtime_sync28_zygisk_not_evaluated" formatted="false">Exit-handler table was not evaluated.</string>
+    <string name="runtime_sync28_zygisk_anonymous" formatted="false">Anonymous exit-handler callback</string>
+    <string name="runtime_sync28_zygisk_gap" formatted="false">Exit-handler gap near system runtime</string>
+    <string name="runtime_sync28_zygisk_callback" formatted="false">Handler %1$d resolves into %2$v before application registrations. This is heuristic residue, not a framework identity.</string>
+    <string name="runtime_sync28_zygisk_gap_detail" formatted="false">%1$d cleared handlers at indices %2$d–%3$d precede application registrations and adjoin a runtime anchor. Normal DSO finalization can produce the same pattern; review alongside other evidence.</string>
+    <string name="runtime_sync28_zygisk_map_failed" formatted="false">This process\'s memory map could not be read.</string>
+    <string name="runtime_sync28_zygisk_boundary" formatted="false">No stable application-registration boundary was found.</string>
+    <string name="runtime_sync28_zygisk_cleared" formatted="false">At least 60% of entries were cleared; live ordering context is insufficient.</string>
+    <string name="runtime_sync28_zygisk_owners" formatted="false">Some callback owners could not be resolved in stable executable mappings.</string>
+    <string name="runtime_sync28_zygisk_layout" formatted="false">Exit-handler layout is reviewed for Android 11–17.</string>
+    <string name="runtime_sync28_zygisk_libc_unknown" formatted="false">Cannot identify the loaded libc image.</string>
+    <string name="runtime_sync28_zygisk_entry" formatted="false">The atexit entry point does not belong to libc.</string>
+    <string name="runtime_sync28_zygisk_identity" formatted="false">The loaded libc mapping and symbol file have different identities.</string>
+    <string name="runtime_sync28_zygisk_size" formatted="false">Libc image exceeds the bounded symbol-reader size.</string>
+    <string name="runtime_sync28_zygisk_symbols" formatted="false">Libc local exit-handler array/lock symbols are missing or incompatible.</string>
+    <string name="runtime_sync28_zygisk_lock_layout" formatted="false">Libc exit-handler lock layout is incompatible.</string>
+    <string name="runtime_sync28_zygisk_metadata" formatted="false">Libc exit-handler metadata is outside readable mappings.</string>
+    <string name="runtime_sync28_zygisk_lock" formatted="false">Libc exit-handler lock is unavailable (error %1$d).</string>
+    <string name="runtime_sync28_zygisk_unlock" formatted="false">Libc exit-handler lock release failed.</string>
+    <string name="runtime_sync28_zygisk_counts" formatted="false">Libc exit-handler counts or layout failed validation.</string>
+    <string name="runtime_sync28_zygisk_capacity" formatted="false">Exit-handler table exceeds the bounded reader capacity.</string>
+    <string name="runtime_sync28_zygisk_pages" formatted="false">Exit-handler pages changed or could not be read.</string>
+    <string name="runtime_sync28_zygisk_null_count" formatted="false">Exit-handler null count disagrees with libc metadata.</string>
+    <string name="runtime_sync28_zygisk_read" formatted="false">Read %1$d exit handlers under libc\'s mutex from this process; %2$d cleared entries. Normal finalization can also leave cleared entries.</string>
+    <string name="runtime_sync28_zygisk_entries" formatted="false">%1$c Entries: %2$d; cleared: %3$d; runtime-adjacent gaps: %4$d; anonymous callbacks: %5$d. These observations do not identify an injection framework or version.</string>
+    <string name="runtime_sync28_zygisk_open" formatted="false">Opening libc</string>
+    <string name="runtime_sync28_zygisk_inspect" formatted="false">Inspecting libc</string>
+    <string name="runtime_sync28_zygisk_symbols_read" formatted="false">Reading libc symbols</string>
+    <string name="runtime_sync28_zygisk_pipe" formatted="false">Creating a private memory-copy pipe</string>
+    <string name="runtime_sync28_zygisk_metadata_read" formatted="false">Reading exit-handler metadata</string>
+    <string name="runtime_sync28_zygisk_io" formatted="false">%1$s failed (errno %2$d).</string>
+    <string name="runtime_sync28_zygisk_coverage" formatted="false">Evaluated exit-handler coverage requires a nonempty bounded table.</string>
+    <string name="runtime_sync28_zygisk_payload_counts" formatted="false">Contradictory exit-handler counts in native payload.</string>
+    <string name="runtime_sync28_zygisk_invalid_count" formatted="false">Invalid exit-handler count in native payload.</string>
+    <string name="runtime_sync28_rkp_build" formatted="false">Provisioning key 5 (CBOR): %1$r Fingerprint and VBMeta were not compared with the current build: their certificate field mapping is undocumented. Provisioning metadata may predate a system update.</string>
+    <string name="runtime_sync28_rkp_note" formatted="false">Fingerprint and VBMeta were not compared with the current build: their certificate field mapping is undocumented. Provisioning metadata may predate a system update.</string>
+    <string name="runtime_sync28_raw_carrier_warning_rest" formatted="false">WARNING: The dedicated app_zygote carrier failed to start or connect, so its SELinux preload checks did not complete. This is a detection-environment failure, not proof of policy tampering. %1$c</string>
+    <string name="runtime_sync28_zygisk_boundary_rest" formatted="false">No stable application-registration boundary was found. %1$c</string>
+    <string name="runtime_sync28_zygisk_cleared_rest" formatted="false">At least 60% of entries were cleared; live ordering context is insufficient. %1$c</string>
+    <string name="runtime_sync28_zygisk_owners_rest" formatted="false">Some callback owners could not be resolved in stable executable mappings. %1$c</string>
+    <string name="runtime_sync28_zygisk_read_rest" formatted="false">Read %1$d exit handlers under libc\'s mutex from this process; %2$d cleared entries. Normal finalization can also leave cleared entries. %3$c</string>
+    <string name="runtime_sync28_ksu_excluded_list" formatted="false">cpu=%1$d; exclusions=[%2$c]</string>
+    <string name="runtime_sync28_raw_track" formatted="false">%1$s carrier=%2$v match=%3$v controls=%4$s stable=%5$v trusted=%6$v query=%7$v</string>
+    <string name="runtime_sync28_raw_track_reason" formatted="false">%1$s carrier=%2$v match=%3$v controls=%4$s stable=%5$v trusted=%6$v query=%7$v reason=%8$c</string>
+    <string name="runtime_sync28_raw_passed" formatted="false">passed</string>
+    <string name="runtime_sync28_raw_not_passed" formatted="false">not passed</string>
+    <string name="runtime_sync28_raw_failed" formatted="false">failed</string>
+    <string name="runtime_sync28_raw_status_epoch_initial" formatted="false">Status baseline=%1$c; avdSeqNo=1</string>
+    <string name="runtime_sync28_raw_status_epoch_missing" formatted="false">Status baseline=%1$c; avdSeqNo unavailable</string>
+    <string name="runtime_sync28_raw_status_epoch_changed" formatted="false">Status baseline=%1$c; avdSeqNo=%2$v (non-initial epoch; reload or policy difference)</string>
+</resources>

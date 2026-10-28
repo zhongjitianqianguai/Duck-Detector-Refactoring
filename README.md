@@ -87,6 +87,8 @@ Native Root also offers an optional [fsnotify SRCU timing experiment](feature/na
 
 On arm64, Native Root also collects an experimental [init.rc hook timing contrast](feature/nativeroot/INIT_RC_TIMING.md) using private same-metadata files and a dedicated worker. Results remain supporting evidence, preserve failures and raw samples, and do not identify or exclude KernelSU; physical-device calibration is outstanding.
 
+Native Root also collects supporting [KernelSU prctl timing evidence](feature/nativeroot/KERNELSU_TIMING.md) on eligible arm64 processes. Each CPU has an independent preflight; syscall outcomes, retries, histogram support and CPU eligibility remain visible. A complete non-match requires every present CPU; excluded or changing CPUs leave coverage partial. Timing cannot confirm or exclude KernelSU or root.
+
 Supporting modules provide the dashboard, device information, settings, update checks, notifications, license information, and common UI infrastructure.
 
 # How it works
@@ -95,6 +97,7 @@ Supporting modules provide the dashboard, device information, settings, update c
 - **Early native capture:** a transparent `NativeActivity` runs before `MainActivity` and records early mount and virtualization evidence.
 - **Native probes:** the shared native library performs checks that require direct system calls, `/proc` inspection, timing measurements, linker/runtime visibility, or architecture-specific assembly.
 - **Process separation:** selected Zygisk, Mount, Native Root, virtualization, SELinux, LSPosed, and TEE checks run in dedicated or isolated services so evidence can be compared across process boundaries.
+- **Exit-handler evidence:** Zygisk checks libc callback mappings and ordered cleared-handler runs from the ordinary app process, with explicit coverage limits and heuristic findings rather than framework identification.
 - **Evidence correlation:** the dashboard reports individual findings and coverage states instead of treating one heuristic as conclusive.
 
 # Compatibility

@@ -25,6 +25,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableLongStateOf
@@ -78,6 +79,8 @@ fun DuckDetectorApp(
     val onDecideDetectorConsent = rememberConsentDecisionHandler()
     val context = LocalContext.current
     val appContext = context.applicationContext
+    val scanHistoryJournal = rememberAppScanHistory(appContext)
+    val scanHistory by scanHistoryJournal.counts.collectAsStateWithLifecycle()
     val notificationConsentStore = remember(appContext) {
         ScanNotificationConsentStore.getInstance(appContext)
     }
@@ -197,6 +200,7 @@ fun DuckDetectorApp(
 
             if (startupPoliciesReady) {
                 AppReadyShell(
+                    history = scanHistoryJournal,
                     destination = destination,
                     onSelectDestination = { selected -> destination = selected },
                     consentDecisions = requireNotNull(consentDecisions),
@@ -207,6 +211,7 @@ fun DuckDetectorApp(
                 )
             } else {
                 StartupPolicyScreen(
+                    history = scanHistory,
                     gateState = gateState,
                     notificationPrefs = notificationPrefs,
                     notificationPermissionState = notificationPermissionState,
@@ -258,6 +263,7 @@ fun DuckDetectorApp(
                 )
             }
 
+            AppScanHistoryIssue(scanHistoryJournal)
             ScreenshotWatermarkOverlay()
 
             if (screenCaptureNoticeEventId > 0L) {

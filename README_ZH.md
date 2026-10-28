@@ -91,11 +91,14 @@ SELinux 检测还保留了 app-zygote 阶段的 SID 表查询与注册对照实�
 - **启动早期采集：** 透明的 `NativeActivity` 在 `MainActivity` 之前运行，记录早期挂载与虚拟化证据。
 - **原生探针：** 共享原生库负责直接系统调用、`/proc` 检查、计时测量、链接器与运行时可见性检查，以及特定架构的汇编路径。
 - **进程隔离：** 部分 Zygisk、Mount、Native Root、虚拟化、SELinux、LSPosed 和 TEE 检查运行在独立进程或隔离服务中，用于对照不同进程边界下的证据。
+- **退出处理器证据：** Zygisk 检查在普通应用进程内读取 libc 回调映射及连续清空条目，明确保留覆盖限制；发现的模式属于启发式证据，不直接标识注入框架。
 - **证据关联：** 仪表盘分别展示检测项与覆盖状态，不将单个启发式信号视为确定结论。
 
 Native Root 另有默认关闭的 [fsnotify SRCU 时序实验](feature/nativeroot/SRCU_TIMING.md)。用户明确启用后，它在支持的 Android 12–14 环境中临时修改私有动态权限，比较 inotify 实例关闭的延迟。重复延迟只作为竞争的辅助证据，不判定 KernelSU；阈值仍待真机校准，独立进程超时也无法恢复阻塞的内核。
 
 在 arm64 进程中，Native Root 还会通过私有目录中元数据一致的两个独立文件和独立线程采集实验性的 [init.rc 钩子时序差分](feature/nativeroot/INIT_RC_TIMING.md)。结果保留原始样本与失败原因，只作为辅助证据，不能据此确认或排除 KernelSU；真机校准尚未完成。
+
+Native Root 还会在适用的 arm64 进程中采集辅助性的 [KernelSU prctl 时序证据](feature/nativeroot/KERNELSU_TIMING.md)。各 CPU 独立预检，并保留 syscall 结果、重试次数、直方图支撑与 CPU 可用性。完整未观察到模式要求覆盖所有 present CPU；排除的 CPU 或可用性变化会保留为部分覆盖。时序结果不能确认或排除 KernelSU 或 root。
 
 # 兼容性
 

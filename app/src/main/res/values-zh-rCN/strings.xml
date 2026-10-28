@@ -106,4 +106,7 @@ limitations under the License.
     <string name="update_install_link_copied">已复制 APK 下载链接</string>
     <string name="update_apk_unavailable">下载的更新文件已失效，请重新下载</string>
     <string name="detector_manage_permissions">管理应用权限</string>
+    <string name="scan_history_issue_title">扫描历史需要处理</string>
+    <string name="scan_history_recovered">已排除 %1$d 条损坏的历史记录。原文件已保存为私有 scan-history 目录中的 %2$s。有效记录已恢复。</string>
+    <string name="scan_history_failed">无法加载或保存扫描历史（%1$s）。已有文件已保留。在存储访问恢复之前，新历史记录可能无法保存。</string>
 </resources>
