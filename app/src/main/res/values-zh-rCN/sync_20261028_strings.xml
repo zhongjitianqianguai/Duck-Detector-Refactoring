@@ -204,4 +204,10 @@
     <string name="runtime_sync28_raw_status_epoch_initial" formatted="false">状态基线=%1$c；avdSeqNo=1</string>
     <string name="runtime_sync28_raw_status_epoch_missing" formatted="false">状态基线=%1$c；avdSeqNo 不可用</string>
     <string name="runtime_sync28_raw_status_epoch_changed" formatted="false">状态基线=%1$c；avdSeqNo=%2$v（非初始策略代次；可能是重载或策略差异）</string>
+    <string name="runtime_sync28_zygisk_evaluated" formatted="false">已评估</string>
+    <string name="runtime_sync28_raw_denied" formatted="false">拒绝</string>
+    <string name="runtime_sync28_raw_native_track" formatted="false">专用原生轨道</string>
+    <string name="runtime_sync28_raw_java_track" formatted="false">专用 Java 轨道</string>
+    <string name="runtime_sync28_raw_policy_observation" formatted="false">SELinux 策略观察：%1$v</string>
+    <string name="runtime_sync28_raw_native_unavailable" formatted="false">当前承载进程无法使用 selinux_check_access。</string>
 </resources>

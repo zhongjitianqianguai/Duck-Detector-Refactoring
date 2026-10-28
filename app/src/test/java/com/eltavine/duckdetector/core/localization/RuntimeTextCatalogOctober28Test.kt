@@ -82,10 +82,12 @@ class RuntimeTextCatalogOctober28Test {
 
     @Test
     fun nativeAndJavaTrackMetadataPreservesContextAndRuleWhileTranslatingItsMeaning() {
-        val raw = "Allowed carrier=u:r:app_zygote:s0 match=yes controls=passed stable=yes trusted=yes " +
+        assertEquals("已评估", catalog.translate("Evaluated"))
+        assertEquals("拒绝", catalog.translate("Denied"))
+        val raw = "Native dedicated=Allowed carrier=u:r:app_zygote:s0 match=yes controls=passed stable=yes trusted=yes " +
             "query=native selinux_check_access reason=cannot check SELinux access"
         val translated = catalog.translate(raw)
-        assertTrue(translated.contains("承载上下文=u:r:app_zygote:s0"))
+        assertTrue(translated.startsWith("专用原生轨道=已允许；承载上下文=u:r:app_zygote:s0"))
         assertTrue(translated.contains("对照=通过"))
         assertTrue(translated.contains("查询=native selinux_check_access"))
         assertTrue(translated.contains("原因=无法检查 SELinux 访问"))

@@ -4242,5 +4242,11 @@ limitations under the License.
         <item>@string/runtime_sync28_raw_status_epoch_initial</item>
         <item>@string/runtime_sync28_raw_status_epoch_missing</item>
         <item>@string/runtime_sync28_raw_status_epoch_changed</item>
+        <item>@string/runtime_sync28_zygisk_evaluated</item>
+        <item>@string/runtime_sync28_raw_denied</item>
+        <item>@string/runtime_sync28_raw_native_track</item>
+        <item>@string/runtime_sync28_raw_java_track</item>
+        <item>@string/runtime_sync28_raw_policy_observation</item>
+        <item>@string/runtime_sync28_raw_native_unavailable</item>
     </string-array>
 </resources>

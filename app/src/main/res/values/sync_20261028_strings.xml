@@ -204,4 +204,10 @@
     <string name="runtime_sync28_raw_status_epoch_initial" formatted="false">Status baseline=%1$c; avdSeqNo=1</string>
     <string name="runtime_sync28_raw_status_epoch_missing" formatted="false">Status baseline=%1$c; avdSeqNo unavailable</string>
     <string name="runtime_sync28_raw_status_epoch_changed" formatted="false">Status baseline=%1$c; avdSeqNo=%2$v (non-initial epoch; reload or policy difference)</string>
+    <string name="runtime_sync28_zygisk_evaluated" formatted="false">Evaluated</string>
+    <string name="runtime_sync28_raw_denied" formatted="false">Denied</string>
+    <string name="runtime_sync28_raw_native_track" formatted="false">Native dedicated</string>
+    <string name="runtime_sync28_raw_java_track" formatted="false">Java dedicated</string>
+    <string name="runtime_sync28_raw_policy_observation" formatted="false">SELinux policy observation: %1$v</string>
+    <string name="runtime_sync28_raw_native_unavailable" formatted="false">selinux_check_access unavailable from the current carrier.</string>
 </resources>
