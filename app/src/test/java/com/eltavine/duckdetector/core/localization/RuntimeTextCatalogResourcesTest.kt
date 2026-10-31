@@ -243,6 +243,6 @@ class RuntimeTextCatalogResourcesTest {
 
     private companion object {
         const val ResourceFile = "sync_20261002_strings.xml"
-        val DeltaResourceFiles = listOf("sync_20261013_strings.xml", "sync_20261017_strings.xml", "sync_20261021_strings.xml", "sync_20261023_strings.xml", "sync_20261025_strings.xml", "sync_20261028_strings.xml")
+        val DeltaResourceFiles = listOf("sync_20261013_strings.xml", "sync_20261017_strings.xml", "sync_20261021_strings.xml", "sync_20261023_strings.xml", "sync_20261025_strings.xml", "sync_20261028_strings.xml", "sync_20261031_strings.xml")
     }
 }

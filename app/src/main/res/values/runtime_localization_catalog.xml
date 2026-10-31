@@ -4248,5 +4248,44 @@ limitations under the License.
         <item>@string/runtime_sync28_raw_java_track</item>
         <item>@string/runtime_sync28_raw_policy_observation</item>
         <item>@string/runtime_sync28_raw_native_unavailable</item>
+        <item>@string/runtime_sync31_wrapper_label</item>
+        <item>@string/runtime_sync31_wrapper_growth</item>
+        <item>@string/runtime_sync31_wrapper_no_candidate</item>
+        <item>@string/runtime_sync31_wrapper_no_pattern</item>
+        <item>@string/runtime_sync31_wrapper_headline</item>
+        <item>@string/runtime_sync31_wrapper_summary</item>
+        <item>@string/runtime_sync31_wrapper_impact</item>
+        <item>@string/runtime_sync31_wrapper_no_retry</item>
+        <item>@string/runtime_sync31_wrapper_counts</item>
+        <item>@string/runtime_sync31_wrapper_points</item>
+        <item>@string/runtime_sync31_preload_stale</item>
+        <item>@string/runtime_sync31_preload_parent_missing</item>
+        <item>@string/runtime_sync31_preload_retire_timeout</item>
+        <item>@string/runtime_sync31_preload_reused</item>
+        <item>@string/runtime_sync31_preload_replacement_unknown</item>
+        <item>@string/runtime_sync31_preload_consumed</item>
+        <item>@string/runtime_sync31_preload_fence_unknown</item>
+        <item>@string/runtime_sync31_preload_apk_identity</item>
+        <item>@string/runtime_sync31_preload_apk_changed</item>
+        <item>@string/runtime_sync31_preload_provenance</item>
+        <item>@string/runtime_sync31_preload_manifest_version</item>
+        <item>@string/runtime_sync31_preload_uid_mismatch</item>
+        <item>@string/runtime_sync31_preload_apk_generation</item>
+        <item>@string/runtime_sync31_preload_schema</item>
+        <item>@string/runtime_sync31_preload_version</item>
+        <item>@string/runtime_sync31_preload_revision</item>
+        <item>@string/runtime_sync31_preload_parent</item>
+        <item>@string/runtime_sync31_preload_timestamp</item>
+        <item>@string/runtime_sync31_preload_timeout</item>
+        <item>@string/runtime_sync31_preload_rebind_timeout</item>
+        <item>@string/runtime_sync31_preload_fence_write</item>
+        <item>@string/runtime_sync31_preload_binder_death</item>
+        <item>@string/runtime_sync31_preload_missing_payload</item>
+        <item>@string/runtime_sync31_preload_process_mismatch</item>
+        <item>@string/runtime_sync31_preload_skip</item>
+        <item>@string/runtime_sync31_permission_semantics</item>
+        <item>@string/runtime_sync31_throne_binder_death</item>
+        <item>@string/runtime_sync31_throne_connection_death</item>
+        <item>@string/runtime_sync31_wrapper_explanation</item>
     </string-array>
 </resources>

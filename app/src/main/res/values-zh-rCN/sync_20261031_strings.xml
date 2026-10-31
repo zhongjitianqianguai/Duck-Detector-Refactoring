@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="runtime_sync31_wrapper_label" formatted="false">KernelSU wrapper 引用泄漏</string>
+    <string name="runtime_sync31_wrapper_growth" formatted="false">文件对象数量重复增长</string>
+    <string name="runtime_sync31_wrapper_no_candidate" formatted="false">没有 wrapper 候选项；未评估</string>
+    <string name="runtime_sync31_wrapper_no_pattern" formatted="false">未观察到泄漏特征</string>
+    <string name="runtime_sync31_wrapper_headline" formatted="false">wrapper 文件对象数量重复增长</string>
+    <string name="runtime_sync31_wrapper_summary" formatted="false">三批重新打开操作都出现持续的文件对象增长，而直接终端和空闲对照保持在限定范围内。这仅是泄漏辅助证据；全系统活动仍可能干扰结果，不能据此确认 KSU 或 Root。</string>
+    <string name="runtime_sync31_wrapper_impact" formatted="false">文件对象数量的重复增长与 wrapper 重新打开操作相关。应将其作为泄漏指标复核；全局文件活动可能干扰结果，修复后的 KernelSU 构建不会出现此泄漏。</string>
+    <string name="runtime_sync31_wrapper_no_retry" formatted="false">此前的采集尝试未返回观察结果；此扫描器不再重试。</string>
+    <string name="runtime_sync31_wrapper_counts" formatted="false">采集状态=%1$v；errno=%2$d；已完成轮数=%3$d；重新打开次数=%4$d</string>
+    <string name="runtime_sync31_wrapper_points" formatted="false">采样点：基线，然后是 [空闲、直接终端、重新打开、直接终端] 三轮，最后检查持续性。数值格式为中位数/离散范围。</string>
+    <string name="runtime_sync31_preload_stale" formatted="false">App Zygote 预加载证据来自更早的一次扫描。</string>
+    <string name="runtime_sync31_preload_parent_missing" formatted="false">无法获取 App Zygote 父进程 PID，不能恢复。</string>
+    <string name="runtime_sync31_preload_retire_timeout" formatted="false">App Zygote 承载子进程未在恢复时限内退出。</string>
+    <string name="runtime_sync31_preload_reused" formatted="false">等待退出后仍复用了同一个 App Zygote。</string>
+    <string name="runtime_sync31_preload_replacement_unknown" formatted="false">无法获取替代 App Zygote 的父进程 PID。</string>
+    <string name="runtime_sync31_preload_consumed" formatted="false">这一代 App Zygote 预加载证据已经使用过。</string>
+    <string name="runtime_sync31_preload_fence_unknown" formatted="false">App Zygote 代次隔离状态不可用。</string>
+    <string name="runtime_sync31_preload_apk_identity" formatted="false">SELinux 承载进程 APK 身份不可用。</string>
+    <string name="runtime_sync31_preload_apk_changed" formatted="false">采集期间 SELinux 承载进程的 APK 发生变化。</string>
+    <string name="runtime_sync31_preload_provenance" formatted="false">App Zygote 预加载来源信息不可用。</string>
+    <string name="runtime_sync31_preload_manifest_version" formatted="false">清单中的预加载版本与已安装应用包版本不匹配。</string>
+    <string name="runtime_sync31_preload_uid_mismatch" formatted="false">App Zygote 预加载 UID 不匹配。</string>
+    <string name="runtime_sync31_preload_apk_generation" formatted="false">App Zygote 预加载 APK 代次不匹配。</string>
+    <string name="runtime_sync31_preload_schema" formatted="false">App Zygote 预加载协议版本不匹配。</string>
+    <string name="runtime_sync31_preload_version" formatted="false">App Zygote 预加载版本代码不匹配。</string>
+    <string name="runtime_sync31_preload_revision" formatted="false">App Zygote 预加载构建提交不匹配。</string>
+    <string name="runtime_sync31_preload_parent" formatted="false">App Zygote 预加载父进程 PID 不匹配。</string>
+    <string name="runtime_sync31_preload_timestamp" formatted="false">App Zygote 预加载时间戳无效。</string>
+    <string name="runtime_sync31_preload_timeout" formatted="false">SELinux 承载进程探测超时。</string>
+    <string name="runtime_sync31_preload_rebind_timeout" formatted="false">SELinux 承载进程恢复绑定超时。</string>
+    <string name="runtime_sync31_preload_fence_write" formatted="false">无法持久化 App Zygote 代次隔离状态。</string>
+    <string name="runtime_sync31_preload_binder_death" formatted="false">专用 SELinux 承载进程在观察到其 Binder 之前已退出。</string>
+    <string name="runtime_sync31_preload_missing_payload" formatted="false">专用 app_zygote 预加载载荷不可用。</string>
+    <string name="runtime_sync31_preload_process_mismatch" formatted="false">App Zygote 预加载状态与隔离承载进程或其 APK 不匹配。</string>
+    <string name="runtime_sync31_preload_skip" formatted="false">未启动：本次扫描中，已有一个 App Zygote 承载进程在连接前被停止；再次启动会再次停止应用的其他辅助进程。</string>
+    <string name="runtime_sync31_permission_semantics" formatted="false">需要已核对的 Android 15–17 权限语义、普通应用调用方 UID，以及非免安装应用的权限定义。</string>
+    <string name="runtime_sync31_throne_binder_death" formatted="false">ThroneHunt 承载进程在观察到其 Binder 之前已退出。</string>
+    <string name="runtime_sync31_throne_connection_death" formatted="false">建立连接期间，ThroneHunt 承载进程的 Binder 已失效。</string>
+    <string name="runtime_sync31_wrapper_explanation" formatted="false">通过 /proc/self/fd 重新打开已有的匿名 inode PTY wrapper，穿插空闲和直接终端对照。file-nr 是全系统的近似计数；重复增长仅是辅助证据，不能确认 KSU 或 Root。KernelSU PR #3958 修复了引用计数失衡。wrapper 已修复、没有候选项或 procfs 受限都不能排除 KSU。不发起 Root 请求。每个扫描器实例只执行一次、最多 768 次 wrapper 重新打开；后续扫描复用结果，新扫描器有独立预算。在受影响的内核上，固定的文件对象可能在描述符关闭乃至进程退出后仍然存在。阈值是暂定的，尚未经过跨设备校准。</string>
+</resources>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="runtime_sync31_wrapper_label" formatted="false">ksuWrapperReferenceLeak</string>
+    <string name="runtime_sync31_wrapper_growth" formatted="false">Repeated file-object growth</string>
+    <string name="runtime_sync31_wrapper_no_candidate" formatted="false">No wrapper candidate; not evaluated</string>
+    <string name="runtime_sync31_wrapper_no_pattern" formatted="false">Leak pattern not observed</string>
+    <string name="runtime_sync31_wrapper_headline" formatted="false">Repeated wrapper file-object growth</string>
+    <string name="runtime_sync31_wrapper_summary" formatted="false">Three reopen batches showed persistent file-object growth while direct-terminal and idle controls stayed bounded. This is supporting leak evidence; system-wide activity remains a confounder and it does not identify KSU or root.</string>
+    <string name="runtime_sync31_wrapper_impact" formatted="false">Repeated file-object growth correlates with wrapper reopens. Review this as a leak indicator; global file activity can confound the result, and fixed KernelSU builds do not have this leak.</string>
+    <string name="runtime_sync31_wrapper_no_retry" formatted="false">A previous collection attempt did not return an observation; no retry is permitted for this scanner.</string>
+    <string name="runtime_sync31_wrapper_counts" formatted="false">collection=%1$v; errno=%2$d; rounds=%3$d; reopens=%4$d</string>
+    <string name="runtime_sync31_wrapper_points" formatted="false">Points: baseline, then [idle, direct, reopen, direct] x3, persistence. Values are median/spread.</string>
+    <string name="runtime_sync31_preload_stale" formatted="false">App Zygote preload belongs to an earlier scan.</string>
+    <string name="runtime_sync31_preload_parent_missing" formatted="false">App Zygote parent PID unavailable for recovery.</string>
+    <string name="runtime_sync31_preload_retire_timeout" formatted="false">App Zygote carrier children did not retire before recovery deadline.</string>
+    <string name="runtime_sync31_preload_reused" formatted="false">App Zygote was reused after waiting for retirement.</string>
+    <string name="runtime_sync31_preload_replacement_unknown" formatted="false">Replacement App Zygote parent PID unavailable.</string>
+    <string name="runtime_sync31_preload_consumed" formatted="false">App Zygote preload generation was already consumed.</string>
+    <string name="runtime_sync31_preload_fence_unknown" formatted="false">App Zygote generation fence unavailable.</string>
+    <string name="runtime_sync31_preload_apk_identity" formatted="false">SELinux carrier APK identity unavailable.</string>
+    <string name="runtime_sync31_preload_apk_changed" formatted="false">SELinux carrier APK changed during collection.</string>
+    <string name="runtime_sync31_preload_provenance" formatted="false">App Zygote preload provenance unavailable.</string>
+    <string name="runtime_sync31_preload_manifest_version" formatted="false">Manifest preload version does not match installed package version.</string>
+    <string name="runtime_sync31_preload_uid_mismatch" formatted="false">App Zygote preload UID mismatch.</string>
+    <string name="runtime_sync31_preload_apk_generation" formatted="false">App Zygote preload APK generation mismatch.</string>
+    <string name="runtime_sync31_preload_schema" formatted="false">App Zygote preload schema mismatch.</string>
+    <string name="runtime_sync31_preload_version" formatted="false">App Zygote preload version code mismatch.</string>
+    <string name="runtime_sync31_preload_revision" formatted="false">App Zygote preload build revision mismatch.</string>
+    <string name="runtime_sync31_preload_parent" formatted="false">App Zygote preload parent PID mismatch.</string>
+    <string name="runtime_sync31_preload_timestamp" formatted="false">App Zygote preload timestamp invalid.</string>
+    <string name="runtime_sync31_preload_timeout" formatted="false">SELinux carrier probe timed out.</string>
+    <string name="runtime_sync31_preload_rebind_timeout" formatted="false">SELinux carrier recovery binding timed out.</string>
+    <string name="runtime_sync31_preload_fence_write" formatted="false">App Zygote generation fence could not be persisted.</string>
+    <string name="runtime_sync31_preload_binder_death" formatted="false">The dedicated SELinux carrier died before its Binder could be observed.</string>
+    <string name="runtime_sync31_preload_missing_payload" formatted="false">Dedicated app_zygote preload payload unavailable.</string>
+    <string name="runtime_sync31_preload_process_mismatch" formatted="false">App Zygote preload state does not match the isolated carrier\'s process or APK.</string>
+    <string name="runtime_sync31_preload_skip" formatted="false">Not started: an app zygote carrier was stopped before it connected earlier in this scan, and starting another would stop the app\'s other helper processes again.</string>
+    <string name="runtime_sync31_permission_semantics" formatted="false">Requires reviewed Android 15–17 permission semantics, an ordinary caller UID and non-instant permission definitions.</string>
+    <string name="runtime_sync31_throne_binder_death" formatted="false">The throne hunt carrier died before its Binder could be observed.</string>
+    <string name="runtime_sync31_throne_connection_death" formatted="false">The throne hunt carrier Binder died during connection setup.</string>
+    <string name="runtime_sync31_wrapper_explanation" formatted="false">Reopens an existing anonymous-inode PTY wrapper through /proc/self/fd, interleaving idle and direct-terminal controls. file-nr is system-wide and approximate; repeated growth is supporting evidence, not KSU or root identification. KernelSU PR #3958 fixes the reference imbalance. A patched wrapper, a missing candidate or restricted procfs cannot exclude KSU. No root request is made. At most 768 wrapped reopens run once per scanner instance; results are reused on later scans, and a new scanner has a new budget. On affected kernels, pinned file objects can persist after descriptors close and after process exit. Thresholds are provisional and have not been calibrated across devices.</string>
+</resources>
